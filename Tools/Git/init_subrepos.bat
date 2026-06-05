@@ -2,10 +2,11 @@
 REM ============================================================================
 REM init_subrepos.bat
 REM 将当前 monorepo 的各文件夹拆分/发布为独立 git 子库, 可选在 GitHub 建仓并推送。
-REM   - 固定子库: 读取 Tools\Git\repo_map.txt (路径^|仓库名^|分组)
-REM   - 项目库:   把整个 ASW_Libs / CDD_Libs / BSW_Libs 目录分别打包为子库
-REM               asw_libs_<PROJECT> / cdd_libs_<PROJECT> / bsw_libs_<PROJECT>
-REM               (扁平命名, 下划线分隔; 工作区库不带项目子目录, 项目在仓库名中)
+REM   - 固定子库: 读取 Tools\Git\repo_map.txt (路径^|仓库名^|分组) —— BSW/MCAL 静态源码等
+REM   - 项目相关子库: 仓库名 <name>_<PROJECT>, 工作区检出到对应目录根:
+REM       项目源码 ASWs->asw_<P>, CDDs->cdd_<P> (ASW/CDD 未按静态/配置分离)
+REM       项目库   ASW_Libs->asw_libs_<P>, CDD_Libs->cdd_libs_<P>,
+REM               BSW_Libs->bsw_libs_<P>, MCAL_Libs->mcal_libs_<P> (MCAL 配置+静态合并为库)
 REM
 REM 用法:
 REM   Tools\Git\init_subrepos.bat <REMOTE_BASE> [选项]
@@ -68,16 +69,15 @@ for /F "usebackq eol=# tokens=1,2,3 delims=|" %%P in ("%MAP%") do (
     if not "!P!"=="" call :make_repo "%%P" "%%Q" "%%R"
 )
 
-REM ---- 2) 项目库: 整个 <Layer>_Libs 目录 -> 子库 <layer>_libs_<PROJECT> ----
-REM      工作区中库不带项目子目录, 项目身份体现在子库名中。
-for %%L in (ASW CDD BSW) do (
-    set "LAYERDIR=%%L_Libs"
-    set "LOW=%%L"
-    if /I "%%L"=="ASW" set "LOW=asw"
-    if /I "%%L"=="CDD" set "LOW=cdd"
-    if /I "%%L"=="BSW" set "LOW=bsw"
-    if exist "!LAYERDIR!" call :make_repo "!LAYERDIR!" "!LOW!_libs_%PROJECT%" "libs"
-)
+REM ---- 2) 项目相关子库 -> 仓库名 <name>_<PROJECT> (工作区检出到对应目录根) ----
+REM      项目源码: ASW / CDD (未按静态/配置分离, 整体与项目相关)
+call :make_proj "ASWs"      "asw"       "src"
+call :make_proj "CDDs"      "cdd"       "src"
+REM      项目库: ASW / CDD / BSW / MCAL (含配置代码, 全部按项目)
+call :make_proj "ASW_Libs"  "asw_libs"  "libs"
+call :make_proj "CDD_Libs"  "cdd_libs"  "libs"
+call :make_proj "BSW_Libs"  "bsw_libs"  "libs"
+call :make_proj "MCAL_Libs" "mcal_libs" "libs"
 
 echo.
 echo [init] 完成。临时子库位于 %STAGE% (可在确认后删除)。
@@ -114,6 +114,12 @@ if defined DO_PUSH (
     git push -u origin %BRANCH%
 )
 popd
+goto :eof
+
+REM ---------------------------------------------------------------------------
+:make_proj
+REM %1=源目录  %2=仓库名前缀  %3=分组 ; 仓库名 = <前缀>_<PROJECT>
+if exist "%~1" call :make_repo "%~1" "%~2_%PROJECT%" "%~3"
 goto :eof
 
 REM ---------------------------------------------------------------------------

@@ -3,22 +3,27 @@
      default.xml — 完整视图 (平台/集成负责人): 拥有所有层源码 + 全部库
      ============================================================================
      子库划分原则:
-       - 源码: 按顶层文件夹各建一个 git 子库
-       - 共享库: MCAL_Libs (按芯片, 跨项目共享)
-       - 项目库: ASW_Libs / CDD_Libs / BSW_Libs 与项目相关, 按项目各建一个子库
-                 (BSW 的 .a 已把项目配置代码一并打包, 故也按项目)
+       - 共享源码: BSW / MCAL 静态源码(供应商, 静态与配置分离, 跨项目复用) 及
+                   Components / Projects / Tools / Test / docs 各建一个子库
+       - 项目源码: ASW / CDD 模块代码未按 AUTOSAR 静态/配置分离, 整体与项目相关,
+                   故源码也按项目: asw_<project> / cdd_<project> (检出到 ASWs / CDDs)
+       - 项目库: ASW_Libs / CDD_Libs / BSW_Libs / MCAL_Libs 全部与项目相关,
+                 各按项目建一个子库 (MCAL 配置代码与静态代码一并编译链接为库;
+                 BSW 的 .a 也已把项目配置代码打包)。
                  仓库名 <layer>_libs_<project> (扁平/下划线); 项目身份在仓库名中,
-                 故检出路径直接是 <Layer>_Libs (不再带项目子目录, 拉取时项目已确定)。
-     一个工作区对应一个项目; 切换项目 = 换一套 *_libs_<Proj> 子库即可。
+                 故检出路径直接是 <Layer>_Libs (不带项目子目录, 拉取时项目已确定)。
+     一个工作区对应一个项目; 切换项目 = 换一套 *_<Proj> / *_libs_<Proj> 子库即可。
      ============================================================================ -->
 <manifest>
   <remote name="origin" fetch="ssh://git@example.com/autosar/"/>
   <default remote="origin" revision="main" sync-j="8"/>
 
-  <!-- ===== 源码子库 (按文件夹) ===== -->
-  <project name="asw.git"        path="ASWs"        groups="src,asw"/>
+  <!-- ===== 项目源码子库 (ASW / CDD 按项目) ===== -->
+  <project name="asw_Demo_Tc387.git" path="ASWs"  groups="src,asw,proj_Demo_Tc387"/>
+  <project name="cdd_Demo_Tc387.git" path="CDDs"  groups="src,cdd,proj_Demo_Tc387"/>
+
+  <!-- ===== 共享源码子库 (静态/配置分离, 跨项目复用) ===== -->
   <project name="bsw.git"        path="BSW"         groups="src,bsw"/>
-  <project name="cdd.git"        path="CDDs"        groups="src,cdd"/>
   <project name="mcal.git"       path="MCAL"        groups="src,mcal"/>
   <project name="components.git" path="Components"  groups="src"/>
   <project name="projects.git"   path="Projects"    groups="src,integration"/>
@@ -26,14 +31,12 @@
   <project name="test.git"       path="Test"        groups="src,test"/>
   <project name="docs.git"       path="docs"        groups="docs"/>
 
-  <!-- ===== 共享库子库 (跨项目) ===== -->
-  <project name="mcal_libs.git"  path="MCAL_Libs"   groups="libs,mcal_libs"/>
-
-  <!-- ===== 项目库子库 (ASW / CDD / BSW 按项目; 检出到 <Layer>_Libs 根) =====
+  <!-- ===== 项目库子库 (ASW / CDD / BSW / MCAL 全部按项目; 检出到 <Layer>_Libs 根) =====
        本工作区对应项目 Demo_Tc387 -->
-  <project name="asw_libs_Demo_Tc387.git" path="ASW_Libs" groups="libs,asw_libs,proj_Demo_Tc387"/>
-  <project name="cdd_libs_Demo_Tc387.git" path="CDD_Libs" groups="libs,cdd_libs,proj_Demo_Tc387"/>
-  <project name="bsw_libs_Demo_Tc387.git" path="BSW_Libs" groups="libs,bsw_libs,proj_Demo_Tc387"/>
+  <project name="asw_libs_Demo_Tc387.git"  path="ASW_Libs"  groups="libs,asw_libs,proj_Demo_Tc387"/>
+  <project name="cdd_libs_Demo_Tc387.git"  path="CDD_Libs"  groups="libs,cdd_libs,proj_Demo_Tc387"/>
+  <project name="bsw_libs_Demo_Tc387.git"  path="BSW_Libs"  groups="libs,bsw_libs,proj_Demo_Tc387"/>
+  <project name="mcal_libs_Demo_Tc387.git" path="MCAL_Libs" groups="libs,mcal_libs,proj_Demo_Tc387"/>
 
   <!-- ===== 元信息子库 (清单 + 根脚本/配置) =====
        检出到 .meta 子目录 (避免与其它子库的检出路径重叠),

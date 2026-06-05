@@ -13,9 +13,9 @@ BSW、组件到上层应用 (ASW) 的完整分层结构，并集成构建 (SCons
 
 仓库按文件夹拆分为独立子库，用 google-repo 清单组装：
 
-- **源码**：每个顶层文件夹一个子库（`asw` / `bsw` / `cdd` / `mcal` / `components` / `projects` / `tools` / `test` / `docs`）。
-- **共享库**：`mcal_libs`（按芯片），跨项目共享。
-- **项目库**：`ASW_Libs/`、`CDD_Libs/`、`BSW_Libs/` 与项目相关，**按项目建子库** —— `asw_libs_<Project>`、`cdd_libs_<Project>`、`bsw_libs_<Project>`（扁平命名、下划线分隔）。BSW 的 `.a` 已把该项目的 ECUC 配置生成代码一并打包，故也按项目。**工作区中这些库直接检出到 `<Layer>_Libs/` 根**（不带项目子目录）——拉取时项目已由子库名确定。
+- **共享源码**：`bsw` / `mcal`（供应商静态码，静态/配置分离、跨项目复用）及 `components` / `projects` / `tools` / `test` / `docs`。
+- **项目源码**：`ASWs/`、`CDDs/` 模块代码**未按 AUTOSAR 静态/配置分离**，整体与项目相关，故源码也按项目 —— `asw_<Project>`、`cdd_<Project>`。
+- **项目库**：`ASW_Libs/`、`CDD_Libs/`、`BSW_Libs/`、`MCAL_Libs/` **全部按项目建子库** —— `asw_libs_<Project>`、`cdd_libs_<Project>`、`bsw_libs_<Project>`、`mcal_libs_<Project>`（扁平命名、下划线分隔）。MCAL 的 `.a` 把配置代码与静态代码一并编译链接、BSW 的 `.a` 已打包项目 ECUC 配置，故均按项目。**工作区中这些库/源码直接检出到对应目录根**（不带项目子目录）——拉取时项目已由子库名确定。
 
 子库清单见 `Tools/Git/repo_map.txt` 与 `manifests/default.xml`。创建子库（并在 GitHub 建仓+推送）：
 

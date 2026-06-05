@@ -64,9 +64,9 @@ def source_dir(layer, name, chip):
 
 def lib_file(layer, name, chip, project=None):
     """返回已释放的 .a 路径 (用于 mode=lib)。
-    ASW / CDD / BSW 与项目相关, 但工作区中库直接位于 <Layer>_Libs/ 下
-    (项目身份体现在 git 子库名 <layer>_libs_<project>, 拉取时已确定项目,
-     故工作区路径不再带项目子目录); MCAL (按芯片) 为平台级共享库。
+    ASW / CDD / BSW / MCAL 全部与项目相关 (MCAL 配置+静态合并为库), 各自 git 子库名
+    为 <layer>_libs_<project>; 但工作区中库直接位于 <Layer>_Libs/ 下 (拉取时项目已确定,
+    工作区路径不带项目子目录)。MCAL 内部仍按芯片再分一级 <Chip>/<Mod>。
     保留 project 参数仅为调用方签名兼容。"""
     root = LAYER_LIB_ROOT[layer]
     if layer == 'MCAL':

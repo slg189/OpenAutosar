@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- manifest-integration.xml — 基础工程师: 仅 Projects/*/Integration 源码可见;
+     ASW/BSW/CDD/MCAL 全部以 *_Libs/.a 集成 -->
+<manifest>
+  <remote name="origin" fetch="ssh://git@example.com/autosar/"/>
+  <default remote="origin" revision="main" sync-j="8"/>
+
+  <!-- 集成代码源码可见 (仅 Integration 子树, 其余 Projects 内容随工程下发) -->
+  <project name="projects.git"   path="Projects"/>
+  <project name="tools.git"      path="Tools"/>
+
+  <!-- 所有层仅二进制 + 头文件 -->
+  <project name="asw-libs.git"   path="ASW_Libs"/>
+  <project name="bsw-libs.git"   path="BSW_Libs"/>
+  <project name="cdd-libs.git"   path="CDD_Libs"/>
+  <project name="mcal-libs.git"  path="MCAL_Libs"/>
+</manifest>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- default.xml — 完整视图: 拥有所有层源码 (平台/集成负责人) -->
+<manifest>
+  <remote name="origin" fetch="ssh://git@example.com/autosar/"/>
+  <default remote="origin" revision="main" sync-j="8"/>
+
+  <project name="asw.git"        path="ASWs"/>
+  <project name="bsw.git"        path="BSW"/>
+  <project name="cdd.git"        path="CDDs"/>
+  <project name="mcal.git"       path="MCAL"/>
+  <project name="components.git" path="Components"/>
+  <project name="projects.git"   path="Projects"/>
+  <project name="tools.git"      path="Tools"/>
+  <project name="test.git"       path="Test"/>
+  <!-- 释放库区 (由 CI release_libs.sh 产出并提交) -->
+  <project name="libs.git"       path="." groups="libs"/>
+</manifest>

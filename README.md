@@ -6,6 +6,43 @@ BSW、组件到上层应用 (ASW) 的完整分层结构，并集成构建 (SCons
 (EB tresos / ETAS / Vector)、测试 (GoogleTest / QEMU) 与静态检查 (MISRA / QAC)。
 
 > 完整的图文文档见 [`docs/index.html`](docs/index.html)（在浏览器中打开）。
+> 信息安全分级与灵活编译方案见 [`docs/build_and_security.html`](docs/build_and_security.html)。
+
+## 信息安全分级（代码可见性隔离）
+
+不同角色只能看到与其职责相关的源码，其余以二进制库（`.a` + 头文件）形式集成。根目录新增
+`ASW_Libs/`、`BSW_Libs/`、`CDD_Libs/`、`MCAL_Libs/` 作为释放区；工程下新增
+`Projects/<P>/Integration/` 作为基础工程师维护的集成代码。
+
+| 角色 | 可见源码 | 二进制集成 (.a + inc) | manifest |
+|------|----------|------------------------|----------|
+| 平台/集成负责人 | 全部 | — | `manifests/default.xml` |
+| ASW 工程师 | `ASWs/`、`Components/`、`Projects/` | `BSW_Libs`、`CDD_Libs`、`MCAL_Libs` | `manifests/manifest-asw.xml` |
+| 基础(集成)工程师 | `Projects/*/Integration/` | `ASW_Libs`、`BSW_Libs`、`CDD_Libs`、`MCAL_Libs` | `manifests/manifest-integration.xml` |
+
+```bash
+# 按角色视图签出 (google-repo)
+MANIFEST_NAME=manifest-asw.xml ./repo_metasar.sh init && ./repo_metasar.sh sync
+# 将源码模块编译并释放到 *_Libs/
+./release_libs.sh all
+```
+
+## 灵活编译（按模块灵活配置）
+
+各模块在 `Projects/<P>/module_config.py` 中独立声明形态与编译选项；命令行可临时覆盖：
+
+```bash
+cd Projects/Demo_Tc387
+scons                       # 按 module_config.py 构建
+scons variant=Debug         # Debug / Release
+scons chip=Tc367            # 切换目标芯片
+scons only=Adc,CddPwm       # 仅编译指定模块
+scons skip=EnergyManagement # 跳过指定模块
+scons layers=ASW,MCAL       # 仅编译指定层
+scons release               # 编译并把源码模块释放回 *_Libs
+```
+
+每个模块可配 `mode`（`source` 源码编译 / `lib` 库集成）、`enabled`、`cflags`（模块级编译选项）。
 
 ## 目录结构
 

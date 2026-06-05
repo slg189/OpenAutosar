@@ -1,80 +1,118 @@
 # ============================================================================
 # SConstruct - OpenAutosar 工程构建入口 (Project: Demo_Tc387)
 #
-# 构建流程:
-#   1. 编译 MCAL / CDD / Components / ASW 各模块 -> 静态库 (.a) 到 Libs/
-#   2. 链接 Gen/ 生成的配置代码 + 各层 .a + 供应商 BSW .a
-#   3. 使用 Ld/ 链接脚本生成 Out/Demo_Tc387.elf 并转换 hex/map
+# 「灵活配置 / 灵活编译」: 模块的 source/lib 形态、启用与编译选项均由
+# module_config.py 声明, 并可经命令行覆盖:
+#   scons                         # 按 module_config.py 构建
+#   scons variant=Debug           # 切换 Debug/Release
+#   scons chip=Tc367              # 切换目标芯片
+#   scons only=Adc,CddPwm         # 仅编译指定模块
+#   scons skip=EnergyManagement   # 跳过指定模块
+#   scons layers=ASW,MCAL         # 仅编译指定层
+#
+# 信息安全: source 模式需源码可见; 不可见的层以 *_Libs/*.a 形式链接。
 # ============================================================================
-import os
+import os, sys
 
-PROJECT   = 'Demo_Tc387'
-MCU       = 'tc387'
-ROOT      = Dir('#').abspath          # 仓库根目录
-PROJ_DIR  = Dir('.').abspath
+# ---- 载入工程配置与公共构建辅助 ----
+sys.path.insert(0, Dir('#Tools/Scons').abspath)
+import build_helpers as bh           # noqa: E402
+import module_config as mc           # noqa: E402
 
-# ---- 工具链 (TASKING / GCC for TriCore) ----
-env = Environment(
+opts = bh.parse_cli(ARGUMENTS, {'VARIANT': mc.VARIANT, 'CHIP': mc.CHIP})
+VARIANT = opts['variant']
+CHIP    = opts['chip']
+MCU     = CHIP.lower().replace('tc', 'tc')   # Tc387 -> tc387
+PROJECT = mc.PROJECT
+
+print('[build] project=%s chip=%s variant=%s' % (PROJECT, CHIP, VARIANT))
+
+# ---- 基础环境 (TASKING / GCC for TriCore) ----
+base_env = Environment(
     ENV       = os.environ,
     CC        = os.environ.get('TRICORE_CC', 'tricore-gcc'),
     AR        = os.environ.get('TRICORE_AR', 'tricore-ar'),
-    CCFLAGS   = ['-Wall', '-g', '-O2', '-mcpu=%s' % MCU],
+    CCFLAGS   = mc.GLOBAL_CFLAGS[VARIANT] + ['-Wall', '-mcpu=%s' % MCU],
+    CPPDEFINES = list(mc.GLOBAL_DEFINES),
     OBJPREFIX = '',
 )
 
-# 临时目标文件输出到 Obj/
-env.VariantDir('Obj', '#', duplicate=0)
-
-# ---- 公共头文件搜索路径 ----
-env.Append(CPPPATH=[
-    '#MCAL/inc',
+# 公共头文件 (始终可见的公共类型/抽象)
+base_env.Append(CPPPATH=[
     '#Components/Common/inc',
-    '#ASWs/inc',
-    '#BSW/inc',
-    '#BSW/Etas/inc',
-    '#BSW/Vector/inc',
-    Dir('Gen/MCAL'), Dir('Gen/CDD'), Dir('Gen/BSW'),
+    '#MCAL_Libs/inc',
 ])
+Export({'env': base_env})
 
-Export('env')
+source_libs = []     # 本次从源码编译产出的 .a
+prebuilt_libs = []   # mode=lib 直接链接的已释放 .a
+release_actions = [] # 源码模块编译后回灌 *_Libs 的安装动作
 
-# ---- 子模块 SConscript -> 产出 .a 到 Libs/<layer> ----
-libs = []
-module_map = {
-    'ASW':  ['#ASWs/VehicleControl/SConscript'],
-    'CDD':  ['#CDDs/CddPwm/SConscript', '#CDDs/CddMotor/SConscript'],
-    'MCAL': [],  # 本工程 MCAL 由 EB 生成后在 Gen/ 中编译, 此处略
-    'CMP':  ['#Components/Common/SConscript', '#Components/Mcu/Sbm/SConscript'],
-}
-layer_libdir = {'ASW': 'Libs/ASW', 'CDD': 'Libs/CDD', 'MCAL': 'Libs/MCAL', 'CMP': 'Libs/BSW'}
+# ---- 遍历模块配置, 按 source/lib 灵活处理 ----
+for layer, modules in mc.MODULES.items():
+    for name, cfg in modules.items():
+        if not bh.is_selected(layer, name, cfg, opts):
+            print('[build]   skip %-5s %s' % (layer, name))
+            continue
 
-for layer, scripts in module_map.items():
-    for sc in scripts:
-        lib = SConscript(sc, variant_dir=os.path.join('Obj', layer, os.path.basename(os.path.dirname(sc))), duplicate=0)
-        installed = env.Install(layer_libdir[layer], lib)
-        libs.append(installed)
+        mode = cfg.get('mode', 'lib')
 
-# ---- 预编译供应商库 ----
-prebuilt = [
-    File('#BSW/Etas/lib/libRtaOs.a'),
-    File('#BSW/Vector/lib/libCom.a'),
-    File('#ASWs/EnergyManagement/libEnergyManagement.a'),
-    File('#CDDs/CddSent/libCddSent.a'),
-    File('#MCAL/Tc367/Can/libCan.a'),
-]
+        if mode == 'source':
+            src_dir = bh.source_dir(layer, name, CHIP)
+            sconscript = '%s/SConscript' % src_dir
+            if not os.path.exists(File(sconscript).abspath):
+                print('[build]   WARN 源码不可见, 回退 lib: %s/%s' % (layer, name))
+                mode = 'lib'
+            else:
+                # 模块级编译选项: 克隆环境并追加 cflags/defines, 实现按模块灵活编译
+                menv = base_env.Clone()
+                menv.Append(CCFLAGS=cfg.get('cflags', []))
+                menv.Append(CPPDEFINES=cfg.get('defines', []))
+                Export({'env': menv})
+                vdir = os.path.join('Obj', layer, name)
+                lib = SConscript(sconscript, variant_dir=vdir, duplicate=0)
+                source_libs += lib
+                # 安装到工程 Libs/ 并释放到根 *_Libs (供下游二进制集成)
+                base_env.Install('Libs/%s' % layer, lib)
+                release_actions += base_env.Install(
+                    os.path.dirname(File(bh.lib_file(layer, name, CHIP)).abspath), lib)
+                print('[build]   src  %-5s %s  cflags+=%s' % (layer, name, cfg.get('cflags', [])))
 
-# ---- 链接生成 ELF ----
+        if mode == 'lib':
+            la = File(bh.lib_file(layer, name, CHIP))
+            prebuilt_libs.append(la)
+            base_env.Append(CPPPATH=bh.lib_incdirs(layer, name, CHIP))
+            print('[build]   lib  %-5s %s  <- %s' % (layer, name, la.path))
+
+# ---- Components (公共/启动) 始终源码编译 ----
+for comp in ['#Components/Common/SConscript', '#Components/Mcu/Sbm/SConscript']:
+    Export({'env': base_env})
+    source_libs += SConscript(
+        comp, variant_dir=os.path.join('Obj', 'CMP', os.path.basename(os.path.dirname(comp))),
+        duplicate=0)
+
+# ---- 集成层 (Integration): 基础工程师维护的胶水代码 ----
+Export({'env': base_env})
+integration_objs = SConscript('Integration/SConscript',
+                              variant_dir=os.path.join('Obj', 'Integration'), duplicate=0)
+
+# ---- 链接 ----
 linker_script = File('Ld/%s.ld' % PROJECT)
-env.Append(LINKFLAGS=['-T', linker_script.abspath, '-Wl,-Map=Out/%s.map' % PROJECT])
+link_env = base_env.Clone()
+link_env.Append(LINKFLAGS=['-T', linker_script.abspath,
+                           '-Wl,-Map=Out/%s.map' % PROJECT])
 
-elf = env.Program(
+elf = link_env.Program(
     target = 'Out/%s.elf' % PROJECT,
-    source = Glob('Gen/MCAL/*.c') + Glob('Gen/CDD/*.c') + Glob('Gen/BSW/*.c') + libs + prebuilt,
+    source = (integration_objs
+              + Glob('Gen/MCAL/*.c') + Glob('Gen/CDD/*.c') + Glob('Gen/BSW/*.c')
+              + source_libs + prebuilt_libs),
 )
 Depends(elf, linker_script)
 
-# ---- 生成 Intel HEX ----
-hex_out = env.Command('Out/%s.hex' % PROJECT, elf,
-                      'tricore-objcopy -O ihex $SOURCE $TARGET')
+hex_out = link_env.Command('Out/%s.hex' % PROJECT, elf,
+                           'tricore-objcopy -O ihex $SOURCE $TARGET')
 
+# 别名: 编译同时把源码模块释放回 *_Libs
+Alias('release', release_actions)
 Default(hex_out)

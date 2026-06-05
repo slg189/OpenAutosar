@@ -64,18 +64,19 @@ def source_dir(layer, name, chip):
 
 def lib_file(layer, name, chip, project=None):
     """返回已释放的 .a 路径 (用于 mode=lib)。
-    ASW / CDD / BSW 与项目相关 (BSW 的 .a 已把项目配置代码一并打包),
-    库位于 <Layer>_Libs/<project>/ 下 (按项目建子库);
-    MCAL (按芯片) 为平台级共享库, 不分项目。"""
+    ASW / CDD / BSW 与项目相关, 但工作区中库直接位于 <Layer>_Libs/ 下
+    (项目身份体现在 git 子库名 <layer>_libs_<project>, 拉取时已确定项目,
+     故工作区路径不再带项目子目录); MCAL (按芯片) 为平台级共享库。
+    保留 project 参数仅为调用方签名兼容。"""
     root = LAYER_LIB_ROOT[layer]
     if layer == 'MCAL':
         return '%s/%s/%s/lib%s.a' % (root, chip, name, name)
     if layer == 'BSW':
-        # BSW 以供应商包(Etas/Vector)子目录组织, 按项目
+        # BSW 以供应商包(Etas/Vector)子目录组织
         vendor = {'Os': 'Etas/libRtaOs', 'Com': 'Vector/libCom'}.get(name, name)
-        return '%s/%s/%s.a' % (root, project, vendor)
-    # ASW / CDD: 按项目
-    return '%s/%s/%s/lib%s.a' % (root, project, name, name)
+        return '%s/%s.a' % (root, vendor)
+    # ASW / CDD
+    return '%s/%s/lib%s.a' % (root, name, name)
 
 
 def lib_incdirs(layer, name, chip, project=None):
@@ -85,6 +86,6 @@ def lib_incdirs(layer, name, chip, project=None):
         return ['%s/inc' % root, '%s/%s/%s/inc' % (root, chip, name)]
     if layer == 'BSW':
         vendor = {'Os': 'Etas', 'Com': 'Vector'}.get(name, name)
-        return ['%s/%s/inc' % (root, project), '%s/%s/%s/inc' % (root, project, vendor)]
-    # ASW / CDD: 按项目
-    return ['%s/%s/inc' % (root, project), '%s/%s/%s/inc' % (root, project, name)]
+        return ['%s/inc' % root, '%s/%s/inc' % (root, vendor)]
+    # ASW / CDD
+    return ['%s/inc' % root, '%s/%s/inc' % (root, name)]

@@ -15,15 +15,15 @@ BSW、组件到上层应用 (ASW) 的完整分层结构，并集成构建 (SCons
 
 - **源码**：每个顶层文件夹一个子库（`asw` / `bsw` / `cdd` / `mcal` / `components` / `projects` / `tools` / `test` / `docs`）。
 - **共享库**：`mcal_libs`（按芯片），跨项目共享。
-- **项目库**：`ASW_Libs/`、`CDD_Libs/`、`BSW_Libs/` 与项目相关，**按项目建子库** —— `asw_libs_<Project>`、`cdd_libs_<Project>`、`bsw_libs_<Project>`（扁平命名、下划线分隔），路径为 `<Layer>_Libs/<Project>/`。BSW 的 `.a` 已把该项目的 ECUC 配置生成代码一并打包，故也按项目。
+- **项目库**：`ASW_Libs/`、`CDD_Libs/`、`BSW_Libs/` 与项目相关，**按项目建子库** —— `asw_libs_<Project>`、`cdd_libs_<Project>`、`bsw_libs_<Project>`（扁平命名、下划线分隔）。BSW 的 `.a` 已把该项目的 ECUC 配置生成代码一并打包，故也按项目。**工作区中这些库直接检出到 `<Layer>_Libs/` 根**（不带项目子目录）——拉取时项目已由子库名确定。
 
 子库清单见 `Tools/Git/repo_map.txt` 与 `manifests/default.xml`。创建子库（并在 GitHub 建仓+推送）：
 
 ```bat
-REM 预览
-Tools\Git\init_subrepos.bat https://github.com/<owner> --dry-run
+REM 预览 (--project 决定 *_libs_<name>, 默认 Demo_Tc387)
+Tools\Git\init_subrepos.bat https://github.com/<owner> --project Demo_Tc387 --dry-run
 REM gh CLI 建仓 + 推送 (先 gh auth login; 组织加 --org, 公开加 --public)
-Tools\Git\init_subrepos.bat https://github.com/<owner> --github <owner> --push
+Tools\Git\init_subrepos.bat https://github.com/<owner> --project Demo_Tc387 --github <owner> --push
 REM 无 gh 时用 REST API: 先 set GITHUB_TOKEN=ghp_xxxx
 ```
 

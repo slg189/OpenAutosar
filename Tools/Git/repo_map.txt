@@ -3,9 +3,10 @@
 # 以 # 开头的行为注释; 空行忽略。
 #
 # 注意: ASW_Libs / CDD_Libs / BSW_Libs 与项目相关, 此处不在固定清单中列出,
-#       由 init_subrepos.bat 自动遍历各 *_Libs\<project> 目录,
-#       生成仓库名 asw_libs_<project> / cdd_libs_<project> / bsw_libs_<project>
-#       (扁平命名, 下划线分隔)。
+#       由 init_subrepos.bat 把整个 *_Libs 目录打包为子库, 仓库名取
+#       asw_libs_<PROJECT> / cdd_libs_<PROJECT> / bsw_libs_<PROJECT>
+#       (扁平命名, 下划线分隔; PROJECT 由 --project 指定, 默认 Demo_Tc387)。
+#       工作区中这些库直接位于 <Layer>_Libs\ 根, 不带项目子目录。
 
 # ===== 源码子库 (按文件夹) =====
 ASWs|asw|src

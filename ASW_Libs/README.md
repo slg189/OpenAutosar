@@ -1,13 +1,13 @@
-# ASW_Libs — ASW 层二进制释放区（按项目分子库）
+# ASW_Libs — ASW 层二进制释放区
 
-ASW 模型与具体项目强相关，因此 **每个项目一个 git 子库**：
+ASW 模型与项目相关，按项目建 git 子库 **`asw_libs_<Project>`**。但**工作区中库直接位于
+本目录根下**（不带项目子目录）——因为拉取某个 `asw_libs_<Project>` 子库时项目已确定。
 
 ```
-ASW_Libs/
-└── <Project>/          # git 子库: asw_libs_<Project>.git
-    ├── inc/            # 项目级公共头文件 (Rte_Type.h ...)
-    └── <Model>/        # inc/ + lib<Model>.a
+ASW_Libs/                # = git 子库 asw_libs_<Project> 的检出
+├── inc/                 # 项目级公共头 (Rte_Type.h ...)
+├── VehicleControl/      # inc/ + libVehicleControl.a
+└── EnergyManagement/    # inc/ + libEnergyManagement.a
 ```
 
-仅含对外 `inc/` 头文件与预编译 `.a`，不含源码。由 `release_libs.bat ASW`
-（内部按 `PROJECT` 释放到 `ASW_Libs\<Project>\`）回灌。
+仅含对外 `inc/` 头文件与预编译 `.a`，不含源码。由 `release_libs.bat ASW` 回灌。

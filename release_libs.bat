@@ -55,23 +55,23 @@ call :copy_headers "MCAL\inc" "MCAL_Libs\inc"
 goto :eof
 
 :release_cdd
-REM CDD 与项目相关: 释放到 CDD_Libs\<Project>\ (按项目建子库)
-for /D %%D in (CDDs\*) do call :build_lib "%%D" "%%~nxD" "CDD_Libs\%PROJECT%\%%~nxD"
+REM CDD 释放到 CDD_Libs\ (项目身份在子库名 cdd_libs_<PROJECT> 中)
+for /D %%D in (CDDs\*) do call :build_lib "%%D" "%%~nxD" "CDD_Libs\%%~nxD"
 goto :eof
 
 :release_asw
-REM ASW 与项目相关: 释放到 ASW_Libs\<Project>\ (按项目建子库)
+REM ASW 释放到 ASW_Libs\ (项目身份在子库名 asw_libs_<PROJECT> 中)
 for /D %%D in (ASWs\*) do (
-    if /I not "%%~nxD"=="inc" call :build_lib "%%D" "%%~nxD" "ASW_Libs\%PROJECT%\%%~nxD"
+    if /I not "%%~nxD"=="inc" call :build_lib "%%D" "%%~nxD" "ASW_Libs\%%~nxD"
 )
-call :copy_headers "ASWs\inc" "ASW_Libs\%PROJECT%\inc"
+call :copy_headers "ASWs\inc" "ASW_Libs\inc"
 goto :eof
 
 :release_bsw
-REM BSW 与项目相关 (.a 已把项目配置代码一并打包): 释放到 BSW_Libs\<Project>\
-call :copy_headers "BSW\inc"        "BSW_Libs\%PROJECT%\inc"
-call :copy_headers "BSW\Etas\inc"   "BSW_Libs\%PROJECT%\Etas\inc"
-call :copy_headers "BSW\Vector\inc" "BSW_Libs\%PROJECT%\Vector\inc"
-if exist "BSW\Etas\lib\*.a"   copy /Y "BSW\Etas\lib\*.a"   "BSW_Libs\%PROJECT%\Etas\"   >nul
-if exist "BSW\Vector\lib\*.a" copy /Y "BSW\Vector\lib\*.a" "BSW_Libs\%PROJECT%\Vector\" >nul
+REM BSW 释放到 BSW_Libs\ (.a 已把项目配置代码打包; 项目身份在子库名 bsw_libs_<PROJECT> 中)
+call :copy_headers "BSW\inc"        "BSW_Libs\inc"
+call :copy_headers "BSW\Etas\inc"   "BSW_Libs\Etas\inc"
+call :copy_headers "BSW\Vector\inc" "BSW_Libs\Vector\inc"
+if exist "BSW\Etas\lib\*.a"   copy /Y "BSW\Etas\lib\*.a"   "BSW_Libs\Etas\"   >nul
+if exist "BSW\Vector\lib\*.a" copy /Y "BSW\Vector\lib\*.a" "BSW_Libs\Vector\" >nul
 goto :eof

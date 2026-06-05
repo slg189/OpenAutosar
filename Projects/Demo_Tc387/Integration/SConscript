@@ -1,17 +1,12 @@
 # SConscript - 集成层 (Integration)
 # 基础工程师维护的集成/胶水代码, 编译为工程私有目标并参与最终链接。
 Import('env')
-# ASW / CDD 库按项目组织 (ASW_Libs/<Project>/.. , CDD_Libs/<Project>/..)
-PROJECT = 'Demo_Tc387'
+# ASW/CDD/BSW 库直接位于 <Layer>_Libs/ 下 (项目身份在子库名中, 拉取时已确定项目)
 env.Append(CPPPATH=[
     Dir('inc'),
-    '#ASW_Libs/%s/inc' % PROJECT,
-    '#ASW_Libs/%s/VehicleControl/inc' % PROJECT,
-    '#ASW_Libs/%s/EnergyManagement/inc' % PROJECT,
-    '#CDD_Libs/%s/CddPwm/inc' % PROJECT,
-    '#BSW_Libs/%s/inc' % PROJECT,
-    '#BSW_Libs/%s/Etas/inc' % PROJECT,
-    '#BSW_Libs/%s/Vector/inc' % PROJECT,
+    '#ASW_Libs/inc', '#ASW_Libs/VehicleControl/inc', '#ASW_Libs/EnergyManagement/inc',
+    '#CDD_Libs/CddPwm/inc',
+    '#BSW_Libs/inc', '#BSW_Libs/Etas/inc', '#BSW_Libs/Vector/inc',
     '#Components/Common/inc', '#Components/Mcu/Sbm/inc',
     '#MCAL_Libs/inc',
 ])

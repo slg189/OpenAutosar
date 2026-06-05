@@ -13,16 +13,17 @@
 - **共享库**: `mcal_libs` (按芯片, 跨项目)
 - **项目库**: `asw_libs_<Project>` / `cdd_libs_<Project>` / `bsw_libs_<Project>`
   —— ASW、CDD、BSW 与项目相关 (BSW 的 `.a` 已把项目配置代码一并打包), **按项目建子库**;
-  命名扁平、下划线分隔
+  命名扁平、下划线分隔。**工作区中这些库直接检出到 `<Layer>_Libs/` 根**（不带项目子目录）——
+  拉取某个 `*_libs_<Project>` 时项目已确定，项目身份只在子库名中。
 
 ## 用法
 
 ```bat
-REM 预览将创建的子库
-Tools\Git\init_subrepos.bat https://github.com/<owner> --dry-run
+REM 预览将创建的子库 (--project 决定 *_libs_<name> 仓库名, 默认 Demo_Tc387)
+Tools\Git\init_subrepos.bat https://github.com/<owner> --project Demo_Tc387 --dry-run
 
 REM 本地初始化并推送 (远端空仓库需已存在)
-Tools\Git\init_subrepos.bat https://github.com/<owner> --push
+Tools\Git\init_subrepos.bat https://github.com/<owner> --project Demo_Tc387 --push
 ```
 
 ## 在 GitHub 上建仓 + 推送

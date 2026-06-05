@@ -3,14 +3,15 @@ REM ============================================================================
 REM init_subrepos.bat
 REM 将当前 monorepo 的各文件夹拆分/发布为独立 git 子库, 可选在 GitHub 建仓并推送。
 REM   - 固定子库: 读取 Tools\Git\repo_map.txt (路径^|仓库名^|分组)
-REM   - 项目库:   自动遍历 ASW_Libs\* 、CDD_Libs\* 、BSW_Libs\* 各项目, 生成
-REM               asw_libs_<project> / cdd_libs_<project> / bsw_libs_<project>
-REM               (扁平命名, 下划线分隔)
+REM   - 项目库:   把整个 ASW_Libs / CDD_Libs / BSW_Libs 目录分别打包为子库
+REM               asw_libs_<PROJECT> / cdd_libs_<PROJECT> / bsw_libs_<PROJECT>
+REM               (扁平命名, 下划线分隔; 工作区库不带项目子目录, 项目在仓库名中)
 REM
 REM 用法:
 REM   Tools\Git\init_subrepos.bat <REMOTE_BASE> [选项]
 REM     REMOTE_BASE        远端基址, 如 https://github.com/<owner> 或 git@github.com:<owner>
 REM   选项:
+REM     --project <name>   项目名 (默认 Demo_Tc387, 决定 *_libs_<name> 仓库名)
 REM     --push             初始化并提交后推送
 REM     --dry-run          只打印将要执行的动作
 REM     --github <owner>   推送前在 GitHub 为各子库建仓 (owner=用户或组织)
@@ -26,7 +27,7 @@ REM ============================================================================
 setlocal enabledelayedexpansion
 
 if "%~1"=="" (
-    echo 用法: %~nx0 ^<REMOTE_BASE^> [--push] [--dry-run] [--github ^<owner^>] [--org] [--public] 1>&2
+    echo 用法: %~nx0 ^<REMOTE_BASE^> [--project ^<name^>] [--push] [--dry-run] [--github ^<owner^>] [--org] [--public] 1>&2
     exit /b 1
 )
 set "REMOTE_BASE=%~1"
@@ -36,6 +37,7 @@ set "GH_OWNER="
 set "GH_IS_ORG="
 set "GH_VIS=--private"
 set "GH_PRIV=true"
+if "%PROJECT%"=="" set "PROJECT=Demo_Tc387"
 
 REM ---- 解析选项 ----
 :parse
@@ -46,6 +48,7 @@ if /I "%~1"=="--dry-run" ( set "DRY_RUN=1"  & goto parse )
 if /I "%~1"=="--org"     ( set "GH_IS_ORG=1" & goto parse )
 if /I "%~1"=="--public"  ( set "GH_VIS=--public" & set "GH_PRIV=false" & goto parse )
 if /I "%~1"=="--github"  ( set "GH_OWNER=%~2" & shift & goto parse )
+if /I "%~1"=="--project" ( set "PROJECT=%~2" & shift & goto parse )
 goto parse
 :parsed
 
@@ -56,7 +59,7 @@ set "BRANCH=main"
 
 if not exist "%MAP%" ( echo 未找到 %MAP% 1>&2 & exit /b 1 )
 
-echo [init] REMOTE_BASE=%REMOTE_BASE%  push=%DO_PUSH%  dry-run=%DRY_RUN%  github=%GH_OWNER%
+echo [init] REMOTE_BASE=%REMOTE_BASE%  project=%PROJECT%  push=%DO_PUSH%  dry-run=%DRY_RUN%  github=%GH_OWNER%
 echo.
 
 REM ---- 1) 固定子库 (repo_map.txt) ----
@@ -65,16 +68,15 @@ for /F "usebackq eol=# tokens=1,2,3 delims=|" %%P in ("%MAP%") do (
     if not "!P!"=="" call :make_repo "%%P" "%%Q" "%%R"
 )
 
-REM ---- 2) 项目库: ASW_Libs / CDD_Libs / BSW_Libs 下各项目 ----
+REM ---- 2) 项目库: 整个 <Layer>_Libs 目录 -> 子库 <layer>_libs_<PROJECT> ----
+REM      工作区中库不带项目子目录, 项目身份体现在子库名中。
 for %%L in (ASW CDD BSW) do (
     set "LAYERDIR=%%L_Libs"
-    if exist "!LAYERDIR!" for /D %%D in ("!LAYERDIR!\*") do (
-        set "LOW=%%L"
-        if /I "%%L"=="ASW" set "LOW=asw"
-        if /I "%%L"=="CDD" set "LOW=cdd"
-        if /I "%%L"=="BSW" set "LOW=bsw"
-        call :make_repo "!LAYERDIR!\%%~nxD" "!LOW!_libs_%%~nxD" "libs"
-    )
+    set "LOW=%%L"
+    if /I "%%L"=="ASW" set "LOW=asw"
+    if /I "%%L"=="CDD" set "LOW=cdd"
+    if /I "%%L"=="BSW" set "LOW=bsw"
+    if exist "!LAYERDIR!" call :make_repo "!LAYERDIR!" "!LOW!_libs_%PROJECT%" "libs"
 )
 
 echo.

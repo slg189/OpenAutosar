@@ -20,18 +20,18 @@ BSW、组件到上层应用 (ASW) 的完整分层结构，并集成构建 (SCons
 | ASW 工程师 | `ASWs/`、`Components/`、`Projects/` | `BSW_Libs`、`CDD_Libs`、`MCAL_Libs` | `manifests/manifest-asw.xml` |
 | 基础(集成)工程师 | `Projects/*/Integration/` | `ASW_Libs`、`BSW_Libs`、`CDD_Libs`、`MCAL_Libs` | `manifests/manifest-integration.xml` |
 
-```bash
-# 按角色视图签出 (google-repo)
-MANIFEST_NAME=manifest-asw.xml ./repo_metasar.sh init && ./repo_metasar.sh sync
-# 将源码模块编译并释放到 *_Libs/
-./release_libs.sh all
+```bat
+REM 按角色视图签出 (google-repo)
+set MANIFEST_NAME=manifest-asw.xml && repo_metasar.bat init && repo_metasar.bat sync
+REM 将源码模块编译并释放到 *_Libs/
+release_libs.bat all
 ```
 
 ## 灵活编译（按模块灵活配置）
 
 各模块在 `Projects/<P>/module_config.py` 中独立声明形态与编译选项；命令行可临时覆盖：
 
-```bash
+```bat
 cd Projects/Demo_Tc387
 scons                       # 按 module_config.py 构建
 scons variant=Debug         # Debug / Release
@@ -61,9 +61,9 @@ scons release               # 编译并把源码模块释放回 *_Libs
 | `.clang-format` | 代码格式规范 |
 | `.gitignore` | 忽略构建产物与生成代码 |
 | `misra.json` | MISRA C:2012 静态检查配置 |
-| `repo_metasar.sh` | google-repo manifest 多仓同步脚本 |
-| `run_gtest.sh` | 构建并运行 GoogleTest 单元测试 + 覆盖率 |
-| `run_integrationTest.sh` | 在 QEMU 上运行集成测试 |
+| `repo_metasar.bat` | google-repo manifest 多仓同步脚本 |
+| `run_gtest.bat` | 构建并运行 GoogleTest 单元测试 + 覆盖率 |
+| `run_integrationTest.bat` | 在 QEMU 上运行集成测试 |
 | `TestPlatform_UintTest_QEMU_Test.json` | QEMU 测试平台配置 |
 
 ### 工程目录 `Projects/<Project>/`
@@ -79,17 +79,18 @@ scons release               # 编译并把源码模块释放回 *_Libs
 
 ## 构建
 
-```bash
-# 设置 TriCore 工具链
-source Tools/Compiler/setup_env.sh
+```bat
+REM 设置 TriCore 工具链
+call Tools\Compiler\setup_env.bat
 
-# 构建某工程
-cd Projects/Demo_Tc387 && scons -j$(nproc)
+REM 构建某工程
+cd Projects\Demo_Tc387
+scons -j %NUMBER_OF_PROCESSORS%
 ```
 
 ## 测试
 
-```bash
-./run_gtest.sh                 # 单元测试 + 覆盖率
-./run_integrationTest.sh Demo_Tc387   # QEMU 集成测试
+```bat
+run_gtest.bat                 # 单元测试 + 覆盖率
+run_integrationTest.bat Demo_Tc387   # QEMU 集成测试
 ```

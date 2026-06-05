@@ -88,7 +88,7 @@
 <section id="libs">
   <h2>库化释放区 *_Libs</h2>
   <p>根目录新增四个释放区，存放各层对外交付的 <code>inc/</code> 头文件与预编译 <code>.a</code>，<strong>不含源码</strong>。
-  由 <code>release_libs.sh</code> 从源码编译后回灌（也可由 CI 产出）。</p>
+  由 <code>release_libs.bat</code> 从源码编译后回灌（也可由 CI 产出）。</p>
 <div class="tree"><span class="dir">OpenAutosar/</span>
 ├── <span class="dir">ASW_Libs/</span>    <span class="note"># ASW 释放: inc/ + lib&lt;Model&gt;.a</span>
 ├── <span class="dir">BSW_Libs/</span>    <span class="note"># BSW 释放: Etas/ Vector/ (inc + .a)</span>
@@ -138,9 +138,9 @@
     <tr><td><code>manifest-asw.xml</code></td><td>ASW 工程师</td><td>ASWs, Components, Projects, Tools</td><td>BSW_Libs, CDD_Libs, MCAL_Libs</td></tr>
     <tr><td><code>manifest-integration.xml</code></td><td>基础工程师</td><td>Projects, Tools</td><td>ASW_Libs, BSW_Libs, CDD_Libs, MCAL_Libs</td></tr>
   </table>
-<pre><code># 以 ASW 工程师视图签出
-MANIFEST_NAME=manifest-asw.xml ./repo_metasar.sh init
-./repo_metasar.sh sync</code></pre>
+ <pre>  <code>REM 以 ASW 工程师视图签出
+set MANIFEST_NAME=manifest-asw.xml && repo_metasar.bat init
+repo_metasar.bat sync</code></pre>
   <div class="callout">隔离边界在 <strong>仓库下发</strong> 层面：拿不到源码仓库，自然看不到源码；
   <code>*_Libs</code> 作为受控发布物随对应库仓下发。</div>
 </section>
@@ -148,7 +148,7 @@ MANIFEST_NAME=manifest-asw.xml ./repo_metasar.sh init
 <section id="config">
   <h2>灵活编译 · module_config.py</h2>
   <p>每个模块独立声明：<code>mode</code>（source / lib）、<code>enabled</code>、<code>cflags</code>（模块级编译选项）。</p>
-<pre><code>MODULES = {
+ <pre>  <code>MODULES = {
   'MCAL': {
     'Adc':  {'mode': 'source', 'enabled': True, 'cflags': ['-O3']},
     'Can':  {'mode': 'lib',    'enabled': True},
@@ -190,25 +190,25 @@ MANIFEST_NAME=manifest-asw.xml ./repo_metasar.sh init
     <span>链接 ELF/HEX</span>
   </div>
   <p>释放（供下游二进制集成）：</p>
-<pre><code># 把各层源码编译并连同头文件释放到根 *_Libs/
-./release_libs.sh all
-CHIP=Tc367 ./release_libs.sh MCAL   # 仅释放 TC367 的 MCAL</code></pre>
+ <pre>  <code>REM 把各层源码编译并连同头文件释放到根 *_Libs/
+release_libs.bat all
+set CHIP=Tc367 && release_libs.bat MCAL   # 仅释放 TC367 的 MCAL</code></pre>
 </section>
 
 <section id="examples">
   <h2>常用示例</h2>
-<pre><code># ASW 工程师: 只联调本层模型, 其余用库
+ <pre>  <code>REM ASW 工程师: 只联调本层模型, 其余用库
 cd Projects/Demo_Tc387
 scons layers=ASW variant=Debug
 
-# 基础工程师: 全部用库, 只编集成层 (其余 mode 已是 lib)
+REM 基础工程师: 全部用库, 只编集成层 (其余 mode 已是 lib)
 scons                          # Integration + *_Libs/*.a
 
-# 单独高优化编译某 MCAL 模块
+REM 单独高优化编译某 MCAL 模块
 scons only=Adc chip=Tc387      # Adc 带 module_config 中的 -O3
 
-# 发布: 编译 + 回灌库
-scons release && ./release_libs.sh all</code></pre>
+REM 发布: 编译 + 回灌库
+scons release && release_libs.bat all</code></pre>
 </section>
 
 </main>

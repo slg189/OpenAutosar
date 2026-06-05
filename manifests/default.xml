@@ -12,6 +12,6 @@
   <project name="projects.git"   path="Projects"/>
   <project name="tools.git"      path="Tools"/>
   <project name="test.git"       path="Test"/>
-  <!-- 释放库区 (由 CI release_libs.sh 产出并提交) -->
+  <!-- 释放库区 (由 CI release_libs.bat 产出并提交) -->
   <project name="libs.git"       path="." groups="libs"/>
 </manifest>

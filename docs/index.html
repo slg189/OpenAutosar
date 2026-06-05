@@ -157,9 +157,9 @@
 ├── .clang-format          <span class="note"># 代码格式</span>
 ├── .gitignore
 ├── misra.json             <span class="note"># MISRA C:2012 检查配置</span>
-├── repo_metasar.sh        <span class="note"># 多仓同步 (google-repo)</span>
-├── run_gtest.sh           <span class="note"># 单元测试入口</span>
-├── run_integrationTest.sh <span class="note"># 集成测试入口</span>
+├── repo_metasar.bat        <span class="note"># 多仓同步 (google-repo)</span>
+├── run_gtest.bat           <span class="note"># 单元测试入口</span>
+├── run_integrationTest.bat <span class="note"># 集成测试入口</span>
 └── TestPlatform_UintTest_QEMU_Test.json
 </div>
 </section>
@@ -262,8 +262,8 @@
   <h2>Test · 测试</h2>
   <table>
     <tr><th>目录</th><th>说明</th><th>入口</th></tr>
-    <tr><td><code>Test/ut/</code></td><td>GoogleTest 单元测试 + 覆盖率</td><td><code>run_gtest.sh</code></td></tr>
-    <tr><td><code>Test/Projects/</code></td><td>QEMU 集成测试工程</td><td><code>run_integrationTest.sh</code></td></tr>
+    <tr><td><code>Test/ut/</code></td><td>GoogleTest 单元测试 + 覆盖率</td><td><code>run_gtest.bat</code></td></tr>
+    <tr><td><code>Test/Projects/</code></td><td>QEMU 集成测试工程</td><td><code>run_integrationTest.bat</code></td></tr>
     <tr><td><code>Test/QAC/</code></td><td>QAC / MISRA 静态分析</td><td><code>misra.json</code></td></tr>
   </table>
 </section>
@@ -274,9 +274,9 @@
     <tr><th>文件</th><th>说明</th></tr>
     <tr><td><code>.clang-format</code></td><td>代码格式规范（4 空格 / Allman / 对齐）</td></tr>
     <tr><td><code>misra.json</code></td><td>MISRA C:2012 规则集、豁免与扫描范围</td></tr>
-    <tr><td><code>repo_metasar.sh</code></td><td>google-repo manifest 多子仓同步</td></tr>
-    <tr><td><code>run_gtest.sh</code></td><td>构建并运行单元测试，产出覆盖率到 <code>coverage_output/</code></td></tr>
-    <tr><td><code>run_integrationTest.sh</code></td><td>在 QEMU 上运行集成测试</td></tr>
+    <tr><td><code>repo_metasar.bat</code></td><td>google-repo manifest 多子仓同步</td></tr>
+    <tr><td><code>run_gtest.bat</code></td><td>构建并运行单元测试，产出覆盖率到 <code>coverage_output/</code></td></tr>
+    <tr><td><code>run_integrationTest.bat</code></td><td>在 QEMU 上运行集成测试</td></tr>
     <tr><td><code>TestPlatform_UintTest_QEMU_Test.json</code></td><td>QEMU 测试平台配置</td></tr>
   </table>
 </section>
@@ -284,19 +284,19 @@
 <section id="build">
   <h2>构建与测试流程</h2>
   <h3>构建</h3>
-<pre><code># 1. 配置 TriCore 工具链环境
-source Tools/Compiler/setup_env.sh
+ <pre>  <code>REM 1. 配置 TriCore 工具链环境
+call Tools\Compiler\setup_env.bat
 
-# 2. 进入工程并构建 (SCons)
+REM 2. 进入工程并构建 (SCons)
 cd Projects/Demo_Tc387
-scons -j$(nproc)
-# 产物: Out/Demo_Tc387.elf / .hex / .map</code></pre>
+scons -j %NUMBER_OF_PROCESSORS%
+REM 产物: Out/Demo_Tc387.elf / .hex / .map</code></pre>
   <p class="muted">构建顺序：各模块 <code>SConscript</code> 编译为 <code>.a</code> → 安装到
   <code>Libs/</code> → 与 <code>Gen/</code> 配置代码、供应商 BSW 库一同按
   <code>Ld/</code> 链接脚本链接为 ELF → objcopy 生成 HEX。</p>
   <h3>测试</h3>
-<pre><code>./run_gtest.sh                       # 单元测试 + lcov 覆盖率
-./run_integrationTest.sh Demo_Tc387  # QEMU 集成测试 (JUnit 报告)</code></pre>
+ <pre>  <code>run_gtest.bat                       REM 单元测试 + OpenCppCoverage 覆盖率
+run_integrationTest.bat Demo_Tc387  # QEMU 集成测试 (JUnit 报告)</code></pre>
 </section>
 
 <section id="conventions">

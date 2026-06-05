@@ -9,10 +9,15 @@
 
 ## 子库划分
 
-- **源码**: 每个顶层文件夹一个子库 (asw / bsw / cdd / mcal / components / projects / tools / test / docs)
-- **共享库**: `mcal_libs` (按芯片, 跨项目)
-- **项目库**: `asw_libs_<Project>` / `cdd_libs_<Project>` / `bsw_libs_<Project>`
-  —— ASW、CDD、BSW 与项目相关 (BSW 的 `.a` 已把项目配置代码一并打包), **按项目建子库**;
+- **共享源码**: `mcal` / `components` / `projects` / `tools` 各一个子库。
+  `Test` / `Docs` / `Reports` 已随工程下沉到 `Projects/<P>/`，属 `projects` 子库。
+- **BSW 供应商交付 (BSW group)**: `BSW/` 不再分 `Vector`/`Etas` 目录，仅按模块名 (`Os`/`Com`/…) 组织;
+  供应商/芯片/交付版本编码进子库名 `BSW_<Vendor>_<Chip>_<Delivery>` (如 `BSW_Vector_TC387_CBDxxxxxx`、
+  `BSW_Etas_TC387_RtaOs`)，**每家供应商一个交付库**，各自检出到 `BSW/<模块>`，共同组成扁平的 `BSW/` 树。
+  这些条目在 `repo_map.txt` 中以 `BSW/<模块>|<库名>|bsw` 声明，交付版本号按实际交付改名。
+- **项目源码**: `asw_<Project>` / `cdd_<Project>` (ASW/CDD 未按静态/配置分离, 整体与项目相关)。
+- **项目库**: `asw_libs_<Project>` / `cdd_libs_<Project>` / `bsw_libs_<Project>` / `mcal_libs_<Project>`
+  —— 与项目相关 (BSW/MCAL 的 `.a` 已把项目配置代码一并打包), **按项目建子库**; 库目录同样按模块名、不分供应商;
   命名扁平、下划线分隔。**工作区中这些库直接检出到 `<Layer>_Libs/` 根**（不带项目子目录）——
   拉取某个 `*_libs_<Project>` 时项目已确定，项目身份只在子库名中。
 

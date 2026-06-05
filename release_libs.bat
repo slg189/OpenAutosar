@@ -56,22 +56,25 @@ goto :eof
 
 :release_cdd
 REM CDD 释放到 CDD_Libs\ (项目身份在子库名 cdd_libs_<PROJECT> 中)
-for /D %%D in (CDDs\*) do call :build_lib "%%D" "%%~nxD" "CDD_Libs\%%~nxD"
+for /D %%D in (CDD\*) do call :build_lib "%%D" "%%~nxD" "CDD_Libs\%%~nxD"
 goto :eof
 
 :release_asw
 REM ASW 释放到 ASW_Libs\ (项目身份在子库名 asw_libs_<PROJECT> 中)
-for /D %%D in (ASWs\*) do (
+for /D %%D in (ASW\*) do (
     if /I not "%%~nxD"=="inc" call :build_lib "%%D" "%%~nxD" "ASW_Libs\%%~nxD"
 )
-call :copy_headers "ASWs\inc" "ASW_Libs\inc"
+call :copy_headers "ASW\inc" "ASW_Libs\inc"
 goto :eof
 
 :release_bsw
-REM BSW 释放到 BSW_Libs\ (.a 已把项目配置代码打包; 项目身份在子库名 bsw_libs_<PROJECT> 中)
-call :copy_headers "BSW\inc"        "BSW_Libs\inc"
-call :copy_headers "BSW\Etas\inc"   "BSW_Libs\Etas\inc"
-call :copy_headers "BSW\Vector\inc" "BSW_Libs\Vector\inc"
-if exist "BSW\Etas\lib\*.a"   copy /Y "BSW\Etas\lib\*.a"   "BSW_Libs\Etas\"   >nul
-if exist "BSW\Vector\lib\*.a" copy /Y "BSW\Vector\lib\*.a" "BSW_Libs\Vector\" >nul
+REM BSW 释放到 BSW_Libs\ (按模块名目录; 供应商/芯片/交付版本在 git 子库名中,
+REM 子库位于 BSW group, 命名 BSW_<Vendor>_<Chip>_<Delivery>; .a 已把项目配置代码打包)
+call :copy_headers "BSW\inc" "BSW_Libs\inc"
+for /D %%D in (BSW\*) do (
+    if /I not "%%~nxD"=="inc" (
+        call :copy_headers "%%D\inc" "BSW_Libs\%%~nxD\inc"
+        if exist "%%D\lib\*.a" copy /Y "%%D\lib\*.a" "BSW_Libs\%%~nxD\" >nul
+    )
+)
 goto :eof

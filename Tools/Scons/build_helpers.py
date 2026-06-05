@@ -10,8 +10,8 @@ import os
 
 # 各层源码根 (源码可见时编译)
 LAYER_SRC_ROOT = {
-    'ASW':  '#ASWs',
-    'CDD':  '#CDDs',
+    'ASW':  '#ASW',
+    'CDD':  '#CDD',
     'MCAL': '#MCAL',
 }
 
@@ -72,9 +72,9 @@ def lib_file(layer, name, chip, project=None):
     if layer == 'MCAL':
         return '%s/%s/%s/lib%s.a' % (root, chip, name, name)
     if layer == 'BSW':
-        # BSW 以供应商包(Etas/Vector)子目录组织
-        vendor = {'Os': 'Etas/libRtaOs', 'Com': 'Vector/libCom'}.get(name, name)
-        return '%s/%s.a' % (root, vendor)
+        # BSW 按模块名子目录组织 (供应商/芯片/交付版本在 git 子库名中, 不再分供应商目录)
+        libname = {'Os': 'Os/libRtaOs', 'Com': 'Com/libCom'}.get(name, '%s/lib%s' % (name, name))
+        return '%s/%s.a' % (root, libname)
     # ASW / CDD
     return '%s/%s/lib%s.a' % (root, name, name)
 
@@ -85,7 +85,7 @@ def lib_incdirs(layer, name, chip, project=None):
     if layer == 'MCAL':
         return ['%s/inc' % root, '%s/%s/%s/inc' % (root, chip, name)]
     if layer == 'BSW':
-        vendor = {'Os': 'Etas', 'Com': 'Vector'}.get(name, name)
-        return ['%s/inc' % root, '%s/%s/inc' % (root, vendor)]
+        # 按模块名 (Os/Com/...) 取头文件目录
+        return ['%s/inc' % root, '%s/%s/inc' % (root, name)]
     # ASW / CDD
     return ['%s/inc' % root, '%s/%s/inc' % (root, name)]

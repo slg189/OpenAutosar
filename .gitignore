@@ -30,8 +30,9 @@ Projects/*/Libs/MCAL/*.a
 # ===== Test / coverage outputs =====
 build_test/
 coverage_output/
-reports/*.xml
-reports/*.html
+Projects/*/Reports/*.xml
+Projects/*/Reports/*.html
+!Projects/*/Reports/.gitkeep
 log_repo
 
 # ===== SCons =====

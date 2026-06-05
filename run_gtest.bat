@@ -1,14 +1,16 @@
 @echo off
 REM ============================================================================
 REM run_gtest.bat
-REM 构建并运行 GoogleTest 单元测试 (Test\ut), 生成覆盖率到 coverage_output\。
+REM 构建并运行 GoogleTest 单元测试 (Projects\<PROJECT>\Test\ut), 覆盖率到 coverage_output\。
 REM 用法: run_gtest.bat [module]   module 为空则运行全部
+REM 注: 单元测试与报告已随工程下沉到 Projects\<PROJECT>\{Test,Reports} (默认 Demo_Tc387)。
 REM ============================================================================
 setlocal
 
+if "%PROJECT%"=="" set "PROJECT=Demo_Tc387"
 set "BUILD_DIR=build_test"
 set "COVERAGE_DIR=coverage_output"
-set "REPORT_DIR=reports"
+set "REPORT_DIR=Projects\%PROJECT%\Reports"
 set "MODULE=%~1"
 if "%MODULE%"=="" set "MODULE=all"
 
@@ -17,7 +19,7 @@ if not exist "%COVERAGE_DIR%" mkdir "%COVERAGE_DIR%"
 if not exist "%REPORT_DIR%"   mkdir "%REPORT_DIR%"
 
 echo [gtest] 配置构建 (module=%MODULE%) ...
-cmake -S Test\ut -B "%BUILD_DIR%" -DCMAKE_BUILD_TYPE=Coverage -DGTEST_MODULE=%MODULE% || goto :err
+cmake -S Projects\%PROJECT%\Test\ut -B "%BUILD_DIR%" -DCMAKE_BUILD_TYPE=Coverage -DGTEST_MODULE=%MODULE% || goto :err
 
 echo [gtest] 编译 ...
 cmake --build "%BUILD_DIR%" -j %NUMBER_OF_PROCESSORS% || goto :err

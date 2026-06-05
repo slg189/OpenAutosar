@@ -91,15 +91,15 @@
   由 <code>release_libs.bat</code> 从源码编译后回灌（也可由 CI 产出）。</p>
 <div class="tree"><span class="dir">OpenAutosar/</span>
 ├── <span class="dir">ASW_Libs/</span>    <span class="note"># ASW 释放(按项目, 子库 asw_libs_&lt;P&gt;): &lt;Model&gt;/inc + lib&lt;Model&gt;.a</span>
-├── <span class="dir">BSW_Libs/</span>    <span class="note"># BSW 释放(按项目, 子库 bsw_libs_&lt;P&gt;): Etas|Vector/ (inc + .a, 含配置代码)</span>
+├── <span class="dir">BSW_Libs/</span>    <span class="note"># BSW 释放(按项目, 子库 bsw_libs_&lt;P&gt;): &lt;Mod&gt;/ (Os|Com... inc + .a, 含配置代码)</span>
 ├── <span class="dir">CDD_Libs/</span>    <span class="note"># CDD 释放(按项目, 子库 cdd_libs_&lt;P&gt;): &lt;Cdd&gt;/inc + lib&lt;Cdd&gt;.a</span>
 ├── <span class="dir">MCAL_Libs/</span>   <span class="note"># MCAL 释放(按项目, 子库 mcal_libs_&lt;P&gt;): &lt;Chip&gt;/&lt;Mod&gt;/.. (.a 含配置+静态)</span>
 │
-├── ASWs/  BSW/  CDDs/  MCAL/   <span class="note"># 源码 (按 manifest 选择性下发)</span>
+├── ASW/  BSW/  CDD/  MCAL/   <span class="note"># 源码 (按 manifest 选择性下发)</span>
 └── Projects/Demo_Tc387/<span class="dir">Integration/</span>  <span class="note"># 集成代码 (基础工程师)</span>
 </div>
-  <p class="muted">命名规则：MCAL 按 <code>&lt;Chip&gt;/&lt;Module&gt;/</code> 镜像；CDD/ASW 按 <code>&lt;Module&gt;/</code>；
-  BSW 按供应商 <code>Etas/</code>、<code>Vector/</code>。每个模块目录含 <code>inc/</code> 与 <code>lib&lt;Name&gt;.a</code>。</p>
+  <p class="muted">命名规则：MCAL 按 <code>&lt;Chip&gt;/&lt;Module&gt;/</code> 镜像；CDD/ASW/BSW 均按 <code>&lt;Module&gt;/</code>
+  （BSW 不再分供应商目录，供应商/芯片/交付版本在子库名中）。每个模块目录含 <code>inc/</code> 与 <code>lib&lt;Name&gt;.a</code>。</p>
 </section>
 
 <section id="integration">
@@ -119,9 +119,9 @@
   <h2>角色可见性矩阵</h2>
   <table class="matrix">
     <tr><th>资源</th><th>平台/集成负责人</th><th>ASW 工程师</th><th>基础(集成)工程师</th></tr>
-    <tr><td><code>ASWs/</code> 源码</td><td class="ok">✔ 源码</td><td class="ok">✔ 源码</td><td class="no">✘ 仅 ASW_Libs</td></tr>
+    <tr><td><code>ASW/</code> 源码</td><td class="ok">✔ 源码</td><td class="ok">✔ 源码</td><td class="no">✘ 仅 ASW_Libs</td></tr>
     <tr><td><code>BSW/</code> 源码</td><td class="ok">✔ 源码</td><td class="no">✘ 仅 BSW_Libs</td><td class="no">✘ 仅 BSW_Libs</td></tr>
-    <tr><td><code>CDDs/</code> 源码</td><td class="ok">✔ 源码</td><td class="no">✘ 仅 CDD_Libs</td><td class="no">✘ 仅 CDD_Libs</td></tr>
+    <tr><td><code>CDD/</code> 源码</td><td class="ok">✔ 源码</td><td class="no">✘ 仅 CDD_Libs</td><td class="no">✘ 仅 CDD_Libs</td></tr>
     <tr><td><code>MCAL/</code> 源码</td><td class="ok">✔ 源码</td><td class="no">✘ 仅 MCAL_Libs</td><td class="no">✘ 仅 MCAL_Libs</td></tr>
     <tr><td><code>Projects/*/Integration/</code></td><td class="ok">✔ 源码</td><td class="ok">✔ 源码</td><td class="ok">✔ 源码</td></tr>
     <tr><td><code>*_Libs/</code> (.a + inc)</td><td>—</td><td class="ok">✔ 相关层</td><td class="ok">✔ 全部层</td></tr>
@@ -135,7 +135,7 @@
   <table>
     <tr><th>Manifest</th><th>角色</th><th>源码仓</th><th>库仓 (.a+inc)</th></tr>
     <tr><td><code>default.xml</code></td><td>平台/集成负责人</td><td>全部</td><td>—</td></tr>
-    <tr><td><code>manifest-asw.xml</code></td><td>ASW 工程师</td><td>ASWs, Components, Projects, Tools</td><td>BSW_Libs, CDD_Libs, MCAL_Libs</td></tr>
+    <tr><td><code>manifest-asw.xml</code></td><td>ASW 工程师</td><td>ASW, Components, Projects, Tools</td><td>BSW_Libs, CDD_Libs, MCAL_Libs</td></tr>
     <tr><td><code>manifest-integration.xml</code></td><td>基础工程师</td><td>Projects, Tools</td><td>ASW_Libs, BSW_Libs, CDD_Libs, MCAL_Libs</td></tr>
   </table>
  <pre>  <code>REM 以 ASW 工程师视图签出

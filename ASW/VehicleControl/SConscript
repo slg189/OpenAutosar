@@ -1,5 +1,5 @@
 # SConscript - ASW 应用 VehicleControl
 Import('env')
-env.Append(CPPPATH=[Dir('inc'), Dir('#ASWs/inc')])
+env.Append(CPPPATH=[Dir('inc'), Dir('#ASW/inc')])
 lib = env.StaticLibrary(target='VehicleControl', source=Glob('src/*.c'))
 Return('lib')

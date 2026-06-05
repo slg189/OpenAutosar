@@ -9,7 +9,7 @@ setlocal
 set "PROJECT=%~1"
 if "%PROJECT%"=="" set "PROJECT=Demo_Tc387"
 set "CONFIG=TestPlatform_UintTest_QEMU_Test.json"
-set "REPORT_DIR=reports"
+set "REPORT_DIR=Projects\%PROJECT%\Reports"
 
 if not exist "%REPORT_DIR%" mkdir "%REPORT_DIR%"
 
@@ -27,7 +27,7 @@ if not exist "%ELF%" (
 )
 
 echo [itest] 在 QEMU 中运行集成测试 (config=%CONFIG%) ...
-python Test\Projects\run_qemu.py --config "%CONFIG%" --elf "%ELF%" --report "%REPORT_DIR%\integration_%PROJECT%.xml" || goto :err
+python Projects\%PROJECT%\Test\Projects\run_qemu.py --config "%CONFIG%" --elf "%ELF%" --report "%REPORT_DIR%\integration_%PROJECT%.xml" || goto :err
 
 echo [itest] 完成。报告: %REPORT_DIR%\integration_%PROJECT%.xml
 goto :eof

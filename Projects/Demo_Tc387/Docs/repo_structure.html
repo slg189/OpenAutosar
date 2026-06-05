@@ -70,9 +70,9 @@
 <section id="principle">
   <h2>划分原则</h2>
   <ul>
-    <li><span class="tag t-src">源码</span> 每个顶层文件夹一个子库（<code>ASWs/</code>、<code>BSW/</code>、<code>CDDs/</code>、<code>MCAL/</code>、<code>Components/</code>、<code>Projects/</code>、<code>Tools/</code>、<code>Test/</code>、<code>docs/</code>）。</li>
-    <li><span class="tag t-src">共享源码</span> <code>BSW/</code>、<code>MCAL/</code>（供应商静态码，静态/配置分离、跨项目复用）及 <code>Components/</code>、<code>Projects/</code>、<code>Tools/</code>、<code>Test/</code>、<code>docs/</code> 各一个子库。</li>
-    <li><span class="tag t-proj">项目源码</span> <code>ASWs/</code>、<code>CDDs/</code> 的模块代码<strong>未按 AUTOSAR 静态/配置分离</strong>，整体与项目相关，故源码也按项目：<code>asw_&lt;Project&gt;</code>、<code>cdd_&lt;Project&gt;</code>。</li>
+    <li><span class="tag t-src">共享源码</span> <code>MCAL/</code>（供应商静态码，静态/配置分离、跨项目复用）及 <code>Components/</code>、<code>Projects/</code>、<code>Tools/</code> 各一个子库。<code>Test/</code>、<code>Docs/</code>、<code>Reports/</code> 已随工程下沉到 <code>Projects/&lt;P&gt;/</code>，属 <code>projects</code> 子库。</li>
+    <li><span class="tag t-src">BSW 供应商交付</span> <code>BSW/</code> 不再分 <code>Vector</code>/<code>Etas</code> 目录，仅按模块名（<code>Os</code>/<code>Com</code>/…）组织；供应商/芯片/交付版本编码进子库名 <code>BSW_&lt;Vendor&gt;_&lt;Chip&gt;_&lt;Delivery&gt;</code>，归 <strong>BSW group</strong>，<strong>每家供应商一个交付库</strong>，各自检出到 <code>BSW/&lt;模块&gt;</code>，共同组成扁平的 <code>BSW/</code> 树。</li>
+    <li><span class="tag t-proj">项目源码</span> <code>ASW/</code>、<code>CDD/</code> 的模块代码<strong>未按 AUTOSAR 静态/配置分离</strong>，整体与项目相关，故源码也按项目：<code>asw_&lt;Project&gt;</code>、<code>cdd_&lt;Project&gt;</code>。</li>
     <li><span class="tag t-proj">项目库</span> <code>ASW_Libs/</code>、<code>CDD_Libs/</code>、<code>BSW_Libs/</code>、<code>MCAL_Libs/</code> <strong>全部按项目各建一个子库</strong>：<code>asw_libs_&lt;Project&gt;</code>、<code>cdd_libs_&lt;Project&gt;</code>、<code>bsw_libs_&lt;Project&gt;</code>、<code>mcal_libs_&lt;Project&gt;</code>（扁平命名、下划线分隔）。</li>
     <li><span class="tag t-meta">元信息</span> 清单与根脚本/配置归 <code>meta</code> 子库（或 manifest 仓）。</li>
   </ul>
@@ -85,15 +85,15 @@
   <h2>子库清单</h2>
   <table>
     <tr><th>类型</th><th>工作区路径</th><th>git 仓库</th><th>说明</th></tr>
-    <tr><td><span class="tag t-proj">项目源码</span></td><td><code>ASWs/</code></td><td><code>asw_Demo_Tc387.git</code></td><td>ASW 模型源码 (按项目)</td></tr>
-    <tr><td><span class="tag t-proj">项目源码</span></td><td><code>CDDs/</code></td><td><code>cdd_Demo_Tc387.git</code></td><td>复杂驱动源码 (按项目)</td></tr>
-    <tr><td><span class="tag t-src">共享源码</span></td><td><code>BSW/</code></td><td><code>bsw.git</code></td><td>BSW 静态源码/供应商包</td></tr>
+    <tr><td><span class="tag t-proj">项目源码</span></td><td><code>ASW/</code></td><td><code>asw_Demo_Tc387.git</code></td><td>ASW 模型源码 (按项目)</td></tr>
+    <tr><td><span class="tag t-proj">项目源码</span></td><td><code>CDD/</code></td><td><code>cdd_Demo_Tc387.git</code></td><td>复杂驱动源码 (按项目)</td></tr>
+    <tr><td><span class="tag t-src">BSW 交付</span></td><td><code>BSW/Os</code></td><td><code>BSW_Etas_TC387_RtaOs.git</code></td><td>ETAS RTA-OS 交付 (BSW group)</td></tr>
+    <tr><td><span class="tag t-src">BSW 交付</span></td><td><code>BSW/Com</code></td><td><code>BSW_Vector_TC387_CBDxxxxxx.git</code></td><td>Vector COM 交付 (BSW group)</td></tr>
+    <tr><td><span class="tag t-src">BSW 交付</span></td><td><code>BSW/inc</code></td><td><code>BSW_Common_TC387.git</code></td><td>BSW 公共头 (BSW group)</td></tr>
     <tr><td><span class="tag t-src">共享源码</span></td><td><code>MCAL/</code></td><td><code>mcal.git</code></td><td>MCAL 静态源码</td></tr>
     <tr><td><span class="tag t-src">共享源码</span></td><td><code>Components/</code></td><td><code>components.git</code></td><td>组件/公共代码</td></tr>
-    <tr><td><span class="tag t-src">共享源码</span></td><td><code>Projects/</code></td><td><code>projects.git</code></td><td>工程 (Integration/Cfg/Ld...)</td></tr>
+    <tr><td><span class="tag t-src">共享源码</span></td><td><code>Projects/</code></td><td><code>projects.git</code></td><td>工程 (Integration/Cfg/Ld/Test/Docs/Reports...)</td></tr>
     <tr><td><span class="tag t-src">共享源码</span></td><td><code>Tools/</code></td><td><code>tools.git</code></td><td>工具</td></tr>
-    <tr><td><span class="tag t-src">共享源码</span></td><td><code>Test/</code></td><td><code>test.git</code></td><td>测试</td></tr>
-    <tr><td><span class="tag t-src">共享源码</span></td><td><code>docs/</code></td><td><code>docs.git</code></td><td>文档</td></tr>
     <tr><td><span class="tag t-proj">项目库</span></td><td><code>ASW_Libs/</code></td><td><code>asw_libs_Demo_Tc387.git</code></td><td>该项目 ASW 二进制 (检出到根)</td></tr>
     <tr><td><span class="tag t-proj">项目库</span></td><td><code>CDD_Libs/</code></td><td><code>cdd_libs_Demo_Tc387.git</code></td><td>该项目 CDD 二进制 (检出到根)</td></tr>
     <tr><td><span class="tag t-proj">项目库</span></td><td><code>BSW_Libs/</code></td><td><code>bsw_libs_Demo_Tc387.git</code></td><td>该项目 BSW 二进制 (含配置代码)</td></tr>
@@ -106,15 +106,13 @@
 <section id="tree">
   <h2>google-repo 组装后的目录</h2>
 <div class="tree"><span class="dir">OpenAutosar/</span>
-├── <span class="dir">ASWs/</span>          <span class="repo"># asw_Demo_Tc387.git   (项目源码)</span>
-├── <span class="dir">CDDs/</span>          <span class="repo"># cdd_Demo_Tc387.git   (项目源码)</span>
-├── <span class="dir">BSW/</span>           <span class="repo"># bsw.git              (共享源码)</span>
+├── <span class="dir">ASW/</span>           <span class="repo"># asw_Demo_Tc387.git   (项目源码)</span>
+├── <span class="dir">CDD/</span>           <span class="repo"># cdd_Demo_Tc387.git   (项目源码)</span>
+├── <span class="dir">BSW/</span>           <span class="repo"># BSW group: Os→BSW_Etas_TC387_RtaOs, Com→BSW_Vector_TC387_CBDxxxxxx</span>
 ├── <span class="dir">MCAL/</span>          <span class="repo"># mcal.git             (共享源码)</span>
 ├── <span class="dir">Components/</span>    <span class="repo"># components.git</span>
-├── <span class="dir">Projects/</span>     <span class="repo"># projects.git</span>
+├── <span class="dir">Projects/</span>     <span class="repo"># projects.git  (含 &lt;P&gt;/Test, &lt;P&gt;/Docs, &lt;P&gt;/Reports)</span>
 ├── <span class="dir">Tools/</span>        <span class="repo"># tools.git</span>
-├── <span class="dir">Test/</span>         <span class="repo"># test.git</span>
-├── <span class="dir">docs/</span>         <span class="repo"># docs.git</span>
 ├── <span class="dir">ASW_Libs/</span>     <span class="repo"># asw_libs_Demo_Tc387.git    (按项目, 检出到根)</span>
 ├── <span class="dir">CDD_Libs/</span>     <span class="repo"># cdd_libs_Demo_Tc387.git    (按项目, 检出到根)</span>
 ├── <span class="dir">BSW_Libs/</span>     <span class="repo"># bsw_libs_Demo_Tc387.git    (按项目, 检出到根)</span>
@@ -137,8 +135,8 @@
 
 <span class="dir">BSW_Libs/</span>                  <span class="repo"># = 子库 bsw_libs_Demo_Tc387 (.a 含项目配置代码)</span>
 ├── inc/EcuM.h
-├── Etas/inc   + libRtaOs.a
-└── Vector/inc + libCom.a
+├── Os/inc  + libRtaOs.a    <span class="note"># 按模块名, 不分供应商</span>
+└── Com/inc + libCom.a
 
 <span class="dir">MCAL_Libs/</span>                 <span class="repo"># = 子库 mcal_libs_Demo_Tc387 (.a 含配置+静态)</span>
 ├── inc/Std_Types.h
@@ -154,8 +152,8 @@
 <section id="create">
   <h2>创建子库</h2>
   <p>用 <code>Tools/Git/init_subrepos.bat</code> 把当前 monorepo 各文件夹打包为独立子库并推送。
-  共享子库取自 <code>repo_map.txt</code>（BSW/MCAL 静态源码等）；项目相关子库按 <code>--project</code>（默认 <code>Demo_Tc387</code>）生成：
-  源码 <code>ASWs→asw_&lt;P&gt;</code>、<code>CDDs→cdd_&lt;P&gt;</code>，库 <code>ASW_Libs→asw_libs_&lt;P&gt;</code>、<code>CDD_Libs→cdd_libs_&lt;P&gt;</code>、<code>BSW_Libs→bsw_libs_&lt;P&gt;</code>、<code>MCAL_Libs→mcal_libs_&lt;P&gt;</code>。</p>
+  共享子库取自 <code>repo_map.txt</code>（MCAL 静态源码、BSW group 各供应商交付库等）；项目相关子库按 <code>--project</code>（默认 <code>Demo_Tc387</code>）生成：
+  源码 <code>ASW→asw_&lt;P&gt;</code>、<code>CDD→cdd_&lt;P&gt;</code>，库 <code>ASW_Libs→asw_libs_&lt;P&gt;</code>、<code>CDD_Libs→cdd_libs_&lt;P&gt;</code>、<code>BSW_Libs→bsw_libs_&lt;P&gt;</code>、<code>MCAL_Libs→mcal_libs_&lt;P&gt;</code>。</p>
 <pre><code>REM 预览将创建的子库 (不写任何东西)
 Tools\Git\init_subrepos.bat https://github.com/&lt;owner&gt; --project Demo_Tc387 --dry-run
 
@@ -192,9 +190,9 @@ repo_metasar.bat sync</code></pre>
 <section id="addproj">
   <h2>新增一个项目时</h2>
   <ol>
-    <li>用该项目的工作区（其 <code>ASWs/</code>、<code>CDDs/</code>、<code>*_Libs/</code> 为该项目内容）；<code>release_libs.bat ASW|CDD|BSW|MCAL</code> 回灌到各 <code>*_Libs/</code> 根。</li>
+    <li>用该项目的工作区（其 <code>ASW/</code>、<code>CDD/</code>、<code>*_Libs/</code> 为该项目内容）；<code>release_libs.bat ASW|CDD|BSW|MCAL</code> 回灌到各 <code>*_Libs/</code> 根。</li>
     <li><code>Tools/Git/init_subrepos.bat &lt;base&gt; --project &lt;NewProj&gt; --github &lt;owner&gt; --push</code> 创建项目源码 <code>asw_&lt;NewProj&gt;</code>、<code>cdd_&lt;NewProj&gt;</code> 与项目库 <code>asw_libs_/cdd_libs_/bsw_libs_/mcal_libs_&lt;NewProj&gt;</code> 子库。</li>
-    <li>为该项目准备一套清单（把 <code>*_&lt;NewProj&gt;</code> / <code>*_libs_&lt;NewProj&gt;</code> 映射到 <code>ASWs/CDDs/&lt;Layer&gt;_Libs</code>），切换项目即换这套子库。</li>
+    <li>为该项目准备一套清单（把 <code>*_&lt;NewProj&gt;</code> / <code>*_libs_&lt;NewProj&gt;</code> 映射到 <code>ASW/CDD/&lt;Layer&gt;_Libs</code>），切换项目即换这套子库。</li>
   </ol>
 </section>
 

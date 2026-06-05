@@ -5,17 +5,18 @@ Infineon AURIX TC3xx (TC387 / TC367) 平台，覆盖从 MCAL、复杂驱动 (CDD
 BSW、组件到上层应用 (ASW) 的完整分层结构，并集成构建 (SCons)、配置
 (EB tresos / ETAS / Vector)、测试 (GoogleTest / QEMU) 与静态检查 (MISRA / QAC)。
 
-> 完整的图文文档见 [`docs/index.html`](docs/index.html)（在浏览器中打开）。
-> 信息安全分级与灵活编译方案见 [`docs/build_and_security.html`](docs/build_and_security.html)。
-> Git 多子库划分方案见 [`docs/repo_structure.html`](docs/repo_structure.html)。
+> 完整的图文文档见 [`Projects/Demo_Tc387/Docs/index.html`](Projects/Demo_Tc387/Docs/index.html)（在浏览器中打开）。
+> 信息安全分级与灵活编译方案见 [`Projects/Demo_Tc387/Docs/build_and_security.html`](Projects/Demo_Tc387/Docs/build_and_security.html)。
+> Git 多子库划分方案见 [`Projects/Demo_Tc387/Docs/repo_structure.html`](Projects/Demo_Tc387/Docs/repo_structure.html)。
 
 ## Git 多子库（multi-repo）划分
 
 仓库按文件夹拆分为独立子库，用 google-repo 清单组装：
 
-- **共享源码**：`bsw` / `mcal`（供应商静态码，静态/配置分离、跨项目复用）及 `components` / `projects` / `tools` / `test` / `docs`。
-- **项目源码**：`ASWs/`、`CDDs/` 模块代码**未按 AUTOSAR 静态/配置分离**，整体与项目相关，故源码也按项目 —— `asw_<Project>`、`cdd_<Project>`。
-- **项目库**：`ASW_Libs/`、`CDD_Libs/`、`BSW_Libs/`、`MCAL_Libs/` **全部按项目建子库** —— `asw_libs_<Project>`、`cdd_libs_<Project>`、`bsw_libs_<Project>`、`mcal_libs_<Project>`（扁平命名、下划线分隔）。MCAL 的 `.a` 把配置代码与静态代码一并编译链接、BSW 的 `.a` 已打包项目 ECUC 配置，故均按项目。**工作区中这些库/源码直接检出到对应目录根**（不带项目子目录）——拉取时项目已由子库名确定。
+- **共享源码**：`mcal`（供应商静态码，静态/配置分离、跨项目复用）及 `components` / `projects` / `tools`。`Test` / `Docs` / `Reports` 已随工程下沉到 `Projects/<P>/`，属 `projects` 子库。
+- **BSW 供应商交付**：`BSW/` 不再分 `Vector` / `Etas` 目录，直接按模块名（`Os` / `Com` / …）组织；供应商、芯片、交付版本信息编码进 git 子库名 —— `BSW_<Vendor>_<Chip>_<Delivery>`（如 `BSW_Vector_TC387_CBDxxxxxx`、`BSW_Etas_TC387_RtaOs`），统一归属 **BSW group**，**每家供应商一个交付库**，各自检出到 `BSW/<模块>`，共同组成扁平的 `BSW/` 树。
+- **项目源码**：`ASW/`、`CDD/` 模块代码**未按 AUTOSAR 静态/配置分离**，整体与项目相关，故源码也按项目 —— `asw_<Project>`、`cdd_<Project>`。
+- **项目库**：`ASW_Libs/`、`CDD_Libs/`、`BSW_Libs/`、`MCAL_Libs/` **全部按项目建子库** —— `asw_libs_<Project>`、`cdd_libs_<Project>`、`bsw_libs_<Project>`、`mcal_libs_<Project>`（扁平命名、下划线分隔；库目录同样按模块名、不分供应商）。MCAL 的 `.a` 把配置代码与静态代码一并编译链接、BSW 的 `.a` 已打包项目 ECUC 配置，故均按项目。**工作区中这些库/源码直接检出到对应目录根**（不带项目子目录）——拉取时项目已由子库名确定。
 
 子库清单见 `Tools/Git/repo_map.txt` 与 `manifests/default.xml`。创建子库（并在 GitHub 建仓+推送）：
 
@@ -27,7 +28,7 @@ Tools\Git\init_subrepos.bat https://github.com/<owner> --project Demo_Tc387 --gi
 REM 无 gh 时用 REST API: 先 set GITHUB_TOKEN=ghp_xxxx
 ```
 
-详见 `Tools/Git/README.md` 与 `docs/repo_structure.html`。
+详见 `Tools/Git/README.md` 与 `Projects/Demo_Tc387/Docs/repo_structure.html`。
 
 ## 信息安全分级（代码可见性隔离）
 
@@ -38,7 +39,7 @@ REM 无 gh 时用 REST API: 先 set GITHUB_TOKEN=ghp_xxxx
 | 角色 | 可见源码 | 二进制集成 (.a + inc) | manifest |
 |------|----------|------------------------|----------|
 | 平台/集成负责人 | 全部 | — | `manifests/default.xml` |
-| ASW 工程师 | `ASWs/`、`Components/`、`Projects/` | `BSW_Libs`、`CDD_Libs`、`MCAL_Libs` | `manifests/manifest-asw.xml` |
+| ASW 工程师 | `ASW/`、`Components/`、`Projects/` | `BSW_Libs`、`CDD_Libs`、`MCAL_Libs` | `manifests/manifest-asw.xml` |
 | 基础(集成)工程师 | `Projects/*/Integration/` | `ASW_Libs`、`BSW_Libs`、`CDD_Libs`、`MCAL_Libs` | `manifests/manifest-integration.xml` |
 
 ```bat
@@ -69,16 +70,14 @@ scons release               # 编译并把源码模块释放回 *_Libs
 
 | 目录 / 文件 | 说明 |
 |-------------|------|
-| `ASWs/` | 上层应用软件：各应用模型代码（`<Model>/src` + `<Model>/inc`）或预编译 `.a` + `inc/` 头文件，`ASWs/inc/` 为公共对外头文件 |
-| `BSW/` | 项目静态代码包（ETAS / Vector）：各供应商 `inc/` + 预编译 `lib/*.a`，`BSW/inc/` 为公共头文件 |
-| `CDDs/` | 复杂驱动：每模块 `inc/`（头文件）、`src/`（静态代码）、`gen/`（配置代码），模块根目录有 `SConscript` 或 `.a` + `inc/` |
+| `ASW/` | 上层应用软件：各应用模型代码（`<Model>/src` + `<Model>/inc`）或预编译 `.a` + `inc/` 头文件，`ASW/inc/` 为公共对外头文件 |
+| `BSW/` | 项目 BSW 供应商代码包：直接按模块名（`Os` / `Com` / …）组织，每模块 `inc/` + `lib/*.a`，`BSW/inc/` 为公共头文件。供应商/芯片/交付版本不在目录中，而在 git 子库名（`BSW_<Vendor>_<Chip>_<Delivery>`，BSW group）中 |
+| `CDD/` | 复杂驱动：每模块 `inc/`（头文件）、`src/`（静态代码）、`gen/`（配置代码），模块根目录有 `SConscript` 或 `.a` + `inc/` |
 | `Components/` | 组件模块 / 公共代码；`Components/Mcu/Sbm/` 为启动代码模块（或 `.a` + `inc/`） |
 | `MCAL/` | MCAL 静态代码：`Tc387/`、`Tc367/`，每模块 `inc/` + `src/` 或 `.a` + `inc/` |
 | `Projects/` | 各项目工程，见下方“工程目录”说明 |
 | `Tools/` | 项目工具（A2L、SCons、编译器封装等） |
-| `Test/` | 测试：`ut/`（单元测试）、`Projects/`（集成测试/QEMU）、`QAC/`（静态分析） |
-| `docs/` | HTML 文档 |
-| `reports/` | 测试 / 检查报告输出 |
+| `manifests/` | google-repo 工作区组装清单（须位于顶层，bootstrap 整个工作区） |
 | `.clang-format` | 代码格式规范 |
 | `.gitignore` | 忽略构建产物与生成代码 |
 | `misra.json` | MISRA C:2012 静态检查配置 |
@@ -97,6 +96,9 @@ scons release               # 编译并把源码模块释放回 *_Libs
 | `Obj/` | 编译临时 `.o` 文件 |
 | `Out/` | 链接输出 `.hex` / `.elf` / `.map` |
 | `Libs/{ASW,BSW,CDD,MCAL}/` | 各层编译生成的静态库 `.a` |
+| `Test/` | 工程测试：`ut/`（单元测试）、`Projects/`（集成测试/QEMU）、`QAC/`（静态分析） |
+| `Docs/` | 工程 HTML 文档 |
+| `Reports/` | 测试 / 检查报告输出 |
 
 ## 构建
 

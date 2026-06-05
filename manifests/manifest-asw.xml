@@ -6,7 +6,7 @@
   <default remote="origin" revision="main" sync-j="8"/>
 
   <!-- 源码可见 (ASW 源码按项目) -->
-  <project name="asw_Demo_Tc387.git" path="ASWs"/>
+  <project name="asw_Demo_Tc387.git" path="ASW"/>
   <project name="components.git"      path="Components"/>
   <project name="projects.git"        path="Projects"/>
   <project name="tools.git"           path="Tools"/>

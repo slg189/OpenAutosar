@@ -3,10 +3,14 @@
      default.xml — 完整视图 (平台/集成负责人): 拥有所有层源码 + 全部库
      ============================================================================
      子库划分原则:
-       - 共享源码: BSW / MCAL 静态源码(供应商, 静态与配置分离, 跨项目复用) 及
-                   Components / Projects / Tools / Test / docs 各建一个子库
+       - 共享源码: MCAL 静态源码(供应商, 静态与配置分离, 跨项目复用) 及
+                   Components / Projects / Tools 各建一个子库
+                   (Test / Docs / Reports 已随工程下沉到 Projects/<P>/, 属 projects 子库)
+       - BSW 供应商交付: 不再分 Vector/Etas 目录, 仅按模块名组织; 供应商/芯片/交付版本
+                 编码进子库名 (BSW_<Vendor>_<Chip>_<Delivery>), 归 BSW group, 每家供应商
+                 一个交付库, 各自检出到 BSW/<模块> —— 共同组成扁平的 BSW/ 树。
        - 项目源码: ASW / CDD 模块代码未按 AUTOSAR 静态/配置分离, 整体与项目相关,
-                   故源码也按项目: asw_<project> / cdd_<project> (检出到 ASWs / CDDs)
+                   故源码也按项目: asw_<project> / cdd_<project> (检出到 ASW / CDD)
        - 项目库: ASW_Libs / CDD_Libs / BSW_Libs / MCAL_Libs 全部与项目相关,
                  各按项目建一个子库 (MCAL 配置代码与静态代码一并编译链接为库;
                  BSW 的 .a 也已把项目配置代码打包)。
@@ -19,17 +23,21 @@
   <default remote="origin" revision="main" sync-j="8"/>
 
   <!-- ===== 项目源码子库 (ASW / CDD 按项目) ===== -->
-  <project name="asw_Demo_Tc387.git" path="ASWs"  groups="src,asw,proj_Demo_Tc387"/>
-  <project name="cdd_Demo_Tc387.git" path="CDDs"  groups="src,cdd,proj_Demo_Tc387"/>
+  <project name="asw_Demo_Tc387.git" path="ASW"  groups="src,asw,proj_Demo_Tc387"/>
+  <project name="cdd_Demo_Tc387.git" path="CDD"  groups="src,cdd,proj_Demo_Tc387"/>
 
-  <!-- ===== 共享源码子库 (静态/配置分离, 跨项目复用) ===== -->
-  <project name="bsw.git"        path="BSW"         groups="src,bsw"/>
+  <!-- ===== 共享源码子库 (静态/配置分离, 跨项目复用) =====
+       Test / Docs / Reports 已并入 Projects (projects 子库)。 -->
   <project name="mcal.git"       path="MCAL"        groups="src,mcal"/>
   <project name="components.git" path="Components"  groups="src"/>
   <project name="projects.git"   path="Projects"    groups="src,integration"/>
   <project name="tools.git"      path="Tools"       groups="src,tools"/>
-  <project name="test.git"       path="Test"        groups="src,test"/>
-  <project name="docs.git"       path="docs"        groups="docs"/>
+
+  <!-- ===== BSW 供应商交付子库 (BSW group; 按模块名检出, 组成扁平 BSW/ 树) =====
+       子库名编码 供应商/芯片/交付版本; 交付版本(如 CBDxxxxxx)按实际交付改名。 -->
+  <project name="BSW_Common_TC387.git"         path="BSW/inc" groups="src,bsw"/>
+  <project name="BSW_Etas_TC387_RtaOs.git"     path="BSW/Os"  groups="src,bsw"/>
+  <project name="BSW_Vector_TC387_CBDxxxxxx.git" path="BSW/Com" groups="src,bsw"/>
 
   <!-- ===== 项目库子库 (ASW / CDD / BSW / MCAL 全部按项目; 检出到 <Layer>_Libs 根) =====
        本工作区对应项目 Demo_Tc387 -->

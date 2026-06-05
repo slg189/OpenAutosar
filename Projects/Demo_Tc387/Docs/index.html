@@ -79,9 +79,9 @@
   <a href="build_and_security.html"><strong>★ 信息安全 / 灵活编译方案</strong></a>
   <a href="repo_structure.html"><strong>★ Git 多子库划分方案</strong></a>
   <h3>各层目录</h3>
-  <a href="#asw">ASWs · 应用层</a>
+  <a href="#asw">ASW · 应用层</a>
   <a href="#bsw">BSW · 基础软件</a>
-  <a href="#cdd">CDDs · 复杂驱动</a>
+  <a href="#cdd">CDD · 复杂驱动</a>
   <a href="#components">Components · 组件</a>
   <a href="#mcal">MCAL · 微控制器抽象</a>
   <a href="#projects">Projects · 工程</a>
@@ -130,15 +130,15 @@
 <section id="tree">
   <h2>目录结构总览</h2>
 <div class="tree"><span class="dir">OpenAutosar/</span>
-├── <span class="dir">ASWs/</span>                  <span class="note"># 上层应用软件</span>
+├── <span class="dir">ASW/</span>                   <span class="note"># 上层应用软件</span>
 │   ├── inc/                <span class="note"># 公共对外头文件</span>
 │   ├── VehicleControl/     <span class="note"># 应用模型: inc/ + src/ + SConscript</span>
 │   └── EnergyManagement/   <span class="note"># 预编译交付: inc/ + libEnergyManagement.a</span>
-├── <span class="dir">BSW/</span>                   <span class="note"># 项目静态代码包</span>
+├── <span class="dir">BSW/</span>                   <span class="note"># BSW 供应商代码包 (按模块名, 不分供应商)</span>
 │   ├── inc/                <span class="note"># 公共头文件 (EcuM.h …)</span>
-│   ├── Etas/               <span class="note"># ETAS 包: inc/ + lib/libRtaOs.a</span>
-│   └── Vector/             <span class="note"># Vector 包: inc/ + lib/libCom.a</span>
-├── <span class="dir">CDDs/</span>                  <span class="note"># 复杂驱动</span>
+│   ├── Os/                 <span class="note"># inc/ + lib/libRtaOs.a (子库 BSW_Etas_TC387_RtaOs)</span>
+│   └── Com/                <span class="note"># inc/ + lib/libCom.a (子库 BSW_Vector_TC387_CBDxxxxxx)</span>
+├── <span class="dir">CDD/</span>                   <span class="note"># 复杂驱动</span>
 │   ├── CddPwm/             <span class="note"># inc/ + src/ + gen/ + SConscript</span>
 │   ├── CddMotor/           <span class="note"># inc/ + src/ + gen/ + SConscript</span>
 │   └── CddSent/            <span class="note"># 预编译: inc/ + libCddSent.a</span>
@@ -151,10 +151,11 @@
 │   └── Tc367/              <span class="note"># Adc(源码) / Can(libCan.a + inc/)</span>
 ├── <span class="dir">Projects/</span>              <span class="note"># 项目工程</span>
 │   └── Demo_Tc387/         <span class="note"># Cfg/ Ld/ Gen/ Obj/ Out/ Libs/ + SConstruct</span>
+│       ├── Test/           <span class="note"># ut/ (单元) · Projects/ (集成) · QAC/ (随工程下沉)</span>
+│       ├── Docs/           <span class="note"># 本文档 (随工程下沉)</span>
+│       └── Reports/        <span class="note"># 测试/检查报告输出 (随工程下沉)</span>
 ├── <span class="dir">Tools/</span>                 <span class="note"># A2L / SCons / 编译器工具</span>
-├── <span class="dir">Test/</span>                  <span class="note"># ut/ (单元) · Projects/ (集成) · QAC/</span>
-├── <span class="dir">docs/</span>                  <span class="note"># 本文档</span>
-├── <span class="dir">reports/</span>               <span class="note"># 测试/检查报告输出</span>
+├── <span class="dir">manifests/</span>             <span class="note"># google-repo 组装清单 (须位于顶层)</span>
 ├── .clang-format          <span class="note"># 代码格式</span>
 ├── .gitignore
 ├── misra.json             <span class="note"># MISRA C:2012 检查配置</span>
@@ -166,32 +167,33 @@
 </section>
 
 <section id="asw">
-  <h2>ASWs · 应用层</h2>
+  <h2>ASW · 应用层</h2>
   <p>存放上层各应用模型的代码。每个应用既可以 <strong>源码形式</strong> 组织
   （模块文件夹下 <code>src/</code> 源码 + <code>inc/</code> 头文件 + <code>SConscript</code>），
   也可以 <strong>预编译形式</strong> 交付（模块根目录下 <code>.a</code> 库 + <code>inc/</code> 头文件）。
-  <code>ASWs/inc/</code> 放置应用层公共对外头文件（如共享 RTE 类型）。</p>
+  <code>ASW/inc/</code> 放置应用层公共对外头文件（如共享 RTE 类型）。</p>
   <table>
     <tr><th>路径</th><th>形式</th><th>说明</th></tr>
-    <tr><td><code>ASWs/inc/</code></td><td>头文件</td><td>公共对外类型 (Rte_Type.h)</td></tr>
-    <tr><td><code>ASWs/VehicleControl/</code></td><td>源码</td><td>整车控制：inc/ + src/ + SConscript</td></tr>
-    <tr><td><code>ASWs/EnergyManagement/</code></td><td>预编译</td><td>能量管理：inc/ + libEnergyManagement.a</td></tr>
+    <tr><td><code>ASW/inc/</code></td><td>头文件</td><td>公共对外类型 (Rte_Type.h)</td></tr>
+    <tr><td><code>ASW/VehicleControl/</code></td><td>源码</td><td>整车控制：inc/ + src/ + SConscript</td></tr>
+    <tr><td><code>ASW/EnergyManagement/</code></td><td>预编译</td><td>能量管理：inc/ + libEnergyManagement.a</td></tr>
   </table>
 </section>
 
 <section id="bsw">
   <h2>BSW · 基础软件</h2>
-  <p>项目静态代码包，通常为供应商交付（ETAS、Vector）。以 <code>inc/</code> 头文件
-  + 预编译 <code>.a</code> 库的形式集成；<code>BSW/inc/</code> 为跨包公共头文件。</p>
+  <p>项目 BSW 供应商代码包。<strong>不再分 Vector/Etas 目录，直接按模块名</strong>（<code>Os</code>/<code>Com</code>/…）组织；
+  供应商、芯片、交付版本编码进 git 子库名（<code>BSW_&lt;Vendor&gt;_&lt;Chip&gt;_&lt;Delivery&gt;</code>，归 BSW group）。
+  以 <code>inc/</code> 头文件 + 预编译 <code>lib/*.a</code> 集成；<code>BSW/inc/</code> 为跨模块公共头文件。</p>
   <div class="cards">
-    <div class="card"><h4>BSW/Etas/</h4><p>ETAS RTA-BSW / RTA-OS：<code>inc/Os.h</code> + <code>lib/libRtaOs.a</code></p></div>
-    <div class="card"><h4>BSW/Vector/</h4><p>Vector MICROSAR：<code>inc/Com.h</code> + <code>lib/libCom.a</code></p></div>
+    <div class="card"><h4>BSW/Os/</h4><p>ETAS RTA-OS：<code>inc/Os.h</code> + <code>lib/libRtaOs.a</code><br><span class="note">子库 BSW_Etas_TC387_RtaOs</span></p></div>
+    <div class="card"><h4>BSW/Com/</h4><p>Vector MICROSAR COM：<code>inc/Com.h</code> + <code>lib/libCom.a</code><br><span class="note">子库 BSW_Vector_TC387_CBDxxxxxx</span></p></div>
     <div class="card"><h4>BSW/inc/</h4><p>公共对外接口 (EcuM.h 等)</p></div>
   </div>
 </section>
 
 <section id="cdd">
-  <h2>CDDs · 复杂驱动</h2>
+  <h2>CDD · 复杂驱动</h2>
   <p>各模块为一个复杂驱动 (Complex Device Driver)，可直接访问硬件外设。
   源码模块在子目录下分 <code>inc/</code>（头文件）、<code>src/</code>（静态代码）、
   <code>gen/</code>（配置代码），模块根目录提供 <code>SConscript</code> 构建脚本；
@@ -261,11 +263,12 @@
 
 <section id="test">
   <h2>Test · 测试</h2>
+  <p class="muted">测试已随工程下沉到 <code>Projects/&lt;P&gt;/Test/</code>（报告输出到 <code>Projects/&lt;P&gt;/Reports/</code>）。</p>
   <table>
     <tr><th>目录</th><th>说明</th><th>入口</th></tr>
-    <tr><td><code>Test/ut/</code></td><td>GoogleTest 单元测试 + 覆盖率</td><td><code>run_gtest.bat</code></td></tr>
-    <tr><td><code>Test/Projects/</code></td><td>QEMU 集成测试工程</td><td><code>run_integrationTest.bat</code></td></tr>
-    <tr><td><code>Test/QAC/</code></td><td>QAC / MISRA 静态分析</td><td><code>misra.json</code></td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/Test/ut/</code></td><td>GoogleTest 单元测试 + 覆盖率</td><td><code>run_gtest.bat</code></td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/Test/Projects/</code></td><td>QEMU 集成测试工程</td><td><code>run_integrationTest.bat</code></td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/Test/QAC/</code></td><td>QAC / MISRA 静态分析</td><td><code>misra.json</code></td></tr>
   </table>
 </section>
 

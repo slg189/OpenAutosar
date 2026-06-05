@@ -40,11 +40,12 @@
   <project name="BSW_Vector_TC387_CBDxxxxxx.git" path="BSW/Com" groups="src,bsw"/>
 
   <!-- ===== 项目库子库 (ASW / CDD / BSW / MCAL 全部按项目; 检出到 <Layer>_Libs 根) =====
-       本工作区对应项目 Demo_Tc387 -->
+       本工作区对应项目 Demo_Tc387。MCAL_Libs 针对项目已固定单一芯片(不含 <Chip> 一级),
+       归 MCAL group, 按项目区分: 仓库名 MCAL_<Project>。 -->
   <project name="asw_libs_Demo_Tc387.git"  path="ASW_Libs"  groups="libs,asw_libs,proj_Demo_Tc387"/>
   <project name="cdd_libs_Demo_Tc387.git"  path="CDD_Libs"  groups="libs,cdd_libs,proj_Demo_Tc387"/>
   <project name="bsw_libs_Demo_Tc387.git"  path="BSW_Libs"  groups="libs,bsw_libs,proj_Demo_Tc387"/>
-  <project name="mcal_libs_Demo_Tc387.git" path="MCAL_Libs" groups="libs,mcal_libs,proj_Demo_Tc387"/>
+  <project name="MCAL_Demo_Tc387.git"      path="MCAL_Libs" groups="libs,mcal,proj_Demo_Tc387"/>
 
   <!-- ===== 元信息子库 (清单 + 根脚本/配置) =====
        检出到 .meta 子目录 (避免与其它子库的检出路径重叠),

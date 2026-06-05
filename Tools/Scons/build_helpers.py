@@ -64,13 +64,14 @@ def source_dir(layer, name, chip):
 
 def lib_file(layer, name, chip, project=None):
     """返回已释放的 .a 路径 (用于 mode=lib)。
-    ASW / CDD / BSW / MCAL 全部与项目相关 (MCAL 配置+静态合并为库), 各自 git 子库名
-    为 <layer>_libs_<project>; 但工作区中库直接位于 <Layer>_Libs/ 下 (拉取时项目已确定,
-    工作区路径不带项目子目录)。MCAL 内部仍按芯片再分一级 <Chip>/<Mod>。
+    ASW / CDD / BSW / MCAL 全部与项目相关; 工作区中库直接位于 <Layer>_Libs/ 下
+    (拉取时项目已确定, 工作区路径不带项目子目录)。
+    MCAL_Libs 针对项目已固定单一芯片, 故不再分 <Chip> 一级, 直接 <Mod>/lib<Mod>.a
+    (芯片身份在 git 子库名中, MCAL group 下按项目区分)。
     保留 project 参数仅为调用方签名兼容。"""
     root = LAYER_LIB_ROOT[layer]
     if layer == 'MCAL':
-        return '%s/%s/%s/lib%s.a' % (root, chip, name, name)
+        return '%s/%s/lib%s.a' % (root, name, name)
     if layer == 'BSW':
         # BSW 按模块名子目录组织 (供应商/芯片/交付版本在 git 子库名中, 不再分供应商目录)
         libname = {'Os': 'Os/libRtaOs', 'Com': 'Com/libCom'}.get(name, '%s/lib%s' % (name, name))
@@ -83,7 +84,8 @@ def lib_incdirs(layer, name, chip, project=None):
     """返回某模块在 *_Libs 下的头文件目录 (供 CPPPATH)。"""
     root = LAYER_LIB_ROOT[layer]
     if layer == 'MCAL':
-        return ['%s/inc' % root, '%s/%s/%s/inc' % (root, chip, name)]
+        # MCAL_Libs 已固定单一芯片, 不再分 <Chip> 一级
+        return ['%s/inc' % root, '%s/%s/inc' % (root, name)]
     if layer == 'BSW':
         # 按模块名 (Os/Com/...) 取头文件目录
         return ['%s/inc' % root, '%s/%s/inc' % (root, name)]

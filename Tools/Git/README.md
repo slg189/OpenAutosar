@@ -16,10 +16,12 @@
   `BSW_Etas_TC387_RtaOs`)，**每家供应商一个交付库**，各自检出到 `BSW/<模块>`，共同组成扁平的 `BSW/` 树。
   这些条目在 `repo_map.txt` 中以 `BSW/<模块>|<库名>|bsw` 声明，交付版本号按实际交付改名。
 - **项目源码**: `asw_<Project>` / `cdd_<Project>` (ASW/CDD 未按静态/配置分离, 整体与项目相关)。
-- **项目库**: `asw_libs_<Project>` / `cdd_libs_<Project>` / `bsw_libs_<Project>` / `mcal_libs_<Project>`
-  —— 与项目相关 (BSW/MCAL 的 `.a` 已把项目配置代码一并打包), **按项目建子库**; 库目录同样按模块名、不分供应商;
-  命名扁平、下划线分隔。**工作区中这些库直接检出到 `<Layer>_Libs/` 根**（不带项目子目录）——
-  拉取某个 `*_libs_<Project>` 时项目已确定，项目身份只在子库名中。
+- **项目库**: `asw_libs_<Project>` / `cdd_libs_<Project>` / `bsw_libs_<Project>`
+  —— 与项目相关 (BSW 的 `.a` 已把项目配置代码一并打包), **按项目建子库**; 库目录按模块名、不分供应商;
+  命名扁平、下划线分隔。
+- **MCAL 库 (MCAL group)**: `MCAL_<Project>` —— MCAL 针对项目芯片已固定 (TC387/TC367 不同时存在),
+  故只保留该项目芯片、库目录**不分 `<Chip>` 一级**; 芯片/项目身份编码进子库名, 归 **MCAL group** 按项目区分。
+- 上述库**工作区中直接检出到 `<Layer>_Libs/` 根**（不带项目/芯片子目录）——拉取时项目已确定，身份只在子库名中。
 
 ## 用法
 

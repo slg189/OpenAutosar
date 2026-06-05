@@ -7,8 +7,10 @@
 #         - 项目源码: ASW -> asw_<PROJECT>,  CDD -> cdd_<PROJECT>
 #                     (ASW/CDD 模块代码未按 AUTOSAR 静态/配置分离, 整体与项目相关)
 #         - 项目库:   ASW_Libs -> asw_libs_<PROJECT>,  CDD_Libs -> cdd_libs_<PROJECT>,
-#                     BSW_Libs -> bsw_libs_<PROJECT>,  MCAL_Libs -> mcal_libs_<PROJECT>
-#                     (MCAL/BSW 配置代码与静态代码一并打包为库, 故库也按项目)
+#                     BSW_Libs -> bsw_libs_<PROJECT>
+#                     (BSW 配置代码与静态代码一并打包为库, 故库也按项目)
+#         - MCAL 库:  MCAL_Libs -> MCAL_<PROJECT> (归 MCAL group, 按项目区分;
+#                     针对项目已固定单一芯片, 库目录不含 <Chip> 一级)
 
 # ===== 共享源码子库 (静态/配置分离, 跨项目复用) =====
 # 注: Test / Docs / Reports 已随工程下沉到 Projects/<P>/, 属 projects 子库, 不再单列。

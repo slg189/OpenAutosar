@@ -48,8 +48,10 @@ call :copy_headers "%~1\inc" "%~3\inc"
 goto :eof
 
 :release_mcal
+REM 源码按芯片 (MCAL\<CHIP>\<Mod>); MCAL_Libs 项目已固定单一芯片, 释放到 MCAL_Libs\<Mod>
+REM (芯片身份在 git 子库名中, MCAL group 下按项目区分)。
 for %%M in (Adc Can Port) do (
-    if exist "MCAL\%CHIP%\%%M" call :build_lib "MCAL\%CHIP%\%%M" "%%M" "MCAL_Libs\%CHIP%\%%M"
+    if exist "MCAL\%CHIP%\%%M" call :build_lib "MCAL\%CHIP%\%%M" "%%M" "MCAL_Libs\%%M"
 )
 call :copy_headers "MCAL\inc" "MCAL_Libs\inc"
 goto :eof

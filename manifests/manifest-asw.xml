@@ -12,7 +12,7 @@
   <project name="tools.git"           path="Tools"/>
 
   <!-- 仅二进制 + 头文件 (信息安全: 不下发源码仓库), 均按项目, 检出到 <Layer>_Libs 根 -->
-  <project name="mcal_libs_Demo_Tc387.git" path="MCAL_Libs"/>
+  <project name="MCAL_Demo_Tc387.git" path="MCAL_Libs"/>
   <project name="cdd_libs_Demo_Tc387.git"  path="CDD_Libs"/>
   <project name="bsw_libs_Demo_Tc387.git"  path="BSW_Libs"/>
 </manifest>

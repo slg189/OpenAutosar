@@ -73,7 +73,8 @@
     <li><span class="tag t-src">共享源码</span> <code>MCAL/</code>（供应商静态码，静态/配置分离、跨项目复用）及 <code>Components/</code>、<code>Projects/</code>、<code>Tools/</code> 各一个子库。<code>Test/</code>、<code>Docs/</code>、<code>Reports/</code> 已随工程下沉到 <code>Projects/&lt;P&gt;/</code>，属 <code>projects</code> 子库。</li>
     <li><span class="tag t-src">BSW 供应商交付</span> <code>BSW/</code> 不再分 <code>Vector</code>/<code>Etas</code> 目录，仅按模块名（<code>Os</code>/<code>Com</code>/…）组织；供应商/芯片/交付版本编码进子库名 <code>BSW_&lt;Vendor&gt;_&lt;Chip&gt;_&lt;Delivery&gt;</code>，归 <strong>BSW group</strong>，<strong>每家供应商一个交付库</strong>，各自检出到 <code>BSW/&lt;模块&gt;</code>，共同组成扁平的 <code>BSW/</code> 树。</li>
     <li><span class="tag t-proj">项目源码</span> <code>ASW/</code>、<code>CDD/</code> 的模块代码<strong>未按 AUTOSAR 静态/配置分离</strong>，整体与项目相关，故源码也按项目：<code>asw_&lt;Project&gt;</code>、<code>cdd_&lt;Project&gt;</code>。</li>
-    <li><span class="tag t-proj">项目库</span> <code>ASW_Libs/</code>、<code>CDD_Libs/</code>、<code>BSW_Libs/</code>、<code>MCAL_Libs/</code> <strong>全部按项目各建一个子库</strong>：<code>asw_libs_&lt;Project&gt;</code>、<code>cdd_libs_&lt;Project&gt;</code>、<code>bsw_libs_&lt;Project&gt;</code>、<code>mcal_libs_&lt;Project&gt;</code>（扁平命名、下划线分隔）。</li>
+    <li><span class="tag t-proj">项目库</span> <code>ASW_Libs/</code>、<code>CDD_Libs/</code>、<code>BSW_Libs/</code> <strong>按项目各建一个子库</strong>：<code>asw_libs_&lt;Project&gt;</code>、<code>cdd_libs_&lt;Project&gt;</code>、<code>bsw_libs_&lt;Project&gt;</code>（扁平命名、下划线分隔）。</li>
+    <li><span class="tag t-proj">MCAL 库 (MCAL group)</span> <code>MCAL_Libs/</code> 针对项目芯片已固定（TC387/TC367 不同时存在），<strong>只保留该项目芯片、不分 <code>&lt;Chip&gt;</code> 一级</strong>；芯片/项目身份编码进子库名，归 <strong>MCAL group</strong> 按项目区分：<code>MCAL_&lt;Project&gt;</code>。</li>
     <li><span class="tag t-meta">元信息</span> 清单与根脚本/配置归 <code>meta</code> 子库（或 manifest 仓）。</li>
   </ul>
   <div class="callout">为什么这些库/源码都按项目分？因为其内容随项目而异——ASW 模型、CDD 复杂驱动（均未按静态/配置分离），
@@ -97,7 +98,7 @@
     <tr><td><span class="tag t-proj">项目库</span></td><td><code>ASW_Libs/</code></td><td><code>asw_libs_Demo_Tc387.git</code></td><td>该项目 ASW 二进制 (检出到根)</td></tr>
     <tr><td><span class="tag t-proj">项目库</span></td><td><code>CDD_Libs/</code></td><td><code>cdd_libs_Demo_Tc387.git</code></td><td>该项目 CDD 二进制 (检出到根)</td></tr>
     <tr><td><span class="tag t-proj">项目库</span></td><td><code>BSW_Libs/</code></td><td><code>bsw_libs_Demo_Tc387.git</code></td><td>该项目 BSW 二进制 (含配置代码)</td></tr>
-    <tr><td><span class="tag t-proj">项目库</span></td><td><code>MCAL_Libs/</code></td><td><code>mcal_libs_Demo_Tc387.git</code></td><td>该项目 MCAL 二进制 (配置+静态)</td></tr>
+    <tr><td><span class="tag t-proj">MCAL 库</span></td><td><code>MCAL_Libs/</code></td><td><code>MCAL_Demo_Tc387.git</code></td><td>该项目 MCAL 二进制 (MCAL group, 单一芯片, 配置+静态)</td></tr>
     <tr><td><span class="tag t-meta">元信息</span></td><td><code>.</code> (根)</td><td><code>meta.git</code></td><td>manifests/ + 根脚本/配置</td></tr>
   </table>
   <p class="muted">该清单见 <code>Tools/Git/repo_map.txt</code> 与 <code>manifests/default.xml</code>。</p>
@@ -116,7 +117,7 @@
 ├── <span class="dir">ASW_Libs/</span>     <span class="repo"># asw_libs_Demo_Tc387.git    (按项目, 检出到根)</span>
 ├── <span class="dir">CDD_Libs/</span>     <span class="repo"># cdd_libs_Demo_Tc387.git    (按项目, 检出到根)</span>
 ├── <span class="dir">BSW_Libs/</span>     <span class="repo"># bsw_libs_Demo_Tc387.git    (按项目, 检出到根)</span>
-├── <span class="dir">MCAL_Libs/</span>    <span class="repo"># mcal_libs_Demo_Tc387.git   (按项目, 检出到根)</span>
+├── <span class="dir">MCAL_Libs/</span>    <span class="repo"># MCAL_Demo_Tc387.git    (MCAL group, 单一芯片, 检出到根)</span>
 └── manifests/ + 根脚本   <span class="repo"># meta.git</span>
 </div>
 </section>
@@ -138,13 +139,12 @@
 ├── Os/inc  + libRtaOs.a    <span class="note"># 按模块名, 不分供应商</span>
 └── Com/inc + libCom.a
 
-<span class="dir">MCAL_Libs/</span>                 <span class="repo"># = 子库 mcal_libs_Demo_Tc387 (.a 含配置+静态)</span>
+<span class="dir">MCAL_Libs/</span>                 <span class="repo"># = 子库 MCAL_Demo_Tc387 (MCAL group, 单一芯片, .a 含配置+静态)</span>
 ├── inc/Std_Types.h
-├── Tc387/&lt;Mod&gt;/inc + lib&lt;Mod&gt;.a
-└── Tc367/&lt;Mod&gt;/inc + lib&lt;Mod&gt;.a
+└── &lt;Mod&gt;/inc + lib&lt;Mod&gt;.a    <span class="note"># Adc/Can/Port; 芯片已固定, 不分 &lt;Chip&gt; 一级</span>
 </div>
   <p class="muted">项目身份只在 <strong>git 子库名</strong> 中（<code>&lt;layer&gt;_libs_&lt;project&gt;</code>），
-  工作区路径直接是 <code>&lt;Layer&gt;_Libs/...</code>，不带项目子目录（MCAL 内部仍按芯片分级）。
+  工作区路径直接是 <code>&lt;Layer&gt;_Libs/...</code>，不带项目子目录（MCAL_Libs 芯片已固定，亦不分芯片级）。
   构建侧 <code>build_helpers.lib_file</code> 据此解析；
   <code>release_libs.bat ASW|CDD|BSW|MCAL</code> 释放到 <code>&lt;Layer&gt;_Libs/</code>。</p>
 </section>
@@ -153,7 +153,7 @@
   <h2>创建子库</h2>
   <p>用 <code>Tools/Git/init_subrepos.bat</code> 把当前 monorepo 各文件夹打包为独立子库并推送。
   共享子库取自 <code>repo_map.txt</code>（MCAL 静态源码、BSW group 各供应商交付库等）；项目相关子库按 <code>--project</code>（默认 <code>Demo_Tc387</code>）生成：
-  源码 <code>ASW→asw_&lt;P&gt;</code>、<code>CDD→cdd_&lt;P&gt;</code>，库 <code>ASW_Libs→asw_libs_&lt;P&gt;</code>、<code>CDD_Libs→cdd_libs_&lt;P&gt;</code>、<code>BSW_Libs→bsw_libs_&lt;P&gt;</code>、<code>MCAL_Libs→mcal_libs_&lt;P&gt;</code>。</p>
+  源码 <code>ASW→asw_&lt;P&gt;</code>、<code>CDD→cdd_&lt;P&gt;</code>，库 <code>ASW_Libs→asw_libs_&lt;P&gt;</code>、<code>CDD_Libs→cdd_libs_&lt;P&gt;</code>、<code>BSW_Libs→bsw_libs_&lt;P&gt;</code>、<code>MCAL_Libs→MCAL_&lt;P&gt;</code>（MCAL group）。</p>
 <pre><code>REM 预览将创建的子库 (不写任何东西)
 Tools\Git\init_subrepos.bat https://github.com/&lt;owner&gt; --project Demo_Tc387 --dry-run
 
@@ -191,7 +191,7 @@ repo_metasar.bat sync</code></pre>
   <h2>新增一个项目时</h2>
   <ol>
     <li>用该项目的工作区（其 <code>ASW/</code>、<code>CDD/</code>、<code>*_Libs/</code> 为该项目内容）；<code>release_libs.bat ASW|CDD|BSW|MCAL</code> 回灌到各 <code>*_Libs/</code> 根。</li>
-    <li><code>Tools/Git/init_subrepos.bat &lt;base&gt; --project &lt;NewProj&gt; --github &lt;owner&gt; --push</code> 创建项目源码 <code>asw_&lt;NewProj&gt;</code>、<code>cdd_&lt;NewProj&gt;</code> 与项目库 <code>asw_libs_/cdd_libs_/bsw_libs_/mcal_libs_&lt;NewProj&gt;</code> 子库。</li>
+    <li><code>Tools/Git/init_subrepos.bat &lt;base&gt; --project &lt;NewProj&gt; --github &lt;owner&gt; --push</code> 创建项目源码 <code>asw_&lt;NewProj&gt;</code>、<code>cdd_&lt;NewProj&gt;</code> 与项目库 <code>asw_libs_/cdd_libs_/bsw_libs_&lt;NewProj&gt;</code>、<code>MCAL_&lt;NewProj&gt;</code>（MCAL group）子库。</li>
     <li>为该项目准备一套清单（把 <code>*_&lt;NewProj&gt;</code> / <code>*_libs_&lt;NewProj&gt;</code> 映射到 <code>ASW/CDD/&lt;Layer&gt;_Libs</code>），切换项目即换这套子库。</li>
   </ol>
 </section>

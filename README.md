@@ -16,7 +16,7 @@ BSW、组件到上层应用 (ASW) 的完整分层结构，并集成构建 (SCons
 - **共享源码**：`mcal`（供应商静态码，静态/配置分离、跨项目复用）及 `components` / `projects` / `tools`。`Test` / `Docs` / `Reports` 已随工程下沉到 `Projects/<P>/`，属 `projects` 子库。
 - **BSW 供应商交付**：`BSW/` 不再分 `Vector` / `Etas` 目录，直接按模块名（`Os` / `Com` / …）组织；供应商、芯片、交付版本信息编码进 git 子库名 —— `BSW_<Vendor>_<Chip>_<Delivery>`（如 `BSW_Vector_TC387_CBDxxxxxx`、`BSW_Etas_TC387_RtaOs`），统一归属 **BSW group**，**每家供应商一个交付库**，各自检出到 `BSW/<模块>`，共同组成扁平的 `BSW/` 树。
 - **项目源码**：`ASW/`、`CDD/` 模块代码**未按 AUTOSAR 静态/配置分离**，整体与项目相关，故源码也按项目 —— `asw_<Project>`、`cdd_<Project>`。
-- **项目库**：`ASW_Libs/`、`CDD_Libs/`、`BSW_Libs/`、`MCAL_Libs/` **全部按项目建子库** —— `asw_libs_<Project>`、`cdd_libs_<Project>`、`bsw_libs_<Project>`、`mcal_libs_<Project>`（扁平命名、下划线分隔；库目录同样按模块名、不分供应商）。MCAL 的 `.a` 把配置代码与静态代码一并编译链接、BSW 的 `.a` 已打包项目 ECUC 配置，故均按项目。**工作区中这些库/源码直接检出到对应目录根**（不带项目子目录）——拉取时项目已由子库名确定。
+- **项目库**：`ASW_Libs/`、`CDD_Libs/`、`BSW_Libs/`、`MCAL_Libs/` **全部按项目建子库**。`asw_libs_<Project>`、`cdd_libs_<Project>`、`bsw_libs_<Project>`（扁平命名、下划线分隔；库目录按模块名、不分供应商）。**`MCAL_Libs/`** 针对项目 MCAL 芯片已固定（TC387/TC367 不会同时存在），故**只保留该项目的芯片、不分 `<Chip>` 一级**，芯片与项目身份编码进 git 子库名 —— 归 **MCAL group**、按项目区分：**`MCAL_<Project>`**。MCAL 的 `.a` 把配置代码与静态代码一并编译链接、BSW 的 `.a` 已打包项目 ECUC 配置，故均按项目。**工作区中这些库/源码直接检出到对应目录根**（不带项目/芯片子目录）——拉取时项目已由子库名确定。
 
 子库清单见 `Tools/Git/repo_map.txt` 与 `manifests/default.xml`。创建子库（并在 GitHub 建仓+推送）：
 

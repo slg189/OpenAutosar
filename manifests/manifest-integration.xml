@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- manifest-integration.xml — 基础(集成)工程师 (项目 Demo_Tc387):
+     仅 Projects/*/Integration 源码可见; ASW/BSW/CDD/MCAL 全部以 *_Libs/.a 集成。
+     ASW/CDD 库按项目下发对应子库。 -->
+<manifest>
+  <remote name="origin" fetch="ssh://git@example.com/autosar/"/>
+  <default remote="origin" revision="main" sync-j="8"/>
+
+  <!-- 集成代码源码可见 (Projects 含 Integration/Cfg/Ld/...) -->
+  <project name="projects.git"   path="Projects"/>
+  <project name="tools.git"      path="Tools"/>
+
+  <!-- 项目库: 仅本项目子库 (ASW / CDD / BSW / MCAL 全部按项目), 检出到 <Layer>_Libs 根 -->
+  <project name="asw_libs_Demo_Tc387.git"  path="ASW_Libs"/>
+  <project name="cdd_libs_Demo_Tc387.git"  path="CDD_Libs"/>
+  <project name="bsw_libs_Demo_Tc387.git"  path="BSW_Libs"/>
+  <project name="mcal_libs_Demo_Tc387.git" path="MCAL_Libs"/>
+</manifest>

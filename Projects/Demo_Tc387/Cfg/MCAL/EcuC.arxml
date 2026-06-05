@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EB tresos MCAL 工程配置 (ECU Configuration) - 占位示例 -->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>EcuC</SHORT-NAME>
+      <!-- ADC / CAN / PORT 模块的 ECUC 容器在此定义 -->
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

@@ -1,0 +1,5 @@
+# SConscript - MCAL Tc367/Adc
+Import('env')
+env.Append(CPPPATH=[Dir('inc'), '#MCAL/inc'])
+lib = env.StaticLibrary(target='Adc', source=Glob('src/*.c'))
+Return('lib')

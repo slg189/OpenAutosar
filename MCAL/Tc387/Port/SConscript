@@ -1,0 +1,5 @@
+# SConscript - MCAL Tc387/Port
+Import('env')
+env.Append(CPPPATH=[Dir('inc'), '#MCAL/inc'])
+lib = env.StaticLibrary(target='Port', source=Glob('src/*.c'))
+Return('lib')

@@ -1,0 +1,7 @@
+/* AUTOSAR 平台相关类型 (32-bit AURIX) */
+#ifndef PLATFORM_TYPES_H
+#define PLATFORM_TYPES_H
+#define CPU_TYPE_32      32
+#define CPU_BIT_ORDER    LSB_FIRST
+#define CPU_BYTE_ORDER   LOW_BYTE_FIRST
+#endif /* PLATFORM_TYPES_H */

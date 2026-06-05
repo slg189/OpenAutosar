@@ -1,0 +1,30 @@
+{
+  "platform": "QEMU",
+  "description": "QEMU 单元/集成测试平台配置",
+  "machine": "tricore-aurix-tc3xx",
+  "cpu": "tc387",
+  "timeoutSec": 300,
+  "image": {
+    "elf": "Projects/Demo_Tc387/Out/Demo_Tc387.elf"
+  },
+  "semihosting": {
+    "enabled": true,
+    "exitOnTestDone": true
+  },
+  "testSuites": [
+    {
+      "name": "mcal_smoke",
+      "path": "Test/ut/MCAL",
+      "tags": ["smoke", "mcal"]
+    },
+    {
+      "name": "cdd_integration",
+      "path": "Test/Projects/CDD",
+      "tags": ["integration", "cdd"]
+    }
+  ],
+  "report": {
+    "format": "junit",
+    "output": "reports/integration_results.xml"
+  }
+}

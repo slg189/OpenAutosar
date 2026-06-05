@@ -14,17 +14,20 @@ BSW、组件到上层应用 (ASW) 的完整分层结构，并集成构建 (SCons
 仓库按文件夹拆分为独立子库，用 google-repo 清单组装：
 
 - **源码**：每个顶层文件夹一个子库（`asw` / `bsw` / `cdd` / `mcal` / `components` / `projects` / `tools` / `test` / `docs`）。
-- **共享库**：`mcal-libs`（按芯片）、`bsw-libs`（按供应商），跨项目共享。
-- **项目库**：`ASW_Libs/`、`CDD_Libs/` 与项目相关，**按项目建子库** —— `asw-libs-<Project>`、`cdd-libs-<Project>`，路径为 `<Layer>_Libs/<Project>/`。
+- **共享库**：`mcal_libs`（按芯片），跨项目共享。
+- **项目库**：`ASW_Libs/`、`CDD_Libs/`、`BSW_Libs/` 与项目相关，**按项目建子库** —— `asw_libs_<Project>`、`cdd_libs_<Project>`、`bsw_libs_<Project>`（扁平命名、下划线分隔），路径为 `<Layer>_Libs/<Project>/`。BSW 的 `.a` 已把该项目的 ECUC 配置生成代码一并打包，故也按项目。
 
-子库清单见 `Tools/Git/repo_map.txt` 与 `manifests/default.xml`。创建子库：
+子库清单见 `Tools/Git/repo_map.txt` 与 `manifests/default.xml`。创建子库（并在 GitHub 建仓+推送）：
 
 ```bat
 REM 预览
-Tools\Git\init_subrepos.bat ssh://git@example.com/autosar --dry-run
-REM 初始化并推送 (远端空仓库需先创建)
-Tools\Git\init_subrepos.bat ssh://git@example.com/autosar --push
+Tools\Git\init_subrepos.bat https://github.com/<owner> --dry-run
+REM gh CLI 建仓 + 推送 (先 gh auth login; 组织加 --org, 公开加 --public)
+Tools\Git\init_subrepos.bat https://github.com/<owner> --github <owner> --push
+REM 无 gh 时用 REST API: 先 set GITHUB_TOKEN=ghp_xxxx
 ```
+
+详见 `Tools/Git/README.md` 与 `docs/repo_structure.html`。
 
 ## 信息安全分级（代码可见性隔离）
 

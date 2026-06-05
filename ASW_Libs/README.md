@@ -4,7 +4,7 @@ ASW 模型与具体项目强相关，因此 **每个项目一个 git 子库**：
 
 ```
 ASW_Libs/
-└── <Project>/          # git 子库: asw-libs-<Project>.git
+└── <Project>/          # git 子库: asw_libs_<Project>.git
     ├── inc/            # 项目级公共头文件 (Rte_Type.h ...)
     └── <Model>/        # inc/ + lib<Model>.a
 ```

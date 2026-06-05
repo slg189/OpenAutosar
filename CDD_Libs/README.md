@@ -4,7 +4,7 @@
 
 ```
 CDD_Libs/
-└── <Project>/          # git 子库: cdd-libs-<Project>.git
+└── <Project>/          # git 子库: cdd_libs_<Project>.git
     └── <Cdd>/          # inc/ + lib<Cdd>.a
 ```
 

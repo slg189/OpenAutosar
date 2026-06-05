@@ -9,7 +9,9 @@ env.Append(CPPPATH=[
     '#ASW_Libs/%s/VehicleControl/inc' % PROJECT,
     '#ASW_Libs/%s/EnergyManagement/inc' % PROJECT,
     '#CDD_Libs/%s/CddPwm/inc' % PROJECT,
-    '#BSW_Libs/inc', '#BSW_Libs/Etas/inc', '#BSW_Libs/Vector/inc',
+    '#BSW_Libs/%s/inc' % PROJECT,
+    '#BSW_Libs/%s/Etas/inc' % PROJECT,
+    '#BSW_Libs/%s/Vector/inc' % PROJECT,
     '#Components/Common/inc', '#Components/Mcu/Sbm/inc',
     '#MCAL_Libs/inc',
 ])

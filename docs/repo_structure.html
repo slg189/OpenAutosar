@@ -71,11 +71,12 @@
   <h2>划分原则</h2>
   <ul>
     <li><span class="tag t-src">源码</span> 每个顶层文件夹一个子库（<code>ASWs/</code>、<code>BSW/</code>、<code>CDDs/</code>、<code>MCAL/</code>、<code>Components/</code>、<code>Projects/</code>、<code>Tools/</code>、<code>Test/</code>、<code>docs/</code>）。</li>
-    <li><span class="tag t-shared">共享库</span> <code>MCAL_Libs/</code>（平台/芯片级）、<code>BSW_Libs/</code>（供应商级）各一个子库，跨项目共享。</li>
-    <li><span class="tag t-proj">项目库</span> <code>ASW_Libs/</code>、<code>CDD_Libs/</code> 与项目强相关，<strong>按项目各建一个子库</strong>：<code>asw-libs-&lt;Project&gt;</code>、<code>cdd-libs-&lt;Project&gt;</code>。</li>
+    <li><span class="tag t-shared">共享库</span> <code>MCAL_Libs/</code>（平台/芯片级）一个子库，跨项目共享。</li>
+    <li><span class="tag t-proj">项目库</span> <code>ASW_Libs/</code>、<code>CDD_Libs/</code>、<code>BSW_Libs/</code> 与项目强相关，<strong>按项目各建一个子库</strong>：<code>asw_libs_&lt;Project&gt;</code>、<code>cdd_libs_&lt;Project&gt;</code>、<code>bsw_libs_&lt;Project&gt;</code>（扁平命名、下划线分隔）。</li>
     <li><span class="tag t-meta">元信息</span> 清单与根脚本/配置归 <code>meta</code> 子库（或 manifest 仓）。</li>
   </ul>
-  <div class="callout">为什么 ASW/CDD 按项目分库？它们的发布物（模型/复杂驱动二进制）随项目而异，
+  <div class="callout">为什么 ASW/CDD/BSW 按项目分库？它们的发布物随项目而异——ASW 模型、CDD 复杂驱动，
+  以及 <strong>BSW 的 <code>.a</code>（已把该项目的 ECUC 配置生成代码一并打包）</strong>。
   按项目分库可做到：① 不同项目的库互不可见、独立授权；② 一个项目升级不影响他人；③ 配合信息安全分级，只给某项目的工程师下发其对应项目库。</div>
 </section>
 
@@ -92,10 +93,10 @@
     <tr><td><span class="tag t-src">源码</span></td><td><code>Tools/</code></td><td><code>tools.git</code></td><td>工具</td></tr>
     <tr><td><span class="tag t-src">源码</span></td><td><code>Test/</code></td><td><code>test.git</code></td><td>测试</td></tr>
     <tr><td><span class="tag t-src">源码</span></td><td><code>docs/</code></td><td><code>docs.git</code></td><td>文档</td></tr>
-    <tr><td><span class="tag t-shared">共享库</span></td><td><code>MCAL_Libs/</code></td><td><code>mcal-libs.git</code></td><td>MCAL 二进制 (按芯片)</td></tr>
-    <tr><td><span class="tag t-shared">共享库</span></td><td><code>BSW_Libs/</code></td><td><code>bsw-libs.git</code></td><td>BSW 二进制 (按供应商)</td></tr>
-    <tr><td><span class="tag t-proj">项目库</span></td><td><code>ASW_Libs/Demo_Tc387/</code></td><td><code>asw-libs-Demo_Tc387.git</code></td><td>该项目 ASW 二进制</td></tr>
-    <tr><td><span class="tag t-proj">项目库</span></td><td><code>CDD_Libs/Demo_Tc387/</code></td><td><code>cdd-libs-Demo_Tc387.git</code></td><td>该项目 CDD 二进制</td></tr>
+    <tr><td><span class="tag t-shared">共享库</span></td><td><code>MCAL_Libs/</code></td><td><code>mcal_libs.git</code></td><td>MCAL 二进制 (按芯片)</td></tr>
+    <tr><td><span class="tag t-proj">项目库</span></td><td><code>ASW_Libs/Demo_Tc387/</code></td><td><code>asw_libs_Demo_Tc387.git</code></td><td>该项目 ASW 二进制</td></tr>
+    <tr><td><span class="tag t-proj">项目库</span></td><td><code>CDD_Libs/Demo_Tc387/</code></td><td><code>cdd_libs_Demo_Tc387.git</code></td><td>该项目 CDD 二进制</td></tr>
+    <tr><td><span class="tag t-proj">项目库</span></td><td><code>BSW_Libs/Demo_Tc387/</code></td><td><code>bsw_libs_Demo_Tc387.git</code></td><td>该项目 BSW 二进制 (含配置代码)</td></tr>
     <tr><td><span class="tag t-meta">元信息</span></td><td><code>.</code> (根)</td><td><code>meta.git</code></td><td>manifests/ + 根脚本/配置</td></tr>
   </table>
   <p class="muted">该清单见 <code>Tools/Git/repo_map.txt</code> 与 <code>manifests/default.xml</code>。</p>
@@ -113,12 +114,13 @@
 ├── <span class="dir">Tools/</span>        <span class="repo"># tools.git</span>
 ├── <span class="dir">Test/</span>         <span class="repo"># test.git</span>
 ├── <span class="dir">docs/</span>         <span class="repo"># docs.git</span>
-├── <span class="dir">MCAL_Libs/</span>    <span class="repo"># mcal-libs.git        (共享)</span>
-├── <span class="dir">BSW_Libs/</span>     <span class="repo"># bsw-libs.git         (共享)</span>
+├── <span class="dir">MCAL_Libs/</span>    <span class="repo"># mcal_libs.git        (共享)</span>
 ├── <span class="dir">ASW_Libs/</span>
-│   └── <span class="dir">Demo_Tc387/</span>  <span class="repo"># asw-libs-Demo_Tc387.git  (按项目)</span>
+│   └── <span class="dir">Demo_Tc387/</span>  <span class="repo"># asw_libs_Demo_Tc387.git  (按项目)</span>
 ├── <span class="dir">CDD_Libs/</span>
-│   └── <span class="dir">Demo_Tc387/</span>  <span class="repo"># cdd-libs-Demo_Tc387.git  (按项目)</span>
+│   └── <span class="dir">Demo_Tc387/</span>  <span class="repo"># cdd_libs_Demo_Tc387.git  (按项目)</span>
+├── <span class="dir">BSW_Libs/</span>
+│   └── <span class="dir">Demo_Tc387/</span>  <span class="repo"># bsw_libs_Demo_Tc387.git  (按项目)</span>
 └── manifests/ + 根脚本   <span class="repo"># meta.git</span>
 </div>
 </section>
@@ -126,33 +128,53 @@
 <section id="perproj">
   <h2>ASW / CDD 按项目的目录结构</h2>
 <div class="tree"><span class="dir">ASW_Libs/</span>
-└── <span class="dir">Demo_Tc387/</span>            <span class="repo"># 子库 asw-libs-Demo_Tc387</span>
+└── <span class="dir">Demo_Tc387/</span>            <span class="repo"># 子库 asw_libs_Demo_Tc387</span>
     ├── inc/Rte_Type.h          <span class="note"># 项目级公共头</span>
     ├── VehicleControl/inc + libVehicleControl.a
     └── EnergyManagement/inc + libEnergyManagement.a
 
 <span class="dir">CDD_Libs/</span>
-└── <span class="dir">Demo_Tc387/</span>            <span class="repo"># 子库 cdd-libs-Demo_Tc387</span>
+└── <span class="dir">Demo_Tc387/</span>            <span class="repo"># 子库 cdd_libs_Demo_Tc387</span>
     ├── CddPwm/inc  + libCddPwm.a
     ├── CddMotor/inc + libCddMotor.a
     └── CddSent/inc  + libCddSent.a
+
+<span class="dir">BSW_Libs/</span>
+└── <span class="dir">Demo_Tc387/</span>            <span class="repo"># 子库 bsw_libs_Demo_Tc387 (.a 含项目配置代码)</span>
+    ├── inc/EcuM.h
+    ├── Etas/inc   + libRtaOs.a
+    └── Vector/inc + libCom.a
 </div>
-  <p class="muted">构建侧已对齐：<code>build_helpers.lib_file(layer,name,chip,project)</code> 对 ASW/CDD
-  解析为 <code>&lt;Layer&gt;_Libs/&lt;project&gt;/&lt;name&gt;/lib&lt;name&gt;.a</code>；
-  <code>release_libs.bat ASW|CDD</code> 按 <code>%PROJECT%</code> 释放到对应项目目录。</p>
+  <p class="muted">构建侧已对齐：<code>build_helpers.lib_file(layer,name,chip,project)</code> 对 ASW/CDD/BSW
+  解析为 <code>&lt;Layer&gt;_Libs/&lt;project&gt;/.../lib*.a</code>；
+  <code>release_libs.bat ASW|CDD|BSW</code> 按 <code>%PROJECT%</code> 释放到对应项目目录。</p>
 </section>
 
 <section id="create">
   <h2>创建子库</h2>
   <p>用 <code>Tools/Git/init_subrepos.bat</code> 把当前 monorepo 各文件夹打包为独立子库并推送。
-  固定子库取自 <code>repo_map.txt</code>，项目库则自动遍历 <code>ASW_Libs\*</code>、<code>CDD_Libs\*</code> 生成。</p>
+  固定子库取自 <code>repo_map.txt</code>，项目库则自动遍历 <code>ASW_Libs\*</code>、<code>CDD_Libs\*</code>、<code>BSW_Libs\*</code> 生成
+  （<code>asw_libs_&lt;proj&gt;</code> / <code>cdd_libs_&lt;proj&gt;</code> / <code>bsw_libs_&lt;proj&gt;</code>）。</p>
 <pre><code>REM 预览将创建的子库 (不写任何东西)
-Tools\Git\init_subrepos.bat ssh://git@example.com/autosar --dry-run
+Tools\Git\init_subrepos.bat https://github.com/&lt;owner&gt; --dry-run
 
-REM 本地初始化 + 推送 (远端空仓库需先在服务器创建; GitLab 可 push 自动建)
-Tools\Git\init_subrepos.bat ssh://git@example.com/autosar --push</code></pre>
+REM 本地初始化 + 推送 (远端空仓库需已存在)
+Tools\Git\init_subrepos.bat https://github.com/&lt;owner&gt; --push</code></pre>
   <div class="callout">脚本在 <code>.subrepos\&lt;name&gt;</code> 临时目录内 <code>git init</code> 并提交，避免在工作树里
   产生嵌套 <code>.git</code>，不影响当前 monorepo。</div>
+
+  <h3>在 GitHub 上建仓 + 推送</h3>
+  <p><code>init_subrepos.bat</code> 可在推送前自动创建 GitHub 仓库：优先 <strong>gh CLI</strong>，无 gh 时回退 <strong>REST API</strong>（需 <code>GITHUB_TOKEN</code>）。</p>
+<pre><code>REM 方式 A: gh CLI (推荐) —— 先 gh auth login
+Tools\Git\init_subrepos.bat https://github.com/&lt;user&gt; --github &lt;user&gt; --push
+REM 组织账户加 --org; 公开仓加 --public
+Tools\Git\init_subrepos.bat https://github.com/&lt;org&gt; --github &lt;org&gt; --org --public --push
+
+REM 方式 B: REST API (无 gh) —— 用 PAT
+set GITHUB_TOKEN=ghp_xxxxxxxx
+Tools\Git\init_subrepos.bat https://github.com/&lt;owner&gt; --github &lt;owner&gt; --push</code></pre>
+  <p class="muted">手动建单个仓库：<code>gh repo create &lt;owner&gt;/asw_libs_Demo_Tc387 --private</code>，
+  或 <code>curl -H "Authorization: token %GITHUB_TOKEN%" https://api.github.com/user/repos -d "{\"name\":\"asw_libs_Demo_Tc387\",\"private\":true}"</code>。</p>
 </section>
 
 <section id="assemble">
@@ -169,9 +191,9 @@ repo_metasar.bat sync</code></pre>
 <section id="addproj">
   <h2>新增一个项目时</h2>
   <ol>
-    <li>在 <code>Projects/&lt;NewProj&gt;/</code> 建工程；<code>release_libs.bat ASW</code>、<code>release_libs.bat CDD</code>（设 <code>PROJECT=&lt;NewProj&gt;</code>）生成 <code>ASW_Libs/&lt;NewProj&gt;/</code>、<code>CDD_Libs/&lt;NewProj&gt;/</code>。</li>
-    <li><code>Tools/Git/init_subrepos.bat</code> 自动发现并创建 <code>asw-libs-&lt;NewProj&gt;</code>、<code>cdd-libs-&lt;NewProj&gt;</code> 子库。</li>
-    <li>在 <code>manifests/default.xml</code>（及需要的角色清单）增加两行 <code>asw-libs-&lt;NewProj&gt;</code> / <code>cdd-libs-&lt;NewProj&gt;</code>。</li>
+    <li>在 <code>Projects/&lt;NewProj&gt;/</code> 建工程；设 <code>PROJECT=&lt;NewProj&gt;</code> 后 <code>release_libs.bat ASW|CDD|BSW</code> 生成 <code>ASW_Libs/&lt;NewProj&gt;/</code>、<code>CDD_Libs/&lt;NewProj&gt;/</code>、<code>BSW_Libs/&lt;NewProj&gt;/</code>。</li>
+    <li><code>Tools/Git/init_subrepos.bat</code> 自动发现并创建 <code>asw_libs_&lt;NewProj&gt;</code>、<code>cdd_libs_&lt;NewProj&gt;</code>、<code>bsw_libs_&lt;NewProj&gt;</code> 子库。</li>
+    <li>在 <code>manifests/default.xml</code>（及需要的角色清单）增加三行 <code>asw_libs_/cdd_libs_/bsw_libs_&lt;NewProj&gt;</code>。</li>
   </ol>
 </section>
 

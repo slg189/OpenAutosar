@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- manifest-asw.xml — ASW 工程师 (项目 Demo_Tc387):
      仅 ASWs/ 源码可见; BSW/CDD/MCAL 以 *_Libs/.a 集成。
-     CDD 库按项目下发对应子库 cdd-libs-<project>。 -->
+     CDD 库按项目下发对应子库 cdd_libs_<project>。 -->
 <manifest>
   <remote name="origin" fetch="ssh://git@example.com/autosar/"/>
   <default remote="origin" revision="main" sync-j="8"/>
@@ -13,8 +13,8 @@
   <project name="tools.git"      path="Tools"/>
 
   <!-- 仅二进制 + 头文件 (信息安全: 不下发源码仓库) -->
-  <project name="bsw-libs.git"   path="BSW_Libs"/>
-  <project name="mcal-libs.git"  path="MCAL_Libs"/>
-  <!-- CDD 库: 仅本项目子库 -->
-  <project name="cdd-libs-Demo_Tc387.git" path="CDD_Libs/Demo_Tc387"/>
+  <project name="mcal_libs.git"  path="MCAL_Libs"/>
+  <!-- CDD / BSW 库: 仅本项目子库 -->
+  <project name="cdd_libs_Demo_Tc387.git" path="CDD_Libs/Demo_Tc387"/>
+  <project name="bsw_libs_Demo_Tc387.git" path="BSW_Libs/Demo_Tc387"/>
 </manifest>

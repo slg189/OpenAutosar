@@ -2,9 +2,10 @@
 # 格式:  <相对路径>|<仓库名(不含.git)>|<分组>
 # 以 # 开头的行为注释; 空行忽略。
 #
-# 注意: ASW_Libs / CDD_Libs 与项目相关, 此处不在固定清单中列出,
-#       由 init_subrepos.bat 自动遍历 ASW_Libs\* 、CDD_Libs\* 各项目目录,
-#       生成仓库名 asw-libs-<project> / cdd-libs-<project>。
+# 注意: ASW_Libs / CDD_Libs / BSW_Libs 与项目相关, 此处不在固定清单中列出,
+#       由 init_subrepos.bat 自动遍历各 *_Libs\<project> 目录,
+#       生成仓库名 asw_libs_<project> / cdd_libs_<project> / bsw_libs_<project>
+#       (扁平命名, 下划线分隔)。
 
 # ===== 源码子库 (按文件夹) =====
 ASWs|asw|src
@@ -18,5 +19,4 @@ Test|test|src
 docs|docs|docs
 
 # ===== 共享库子库 (跨项目) =====
-MCAL_Libs|mcal-libs|libs
-BSW_Libs|bsw-libs|libs
+MCAL_Libs|mcal_libs|libs

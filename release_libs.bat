@@ -68,10 +68,10 @@ call :copy_headers "ASWs\inc" "ASW_Libs\%PROJECT%\inc"
 goto :eof
 
 :release_bsw
-REM BSW 通常由供应商以 .a 交付, 此处仅同步头文件与现成库
-call :copy_headers "BSW\inc"        "BSW_Libs\inc"
-call :copy_headers "BSW\Etas\inc"   "BSW_Libs\Etas\inc"
-call :copy_headers "BSW\Vector\inc" "BSW_Libs\Vector\inc"
-if exist "BSW\Etas\lib\*.a"   copy /Y "BSW\Etas\lib\*.a"   "BSW_Libs\Etas\"   >nul
-if exist "BSW\Vector\lib\*.a" copy /Y "BSW\Vector\lib\*.a" "BSW_Libs\Vector\" >nul
+REM BSW 与项目相关 (.a 已把项目配置代码一并打包): 释放到 BSW_Libs\<Project>\
+call :copy_headers "BSW\inc"        "BSW_Libs\%PROJECT%\inc"
+call :copy_headers "BSW\Etas\inc"   "BSW_Libs\%PROJECT%\Etas\inc"
+call :copy_headers "BSW\Vector\inc" "BSW_Libs\%PROJECT%\Vector\inc"
+if exist "BSW\Etas\lib\*.a"   copy /Y "BSW\Etas\lib\*.a"   "BSW_Libs\%PROJECT%\Etas\"   >nul
+if exist "BSW\Vector\lib\*.a" copy /Y "BSW\Vector\lib\*.a" "BSW_Libs\%PROJECT%\Vector\" >nul
 goto :eof

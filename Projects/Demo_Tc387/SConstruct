@@ -1,0 +1,80 @@
+# ============================================================================
+# SConstruct - OpenAutosar 工程构建入口 (Project: Demo_Tc387)
+#
+# 构建流程:
+#   1. 编译 MCAL / CDD / Components / ASW 各模块 -> 静态库 (.a) 到 Libs/
+#   2. 链接 Gen/ 生成的配置代码 + 各层 .a + 供应商 BSW .a
+#   3. 使用 Ld/ 链接脚本生成 Out/Demo_Tc387.elf 并转换 hex/map
+# ============================================================================
+import os
+
+PROJECT   = 'Demo_Tc387'
+MCU       = 'tc387'
+ROOT      = Dir('#').abspath          # 仓库根目录
+PROJ_DIR  = Dir('.').abspath
+
+# ---- 工具链 (TASKING / GCC for TriCore) ----
+env = Environment(
+    ENV       = os.environ,
+    CC        = os.environ.get('TRICORE_CC', 'tricore-gcc'),
+    AR        = os.environ.get('TRICORE_AR', 'tricore-ar'),
+    CCFLAGS   = ['-Wall', '-g', '-O2', '-mcpu=%s' % MCU],
+    OBJPREFIX = '',
+)
+
+# 临时目标文件输出到 Obj/
+env.VariantDir('Obj', '#', duplicate=0)
+
+# ---- 公共头文件搜索路径 ----
+env.Append(CPPPATH=[
+    '#MCAL/inc',
+    '#Components/Common/inc',
+    '#ASWs/inc',
+    '#BSW/inc',
+    '#BSW/Etas/inc',
+    '#BSW/Vector/inc',
+    Dir('Gen/MCAL'), Dir('Gen/CDD'), Dir('Gen/BSW'),
+])
+
+Export('env')
+
+# ---- 子模块 SConscript -> 产出 .a 到 Libs/<layer> ----
+libs = []
+module_map = {
+    'ASW':  ['#ASWs/VehicleControl/SConscript'],
+    'CDD':  ['#CDDs/CddPwm/SConscript', '#CDDs/CddMotor/SConscript'],
+    'MCAL': [],  # 本工程 MCAL 由 EB 生成后在 Gen/ 中编译, 此处略
+    'CMP':  ['#Components/Common/SConscript', '#Components/Mcu/Sbm/SConscript'],
+}
+layer_libdir = {'ASW': 'Libs/ASW', 'CDD': 'Libs/CDD', 'MCAL': 'Libs/MCAL', 'CMP': 'Libs/BSW'}
+
+for layer, scripts in module_map.items():
+    for sc in scripts:
+        lib = SConscript(sc, variant_dir=os.path.join('Obj', layer, os.path.basename(os.path.dirname(sc))), duplicate=0)
+        installed = env.Install(layer_libdir[layer], lib)
+        libs.append(installed)
+
+# ---- 预编译供应商库 ----
+prebuilt = [
+    File('#BSW/Etas/lib/libRtaOs.a'),
+    File('#BSW/Vector/lib/libCom.a'),
+    File('#ASWs/EnergyManagement/libEnergyManagement.a'),
+    File('#CDDs/CddSent/libCddSent.a'),
+    File('#MCAL/Tc367/Can/libCan.a'),
+]
+
+# ---- 链接生成 ELF ----
+linker_script = File('Ld/%s.ld' % PROJECT)
+env.Append(LINKFLAGS=['-T', linker_script.abspath, '-Wl,-Map=Out/%s.map' % PROJECT])
+
+elf = env.Program(
+    target = 'Out/%s.elf' % PROJECT,
+    source = Glob('Gen/MCAL/*.c') + Glob('Gen/CDD/*.c') + Glob('Gen/BSW/*.c') + libs + prebuilt,
+)
+Depends(elf, linker_script)
+
+# ---- 生成 Intel HEX ----
+hex_out = env.Command('Out/%s.hex' % PROJECT, elf,
+                      'tricore-objcopy -O ihex $SOURCE $TARGET')
+
+Default(hex_out)

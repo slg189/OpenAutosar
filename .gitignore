@@ -1,0 +1,48 @@
+# ===== Build artifacts =====
+# 编译临时目标文件 (保留目录占位 README)
+Projects/*/Obj/*
+!Projects/*/Obj/README.md
+**/Obj/*.o
+**/Obj/*.d
+
+# 链接输出 (hex / elf / map) — 保留目录占位 README
+Projects/*/Out/*
+!Projects/*/Out/README.md
+**/*.hex
+**/*.elf
+**/*.map
+**/*.lst
+
+# 生成的配置代码 (由 EB / ETAS 工具生成) — 保留目录占位 README
+Projects/*/Gen/MCAL/*
+Projects/*/Gen/CDD/*
+Projects/*/Gen/BSW/*
+!Projects/*/Gen/MCAL/README.md
+!Projects/*/Gen/CDD/README.md
+!Projects/*/Gen/BSW/README.md
+
+# 编译生成的库 (.a 由各模块构建产出)
+Projects/*/Libs/ASW/*.a
+Projects/*/Libs/BSW/*.a
+Projects/*/Libs/CDD/*.a
+Projects/*/Libs/MCAL/*.a
+
+# ===== Test / coverage outputs =====
+build_test/
+coverage_output/
+reports/*.xml
+reports/*.html
+log_repo
+
+# ===== SCons =====
+.sconsign.dblite
+.sconf_temp/
+config.log
+
+# ===== Editor / OS =====
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db

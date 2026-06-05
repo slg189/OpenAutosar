@@ -1,0 +1,29 @@
+{
+  "standard": "MISRA C:2012",
+  "description": "OpenAutosar MISRA C:2012 静态检查配置 (供 QAC / cppcheck 使用)",
+  "checkLevel": "required+advisory",
+  "deviations": [
+    {
+      "rule": "21.6",
+      "reason": "标准库 I/O 仅在测试桩 (Test/ut) 中使用",
+      "scope": ["Test/ut/**"]
+    },
+    {
+      "rule": "8.7",
+      "reason": "供应商生成代码 (Gen/) 中存在跨翻译单元的外部链接对象",
+      "scope": ["Projects/*/Gen/**"]
+    }
+  ],
+  "suppressPaths": [
+    "BSW/Etas/**",
+    "BSW/Vector/**",
+    "Tools/**",
+    "Test/QAC/**"
+  ],
+  "include": [
+    "ASWs/**",
+    "CDDs/**",
+    "Components/**",
+    "MCAL/**"
+  ]
+}

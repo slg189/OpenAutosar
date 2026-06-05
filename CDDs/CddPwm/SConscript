@@ -1,0 +1,9 @@
+# SConscript - 复杂驱动 CddPwm
+Import('env')
+
+module = 'CddPwm'
+src = Glob('src/*.c') + Glob('gen/*.c')
+env.Append(CPPPATH=[Dir('inc'), Dir('gen')])
+
+lib = env.StaticLibrary(target=module, source=src)
+Return('lib')

@@ -1,0 +1,5 @@
+# SConscript - 公共组件 Common
+Import('env')
+env.Append(CPPPATH=[Dir('inc')])
+lib = env.StaticLibrary(target='Common', source=Glob('src/*.c'))
+Return('lib')

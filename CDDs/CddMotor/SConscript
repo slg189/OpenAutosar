@@ -1,0 +1,6 @@
+# SConscript - 复杂驱动 CddMotor
+Import('env')
+src = Glob('src/*.c') + Glob('gen/*.c')
+env.Append(CPPPATH=[Dir('inc'), Dir('gen')])
+lib = env.StaticLibrary(target='CddMotor', source=src)
+Return('lib')

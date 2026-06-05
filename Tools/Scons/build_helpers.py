@@ -62,8 +62,10 @@ def source_dir(layer, name, chip):
     return '%s/%s' % (root, name)
 
 
-def lib_file(layer, name, chip):
-    """返回已释放的 .a 路径 (用于 mode=lib)。"""
+def lib_file(layer, name, chip, project=None):
+    """返回已释放的 .a 路径 (用于 mode=lib)。
+    ASW / CDD 与项目相关, 库位于 <Layer>_Libs/<project>/ 下 (按项目建子库);
+    MCAL (按芯片) 与 BSW (按供应商) 为平台级共享库, 不分项目。"""
     root = LAYER_LIB_ROOT[layer]
     if layer == 'MCAL':
         return '%s/%s/%s/lib%s.a' % (root, chip, name, name)
@@ -71,10 +73,11 @@ def lib_file(layer, name, chip):
         # BSW 以供应商包(Etas/Vector)子目录组织; name->库名映射在工程内决定
         vendor = {'Os': 'Etas/libRtaOs', 'Com': 'Vector/libCom'}.get(name, name)
         return '%s/%s.a' % (root, vendor)
-    return '%s/%s/lib%s.a' % (root, name, name)
+    # ASW / CDD: 按项目
+    return '%s/%s/%s/lib%s.a' % (root, project, name, name)
 
 
-def lib_incdirs(layer, name, chip):
+def lib_incdirs(layer, name, chip, project=None):
     """返回某模块在 *_Libs 下的头文件目录 (供 CPPPATH)。"""
     root = LAYER_LIB_ROOT[layer]
     if layer == 'MCAL':
@@ -82,4 +85,5 @@ def lib_incdirs(layer, name, chip):
     if layer == 'BSW':
         vendor = {'Os': 'Etas', 'Com': 'Vector'}.get(name, name)
         return ['%s/inc' % root, '%s/%s/inc' % (root, vendor)]
-    return ['%s/inc' % root, '%s/%s/inc' % (root, name)]
+    # ASW / CDD: 按项目
+    return ['%s/%s/inc' % (root, project), '%s/%s/%s/inc' % (root, project, name)]

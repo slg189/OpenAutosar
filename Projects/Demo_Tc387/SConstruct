@@ -75,13 +75,13 @@ for layer, modules in mc.MODULES.items():
                 # 安装到工程 Libs/ 并释放到根 *_Libs (供下游二进制集成)
                 base_env.Install('Libs/%s' % layer, lib)
                 release_actions += base_env.Install(
-                    os.path.dirname(File(bh.lib_file(layer, name, CHIP)).abspath), lib)
+                    os.path.dirname(File(bh.lib_file(layer, name, CHIP, PROJECT)).abspath), lib)
                 print('[build]   src  %-5s %s  cflags+=%s' % (layer, name, cfg.get('cflags', [])))
 
         if mode == 'lib':
-            la = File(bh.lib_file(layer, name, CHIP))
+            la = File(bh.lib_file(layer, name, CHIP, PROJECT))
             prebuilt_libs.append(la)
-            base_env.Append(CPPPATH=bh.lib_incdirs(layer, name, CHIP))
+            base_env.Append(CPPPATH=bh.lib_incdirs(layer, name, CHIP, PROJECT))
             print('[build]   lib  %-5s %s  <- %s' % (layer, name, la.path))
 
 # ---- Components (公共/启动) 始终源码编译 ----

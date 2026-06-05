@@ -55,14 +55,16 @@ call :copy_headers "MCAL\inc" "MCAL_Libs\inc"
 goto :eof
 
 :release_cdd
-for /D %%D in (CDDs\*) do call :build_lib "%%D" "%%~nxD" "CDD_Libs\%%~nxD"
+REM CDD 与项目相关: 释放到 CDD_Libs\<Project>\ (按项目建子库)
+for /D %%D in (CDDs\*) do call :build_lib "%%D" "%%~nxD" "CDD_Libs\%PROJECT%\%%~nxD"
 goto :eof
 
 :release_asw
+REM ASW 与项目相关: 释放到 ASW_Libs\<Project>\ (按项目建子库)
 for /D %%D in (ASWs\*) do (
-    if /I not "%%~nxD"=="inc" call :build_lib "%%D" "%%~nxD" "ASW_Libs\%%~nxD"
+    if /I not "%%~nxD"=="inc" call :build_lib "%%D" "%%~nxD" "ASW_Libs\%PROJECT%\%%~nxD"
 )
-call :copy_headers "ASWs\inc" "ASW_Libs\inc"
+call :copy_headers "ASWs\inc" "ASW_Libs\%PROJECT%\inc"
 goto :eof
 
 :release_bsw

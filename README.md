@@ -7,6 +7,24 @@ BSW、组件到上层应用 (ASW) 的完整分层结构，并集成构建 (SCons
 
 > 完整的图文文档见 [`docs/index.html`](docs/index.html)（在浏览器中打开）。
 > 信息安全分级与灵活编译方案见 [`docs/build_and_security.html`](docs/build_and_security.html)。
+> Git 多子库划分方案见 [`docs/repo_structure.html`](docs/repo_structure.html)。
+
+## Git 多子库（multi-repo）划分
+
+仓库按文件夹拆分为独立子库，用 google-repo 清单组装：
+
+- **源码**：每个顶层文件夹一个子库（`asw` / `bsw` / `cdd` / `mcal` / `components` / `projects` / `tools` / `test` / `docs`）。
+- **共享库**：`mcal-libs`（按芯片）、`bsw-libs`（按供应商），跨项目共享。
+- **项目库**：`ASW_Libs/`、`CDD_Libs/` 与项目相关，**按项目建子库** —— `asw-libs-<Project>`、`cdd-libs-<Project>`，路径为 `<Layer>_Libs/<Project>/`。
+
+子库清单见 `Tools/Git/repo_map.txt` 与 `manifests/default.xml`。创建子库：
+
+```bat
+REM 预览
+Tools\Git\init_subrepos.bat ssh://git@example.com/autosar --dry-run
+REM 初始化并推送 (远端空仓库需先创建)
+Tools\Git\init_subrepos.bat ssh://git@example.com/autosar --push
+```
 
 ## 信息安全分级（代码可见性隔离）
 

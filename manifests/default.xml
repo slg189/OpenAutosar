@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- default.xml — 完整视图: 拥有所有层源码 (平台/集成负责人) -->
+<!-- ============================================================================
+     default.xml — 完整视图 (平台/集成负责人): 拥有所有层源码 + 全部库
+     ============================================================================
+     子库划分原则:
+       - 源码: 按顶层文件夹各建一个 git 子库
+       - 共享库: MCAL_Libs / BSW_Libs (平台级/供应商级, 跨项目共享)
+       - 项目库: ASW_Libs / CDD_Libs 与项目相关, 按项目各建一个子库
+                 路径 <Layer>_Libs/<Project>, 仓库名 <layer>-libs-<project>
+     新增一个项目 = 增加两行 asw-libs-<Proj> / cdd-libs-<Proj> 即可。
+     ============================================================================ -->
 <manifest>
   <remote name="origin" fetch="ssh://git@example.com/autosar/"/>
   <default remote="origin" revision="main" sync-j="8"/>
 
-  <project name="asw.git"        path="ASWs"/>
-  <project name="bsw.git"        path="BSW"/>
-  <project name="cdd.git"        path="CDDs"/>
-  <project name="mcal.git"       path="MCAL"/>
-  <project name="components.git" path="Components"/>
-  <project name="projects.git"   path="Projects"/>
-  <project name="tools.git"      path="Tools"/>
-  <project name="test.git"       path="Test"/>
-  <!-- 释放库区 (由 CI release_libs.bat 产出并提交) -->
-  <project name="libs.git"       path="." groups="libs"/>
+  <!-- ===== 源码子库 (按文件夹) ===== -->
+  <project name="asw.git"        path="ASWs"        groups="src,asw"/>
+  <project name="bsw.git"        path="BSW"         groups="src,bsw"/>
+  <project name="cdd.git"        path="CDDs"        groups="src,cdd"/>
+  <project name="mcal.git"       path="MCAL"        groups="src,mcal"/>
+  <project name="components.git" path="Components"  groups="src"/>
+  <project name="projects.git"   path="Projects"    groups="src,integration"/>
+  <project name="tools.git"      path="Tools"       groups="src,tools"/>
+  <project name="test.git"       path="Test"        groups="src,test"/>
+  <project name="docs.git"       path="docs"        groups="docs"/>
+
+  <!-- ===== 共享库子库 (跨项目) ===== -->
+  <project name="mcal-libs.git"  path="MCAL_Libs"   groups="libs,mcal-libs"/>
+  <project name="bsw-libs.git"   path="BSW_Libs"    groups="libs,bsw-libs"/>
+
+  <!-- ===== 项目库子库 (ASW / CDD 按项目) ===== -->
+  <!-- Demo_Tc387 -->
+  <project name="asw-libs-Demo_Tc387.git" path="ASW_Libs/Demo_Tc387" groups="libs,asw-libs,proj-Demo_Tc387"/>
+  <project name="cdd-libs-Demo_Tc387.git" path="CDD_Libs/Demo_Tc387" groups="libs,cdd-libs,proj-Demo_Tc387"/>
+
+  <!-- ===== 元信息子库 (清单 + 根脚本/配置) =====
+       检出到 .meta 子目录 (避免与其它子库的检出路径重叠),
+       通过 copyfile 把根级脚本/配置落到工作区根。 -->
+  <project name="meta.git" path=".meta" groups="meta">
+    <copyfile src="README.md"             dest="README.md"/>
+    <copyfile src="gitignore"             dest=".gitignore"/>
+    <copyfile src="repo_metasar.bat"      dest="repo_metasar.bat"/>
+    <copyfile src="run_gtest.bat"         dest="run_gtest.bat"/>
+    <copyfile src="run_integrationTest.bat" dest="run_integrationTest.bat"/>
+    <copyfile src="release_libs.bat"      dest="release_libs.bat"/>
+    <copyfile src="misra.json"            dest="misra.json"/>
+    <copyfile src="clang-format"          dest=".clang-format"/>
+    <copyfile src="TestPlatform_UintTest_QEMU_Test.json" dest="TestPlatform_UintTest_QEMU_Test.json"/>
+  </project>
 </manifest>

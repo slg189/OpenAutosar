@@ -90,10 +90,10 @@
   <p>根目录新增四个释放区，存放各层对外交付的 <code>inc/</code> 头文件与预编译 <code>.a</code>，<strong>不含源码</strong>。
   由 <code>release_libs.bat</code> 从源码编译后回灌（也可由 CI 产出）。</p>
 <div class="tree"><span class="dir">OpenAutosar/</span>
-├── <span class="dir">ASW_Libs/</span>    <span class="note"># ASW 释放: inc/ + lib&lt;Model&gt;.a</span>
-├── <span class="dir">BSW_Libs/</span>    <span class="note"># BSW 释放: Etas/ Vector/ (inc + .a)</span>
-├── <span class="dir">CDD_Libs/</span>    <span class="note"># CDD 释放: &lt;Cdd&gt;/inc + lib&lt;Cdd&gt;.a</span>
-├── <span class="dir">MCAL_Libs/</span>   <span class="note"># MCAL 释放: &lt;Chip&gt;/&lt;Mod&gt;/inc + lib&lt;Mod&gt;.a</span>
+├── <span class="dir">ASW_Libs/</span>    <span class="note"># ASW 释放(按项目): &lt;Project&gt;/&lt;Model&gt;/inc + lib&lt;Model&gt;.a</span>
+├── <span class="dir">BSW_Libs/</span>    <span class="note"># BSW 释放(共享): Etas/ Vector/ (inc + .a)</span>
+├── <span class="dir">CDD_Libs/</span>    <span class="note"># CDD 释放(按项目): &lt;Project&gt;/&lt;Cdd&gt;/inc + lib&lt;Cdd&gt;.a</span>
+├── <span class="dir">MCAL_Libs/</span>   <span class="note"># MCAL 释放(共享): &lt;Chip&gt;/&lt;Mod&gt;/inc + lib&lt;Mod&gt;.a</span>
 │
 ├── ASWs/  BSW/  CDDs/  MCAL/   <span class="note"># 源码 (按 manifest 选择性下发)</span>
 └── Projects/Demo_Tc387/<span class="dir">Integration/</span>  <span class="note"># 集成代码 (基础工程师)</span>

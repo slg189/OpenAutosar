@@ -1,0 +1,22 @@
+# repo_map.txt — 子库划分清单 (供 init_subrepos.bat 读取)
+# 格式:  <相对路径>|<仓库名(不含.git)>|<分组>
+# 以 # 开头的行为注释; 空行忽略。
+#
+# 注意: ASW_Libs / CDD_Libs 与项目相关, 此处不在固定清单中列出,
+#       由 init_subrepos.bat 自动遍历 ASW_Libs\* 、CDD_Libs\* 各项目目录,
+#       生成仓库名 asw-libs-<project> / cdd-libs-<project>。
+
+# ===== 源码子库 (按文件夹) =====
+ASWs|asw|src
+BSW|bsw|src
+CDDs|cdd|src
+MCAL|mcal|src
+Components|components|src
+Projects|projects|src
+Tools|tools|src
+Test|test|src
+docs|docs|docs
+
+# ===== 共享库子库 (跨项目) =====
+MCAL_Libs|mcal-libs|libs
+BSW_Libs|bsw-libs|libs

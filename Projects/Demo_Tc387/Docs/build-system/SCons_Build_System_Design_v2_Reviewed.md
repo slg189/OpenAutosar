@@ -1,5 +1,10 @@
 # OpenAutosar SCons Build System Design v2
 
+> ⚠️ **历史存档**：本文为 v2（首轮评审后）设计，**已由 v3 取代并实施**。
+> 最新架构见 [`ARCHITECTURE_PROPOSAL.md`](ARCHITECTURE_PROPOSAL.md)，实现状态见 [`README.md`](README.md)。
+> 下文中的 `bsw_modules/mcal_modules` 三桶、每模块 `SConscript`、手动部署步骤等均已被 v3 的
+> `layers/mode` + 自动发现取代，仅作演进记录保留。
+
 ## 1. 归档目的
 
 本目录是对 `docs/prototype` 和 `docs/SCons_Build_System_Design.html` 首轮评审后的 v2 归档。v2 的目标不是立即替换仓库根目录构建系统，而是把评审后的脚本、配置和迁移规则集中放到 `docs/v2`，便于二次评审、冒烟验证和后续部署。

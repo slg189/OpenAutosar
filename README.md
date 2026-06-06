@@ -59,11 +59,14 @@ scons                            # 按 build.yaml 构建 (仓库根运行)
 scons BUILD_TYPE=Debug           # Debug / Release
 scons TOOLCHAIN=tasking          # 切换工具链 (hightec | tasking)
 scons PLATFORM=AURIX2G           # 切换平台
+scons only=Adc,CddPwm            # 仅编译指定模块 (名或 leaf)
+scons skip=EnergyManagement      # 跳过指定模块
+scons layers=MCAL,ASW            # 仅编译指定层
 scons list                       # 打印模块/mode/来源 (source 或 *_Libs)
 scons release                    # 编译并把源码模块释放回 *_Libs
 ```
 
-> 想"只编某些模块/某层"：在 `build.yaml` 把其余模块 `enabled: false`（或留待 Phase: `scons only=` 类过滤后续可加）。
+> 模块级声明在 `build.yaml`（`enabled` / `mode` / `cflags` …）；`only/skip/layers` 为命令行临时过滤。
 
 每个模块可配 `mode`（`source` 源码编译 / `lib` 库集成）、`enabled`、`cflags`（模块级编译选项）。
 

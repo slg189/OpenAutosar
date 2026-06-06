@@ -7,10 +7,15 @@ OpenAutosar 顶层构建入口。
     scons                                  # 本地构建 (默认 Projects/Demo_Tc387)
     scons TOOLCHAIN=hightec PLATFORM=AURIX2G
     scons PROJECT=Projects/Demo_Tc387 CONFIG=build.yaml
+    scons only=Adc,CddPwm                  # 仅构建指定模块 (名或 leaf)
+    scons skip=EnergyManagement            # 跳过指定模块
+    scons layers=MCAL,ASW                  # 仅构建指定层
+    scons list                             # 打印模块/mode/来源
     scons gen                              # 只跑代码生成
     scons doc                              # 只生成文档
+    scons release                          # 源码模块释放到 *_Libs
+    scons check                            # 静态检查 + 单元测试入口
     scons --remote=build_server_01         # 远程构建
-    scons --remote=auto                    # 自动调度
 
 说明：这是 v2 框架(YAML 驱动)的顶层入口；旧的 per-project 构建
 (Projects/Demo_Tc387/SConstruct + Tools/Scons/build_helpers.py) 仍保留为

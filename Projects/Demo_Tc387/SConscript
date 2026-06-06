@@ -34,10 +34,32 @@ print(f'[INFO] project={cfg.project_name}/{cfg.derivative} chip={cfg.chip} app={
 
 # ── 2. 自动发现 + 逐模块决策 (显式清单 authoritative; 发现用于补全/校验) ──
 ws = workspace.Workspace(ROOT, chip=cfg.chip)
+
+# 命令行过滤 (临时覆盖 build.yaml 的 enabled): only / skip / layers
+def _split(s):
+    return set(x.strip() for x in (s or '').split(',') if x.strip())
+flt_only   = _split(ARGUMENTS.get('only', ''))
+flt_skip   = _split(ARGUMENTS.get('skip', ''))
+flt_layers = _split(ARGUMENTS.get('layers', ''))
+if flt_only or flt_skip or flt_layers:
+    print('[FILTER] only=%s skip=%s layers=%s' % (
+        ','.join(sorted(flt_only)) or '-', ','.join(sorted(flt_skip)) or '-',
+        ','.join(sorted(flt_layers)) or '-'))
+
+def _selected(layer, modname, leaf):
+    if flt_layers and layer not in flt_layers:
+        return False
+    if flt_only and not ({modname, leaf} & flt_only):
+        return False
+    if {modname, leaf} & flt_skip:
+        return False
+    return True
+
 decisions = []
 for layer, mods in cfg.layers.items():
     for modname, ov in mods.items():
-        if not ov.enabled:
+        leaf = modname.split('/')[-1]
+        if not ov.enabled or not _selected(layer, modname, leaf):
             print(f'[SKIP] {layer}/{modname}')
             continue
         d = resolver.resolve(ws, layer, ov, cfg.visibility)

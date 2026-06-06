@@ -1,5 +1,0 @@
-# SConscript - MCAL Tc387/Can
-Import('env')
-env.Append(CPPPATH=[Dir('inc'), '#MCAL/inc'])
-lib = env.StaticLibrary(target='Can', source=Glob('src/*.c'))
-Return('lib')

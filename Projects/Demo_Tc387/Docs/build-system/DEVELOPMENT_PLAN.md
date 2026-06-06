@@ -146,14 +146,18 @@
 
 ---
 
-## 7. 进度勾选表（评审通过后启用）
+## 7. 进度勾选表
 
-- [ ] M0 评审 + D1–D4 拍板
-- [ ] M1 自动发现 + 通用 builder
-- [ ] M2 `layers/mode` schema + resolver
-- [ ] M3 MCAL → CDD → ASW → Components 全层接入
-- [ ] M4 信息安全三视图对齐
-- [ ] M5 release/check/doc + 清理 + 验收
+> 决策已定：**D1=切到 v3（退役旧构建）/ D2=自动发现+显式清单 / D3=schema 3.0 不兼容 2.0 / D4=含 release+check**。
+> 已按一次性实现落地（`scons -n` + stub 工具链验证通过；真机编译待有 TriCore 工具链环境）。
+
+- [x] M0 评审 + D1–D4 拍板
+- [x] M1 自动发现（`workspace.py`）+ 通用 builder（`module_builder` 按约定）
+- [x] M2 `layers/mode` schema（`config_loader` 3.0）+ `resolver`（source/lib + `*_Libs`）
+- [x] M3 全层接入（MCAL/CDD/ASW/BSW/Components + Integration → `Demo_Tc387.elf`）
+- [x] M4 信息安全：`auto` 按工作区源码可见性决定 source/lib（`resolver`+`workspace`）
+- [x] M5 `release`/`check`/`doc` + 清理（删旧构建与每模块 SConscript）+ `scons list/--explain`
+- [ ] 真机验收：在 TriCore 工具链环境跑通真实编译/链接（当前仅 dry-run 验证）
 
 ---
 

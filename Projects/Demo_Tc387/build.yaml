@@ -1,82 +1,77 @@
 # =============================================================
-# Projects/Demo_Tc387/build.yaml
-# v2 框架主配置 —— 顶层 SConstruct 启动时第一份被读取的配置。
-# 用户主要改这份文件即可完成 编译 / 代码生成 / 文档 / 远程构建。
+# Projects/Demo_Tc387/build.yaml  —  v3 主配置 (schema 3.0)
+# 用户主要改这份: 模块开关 / source|lib / 代码生成 / 文档 / 远程。
+#   产物 = <project.name>_<derivative>  ->  Demo_Tc387.elf
 #
-#   产物名 = <project.name>_<derivative>[-<suffix>]  →  Demo_Tc387.elf
-#
-# Phase 1（当前）：仅冒烟模块 Crc（v2 原生 SConscript）跑通 AURIX 构建链路。
-# Phase 2：把现有 MCAL/CDD/ASW 模块迁为 v2 原生 SConscript 后在此启用。
+# 模型: layers/mode 统一表达五层; defaults.visibility=auto 时, 框架按
+# "工作区是否可见源码"(manifest 决定) 自动选 编译/链接; 显式 mode 可覆盖。
+# 显式清单 + 自动发现: 这里显式列模块; `scons list` 会提示工作区里未列入的模块。
 # =============================================================
 
-schema_version: "2.0"
+schema_version: "3.0"
 
 project:
   name:            Demo            # + derivative => Demo_Tc387
   derivative:      Tc387
-  app_name_suffix: ""             # 最终产物 Demo_Tc387.elf
+  app_name_suffix: ""
 
 target:
   toolchain:  hightec             # GNU TriCore (tricore-gcc); 可 TOOLCHAIN=tasking 覆盖
   platform:   AURIX2G             # Infineon AURIX TC3xx
-  build_type: Release             # Debug | Release
+  build_type: Release
 
-# ── 全局编译宏 ─────────────────────────────────────────────
+defaults:
+  visibility: auto                # auto | source | lib
+  chip:       Tc387               # MCAL 等按芯片的层
+
 global_defines:
   - AUTOSAR_CP
   - PROJECT_Demo_Tc387
 
-# ── 全局头文件搜索路径（支持 ${VAR} 占位符）──────────────────
 global_includes:
-  - ${MCAL_DIR}/inc                 # Std_Types.h 等公共类型
+  - ${MCAL_DIR}/inc
   - ${COMP_DIR}/Common/inc
   - ${PROJECT_DIR}/Gen
 
-# ── BSW 模块清单 ── ★ 动态控制核心 ─────────────────────────
-# BSW 文件夹存放供应商源码 (src/ + inc/ + SConscript)，源码编译后 .a 释放到 BSW_Libs/。
-bsw_modules:
+# ── 分层模块 (显式清单; 留空配置即用默认) ────────────────────
+layers:
+  MCAL:
+    Adc:  { mode: source, cflags: [-O3] }
+    Port: { mode: source }
+    Can:  { mode: lib }                  # 链接 MCAL_Libs/Can/libCan.a
+  CDD:
+    CddPwm:   { mode: source }
+    CddMotor: { mode: source }
+    CddSent:  { mode: lib }              # 链接 CDD_Libs/CddSent/libCddSent.a
+  ASW:
+    VehicleControl:   { mode: source }
+    EnergyManagement: { mode: lib }      # 链接 ASW_Libs/EnergyManagement/...
+  BSW:
+    Os:  { mode: source, lib_name: libRtaOs }   # 供应商源码 (ETAS RTA-OS); 释放为 libRtaOs.a
+    Com: { mode: source }                        # 供应商源码 (Vector COM)
+    Crc: { mode: source }
+  Components:
+    Common:   { mode: source }
+    Mcu/Sbm:  { mode: source }           # 启动代码模块 (嵌套路径)
 
-  - name: Crc
-    enabled: true
-
-  - name: Os                  # ETAS RTA-OS (源码)
-    enabled: true
-
-  - name: Com                 # Vector MICROSAR COM (源码)
-    enabled: true
-
-# ── MCAL 模块 (repo 按 <Chip>/<Mod> 组织) ────────────────────
-mcal_modules: []
-  # —— Phase 2（需先把模块 SConscript 迁为 v2 原生）——
-  # - name: Tc387/Adc
-  #   enabled: true
-  # - name: Tc387/Port
-  #   enabled: true
-
-# ── Components ────────────────────────────────────────────
-components: []
-  # - name: Common
-  #   enabled: true
+# ── 集成层 (基础工程师胶水代码) ─────────────────────────────
+integration:
+  enabled: true
+  dir:     Integration
 
 # ── 链接器 ────────────────────────────────────────────────
 linker:
-  script: ""                        # 冒烟阶段用默认；Phase 2 指定 Ld/Demo_Tc387.ld
-  # script: Ld/Demo_Tc387.ld
+  script: ""                      # 有链接脚本时填 Ld/Demo_Tc387.ld
   libraries: []
   extra_flags: []
 
 # ── 输出格式 ──────────────────────────────────────────────
 output:
-  formats:
-    - elf
-    - hex
-    - map
+  formats: [elf, hex, map]
   size_report:           true
   compile_commands_json: true
 
-# ── 代码生成（编译前置）──────────────────────────────────
-# repo 的真实配置工具 (EB tresos / ETAS / Vector) 在 Phase 2 接入；
-# 这里先放一个 custom 占位生成器验证链路。
+# ── 代码生成 (编译前置) ────────────────────────────────────
 codegen:
   enabled: true
   output_dir: ${PROJECT_DIR}/Gen
@@ -87,58 +82,30 @@ codegen:
       cmd:     'echo [CODEGEN] Demo_Tc387 codegen placeholder'
       inputs:  []
       outputs_glob: ""
-
-    # —— Phase 2：接入真实工具（示例）——
-    # - name:      eb_tresos
-    #   type:      eb_tresos
-    #   enabled:   false
-    #   tool_path: C:/EB/tresos/bin/tresos_b.bat
-    #   workspace: ${PROJECT_DIR}/Cfg/MCAL
-    #   project:   Demo_Tc387
+    # —— 接入真实工具 (示例, 默认关) ——
+    # - { name: eb_tresos, type: eb_tresos, enabled: false,
+    #     tool_path: C:/EB/tresos/bin/tresos_b.bat, workspace: ${PROJECT_DIR}/Cfg/MCAL, project: Demo_Tc387 }
 
 # ── 文档自动生成 ─────────────────────────────────────────
 docs:
   enabled: true
   output_dir: ${PROJECT_DIR}/Docs/api
   doxygen:
-    enabled: false                  # 需要本机 doxygen 命令时改 true
+    enabled: false
     config_file: ${ROOT_DIR}/Tools/Doxygen/Doxyfile.in
-    html: true
-    pdf:  false
-  interface_extract:
-    enabled: true
-    output_format: markdown
-  dependency_graph:
-    enabled: true
-    format: mermaid
-  module_index:
-    enabled: true
-    title: "Demo_Tc387 模块清单"
+  interface_extract: { enabled: true, output_format: markdown }
+  dependency_graph:  { enabled: true, format: mermaid }
+  module_index:      { enabled: true, title: "Demo_Tc387 模块清单" }
 
 # ── 远程构建 ──────────────────────────────────────────────
 remote:
-  enabled: false                    # 冒烟阶段先关
+  enabled: false
   default_target: build_server_01
   servers:
-    - name: build_server_01
-      host: 10.0.20.31
-      port: 22
-      user: ci
-      auth: key
-      key_file: ~/.ssh/id_rsa_ci
-      remote_dir: /home/ci/work/OpenAutosar
-      capabilities:
-        - hightec
-        - tasking
-      jobs: 16
+    - { name: build_server_01, host: 10.0.20.31, port: 22, user: ci, auth: key,
+        key_file: ~/.ssh/id_rsa_ci, remote_dir: /home/ci/work/OpenAutosar,
+        capabilities: [hightec, tasking], jobs: 16 }
   sync:
     method: rsync
-    excludes:
-      - "Obj/"
-      - "Out/"
-      - "**/.git"
-      - "**/__pycache__"
-      - "**/Docs/api/"
-    pull_back:
-      - "Projects/Demo_Tc387/Out/"
-      - "Projects/Demo_Tc387/Docs/api/"
+    excludes: ["Obj/", "Out/", "**/.git", "**/__pycache__", "**/Docs/api/"]
+    pull_back: ["Projects/Demo_Tc387/Out/", "Projects/Demo_Tc387/Docs/api/"]

@@ -17,12 +17,14 @@ def build_module(env, module_dir, module_name, mod_cfg=None,
     """
     src_dir     = os.path.join(module_dir, 'src')
     inc_dir     = os.path.join(module_dir, 'inc')
-    gen_src_dir = os.path.join(env['GEN_DIR'], module_name, 'src')
+    mod_gen_dir = os.path.join(module_dir, 'gen')          # 模块内的配置/生成码 (如 CDD/<Mod>/gen)
+    gen_src_dir = os.path.join(env['GEN_DIR'], module_name, 'src')   # 工程级 Gen/<Mod>/src
     gen_inc_dir = os.path.join(env['GEN_DIR'], module_name, 'inc')
 
     sources = []
     sources += Glob(os.path.join(src_dir,     '*.c'))
     sources += Glob(os.path.join(src_dir,     '*.S'))
+    sources += Glob(os.path.join(mod_gen_dir, '*.c'))
     sources += Glob(os.path.join(gen_src_dir, '*.c'))
 
     for d in (extra_src_dirs or []):
@@ -36,8 +38,8 @@ def build_module(env, module_dir, module_name, mod_cfg=None,
     # 克隆环境以免污染全局
     mod_env = env.Clone()
 
-    # 头文件搜索路径
-    inc_paths = [inc_dir, gen_inc_dir]
+    # 头文件搜索路径 (含模块内 gen/)
+    inc_paths = [inc_dir, mod_gen_dir, gen_inc_dir]
     # BSW 公共头: 本仓为 BSW/inc (兼容旧约定 BSW/_Common/inc)
     for common_inc in (os.path.join(env['BSW_DIR'], 'inc'),
                        os.path.join(env['BSW_DIR'], '_Common', 'inc')):

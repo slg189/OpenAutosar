@@ -12,12 +12,17 @@
 > 下方“部署步骤/验证流程”为历史记录；实际从仓库根直接 `scons` 即可。**Phase 2** 将把现有
 > MCAL/CDD/ASW 模块迁为 v2 原生 `SConscript` 并接入真实代码生成工具（见 §7 已知 TODO 与设计文档 §6/§7）。
 
-> 📐 **下一步架构方向（v3 提案：统一·简单·平台化）**：
-> - 架构提案：[`ARCHITECTURE_PROPOSAL.md`](ARCHITECTURE_PROPOSAL.md) · [`ARCHITECTURE_PROPOSAL.html`](ARCHITECTURE_PROPOSAL.html)（浏览器打开，风格同 `index.html`）
-> - 开发计划：[`DEVELOPMENT_PLAN.md`](DEVELOPMENT_PLAN.md)（里程碑 M0–M5 + 任务 + 决策门 + 验收）
+> ✅ **v3 已实施（决策 D1 切到 v3 / D2 自动发现+显式清单 / D3 schema 3.0 / D4 含 release+check）**：
+> 旧构建（per-project `SConstruct` + `Tools/Scons/build_helpers.py` + `module_config.py`）已退役，
+> 每模块 SConscript 已取消（按约定自动发现）。现仓库根 `scons` 即 v3：
+> - 框架：`site_scons/autosar/{workspace,config_loader,resolver,module_builder,report,...}`
+> - 项目配置：`Projects/Demo_Tc387/build.yaml`（schema 3.0，`layers/mode`）+ 编排器 `SConscript`
+> - 命令：`scons` / `scons list` / `scons --explain <Mod>` / `gen` / `doc` / `release` / `check`
+> - 已用 `scons -n`(stub 工具链) 验证：13 源码模块编译 + 3 个 `*_Libs/.a` 链接 → `Demo_Tc387.elf`
 >
-> 用 v2 的数据驱动+插件化架构承载原框架的领域模型（分层 / source-lib / 信息安全 `*_Libs`），
-> 叠加“约定优于配置”（自动发现 + 取消每模块 SConscript），是“升级版 Phase 2”。**待评审。**
+> 设计与计划文档（含原框架对比、迁移路线）：
+> - 架构提案：[`ARCHITECTURE_PROPOSAL.md`](ARCHITECTURE_PROPOSAL.md) · [`ARCHITECTURE_PROPOSAL.html`](ARCHITECTURE_PROPOSAL.html)
+> - 开发计划：[`DEVELOPMENT_PLAN.md`](DEVELOPMENT_PLAN.md)
 
 ---
 

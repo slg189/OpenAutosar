@@ -145,8 +145,8 @@
 </div>
   <p class="muted">项目身份只在 <strong>git 子库名</strong> 中（<code>&lt;layer&gt;_libs_&lt;project&gt;</code>），
   工作区路径直接是 <code>&lt;Layer&gt;_Libs/...</code>，不带项目子目录（MCAL_Libs 芯片已固定，亦不分芯片级）。
-  构建侧 <code>build_helpers.lib_file</code> 据此解析；
-  <code>release_libs.bat ASW|CDD|BSW|MCAL</code> 释放到 <code>&lt;Layer&gt;_Libs/</code>。</p>
+  构建侧由 v3 框架 <code>site_scons/autosar/resolver.py</code> 据此解析 source/lib；
+  <code>scons release</code> 把源码模块释放到 <code>&lt;Layer&gt;_Libs/</code>。</p>
 </section>
 
 <section id="create">

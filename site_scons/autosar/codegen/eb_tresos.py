@@ -16,16 +16,16 @@ class EbTresosAdapter(CodegenAdapter):
     def build_command(self, spec, output_dir):
         workspace = spec.extra.get('workspace', '')
         project   = spec.extra.get('project',   '')
-        return [
-            f'"{spec.tool_path}"',
-            '-data', f'"{workspace}"',
+        return [[
+            spec.tool_path,
+            '-data', workspace,
             '--launcher.suppressErrors',
             '-application', 'com.elektrobit.tresos.guide.cli.headless',
             '-nosplash',
-            '-p', f'"{project}"',
+            '-p', project,
             '--generate',
-            '-o', f'"{os.path.join(output_dir, "EB")}"',
-        ]
+            '-o', os.path.join(output_dir, 'EB'),
+        ]]
 
     def expected_outputs(self, spec, output_dir):
         stamp = os.path.join(output_dir, 'EB', '.eb.stamp')

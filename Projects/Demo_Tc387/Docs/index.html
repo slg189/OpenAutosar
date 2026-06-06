@@ -134,10 +134,11 @@
 │   ├── inc/                <span class="note"># 公共对外头文件</span>
 │   ├── VehicleControl/     <span class="note"># 应用模型: inc/ + src/ + SConscript</span>
 │   └── EnergyManagement/   <span class="note"># 预编译交付: inc/ + libEnergyManagement.a</span>
-├── <span class="dir">BSW/</span>                   <span class="note"># BSW 供应商代码包 (按模块名, 不分供应商)</span>
+├── <span class="dir">BSW/</span>                   <span class="note"># BSW 供应商源码 (按模块名, 不分供应商; .a 释放到 BSW_Libs/)</span>
 │   ├── inc/                <span class="note"># 公共头文件 (EcuM.h …)</span>
-│   ├── Os/                 <span class="note"># inc/ + lib/libRtaOs.a (子库 BSW_Etas_TC387_RtaOs)</span>
-│   └── Com/                <span class="note"># inc/ + lib/libCom.a (子库 BSW_Vector_TC387_CBDxxxxxx)</span>
+│   ├── Os/                 <span class="note"># src/ + inc/ + SConscript (子库 BSW_Etas_TC387_RtaOs)</span>
+│   ├── Com/                <span class="note"># src/ + inc/ + SConscript (子库 BSW_Vector_TC387_CBDxxxxxx)</span>
+│   └── Crc/                <span class="note"># src/ + inc/ + SConscript (v2 框架冒烟模块)</span>
 ├── <span class="dir">CDD/</span>                   <span class="note"># 复杂驱动</span>
 │   ├── CddPwm/             <span class="note"># inc/ + src/ + gen/ + SConscript</span>
 │   ├── CddMotor/           <span class="note"># inc/ + src/ + gen/ + SConscript</span>
@@ -182,12 +183,12 @@
 
 <section id="bsw">
   <h2>BSW · 基础软件</h2>
-  <p>项目 BSW 供应商代码包。<strong>不再分 Vector/Etas 目录，直接按模块名</strong>（<code>Os</code>/<code>Com</code>/…）组织；
+  <p>项目 BSW 供应商<strong>源码</strong>。<strong>不再分 Vector/Etas 目录，直接按模块名</strong>（<code>Os</code>/<code>Com</code>/<code>Crc</code>/…）组织；
   供应商、芯片、交付版本编码进 git 子库名（<code>BSW_&lt;Vendor&gt;_&lt;Chip&gt;_&lt;Delivery&gt;</code>，归 BSW group）。
-  以 <code>inc/</code> 头文件 + 预编译 <code>lib/*.a</code> 集成；<code>BSW/inc/</code> 为跨模块公共头文件。</p>
+  每模块 <code>src/</code> + <code>inc/</code> + <code>SConscript</code>，编译产物 <code>.a</code> 释放到 <code>BSW_Libs/</code>（非源码可见者只拿二进制）；<code>BSW/inc/</code> 为跨模块公共头文件。</p>
   <div class="cards">
-    <div class="card"><h4>BSW/Os/</h4><p>ETAS RTA-OS：<code>inc/Os.h</code> + <code>lib/libRtaOs.a</code><br><span class="note">子库 BSW_Etas_TC387_RtaOs</span></p></div>
-    <div class="card"><h4>BSW/Com/</h4><p>Vector MICROSAR COM：<code>inc/Com.h</code> + <code>lib/libCom.a</code><br><span class="note">子库 BSW_Vector_TC387_CBDxxxxxx</span></p></div>
+    <div class="card"><h4>BSW/Os/</h4><p>ETAS RTA-OS：<code>src/Os.c</code> + <code>inc/Os.h</code><br><span class="note">子库 BSW_Etas_TC387_RtaOs → BSW_Libs/Os/libRtaOs.a</span></p></div>
+    <div class="card"><h4>BSW/Com/</h4><p>Vector MICROSAR COM：<code>src/Com.c</code> + <code>inc/Com.h</code><br><span class="note">子库 BSW_Vector_TC387_CBDxxxxxx → BSW_Libs/Com/libCom.a</span></p></div>
     <div class="card"><h4>BSW/inc/</h4><p>公共对外接口 (EcuM.h 等)</p></div>
   </div>
 </section>

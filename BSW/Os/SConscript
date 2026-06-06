@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+"""SConscript for BSW/Os —— 供应商源码模块 (v2 框架)。"""
+Import('env')
+try:
+    Import('mod_cfg')
+except Exception:
+    mod_cfg = None
+
+from autosar.module_builder import build_module
+
+objs = build_module(env, Dir('.').abspath, 'Os', mod_cfg)
+Return('objs')

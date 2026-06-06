@@ -12,8 +12,13 @@ class CodegenAdapter(ABC):
     type_name: str = ''
 
     @abstractmethod
-    def build_command(self, spec, output_dir: str) -> List[str]:
-        """返回要执行的命令行 argv 列表（已 quote 好）。"""
+    def build_command(self, spec, output_dir: str) -> List:
+        """返回要顺序执行的命令列表。
+
+        每条命令可以是:
+            - shell 字符串 (str)  —— 用 shell=True 执行 (custom 适配器)
+            - argv 列表  (list)   —— 用 shell=False 执行 (商用工具适配器, 避免 token 被拆)
+        例: 商用工具返回 [[tool, '-c', cfg, '-o', out]] (一条 argv 命令)。"""
 
     @abstractmethod
     def expected_outputs(self, spec, output_dir: str) -> List[str]:
@@ -34,8 +39,10 @@ class CodegenAdapter(ABC):
             os.makedirs(os.path.dirname(o) or '.', exist_ok=True)
 
         def _run_codegen(target, source, env_):
+            # cmd 为命令列表; 每条命令可以是 shell 字符串(str) 或 argv 列表(list)。
+            # custom 适配器返回 [shell_str]; 商用工具适配器返回 [[argv...]]。
             for one_cmd in cmd:
-                rc = subprocess.call(one_cmd, shell=True)
+                rc = subprocess.call(one_cmd, shell=isinstance(one_cmd, str))
                 if rc != 0:
                     return rc
             stamp = outputs[-1] if outputs[-1].endswith('.stamp') else outputs[0]

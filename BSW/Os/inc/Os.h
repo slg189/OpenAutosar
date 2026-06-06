@@ -1,4 +1,4 @@
-/* ETAS RTA-OS 接口 (AUTOSAR OS) - 实现由 libRtaOs.a 提供 */
+/* ETAS RTA-OS 接口 (AUTOSAR OS) - 实现见 src/ (编译后释放为 BSW_Libs/Os/libRtaOs.a) */
 #ifndef OS_H
 #define OS_H
 #include "Std_Types.h"

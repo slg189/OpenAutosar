@@ -38,9 +38,11 @@ def build_module(env, module_dir, module_name, mod_cfg=None,
 
     # 头文件搜索路径
     inc_paths = [inc_dir, gen_inc_dir]
-    common_inc = os.path.join(env['BSW_DIR'], '_Common', 'inc')
-    if os.path.isdir(common_inc):
-        inc_paths.append(common_inc)
+    # BSW 公共头: 本仓为 BSW/inc (兼容旧约定 BSW/_Common/inc)
+    for common_inc in (os.path.join(env['BSW_DIR'], 'inc'),
+                       os.path.join(env['BSW_DIR'], '_Common', 'inc')):
+        if os.path.isdir(common_inc):
+            inc_paths.append(common_inc)
     inc_paths += (extra_inc_dirs or [])
 
     mod_env.Append(CPPPATH=inc_paths)

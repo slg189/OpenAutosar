@@ -33,18 +33,17 @@ global_includes:
   - ${PROJECT_DIR}/Gen
 
 # ── BSW 模块清单 ── ★ 动态控制核心 ─────────────────────────
-# 首次冒烟：只开 Crc（v2 原生源码模块）。
+# BSW 文件夹存放供应商源码 (src/ + inc/ + SConscript)，源码编译后 .a 释放到 BSW_Libs/。
 bsw_modules:
 
   - name: Crc
     enabled: true
 
-  # Os / Com 为供应商二进制交付 (BSW/Os, BSW/Com 的 .a)，经链接而非源码编译，
-  # 由 linker.libraries / *_Libs 集成；不放在此源码编译清单中。
-  #
-  # —— Phase 2：迁移更多源码模块后启用（先 scripts/new_module.py 生成 SConscript）——
-  # - name: EcuM
-  #   enabled: true
+  - name: Os                  # ETAS RTA-OS (源码)
+    enabled: true
+
+  - name: Com                 # Vector MICROSAR COM (源码)
+    enabled: true
 
 # ── MCAL 模块 (repo 按 <Chip>/<Mod> 组织) ────────────────────
 mcal_modules: []

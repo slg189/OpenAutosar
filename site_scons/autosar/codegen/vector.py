@@ -19,12 +19,12 @@ class VectorAdapter(CodegenAdapter):
         out = os.path.join(output_dir, 'Vector').replace('\\', '/')
         log = os.path.join(out, 'codegen.log').replace('\\', '/')
 
-        return [
-            f'"{spec.tool_path}"',
-            '-c', f'"{input_file}"',
-            '-g', f'"{out}"',
-            '-l', f'"{log}"',
-        ]
+        return [[
+            spec.tool_path,
+            '-c', input_file,
+            '-g', out,
+            '-l', log,
+        ]]
 
     def expected_outputs(self, spec, output_dir):
         out = os.path.join(output_dir, 'Vector')

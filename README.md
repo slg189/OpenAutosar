@@ -71,7 +71,7 @@ scons release               # 编译并把源码模块释放回 *_Libs
 | 目录 / 文件 | 说明 |
 |-------------|------|
 | `ASW/` | 上层应用软件：各应用模型代码（`<Model>/src` + `<Model>/inc`）或预编译 `.a` + `inc/` 头文件，`ASW/inc/` 为公共对外头文件 |
-| `BSW/` | 项目 BSW 供应商代码包：直接按模块名（`Os` / `Com` / …）组织，每模块 `inc/` + `lib/*.a`，`BSW/inc/` 为公共头文件。供应商/芯片/交付版本不在目录中，而在 git 子库名（`BSW_<Vendor>_<Chip>_<Delivery>`，BSW group）中 |
+| `BSW/` | 项目 BSW 供应商**源码**：直接按模块名（`Os` / `Com` / `Crc` / …）组织，每模块 `inc/` + `src/` + `SConscript`，`BSW/inc/` 为公共头文件。编译产物 `.a` 释放到 `BSW_Libs/`（非源码可见者只拿二进制）。供应商/芯片/交付版本不在目录中，而在 git 子库名（`BSW_<Vendor>_<Chip>_<Delivery>`，BSW group）中 |
 | `CDD/` | 复杂驱动：每模块 `inc/`（头文件）、`src/`（静态代码）、`gen/`（配置代码），模块根目录有 `SConscript` 或 `.a` + `inc/` |
 | `Components/` | 组件模块 / 公共代码；`Components/Mcu/Sbm/` 为启动代码模块（或 `.a` + `inc/`） |
 | `MCAL/` | MCAL 静态代码：`Tc387/`、`Tc367/`，每模块 `inc/` + `src/` 或 `.a` + `inc/` |

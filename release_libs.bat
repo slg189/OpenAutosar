@@ -70,13 +70,10 @@ call :copy_headers "ASW\inc" "ASW_Libs\inc"
 goto :eof
 
 :release_bsw
-REM BSW 释放到 BSW_Libs\ (按模块名目录; 供应商/芯片/交付版本在 git 子库名中,
-REM 子库位于 BSW group, 命名 BSW_<Vendor>_<Chip>_<Delivery>; .a 已把项目配置代码打包)
+REM BSW 为供应商源码 (src\ + inc\ + SConscript), 编译后 .a + inc 释放到 BSW_Libs\
+REM (按模块名目录; 供应商/芯片/交付版本在 git 子库名中, BSW group: BSW_<Vendor>_<Chip>_<Delivery>)
 call :copy_headers "BSW\inc" "BSW_Libs\inc"
 for /D %%D in (BSW\*) do (
-    if /I not "%%~nxD"=="inc" (
-        call :copy_headers "%%D\inc" "BSW_Libs\%%~nxD\inc"
-        if exist "%%D\lib\*.a" copy /Y "%%D\lib\*.a" "BSW_Libs\%%~nxD\" >nul
-    )
+    if /I not "%%~nxD"=="inc" call :build_lib "%%D" "%%~nxD" "BSW_Libs\%%~nxD"
 )
 goto :eof

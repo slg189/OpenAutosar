@@ -1,4 +1,4 @@
-/* Vector MICROSAR COM 接口 - 实现由 libCom.a 提供 */
+/* Vector MICROSAR COM 接口 - 实现见 src/ (编译后释放为 BSW_Libs/Com/libCom.a) */
 #ifndef COM_H
 #define COM_H
 #include "Std_Types.h"

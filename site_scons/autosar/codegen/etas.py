@@ -15,15 +15,15 @@ class EtasAdapter(CodegenAdapter):
     def build_command(self, spec, output_dir):
         workspace = spec.extra.get('workspace', '')
         project   = spec.extra.get('project',   '')
-        return [
-            f'"{spec.tool_path}"',
+        return [[
+            spec.tool_path,
             '-application', 'com.etas.isolar.codegenerator',
-            '-data', f'"{workspace}"',
+            '-data', workspace,
             '-nosplash',
             '--',
-            '-project', f'"{project}"',
-            '-output',  f'"{os.path.join(output_dir, "Etas")}"',
-        ]
+            '-project', project,
+            '-output',  os.path.join(output_dir, 'Etas'),
+        ]]
 
     def expected_outputs(self, spec, output_dir):
         stamp = os.path.join(output_dir, 'Etas', '.etas.stamp')

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAutosar · 构建系统架构提案 v3</title>
+<style>
+  :root{--bg:#0f172a;--panel:#1e293b;--panel2:#273449;--accent:#38bdf8;
+    --accent2:#34d399;--text:#e2e8f0;--muted:#94a3b8;--border:#334155;
+    --code:#0b1220;--warn:#fbbf24;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.65}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  header{background:linear-gradient(120deg,#7c3aed,#0ea5e9);padding:42px 24px;
+    text-align:center;color:#021018}
+  header h1{margin:0;font-size:2rem}header p{margin:8px 0 0;opacity:.9}
+  .layout{display:flex;max-width:1180px;margin:0 auto}
+  nav{position:sticky;top:0;align-self:flex-start;width:240px;padding:24px 12px;
+    height:100vh;overflow:auto;border-right:1px solid var(--border);font-size:.9rem}
+  nav h3{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;margin:18px 8px 6px}
+  nav a{display:block;padding:6px 10px;border-radius:6px;color:var(--text)}
+  nav a:hover{background:var(--panel2)}
+  main{flex:1;padding:30px 36px;min-width:0}
+  section{margin-bottom:42px;scroll-margin-top:20px}
+  h2{font-size:1.5rem;border-left:4px solid var(--accent);padding-left:12px;margin-top:0}
+  h3{color:var(--accent2);margin-top:26px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
+  th,td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--accent)}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  code{background:var(--code);padding:2px 6px;border-radius:4px;
+    font-family:"JetBrains Mono",Consolas,monospace;font-size:.86em;color:#7dd3fc}
+  pre{background:var(--code);border:1px solid var(--border);border-radius:8px;padding:16px;overflow:auto}
+  pre code{background:none;padding:0;color:#cbd5e1}
+  .tree{font-family:"JetBrains Mono",Consolas,monospace;font-size:.84rem;
+    background:var(--code);border:1px solid var(--border);border-radius:8px;
+    padding:18px;overflow:auto;white-space:pre;line-height:1.5}
+  .tree .dir{color:#7dd3fc}.tree .note{color:var(--muted)}.tree .star{color:#fcd34d}
+  .callout{background:var(--panel);border-left:4px solid var(--warn);padding:12px 16px;border-radius:6px;margin:14px 0}
+  .claim{background:var(--panel);border-left:4px solid var(--accent2);padding:12px 16px;border-radius:6px;margin:14px 0}
+  .tag{display:inline-block;border-radius:6px;padding:1px 8px;font-size:.78rem;font-weight:600}
+  .t-good{background:#064e3b;color:#6ee7b7}.t-bad{background:#7f1d1d;color:#fca5a5}
+  .ok{color:#6ee7b7;font-weight:600}.no{color:#fca5a5;font-weight:600}
+  .badge{display:inline-block;background:var(--panel2);border:1px solid var(--border);
+    border-radius:999px;padding:2px 12px;font-size:.78rem;margin:2px}
+  footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid var(--border)}
+  @media(max-width:860px){nav{display:none}main{padding:20px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>构建系统架构提案 v3</h1>
+  <p>统一 · 简单 · 平台化 —— 数据驱动+插件化架构 承载 分层/源码-库/信息安全 领域模型</p>
+  <div>
+    <span class="badge">状态：提案 / 待评审</span>
+    <span class="badge">仅文档，不改现有构建</span>
+    <span class="badge">= 升级版 Phase 2</span>
+  </div>
+</header>
+
+<div class="layout">
+<nav>
+  <h3>导航</h3>
+  <a href="index.html">← 返回框架总览</a>
+  <a href="README.md">构建系统说明</a>
+  <a href="ARCHITECTURE_PROPOSAL.md">本提案 (Markdown)</a>
+  <a href="DEVELOPMENT_PLAN.md">开发计划 (Markdown)</a>
+  <hr style="border-color:var(--border)">
+  <a href="#bg">1 背景与现状</a>
+  <a href="#pain">2 痛点</a>
+  <a href="#goal">3 目标 / 非目标</a>
+  <a href="#principle">4 设计原则</a>
+  <a href="#overview">5 目标架构总览</a>
+  <a href="#core">6 核心设计</a>
+  <a href="#algo">7 解析算法</a>
+  <a href="#assets">8 资产对接</a>
+  <a href="#migration">9 迁移路线</a>
+  <a href="#compat">10 兼容与回退</a>
+  <a href="#risk">11 风险与缓解</a>
+  <a href="#alt">12 备选方案</a>
+  <a href="#accept">13 验收标准</a>
+  <a href="#decision">14 待决问题</a>
+</nav>
+
+<main>
+
+<div class="claim">
+  <strong>核心主张：</strong>用 v2 的“数据驱动 + 插件化”架构，承载原框架的“领域模型（分层 / 源码-库双形态 / 信息安全 <code>*_Libs</code>）”，
+  再叠加“约定优于配置”把用户与维护者的改动面压到最小。
+</div>
+
+<section id="bg">
+  <h2>1 · 背景与现状</h2>
+  <p>仓库当前<strong>并存两套</strong>构建。</p>
+  <table>
+    <tr><th>维度</th><th>原框架（fallback）</th><th>v2 框架（已落地根目录）</th></tr>
+    <tr><td>入口</td><td>每项目 <code>Projects/&lt;P&gt;/SConstruct</code></td><td>仓库根 <code>SConstruct</code>（薄）</td></tr>
+    <tr><td>公共逻辑</td><td><code>Tools/Scons/build_helpers.py</code></td><td><code>site_scons/autosar/**</code></td></tr>
+    <tr><td>配置</td><td><code>module_config.py</code>（Python 字典）</td><td><code>build.yaml</code>（数据 + schema 校验）</td></tr>
+    <tr><td>目标抽象</td><td>工具链/平台写死（tricore-gcc/AURIX）</td><td>工具链/平台/代码生成/文档/远程 插件化</td></tr>
+    <tr><td>领域建模</td><td class="ok">✓ 五层 + source/lib + <code>*_Libs</code> 信息安全 + MCAL 芯片维 + Integration + Gen/Ld</td><td class="no">✗ 仅 bsw/mcal/components 三桶</td></tr>
+    <tr><td>代码生成/文档/远程</td><td class="no">✗ 无</td><td class="ok">✓ 有</td></tr>
+    <tr><td>能否真编整仓</td><td class="ok">✓ 能</td><td class="no">✗ 当前仅 BSW 冒烟</td></tr>
+  </table>
+  <p>结论：v2 赢在<strong>架构/平台/能力</strong>，原框架赢在<strong>领域模型/成熟度/上手</strong>。两者都不是完整答案。</p>
+</section>
+
+<section id="pain">
+  <h2>2 · 痛点（为什么要改）</h2>
+  <ul>
+    <li><strong>配置面割裂</strong>：原框架改 Python（脆、无校验、不友好）；v2 改 YAML（好）但表达不了本仓架构。</li>
+    <li><strong>v2 缺领域模型</strong>：无 ASW/CDD 层、无“预编译只链接”、无信息安全 <code>*_Libs</code>、MCAL 芯片只能 <code>name:"Tc387/Adc"</code> 凑。</li>
+    <li><strong>每模块一份 SConscript</strong>：v2 缺则 fail-fast；70+ BSW 模块 = 70 份近似文件，迁移负担巨大。</li>
+    <li><strong>不够平台</strong>：原框架每项目一份 SConstruct，逻辑住在项目里、跨项目复制。</li>
+    <li><strong>骨架污染</strong>：v2 多个未完成 adapter（ghs/iar/tasking、r5/r52p/yuntu）会误导用户。</li>
+  </ul>
+</section>
+
+<section id="goal">
+  <h2>3 · 目标与非目标</h2>
+  <h3>目标</h3>
+  <table>
+    <tr><th>#</th><th>目标</th></tr>
+    <tr><td>G1</td><td>用户只改一份 <code>build.yaml</code>，且<strong>通常只写例外</strong>（不枚举全部模块）。</td></tr>
+    <tr><td>G2</td><td>一套框架服务所有项目/芯片/工具链/供应商；<strong>新项目=新 build.yaml，新目标=新 adapter</strong>。</td></tr>
+    <tr><td>G3</td><td>原生表达本仓领域：五层 + 每模块 <code>source|lib</code> + 信息安全 <code>*_Libs</code> + MCAL 芯片维。</td></tr>
+    <tr><td>G4</td><td>保留 v2 的代码生成/文档/远程能力，但<strong>右尺寸</strong>（默认零配置可用）。</td></tr>
+    <tr><td>G5</td><td>零项目脚本：项目目录只剩数据。</td></tr>
+  </table>
+  <h3>非目标</h3>
+  <ul>
+    <li>N1 不换构建工具（仍 SCons，理由见 §12）。</li>
+    <li>N2 本提案不动现有两套构建（仅文档）。</li>
+    <li>N3 不追求一次支持所有芯片/工具链，只完成本仓所需 + 留好插件位。</li>
+  </ul>
+</section>
+
+<section id="principle">
+  <h2>4 · 设计原则</h2>
+  <ol>
+    <li><strong>约定优于配置</strong>：能扫描推断的不让用户写。</li>
+    <li><strong>数据优于代码</strong>：项目配置是声明式数据 + schema 校验。</li>
+    <li><strong>一个统一概念</strong>：所有层、所有模块用同一个 <code>mode: source|lib</code>。</li>
+    <li><strong>可见即可编，不可见即链接</strong>：构建跟随 manifest 的信息安全可见性。</li>
+    <li><strong>可发现</strong>：隐式推断必须能被 <code>scons list/--explain</code> 打印出来。</li>
+    <li><strong>渐进可回退</strong>：与旧构建并存，按模块灰度切换。</li>
+  </ol>
+</section>
+
+<section id="overview">
+  <h2>5 · 目标架构总览</h2>
+<div class="tree">仓库根/
+├── <span class="dir">SConstruct</span>                  <span class="note"># 薄入口 (不含项目逻辑)</span>
+├── <span class="dir">site_scons/autosar/</span>         <span class="star"># ★ 平台框架 (维护者唯一改动面)</span>
+│   ├── workspace.py            <span class="note"># 工作区/模块自动发现 + 可见性解析</span>
+│   ├── config_loader.py        <span class="note"># build.yaml -&gt; 强类型 + 校验</span>
+│   ├── module_builder.py       <span class="note"># 通用按约定编译 (取代每模块 SConscript)</span>
+│   ├── resolver.py             <span class="note"># source/lib + *_Libs + 信息安全 自动决策</span>
+│   ├── toolchain/  platform/   <span class="note"># 插件: 目标抽象</span>
+│   ├── codegen/  docgen/  remote/  <span class="note"># 插件: 能力 (可选)</span>
+│   └── report.py               <span class="note"># scons list / --explain 输出</span>
+└── <span class="dir">Projects/&lt;P&gt;/</span>              <span class="star"># ★ 项目 = 纯数据 (用户改动面)</span>
+    ├── build.yaml              <span class="note"># 唯一主配置 (只写例外)</span>
+    ├── Cfg/ Gen/ Ld/ Obj/ Out/ <span class="note"># 配置/生成码/链接脚本/产物</span>
+    └── (可选) modules/*.yaml   <span class="note"># 仅特殊模块的 override</span></div>
+  <p>两个<strong>最小改动面</strong>：用户只碰 <code>Projects/&lt;P&gt;/build.yaml</code>；维护者只碰 <code>site_scons/autosar/**</code>。</p>
+</section>
+
+<section id="core">
+  <h2>6 · 核心设计</h2>
+
+  <h3>6.1 统一数据模型：<code>layers</code> + <code>mode</code></h3>
+  <p>取代 v2 的 bsw/mcal/components 三桶；一个 <code>mode: source|lib</code> 同时解决“缺 ASW/CDD 层 / 缺只链接的库 / 缺信息安全”，并消除原框架的 Python 配置脆弱。</p>
+<pre><code># Projects/Demo_Tc387/build.yaml (目标形态)
+schema_version: "3.0"
+project: { name: Demo, derivative: Tc387 }      # 产物 Demo_Tc387.elf
+target:  { toolchain: hightec, platform: AURIX2G, build_type: Release }
+
+defaults:
+  visibility: auto        # auto=按工作区可见性决定 source/lib; 也可强制 source|lib
+  chip: Tc387             # MCAL 等按芯片的层默认芯片
+
+# 只写“例外”，其余模块由自动发现 + defaults 接管
+layers:
+  MCAL:
+    Can:  { mode: lib }                 # 这个用预编译库
+    Adc:  { cflags: [-O3] }             # 仅覆盖编译选项
+  ASW:
+    EnergyManagement: { mode: lib }
+  BSW:
+    Com:  { extra_defines: [COM_FD] }
+  # MCAL/Adc(源码默认)、CDD/*、ASW/VehicleControl、BSW/Os|Crc、Components/* 全部自动纳入
+
+codegen: { enabled: true, generators: [ { name: demo_echo, type: custom, cmd: "echo gen" } ] }
+docs:    { enabled: true }
+remote:  { enabled: false }</code></pre>
+
+  <h3>6.2 模块自动发现（约定）</h3>
+  <ul>
+    <li>模块 = 一个带 <code>inc/</code>（可含 <code>src/</code>）的目录。</li>
+    <li>框架扫描各层根（<code>ASW/ CDD/ MCAL/&lt;chip&gt;/ BSW/ Components/</code>）自动登记。</li>
+    <li><code>build.yaml</code> 不再枚举模块，只声明<strong>偏差</strong>（关掉谁、强制 lib、加 flag/define）。</li>
+  </ul>
+  <div class="callout">用户从“枚举几十个模块”变成“只写几条例外”——这是“简单好用”的最大杠杆。</div>
+
+  <h3>6.3 取消每模块 SConscript（通用 builder + 可选 override）</h3>
+  <ul>
+    <li>现状：v2 每模块要一份近似 <code>SConscript</code>，缺则 fail。</li>
+    <li>目标：<code>module_builder</code> 按约定（<code>src/*.c|*.S</code>、<code>inc/</code>、<code>Gen/&lt;mod&gt;/</code>）<strong>直接编译</strong>，无需每模块脚本。</li>
+    <li>仅“特殊”模块放一份<strong>可选</strong> <code>modules/&lt;Mod&gt;.yaml</code> 覆盖。</li>
+    <li><strong>直接消灭 Phase-2 里“为 70+ 模块写/校 SConscript”那一整类工作。</strong></li>
+  </ul>
+
+  <h3>6.4 source/lib + 信息安全 自动决策（<code>resolver.py</code>）</h3>
+<pre><code>resolve(layer, module):
+    if module.mode == 'lib':            return LINK  &lt;Layer&gt;_Libs/.../lib&lt;Mod&gt;.a + inc
+    if module.mode == 'source':         return COMPILE &lt;Layer&gt;/.../src
+    # visibility == auto:
+    if  &lt;Layer&gt;/&lt;module&gt;/src 可见:       return COMPILE
+    elif &lt;Layer&gt;_Libs/&lt;module&gt; 存在:     return LINK
+    else:                               FAIL("源码不可见且无释放库")</code></pre>
+  <ul>
+    <li>LINK 时自动解析 <code>*_Libs</code> 的 <code>.a</code> 与 <code>inc</code>（MCAL_Libs 单芯片扁平、BSW_Libs 按模块）。</li>
+    <li>与 <code>manifests/*.xml</code>（default/asw/integration 三视图）天然对齐。</li>
+    <li>与 <code>release_libs.bat</code> 打通：<code>scons release</code>。</li>
+  </ul>
+
+  <h3>6.5 项目 = 纯数据（零项目脚本）</h3>
+  <p>把当前 v2 还残留的 <code>Projects/&lt;P&gt;/SConscript</code> 逻辑上收进框架；项目目录只剩 <code>build.yaml</code>(+<code>Cfg/Gen/Ld</code>)。<strong>加一个项目 = 加一份 build.yaml。</strong></p>
+
+  <h3>6.6 工具链/平台/代码生成/文档/远程：沿用 v2 插件，右尺寸</h3>
+  <ul>
+    <li>保留插件机制（平台化核心）。</li>
+    <li>完成本仓所需：<code>hightec</code>/<code>tasking</code> 工具链、<code>AURIX2G</code> 平台。</li>
+    <li>清理骨架：未实现 adapter 补全或移出默认集合并标 experimental。</li>
+    <li>代码生成/文档/远程均<strong>可选</strong>，默认关；普通项目零配置可编。</li>
+  </ul>
+
+  <h3>6.7 可发现性（把隐式变可见）</h3>
+<pre><code>scons list            # 打印自动发现的模块 + 解析后的 mode/可见性/来源
+scons --explain Adc   # 解释某模块为何 source/lib、include/lib 路径、生效 flag
+scons graph           # 依赖图 (复用 docgen)</code></pre>
+</section>
+
+<section id="algo">
+  <h2>7 · 模块解析算法（伪码）</h2>
+<pre><code>def plan(build_yaml, workspace):
+    cfg = load_and_validate(build_yaml)              # schema 校验 + 友好报错
+    modules = workspace.discover(cfg.layers_roots)   # 6.2 自动发现
+    plan = []
+    for m in modules:
+        ov   = cfg.override_for(m)                   # build.yaml 里的例外
+        if ov and ov.enabled is False: continue
+        mode = resolver.resolve(m, ov, cfg.defaults, workspace)   # 6.4
+        rule = ov.merge(module_yaml(m))              # 6.3 可选 override
+        plan.append(BuildItem(m, mode, rule))
+    return plan      # scons list 即打印它</code></pre>
+</section>
+
+<section id="assets">
+  <h2>8 · 与现有资产的对接</h2>
+  <table>
+    <tr><th>现有资产</th><th>对接方式</th></tr>
+    <tr><td><code>manifests/{default,asw,integration}.xml</code></td><td>决定模块源码可见性 → <code>resolver</code> 的 <code>auto</code> 决策输入</td></tr>
+    <tr><td><code>ASW_Libs/CDD_Libs/BSW_Libs/MCAL_Libs</code></td><td><code>mode=lib</code>/不可见时的链接来源（路径规则已在原 <code>build_helpers</code> 验证过）</td></tr>
+    <tr><td><code>release_libs.bat</code></td><td>映射为 <code>scons release</code>：编源码 → 释放 <code>.a</code>+inc 到 <code>*_Libs</code></td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/{Cfg,Gen,Ld}</code></td><td>代码生成产物入 <code>Gen/</code>；<code>Ld/&lt;P&gt;.ld</code> 由 <code>build.yaml.linker.script</code> 指定</td></tr>
+    <tr><td><code>misra.json</code> / <code>run_gtest</code> / QAC</td><td>不变；可加 <code>scons check</code> 调用</td></tr>
+  </table>
+</section>
+
+<section id="migration">
+  <h2>9 · 迁移路线（与旧构建的取舍）</h2>
+  <p>共用模块脚本的取舍方式待评审（见 §14 决策项 D1）。下列为推荐的<strong>双套并存 + 按层灰度</strong>。详细任务/排期见 <a href="DEVELOPMENT_PLAN.md">开发计划 (Markdown)</a>。</p>
+  <table>
+    <tr><th>里程碑</th><th>内容</th><th>退出条件</th></tr>
+    <tr><td>M0</td><td>本提案 + 开发计划评审</td><td>D1–D4 拍板</td></tr>
+    <tr><td>M1</td><td>自动发现 + 通用 builder（BSW 三模块去显式 SConscript 验证）</td><td><code>scons list</code> 列出 BSW；构建不回归</td></tr>
+    <tr><td>M2</td><td>统一 <code>layers/mode</code> schema + <code>resolver</code>（接 <code>*_Libs</code> + <code>auto</code> 可见性）</td><td>能 source/lib 切换并链接库</td></tr>
+    <tr><td>M3</td><td>灰度纳入真实层：<code>MCAL → CDD → ASW → Components</code></td><td>每层 <code>scons list</code> + 构建验证；旧构建仍可用</td></tr>
+    <tr><td>M4</td><td>对齐信息安全三视图</td><td>切 <code>manifest-asw</code> 后自动走 <code>*_Libs</code></td></tr>
+    <tr><td>M5</td><td>收尾：<code>scons release/check/doc</code>；按 D1 决定是否退役旧构建</td><td>§13 验收全过</td></tr>
+  </table>
+</section>
+
+<section id="compat">
+  <h2>10 · 兼容与回退</h2>
+  <ul>
+    <li>全程<strong>保留</strong> <code>Projects/&lt;P&gt;/SConstruct + build_helpers.py</code> 作为回退，直到 M5 验收通过。</li>
+    <li>新模型 <code>build.yaml</code> 用 <code>schema_version:"3.0"</code>，与现 v2 <code>2.0</code> 共存于加载器。</li>
+    <li>任一步出问题：<code>cd Projects/&lt;P&gt; &amp;&amp; scons</code> 走旧构建。</li>
+  </ul>
+</section>
+
+<section id="risk">
+  <h2>11 · 风险与缓解</h2>
+  <table>
+    <tr><th>风险</th><th>缓解</th></tr>
+    <tr><td>自动发现是“隐式魔法”，排错难</td><td><code>scons list/--explain</code> 把解析结果显式化；允许显式 <code>mode</code> 兜底</td></tr>
+    <tr><td>不合约定的历史模块（非 src/inc 布局）</td><td>可选 <code>module.yaml</code> override；扫描器对不合约定者告警而非静默</td></tr>
+    <tr><td>信息安全误判（该隐藏的当源码编）</td><td><code>auto</code> 以“工作区是否真有源码”为准，由 manifest 控制；CI 用三视图验证</td></tr>
+    <tr><td>平台 adapter 未完成被误用</td><td>默认集合只含已完成项，其余标 experimental 并在 <code>scons list</code> 提示</td></tr>
+    <tr><td>迁移期两套并存认知成本</td><td>文档明确“根 scons=v3 / 项目内 scons=旧”，M5 后收敛</td></tr>
+  </table>
+</section>
+
+<section id="alt">
+  <h2>12 · 备选方案（评估后不选）</h2>
+  <ul>
+    <li><strong>换 CMake / Bazel</strong>：本仓已重度投资 SCons + Python 插件；SCons 与 AUTOSAR 的动态代码生成/依赖契合好；换工具收益不明确、扰动大。<strong>不推荐现在换</strong>（<code>compile_commands.json</code> 已产出，未来可平滑评估）。</li>
+    <li><strong>保持 v2 原样仅做纯搬运 Phase 2</strong>：能跑通但不解决“每模块脚本/枚举”负担，长期改动面仍大。本提案同等迁移量下顺手简化，更值。</li>
+  </ul>
+</section>
+
+<section id="accept">
+  <h2>13 · 验收标准（M5）</h2>
+  <ol>
+    <li><code>scons</code> 根目录零额外配置即可编出 <code>Demo_Tc387.elf</code>（全真实层）。</li>
+    <li><code>build.yaml</code> 仅写例外即可开关任意模块 / 切 source|lib。</li>
+    <li>删除某模块源码可见性（切 <code>manifest-asw</code>）后，该模块<strong>自动</strong>改走 <code>*_Libs/.a</code>。</li>
+    <li>无需为常规模块编写 SConscript；新增模块放进目录即被发现。</li>
+    <li><code>scons list/--explain/doc/release</code> 均可用；旧构建仍可回退。</li>
+  </ol>
+</section>
+
+<section id="decision">
+  <h2>14 · 待决问题（请评审拍板）</h2>
+  <table>
+    <tr><th>#</th><th>问题</th><th>选项（推荐加★）</th></tr>
+    <tr><td>D1</td><td>旧构建取舍</td><td>★双套并存 / 切到 v3 退役旧 / 不同文件名并存</td></tr>
+    <tr><td>D2</td><td>自动发现 vs 显式清单</td><td>★默认全发现+写例外 / 仍要求显式 enable</td></tr>
+    <tr><td>D3</td><td>schema 版本</td><td><code>build.yaml</code> 升 <code>3.0</code>（<code>layers/mode</code>）是否接受不兼容 2.0</td></tr>
+    <tr><td>D4</td><td>本轮范围</td><td>是否一并完成 <code>scons release/check</code>（对接 misra/gtest），还是只做编译链路</td></tr>
+  </table>
+  <div class="callout">本提案为草案，欢迎逐条批注。评审通过后再按 §9 / 开发计划实施（即“升级版 Phase 2”）。</div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  OpenAutosar · 构建系统架构提案 v3 · 统一 · 简单 · 平台化 · 待评审
+</footer>
+</body>
+</html>

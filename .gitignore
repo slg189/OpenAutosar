@@ -40,6 +40,12 @@ log_repo
 .sconf_temp/
 config.log
 
+# ===== v2 构建框架产物 (YAML 驱动) =====
+# 自动生成的 API 文档 / 编译数据库 / 代码生成 stamp
+Projects/*/Docs/api/
+**/compile_commands.json
+**/.*.stamp
+
 # ===== Editor / OS =====
 .vscode/
 .idea/

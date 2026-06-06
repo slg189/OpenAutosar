@@ -25,9 +25,9 @@ def configure(env):
         '-fdata-sections',
         # '-mcpu=tc39xx',  by platform layer
     ])
+    # 注: map 文件由 build.yaml 的 output.formats 控制 (项目 SConscript 注入), 此处不写死
     env.Append(LINKFLAGS=[
         '-Wl,--gc-sections',
-        '-Wl,-Map=${TARGET.base}.map',
     ])
 
     if env.get('BUILD_TYPE', 'Debug') == 'Release':

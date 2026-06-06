@@ -76,8 +76,12 @@ scons release               # 编译并把源码模块释放回 *_Libs
 | `Components/` | 组件模块 / 公共代码；`Components/Mcu/Sbm/` 为启动代码模块（或 `.a` + `inc/`） |
 | `MCAL/` | MCAL 静态代码：`Tc387/`、`Tc367/`，每模块 `inc/` + `src/` 或 `.a` + `inc/` |
 | `Projects/` | 各项目工程，见下方“工程目录”说明 |
-| `Tools/` | 项目工具（A2L、SCons、编译器封装等） |
+| `Tools/` | 项目工具（A2L、SCons、编译器封装、Doxygen 模板等） |
 | `manifests/` | google-repo 工作区组装清单（须位于顶层，bootstrap 整个工作区） |
+| `SConstruct` | **v2 构建框架顶层入口**（YAML 驱动，见“构建”） |
+| `site_scons/autosar/` | v2 构建框架（工具链/平台/代码生成/文档/远程 适配） |
+| `scripts/` | 框架脚本：`new_module.py`（模块脚手架）、`remote_build.py` |
+| `requirements.txt` | 构建框架 Python 依赖（pyyaml 等） |
 | `.clang-format` | 代码格式规范 |
 | `.gitignore` | 忽略构建产物与生成代码 |
 | `misra.json` | MISRA C:2012 静态检查配置 |
@@ -96,19 +100,45 @@ scons release               # 编译并把源码模块释放回 *_Libs
 | `Obj/` | 编译临时 `.o` 文件 |
 | `Out/` | 链接输出 `.hex` / `.elf` / `.map` |
 | `Libs/{ASW,BSW,CDD,MCAL}/` | 各层编译生成的静态库 `.a` |
+| `build.yaml` | **v2 框架项目主配置**（用户主要改这份；模块开关/代码生成/文档/远程） |
+| `SConscript` | v2 框架项目脚本（按 `build.yaml` 动态组织构建） |
+| `SConstruct` | 旧 per-project 构建入口（回退方案，与 v2 并存） |
 | `Test/` | 工程测试：`ut/`（单元测试）、`Projects/`（集成测试/QEMU）、`QAC/`（静态分析） |
-| `Docs/` | 工程 HTML 文档 |
+| `Docs/` | 工程文档（HTML；`Docs/build-system/` 为 v2 构建框架设计存档与参考样例） |
 | `Reports/` | 测试 / 检查报告输出 |
 
 ## 构建
 
-```bat
-REM 设置 TriCore 工具链
-call Tools\Compiler\setup_env.bat
+### v2 构建框架（YAML 驱动，推荐）
 
-REM 构建某工程
+用户主要修改 `Projects/<Project>/build.yaml` 即可完成 编译 / 代码生成 / 文档 / 远程构建。
+从**仓库根**运行：
+
+```bat
+pip install -r requirements.txt          REM 一次性: 安装 pyyaml 等
+call Tools\Compiler\setup_env.bat         REM 设置 TriCore 工具链 (hightec/tasking)
+
+scons -j %NUMBER_OF_PROCESSORS%           REM 构建默认项目 Demo_Tc387 -> Out\Demo_Tc387.elf
+scons TOOLCHAIN=tasking PLATFORM=AURIX2G  REM 命令行覆盖工具链/平台
+scons gen                                 REM 只跑代码生成
+scons doc                                 REM 生成接口/依赖/索引文档
+scons --remote=build_server_01            REM 远程服务器构建
+scons PROJECT=Projects/Demo_Tc387 CONFIG=build.yaml
+```
+
+> 框架分层：根 `SConstruct` → `site_scons/autosar/**`（框架）→ `Projects/<P>/SConscript` → 各模块 `SConscript`。
+> 设计与迁移计划见 [`Projects/Demo_Tc387/Docs/build-system/`](Projects/Demo_Tc387/Docs/build-system/)。
+> 新增模块脚手架：`python scripts/new_module.py --bsw <Name>`。
+
+> **当前进度（Phase 1）**：框架已落地仓库根，AURIX（`hightec`/`AURIX2G`）目标已打通，
+> 冒烟模块 `BSW/Crc` 可经 `build.yaml` 构建。现有 MCAL/CDD/ASW 模块迁为 v2 原生 `SConscript`
+> 属 Phase 2（见 build-system 文档）。
+
+### 旧 per-project 构建（回退方案，仍可用）
+
+```bat
 cd Projects\Demo_Tc387
-scons -j %NUMBER_OF_PROCESSORS%
+scons -j %NUMBER_OF_PROCESSORS%           REM 走 Projects\Demo_Tc387\SConstruct + Tools\Scons\build_helpers.py
 ```
 
 ## 测试

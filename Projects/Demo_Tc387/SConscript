@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-"""项目级 SConscript —— DemoProject。
+"""项目级 SConscript —— Demo_Tc387 (v2 框架)。
 
-由顶层 SConstruct 通过 SConscript() 进入。
+由仓库根 SConstruct 通过 SConscript() 进入；按 build.yaml 动态加载模块、
+代码生成、链接、文档。本脚本与同目录旧 SConstruct (回退构建) 并存。
 """
 import os
 Import('env')

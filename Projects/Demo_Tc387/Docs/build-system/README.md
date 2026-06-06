@@ -1,5 +1,19 @@
 # OpenAutosar SCons 构建系统 — v2 评审后样板
 
+> ✅ **已集成（Phase 1）**：本框架已正式落地到仓库真实位置，**无需再手动执行下方“部署步骤”**：
+> - 顶层入口 → 仓库根 `SConstruct`
+> - 框架包 → 仓库根 `site_scons/autosar/**`
+> - 脚本/依赖 → 仓库根 `scripts/`、`requirements.txt`
+> - Doxygen 模板 → `Tools/Doxygen/Doxyfile.in`
+> - 项目配置 → `Projects/Demo_Tc387/build.yaml` + `Projects/Demo_Tc387/SConscript`
+> - 冒烟模块 → `BSW/Crc/`（已用 `scons -n` 在 AURIX `hightec`/`AURIX2G` 下验证通过）
+>
+> 本目录此后作为**设计评审存档 + Cortex-M 参考样例**（`projects/DemoProject/*.yaml`、`deploy.*`、设计文档）保留。
+> 下方“部署步骤/验证流程”为历史记录；实际从仓库根直接 `scons` 即可。**Phase 2** 将把现有
+> MCAL/CDD/ASW 模块迁为 v2 原生 `SConscript` 并接入真实代码生成工具（见 §7 已知 TODO 与设计文档 §6/§7）。
+
+---
+
 本目录归档评审后的 v2 设计文档、脚本与配置文件。v2 在 `docs/prototype` 的基础上修正了首轮评审发现的可执行性问题，目标是让用户主要通过修改 `Projects/<Project>/build.yaml` 完成编译、代码生成、文档生成和远程构建配置。
 
 关键改动：

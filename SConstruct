@@ -4,13 +4,17 @@
 OpenAutosar 顶层构建入口。
 
 用法：
-    scons                                  # 本地构建
-    scons TOOLCHAIN=arm_gcc PLATFORM=CortexM33
-    scons PROJECT=Projects/DemoProject CONFIG=build.yaml
+    scons                                  # 本地构建 (默认 Projects/Demo_Tc387)
+    scons TOOLCHAIN=hightec PLATFORM=AURIX2G
+    scons PROJECT=Projects/Demo_Tc387 CONFIG=build.yaml
     scons gen                              # 只跑代码生成
     scons doc                              # 只生成文档
     scons --remote=build_server_01         # 远程构建
     scons --remote=auto                    # 自动调度
+
+说明：这是 v2 框架(YAML 驱动)的顶层入口；旧的 per-project 构建
+(Projects/Demo_Tc387/SConstruct + Tools/Scons/build_helpers.py) 仍保留为
+回退方案，二者可并行 (在 Projects/Demo_Tc387 目录内运行 scons 走旧构建)。
 """
 import os
 import sys
@@ -44,7 +48,7 @@ AddOption('--skip-gen',
 # ── 1. 命令行变量声明 ──────────────────────────────────────
 vars_ = Variables(None, ARGUMENTS)
 vars_.AddVariables(
-    ('PROJECT',    '项目目录（相对于仓库根）',  'Projects/DemoProject'),
+    ('PROJECT',    '项目目录（相对于仓库根）',  'Projects/Demo_Tc387'),
     ('CONFIG',     'build.yaml 文件名',         'build.yaml'),
     ('TOOLCHAIN',  '工具链（覆盖 YAML）',         ''),
     ('PLATFORM',   '平台（覆盖 YAML）',           ''),
@@ -113,7 +117,7 @@ env['PROJECT_DIR'] = os.path.join(ROOT, env['PROJECT'])
 env['GEN_DIR']     = os.path.join(env['PROJECT_DIR'], 'Gen')
 env['OBJ_DIR']     = os.path.join(env['PROJECT_DIR'], 'Obj')
 env['OUT_DIR']     = os.path.join(env['PROJECT_DIR'], 'Out')
-env['DOCS_DIR']    = os.path.join(ROOT, 'docs', 'api')
+env['DOCS_DIR']    = os.path.join(env['PROJECT_DIR'], 'Docs', 'api')
 
 # 确保输出目录存在
 for d in (env['OBJ_DIR'], env['OUT_DIR']):

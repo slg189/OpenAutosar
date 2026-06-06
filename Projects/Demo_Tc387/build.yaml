@@ -1,0 +1,145 @@
+# =============================================================
+# Projects/Demo_Tc387/build.yaml
+# v2 框架主配置 —— 顶层 SConstruct 启动时第一份被读取的配置。
+# 用户主要改这份文件即可完成 编译 / 代码生成 / 文档 / 远程构建。
+#
+#   产物名 = <project.name>_<derivative>[-<suffix>]  →  Demo_Tc387.elf
+#
+# Phase 1（当前）：仅冒烟模块 Crc（v2 原生 SConscript）跑通 AURIX 构建链路。
+# Phase 2：把现有 MCAL/CDD/ASW 模块迁为 v2 原生 SConscript 后在此启用。
+# =============================================================
+
+schema_version: "2.0"
+
+project:
+  name:            Demo            # + derivative => Demo_Tc387
+  derivative:      Tc387
+  app_name_suffix: ""             # 最终产物 Demo_Tc387.elf
+
+target:
+  toolchain:  hightec             # GNU TriCore (tricore-gcc); 可 TOOLCHAIN=tasking 覆盖
+  platform:   AURIX2G             # Infineon AURIX TC3xx
+  build_type: Release             # Debug | Release
+
+# ── 全局编译宏 ─────────────────────────────────────────────
+global_defines:
+  - AUTOSAR_CP
+  - PROJECT_Demo_Tc387
+
+# ── 全局头文件搜索路径（支持 ${VAR} 占位符）──────────────────
+global_includes:
+  - ${MCAL_DIR}/inc                 # Std_Types.h 等公共类型
+  - ${COMP_DIR}/Common/inc
+  - ${PROJECT_DIR}/Gen
+
+# ── BSW 模块清单 ── ★ 动态控制核心 ─────────────────────────
+# 首次冒烟：只开 Crc（v2 原生源码模块）。
+bsw_modules:
+
+  - name: Crc
+    enabled: true
+
+  # Os / Com 为供应商二进制交付 (BSW/Os, BSW/Com 的 .a)，经链接而非源码编译，
+  # 由 linker.libraries / *_Libs 集成；不放在此源码编译清单中。
+  #
+  # —— Phase 2：迁移更多源码模块后启用（先 scripts/new_module.py 生成 SConscript）——
+  # - name: EcuM
+  #   enabled: true
+
+# ── MCAL 模块 (repo 按 <Chip>/<Mod> 组织) ────────────────────
+mcal_modules: []
+  # —— Phase 2（需先把模块 SConscript 迁为 v2 原生）——
+  # - name: Tc387/Adc
+  #   enabled: true
+  # - name: Tc387/Port
+  #   enabled: true
+
+# ── Components ────────────────────────────────────────────
+components: []
+  # - name: Common
+  #   enabled: true
+
+# ── 链接器 ────────────────────────────────────────────────
+linker:
+  script: ""                        # 冒烟阶段用默认；Phase 2 指定 Ld/Demo_Tc387.ld
+  # script: Ld/Demo_Tc387.ld
+  libraries: []
+  extra_flags: []
+
+# ── 输出格式 ──────────────────────────────────────────────
+output:
+  formats:
+    - elf
+    - hex
+    - map
+  size_report:           true
+  compile_commands_json: true
+
+# ── 代码生成（编译前置）──────────────────────────────────
+# repo 的真实配置工具 (EB tresos / ETAS / Vector) 在 Phase 2 接入；
+# 这里先放一个 custom 占位生成器验证链路。
+codegen:
+  enabled: true
+  output_dir: ${PROJECT_DIR}/Gen
+  generators:
+    - name:    demo_echo
+      type:    custom
+      enabled: true
+      cmd:     'echo [CODEGEN] Demo_Tc387 codegen placeholder'
+      inputs:  []
+      outputs_glob: ""
+
+    # —— Phase 2：接入真实工具（示例）——
+    # - name:      eb_tresos
+    #   type:      eb_tresos
+    #   enabled:   false
+    #   tool_path: C:/EB/tresos/bin/tresos_b.bat
+    #   workspace: ${PROJECT_DIR}/Cfg/MCAL
+    #   project:   Demo_Tc387
+
+# ── 文档自动生成 ─────────────────────────────────────────
+docs:
+  enabled: true
+  output_dir: ${PROJECT_DIR}/Docs/api
+  doxygen:
+    enabled: false                  # 需要本机 doxygen 命令时改 true
+    config_file: ${ROOT_DIR}/Tools/Doxygen/Doxyfile.in
+    html: true
+    pdf:  false
+  interface_extract:
+    enabled: true
+    output_format: markdown
+  dependency_graph:
+    enabled: true
+    format: mermaid
+  module_index:
+    enabled: true
+    title: "Demo_Tc387 模块清单"
+
+# ── 远程构建 ──────────────────────────────────────────────
+remote:
+  enabled: false                    # 冒烟阶段先关
+  default_target: build_server_01
+  servers:
+    - name: build_server_01
+      host: 10.0.20.31
+      port: 22
+      user: ci
+      auth: key
+      key_file: ~/.ssh/id_rsa_ci
+      remote_dir: /home/ci/work/OpenAutosar
+      capabilities:
+        - hightec
+        - tasking
+      jobs: 16
+  sync:
+    method: rsync
+    excludes:
+      - "Obj/"
+      - "Out/"
+      - "**/.git"
+      - "**/__pycache__"
+      - "**/Docs/api/"
+    pull_back:
+      - "Projects/Demo_Tc387/Out/"
+      - "Projects/Demo_Tc387/Docs/api/"

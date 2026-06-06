@@ -43,7 +43,7 @@ def build_docs(env, cfg, modules=None, module_dirs=None,
     os.makedirs(os.path.join(out_dir, 'modules'), exist_ok=True)
     os.makedirs(os.path.join(out_dir, 'graphs'), exist_ok=True)
 
-    def _generate_docs(target, source, env_):
+    def _generate_docs(target, source, env):
         # 1) 接口抽取 (每模块一份 markdown)
         if cfg.docs.interface_enabled:
             for name, mdir in module_dirs.items():

@@ -38,7 +38,7 @@ class CodegenAdapter(ABC):
         for o in outputs:
             os.makedirs(os.path.dirname(o) or '.', exist_ok=True)
 
-        def _run_codegen(target, source, env_):
+        def _run_codegen(target, source, env):
             # cmd 为命令列表; 每条命令可以是 shell 字符串(str) 或 argv 列表(list)。
             # custom 适配器返回 [shell_str]; 商用工具适配器返回 [[argv...]]。
             for one_cmd in cmd:

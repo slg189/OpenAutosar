@@ -93,6 +93,11 @@ if cfg.global_defines:
     env.Append(CPPDEFINES=list(cfg.global_defines))
 if cfg.global_includes:
     env.Append(CPPPATH=list(cfg.global_includes))
+# 各层公共头 <Layer>/inc (如 ASW/inc/Rte_Type.h、MCAL/inc/Std_Types.h、BSW/inc/EcuM.h)
+for _L in ('ASW', 'CDD', 'MCAL', 'BSW', 'Components'):
+    _pinc = os.path.join(ROOT, _L, 'inc')
+    if os.path.isdir(_pinc):
+        env.Append(CPPPATH=[_pinc])
 
 # ── 5. 代码生成 (编译前置) ─────────────────────────────────
 codegen_targets, codegen_by_name = [], {}
@@ -146,6 +151,9 @@ if cfg.integration_enabled:
     ienv = env.Clone()
     ienv.Append(CPPPATH=[os.path.join(cfg.integration_dir, 'inc')] + pub_inc)
     integration_objs = ienv.Object(Glob(os.path.join(cfg.integration_dir, 'src', '*.c')))
+
+# compile: 只编译源码模块为 .o (不链接) —— 环境验证用 (如 TOOLCHAIN=gcc PLATFORM=host)
+env.Alias('compile', source_objs + integration_objs)
 
 # ── 8. 链接 ELF + 产物 ─────────────────────────────────────
 if codegen_targets:
@@ -201,7 +209,7 @@ if cfg.docs.enabled:
     env.Alias('doc-clean', [], Delete(cfg.docs.output_dir or os.path.join(PROJECT_DIR, 'Docs', 'api')))
 
 # ── 11. check: 静态检查 (MISRA) + 单元测试 (best-effort) ───
-def _run_check(target, source, env_):
+def _run_check(target, source, env):
     import shutil, subprocess
     rc = 0
     misra = os.path.join(ROOT, 'misra.json')

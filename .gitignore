@@ -4,6 +4,9 @@ Projects/*/Obj/*
 !Projects/*/Obj/README.md
 **/Obj/*.o
 **/Obj/*.d
+# 目标文件/依赖文件 (源码模块按约定就地编译时也会产生)
+**/*.o
+**/*.d
 
 # 链接输出 (hex / elf / map) — 保留目录占位 README
 Projects/*/Out/*

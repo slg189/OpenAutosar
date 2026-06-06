@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAutosar · 构建环境验证 (host gcc)</title>
+<style>
+  :root{--bg:#0f172a;--panel:#1e293b;--panel2:#273449;--accent:#38bdf8;
+    --accent2:#34d399;--text:#e2e8f0;--muted:#94a3b8;--border:#334155;
+    --code:#0b1220;--warn:#fbbf24;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.65}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  header{background:linear-gradient(120deg,#059669,#0ea5e9);padding:42px 24px;
+    text-align:center;color:#021018}
+  header h1{margin:0;font-size:2rem}header p{margin:8px 0 0;opacity:.9}
+  .layout{display:flex;max-width:1180px;margin:0 auto}
+  nav{position:sticky;top:0;align-self:flex-start;width:240px;padding:24px 12px;
+    height:100vh;overflow:auto;border-right:1px solid var(--border);font-size:.9rem}
+  nav h3{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;margin:18px 8px 6px}
+  nav a{display:block;padding:6px 10px;border-radius:6px;color:var(--text)}
+  nav a:hover{background:var(--panel2)}
+  main{flex:1;padding:30px 36px;min-width:0}
+  section{margin-bottom:42px;scroll-margin-top:20px}
+  h2{font-size:1.5rem;border-left:4px solid var(--accent);padding-left:12px;margin-top:0}
+  h3{color:var(--accent2);margin-top:26px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
+  th,td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--accent)}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  code{background:var(--code);padding:2px 6px;border-radius:4px;
+    font-family:"JetBrains Mono",Consolas,monospace;font-size:.86em;color:#7dd3fc}
+  pre{background:var(--code);border:1px solid var(--border);border-radius:8px;padding:16px;overflow:auto}
+  pre code{background:none;padding:0;color:#cbd5e1}
+  .callout{background:var(--panel);border-left:4px solid var(--warn);padding:12px 16px;border-radius:6px;margin:14px 0}
+  .ok{color:#6ee7b7;font-weight:600}.no{color:#fca5a5;font-weight:600}
+  .badge{display:inline-block;background:var(--panel2);border:1px solid var(--border);
+    border-radius:999px;padding:2px 12px;font-size:.78rem;margin:2px}
+  footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid var(--border)}
+  @media(max-width:860px){nav{display:none}main{padding:20px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>构建环境验证 · host gcc</h1>
+  <p>用系统 gcc 真实编译全部源码模块 —— 不依赖 TriCore 工具链，真跑而非 dry-run</p>
+  <div>
+    <span class="badge">结果：13/13 源码模块编译通过</span>
+    <span class="badge">gcc 13.3</span>
+    <span class="badge">抓到 2 个 dry-run 漏掉的真实 bug</span>
+  </div>
+</header>
+
+<div class="layout">
+<nav>
+  <h3>导航</h3>
+  <a href="index.html">← 构建系统文档</a>
+  <a href="README.md">构建系统说明</a>
+  <a href="ENV_VALIDATION_PLAN.md">环境验证开发计划 (MD)</a>
+  <hr style="border-color:var(--border)">
+  <a href="#why">1 目的</a>
+  <a href="#how">2 怎么跑</a>
+  <a href="#scope">3 验证范围</a>
+  <a href="#result">4 结果</a>
+  <a href="#bugs">5 抓到的真实 bug</a>
+  <a href="#limit">6 局限</a>
+  <a href="#next">7 后续 / CI</a>
+</nav>
+
+<main>
+
+<section id="why">
+  <h2>1 · 目的</h2>
+  <p>本仓目标芯片为 Infineon AURIX TC3xx，正式构建用 <code>hightec</code>(tricore-gcc) / <code>tasking</code> 工具链。
+  但在没有 TriCore 工具链的开发/CI 环境里，仍希望<strong>真实验证</strong>：源码树是否能编、框架的 include 连通性是否正确。</p>
+  <p>由于 v3 构建框架<strong>工具链/平台可插拔</strong>，我们新增 <code>toolchain=gcc</code> + <code>platform=host</code> 两个适配器，
+  用<strong>系统 gcc 真实编译</strong>各源码模块为 <code>.o</code>（<code>scons compile</code> 目标，只编译不链接）。
+  这比 <code>scons -n</code>（仅构建图）强得多——它真的调用编译器。</p>
+  <div class="callout">关键收获：本次 host-gcc 验证抓到了 <strong>2 个 <code>scons -n</code> 永远发现不了的真实 bug</strong>（见 §5）。
+  “能画出构建图”≠“真能编过”。</div>
+</section>
+
+<section id="how">
+  <h2>2 · 怎么跑</h2>
+<pre><code># 仓库根 (需有系统 gcc; 不需要 TriCore 工具链)
+scons compile TOOLCHAIN=gcc PLATFORM=host
+
+# 也可只验证某层/某模块
+scons compile TOOLCHAIN=gcc PLATFORM=host layers=MCAL
+scons compile TOOLCHAIN=gcc PLATFORM=host only=Crc,Adc</code></pre>
+  <p><code>compile</code> 是 v3 新增的别名：只把<strong>源码模块</strong>编译成 <code>.o</code>（含集成层），<strong>不链接</strong>。
+  这样可绕开预编译 <code>.a</code> 是 TriCore 目标码、无法在主机链接的问题（见 §6）。</p>
+  <table>
+    <tr><th>适配器</th><th>文件</th><th>作用</th></tr>
+    <tr><td><code>toolchain=gcc</code></td><td><code>site_scons/autosar/toolchain/gcc.py</code></td><td>系统 gcc，通用 C 标志（无嵌入式 flag）</td></tr>
+    <tr><td><code>platform=host</code></td><td><code>site_scons/autosar/platform/host.py</code></td><td>本机架构，不注入目标 CPU flag</td></tr>
+  </table>
+</section>
+
+<section id="scope">
+  <h2>3 · 验证范围</h2>
+  <p>覆盖 <code>build.yaml</code> 里所有 <code>mode: source</code> 的模块 + 集成层（<code>lib</code> 模块只链接、不在本次编译范围）。</p>
+  <table>
+    <tr><th>层</th><th>编译的源码模块</th></tr>
+    <tr><td>MCAL</td><td>Adc, Port</td></tr>
+    <tr><td>CDD</td><td>CddPwm, CddMotor</td></tr>
+    <tr><td>ASW</td><td>VehicleControl</td></tr>
+    <tr><td>BSW</td><td>Os, Com, Crc</td></tr>
+    <tr><td>Components</td><td>Common, Mcu/Sbm</td></tr>
+    <tr><td>Integration</td><td>main.c, Rte.c, EcuM_Callout.c</td></tr>
+  </table>
+</section>
+
+<section id="result">
+  <h2>4 · 结果</h2>
+  <p class="ok">✔ 全部 13 个源码对象编译通过，<code>scons compile TOOLCHAIN=gcc PLATFORM=host</code> 退出码 0。</p>
+<pre><code>[SRC ] MCAL/Adc      [SRC ] MCAL/Port     [LIB ] MCAL/Can &lt;- MCAL_Libs/Can/libCan.a
+[SRC ] CDD/CddPwm    [SRC ] CDD/CddMotor  [LIB ] CDD/CddSent &lt;- CDD_Libs/...
+[SRC ] ASW/VehicleControl     [LIB ] ASW/EnergyManagement &lt;- ASW_Libs/...
+[SRC ] BSW/Os  [SRC ] BSW/Com  [SRC ] BSW/Crc
+[SRC ] Components/Common  [SRC ] Components/Mcu/Sbm
+→ 13 个 .o (含 Integration 的 main/Rte/EcuM_Callout)，exit 0</code></pre>
+  <p>这同时验证了：源码本身无语法/头文件错误、框架的 include 解析正确（模块 inc + 各层公共 inc +
+  <code>*_Libs</code> 头 + 模块内 <code>gen/</code> 全部连通）、代码生成前置（<code>custom</code> 适配器）真实执行成功。</p>
+</section>
+
+<section id="bugs">
+  <h2>5 · 抓到的真实 bug（dry-run 漏掉）</h2>
+  <table>
+    <tr><th>#</th><th>问题</th><th>根因</th><th>修复</th></tr>
+    <tr>
+      <td>B1</td>
+      <td>所有 Python 动作（codegen / docgen / check）真执行即崩：<br><code>TypeError: _run_codegen() got an unexpected keyword argument 'env'</code></td>
+      <td>SCons 以关键字 <code>env=</code> 调用函数动作，而函数把第三参命名为 <code>env_</code>。<code>-n</code> 不执行动作，故从未暴露。</td>
+      <td>动作签名统一改为 <code>(target, source, env)</code>（base.py / docgen / check）。</td>
+    </tr>
+    <tr>
+      <td>B2</td>
+      <td><code>ASW/VehicleControl</code> 编译失败：<br><code>fatal error: Rte_Type.h: No such file or directory</code></td>
+      <td>v3 未把<strong>各层公共头 <code>&lt;Layer&gt;/inc</code></strong>（如 <code>ASW/inc/Rte_Type.h</code>）加入 include 路径；旧 SConscript 曾手工加 <code>#ASW/inc</code>。</td>
+      <td>编排器全局补 <code>&lt;Layer&gt;/inc</code>（ASW/CDD/MCAL/BSW/Components 存在即加）。</td>
+    </tr>
+  </table>
+  <div class="callout">这正是“真编一次”的价值：两个问题在 <code>scons -n</code> 下都是绿的。</div>
+</section>
+
+<section id="limit">
+  <h2>6 · 局限</h2>
+  <ul>
+    <li><strong>只编译、不链接</strong>：预编译 <code>.a</code>（<code>Can</code>/<code>CddSent</code>/<code>EnergyManagement</code>）是 TriCore 目标码，无法在主机链接成可执行；故验证止于 <code>.o</code>。</li>
+    <li><strong>非目标 ABI</strong>：host gcc 用本机 ABI/类型宽度，能查语法/头文件/宏，但<strong>查不出</strong>目标相关问题（对齐、位宽、寄存器、链接脚本）。真机/QEMU 验证仍需 TriCore 工具链。</li>
+    <li>对仅以 <code>.a</code> 交付、无源码的模块（如 <code>EnergyManagement</code>）天然无法做源码级验证。</li>
+  </ul>
+  <p>定位：host-gcc 验证是<strong>廉价的第一道闸</strong>（语法/include/框架连通性），不替代目标工具链的编译链接与 QEMU 集成测试。</p>
+</section>
+
+<section id="next">
+  <h2>7 · 后续 / CI</h2>
+  <p>建议把 <code>scons compile TOOLCHAIN=gcc PLATFORM=host</code> 作为 CI 的快速门禁（PR 必过）。详细推进见
+  <a href="ENV_VALIDATION_PLAN.md">环境验证开发计划 (MD)</a>。要点：</p>
+  <ul>
+    <li>CI job：装 scons+pyyaml+gcc → <code>scons compile TOOLCHAIN=gcc PLATFORM=host</code>。</li>
+    <li>逐步开 <code>-Werror</code>（先 demo 桩代码达标）。</li>
+    <li>多项目/多 <code>build.yaml</code> 矩阵；<code>scons list</code> 做计划快照。</li>
+    <li>有 TriCore 环境的 runner 上跑真机编译/链接 + QEMU 集成测试（第二道闸）。</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>
+  OpenAutosar · 构建环境验证 (host gcc) · 13/13 源码模块编译通过 · gcc 13.3
+</footer>
+</body>
+</html>

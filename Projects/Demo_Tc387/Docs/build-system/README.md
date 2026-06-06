@@ -35,6 +35,8 @@ scons --remote=build_server_01             # 远程构建
 |------|------|
 | [`ARCHITECTURE_PROPOSAL.md`](ARCHITECTURE_PROPOSAL.md) · [`ARCHITECTURE_PROPOSAL.html`](ARCHITECTURE_PROPOSAL.html) | v3 架构提案（含原框架 vs v2 对比、目标 `build.yaml`、解析算法、迁移路线） |
 | [`DEVELOPMENT_PLAN.md`](DEVELOPMENT_PLAN.md) | 开发计划（决策门 D1–D4、里程碑 M0–M5、进度勾选表） |
+| [`ENV_VALIDATION.html`](ENV_VALIDATION.html) | **构建环境验证**：用 host gcc 真实编译全部源码模块（不依赖 TriCore），结果 + 抓到的 bug |
+| [`ENV_VALIDATION_PLAN.md`](ENV_VALIDATION_PLAN.md) | 环境验证开发计划（host gcc 门禁 → CI → 目标工具链/QEMU 第二道闸） |
 | [`SCons_Build_System_Design_v2_Reviewed.md`](SCons_Build_System_Design_v2_Reviewed.md) | 历史存档：v2（首轮评审后）设计，已由 v3 取代 |
 
 > 注：原 v2 的 Cortex-M 参考样例（`projects/DemoProject`）与手动部署脚本（`deploy.ps1`/`deploy.sh`）

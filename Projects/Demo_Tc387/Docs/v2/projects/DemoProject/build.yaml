@@ -1,0 +1,208 @@
+# =============================================================
+# Projects/DemoProject/build.yaml
+# 主配置 —— SCons 启动时第一份被读取的配置文件
+# =============================================================
+
+schema_version: "2.0"
+
+project:
+  name:            DemoProject
+  derivative:      CYT4BF
+  app_name_suffix: A0                  # 最终产物 DemoProject_CYT4BF-A0.elf
+
+target:
+  toolchain:  arm_gcc                  # 可命令行 TOOLCHAIN=xxx 覆盖
+  platform:   CortexM33                # 可命令行 PLATFORM=xxx 覆盖
+  build_type: Debug                    # Debug | Release
+
+# ── 全局编译宏（追加到所有模块）─────────────────────────────
+global_defines:
+  - PROJECT_DemoProject
+  - S32K3XX
+  - MPU_ENABLE
+  - ENABLE_FPU
+
+# ── 全局头文件搜索路径（支持 ${VAR} 占位符）──────────────────
+global_includes:
+  - ${PROJECT_DIR}/Gen
+  - ${PROJECT_DIR}/Cfg
+  - ${PROJECT_DIR}/Stub
+  - ${BSW_DIR}/_Common/inc
+
+# ── BSW 模块清单 ── ★ 动态控制核心 ─────────────────────────
+# 首次冒烟：只开 Crc（最简单的模块），逐步加。
+bsw_modules:
+
+  - name: Crc
+    enabled: true
+
+  # —— 取消注释以启用更多模块（需先用 scripts/new_module.py 生成 SConscript）——
+  # - name: CanIf
+  #   enabled: true
+  #   extra_defines:
+  #     - CANIF_ENABLE_CAN_FD
+  #   extra_includes:
+  #     - ${BSW_DIR}/Can/inc
+  #     - ${BSW_DIR}/PduR/inc
+  #
+  # - name: BswM
+  #   enabled: true
+  #
+  # - name: Com
+  #   enabled: true
+  #
+  # - name: Dcm
+  #   enabled: true
+  #
+  # - name: Dem
+  #   enabled: false
+  #
+  # - name: Os
+  #   enabled: true
+  #   extra_defines:
+  #     - OS_NUM_CORES=2
+
+
+# ── MCAL 模块 ─────────────────────────────────────────────
+mcal_modules: []
+  # - path: Cypress/Mcu
+  #   enabled: true
+
+
+# ── Components ────────────────────────────────────────────
+components: []
+  # - name: MCU_Adapter
+  #   enabled: true
+
+
+# ── 链接器 ────────────────────────────────────────────────
+linker:
+  script: ""                           # 冒烟阶段先不指定（让 gcc 用默认）
+  # script: Ld/Cypress/OsGen7_LinkerScript_ghs.ld
+  libraries:
+    - m
+    - c
+    - nosys
+  extra_flags: []
+
+
+# ── 输出格式 ──────────────────────────────────────────────
+output:
+  formats:
+    - elf
+    # - hex
+    # - bin
+    - map
+  size_report:           true
+  compile_commands_json: true
+
+
+# ── 代码生成（编译前置）★ NEW ─────────────────────────────
+codegen:
+  enabled: true
+  output_dir: ${PROJECT_DIR}/Gen
+  generators:
+
+    # 冒烟阶段：演示性 custom 生成器，使用 echo 模拟（无实际产物）
+    - name:    demo_echo
+      type:    custom
+      enabled: true
+      cmd:     'echo "[CODEGEN/custom] demo echo running…"'
+      inputs:  []
+      outputs_glob: ""
+
+    # —— 取消注释 + 调好路径以接入真实工具 ——
+    # - name:      vector_davinci
+    #   type:      vector
+    #   enabled:   false
+    #   tool_path: C:/Vector/CFG5/DVCfgCmd.exe
+    #   inputs:
+    #     - ${PROJECT_DIR}/Cfg/BSW/${PROJECT_NAME}.dpa
+    #   outputs_glob: "${PROJECT_DIR}/Gen/Vector/**/*.c"
+    #
+    # - name:      eb_tresos
+    #   type:      eb_tresos
+    #   enabled:   false
+    #   tool_path: C:/EB/tresos/bin/tresos_b.bat
+    #   workspace: ${PROJECT_DIR}/Cfg/EB
+    #   project:   ${PROJECT_NAME}
+    #
+    # - name:      isolar
+    #   type:      etas
+    #   enabled:   false
+    #   tool_path: C:/ETAS/ISOLAR-AB/eclipse/ISOLAR.exe
+    #   workspace: ${PROJECT_DIR}/Cfg/ISOLAR_WS
+    #   project:   ${PROJECT_NAME}
+    #
+    # - name:      turing
+    #   type:      turing
+    #   enabled:   false
+    #   tool_path: C:/TuringAUTOSAR/bin/TuringGen.exe
+    #   config:    ${PROJECT_DIR}/Cfg/turing.json
+    #
+    # - name:      rte_gen_internal
+    #   type:      custom
+    #   enabled:   false
+    #   cmd:       'python ${ROOT_DIR}/Tools/rte_gen.py -i ${INPUT} -o ${OUTPUT_DIR}/Rte'
+    #   inputs:
+    #     - ${PROJECT_DIR}/Cfg/BSW/Config/System/SystemExtract.arxml
+
+
+# ── 文档自动生成 ★ NEW ───────────────────────────────────
+docs:
+  enabled: true
+  output_dir: ${ROOT_DIR}/docs/api
+  doxygen:
+    enabled: false                     # 默认关，需要 doxygen 命令
+    config_file: ${ROOT_DIR}/docs/Doxyfile.in
+    html: true
+    pdf:  false
+  interface_extract:
+    enabled: true
+    output_format: markdown
+  dependency_graph:
+    enabled: true
+    format: mermaid
+  module_index:
+    enabled: true
+    title: "DemoProject 模块清单"
+
+
+# ── 远程构建 ★ NEW ──────────────────────────────────────
+remote:
+  enabled: false                       # 冒烟阶段先关；需要时改 true
+  default_target: build_server_01
+  servers:
+    - name: build_server_01
+      host: 10.0.20.31
+      port: 22
+      user: ci
+      auth: key
+      key_file: ~/.ssh/id_rsa_ci
+      remote_dir: /home/ci/work/OpenAutosar
+      capabilities:
+        - arm_gcc
+        - arm_ghs
+        - hightec
+      jobs: 32
+
+    - name: iar_license_host
+      host: 10.0.20.45
+      user: build
+      auth: agent
+      remote_dir: /data/build/OpenAutosar
+      capabilities:
+        - arm_iar
+      jobs: 16
+
+  sync:
+    method: rsync
+    excludes:
+      - "Obj/"
+      - "Out/"
+      - "**/.git"
+      - "**/__pycache__"
+      - "docs/api/"
+    pull_back:
+      - "Projects/${PROJECT_NAME}/Out/"
+      - "docs/api/"

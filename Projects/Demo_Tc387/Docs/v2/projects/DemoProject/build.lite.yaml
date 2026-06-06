@@ -1,0 +1,61 @@
+# =============================================================
+# build.lite.yaml — 精简配置示例（只编 Can 子系统 + Os）
+# 用法：scons CONFIG=build.lite.yaml
+# =============================================================
+schema_version: "2.0"
+
+project:
+  name:            DemoProject
+  derivative:      CYT4BF
+  app_name_suffix: lite
+
+target:
+  toolchain:  arm_gcc
+  platform:   CortexM33
+  build_type: Debug
+
+global_defines:
+  - PROJECT_DemoProject
+  - LITE_BUILD
+
+global_includes:
+  - ${PROJECT_DIR}/Gen
+  - ${PROJECT_DIR}/Cfg
+  - ${BSW_DIR}/_Common/inc
+
+bsw_modules:
+  - name: Crc
+    enabled: true
+  - name: Can
+    enabled: false                      # 待补 BSW/Can/SConscript 后开启
+  - name: CanIf
+    enabled: false                      # 待补 BSW/CanIf/SConscript 后开启
+  - name: PduR
+    enabled: false                      # 待补 BSW/PduR/SConscript 后开启
+  - name: Os
+    enabled: false                      # 待补 BSW/Os/SConscript 后开启
+
+mcal_modules: []
+components: []
+
+linker:
+  script: ""
+  libraries: [m, c, nosys]
+
+output:
+  formats: [elf, map]
+  size_report: true
+  compile_commands_json: true
+
+codegen:
+  enabled: false                        # 精简版不跑 codegen
+
+docs:
+  enabled: true
+  output_dir: ${ROOT_DIR}/docs/api_lite
+  interface_extract: { enabled: true,  output_format: markdown }
+  dependency_graph:  { enabled: true,  format: mermaid }
+  module_index:      { enabled: true,  title: "DemoProject (lite)" }
+
+remote:
+  enabled: false

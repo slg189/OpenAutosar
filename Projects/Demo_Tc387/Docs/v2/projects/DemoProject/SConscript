@@ -1,0 +1,170 @@
+# -*- coding: utf-8 -*-
+"""项目级 SConscript —— DemoProject。
+
+由顶层 SConstruct 通过 SConscript() 进入。
+"""
+import os
+Import('env')
+
+from autosar import config_loader
+from autosar.codegen import create_adapter
+from autosar.docgen  import build_docs
+
+# ── 1. 读取项目配置 ────────────────────────────────────────
+PROJECT_DIR = env['PROJECT_DIR']
+CONFIG_NAME = ARGUMENTS.get('CONFIG', 'build.yaml')
+YAML_PATH   = os.path.join(PROJECT_DIR, CONFIG_NAME)
+
+try:
+    cfg = config_loader.load(YAML_PATH, variables={
+        'ROOT_DIR':    env['ROOT_DIR'],
+        'BSW_DIR':     env['BSW_DIR'],
+        'MCAL_DIR':    env['MCAL_DIR'],
+        'COMP_DIR':    env['COMP_DIR'],
+        'PROJECT_DIR': PROJECT_DIR,
+        'GEN_DIR':     env['GEN_DIR'],
+    })
+except config_loader.BuildConfigError as exc:
+    print(f'[FATAL] build.yaml 配置错误：{exc}')
+    Exit(1)
+
+print(f'[INFO] project   = {cfg.project_name}/{cfg.derivative}')
+print(f'[INFO] config    = {CONFIG_NAME}')
+
+# ── 2. 应用全局 defines / includes ────────────────────────
+if cfg.global_defines:
+    env.Append(CPPDEFINES=cfg.global_defines)
+if cfg.global_includes:
+    env.Append(CPPPATH=cfg.global_includes)
+
+APP_NAME = f'{cfg.project_name}_{cfg.derivative}'
+if cfg.app_name_suffix:
+    APP_NAME += f'-{cfg.app_name_suffix}'
+
+# ── 3. ★ 代码生成（编译前置）★ ─────────────────────────
+codegen_targets = []
+codegen_by_name = {}
+skip_gen = GetOption('skip_gen') or ARGUMENTS.get('SKIP_GEN')
+if cfg.codegen_enabled and not skip_gen:
+    for spec in cfg.codegen_specs:
+        if not spec.enabled:
+            print(f'[SKIP] codegen/{spec.name}')
+            continue
+        print(f'[GEN ] {spec.type}/{spec.name}')
+        adapter = create_adapter(spec.type)
+        tgt = adapter.register(env, spec, cfg.codegen_output_dir)
+        codegen_targets.append(tgt)
+        codegen_by_name[spec.name] = tgt
+
+# 暴露独立目标
+env.Alias('gen', codegen_targets)
+for name, target in codegen_by_name.items():
+    env.Alias(f'gen:{name}', target)
+
+# ── 4. ★ 动态加载启用的 BSW 模块 ★ ─────────────────────
+all_objects = []
+
+for mod in cfg.bsw_modules:
+    if not mod.enabled:
+        print(f'[SKIP] BSW/{mod.name}')
+        continue
+    script = os.path.join(env['BSW_DIR'], mod.name, 'SConscript')
+    if not os.path.exists(script):
+        print(f'[FATAL] BSW/{mod.name} 已在 build.yaml 启用，但缺少 {script}')
+        print('[FATAL] 请先为该模块生成/提交 SConscript，或在 build.yaml 中关闭 enabled。')
+        Exit(1)
+    print(f'[BUILD] BSW/{mod.name}')
+    objs = SConscript(script, exports={'env': env, 'mod_cfg': mod})
+    if objs:
+        all_objects.extend(objs)
+
+# ── 5. 动态加载 MCAL ──────────────────────────────────────
+for mod in cfg.mcal_modules:
+    if not mod.enabled:
+        print(f'[SKIP] MCAL/{mod.name}')
+        continue
+    script = os.path.join(env['MCAL_DIR'], mod.name, 'SConscript')
+    if os.path.exists(script):
+        print(f'[BUILD] MCAL/{mod.name}')
+        objs = SConscript(script, exports={'env': env, 'mod_cfg': mod})
+        if objs:
+            all_objects.extend(objs)
+    else:
+        print(f'[FATAL] MCAL/{mod.name} 已启用，但缺少 {script}')
+        Exit(1)
+
+# ── 6. 动态加载 Components ────────────────────────────────
+for mod in cfg.components:
+    if not mod.enabled:
+        print(f'[SKIP] Components/{mod.name}')
+        continue
+    script = os.path.join(env['COMP_DIR'], mod.name, 'SConscript')
+    if os.path.exists(script):
+        print(f'[BUILD] Components/{mod.name}')
+        objs = SConscript(script, exports={'env': env, 'mod_cfg': mod})
+        if objs:
+            all_objects.extend(objs)
+    else:
+        print(f'[FATAL] Components/{mod.name} 已启用，但缺少 {script}')
+        Exit(1)
+
+# ── 7. 编译依赖代码生成完成 ───────────────────────────────
+if codegen_targets and all_objects:
+    env.Depends(all_objects, codegen_targets)
+
+# ── 8. 链接 ELF ───────────────────────────────────────────
+if all_objects:
+    if cfg.linker_script:
+        env.Append(LINKFLAGS=[f'-T{os.path.join(PROJECT_DIR, cfg.linker_script)}'])
+    if cfg.linker_libs:
+        env.Append(LIBS=cfg.linker_libs)
+    if cfg.linker_flags:
+        env.Append(LINKFLAGS=cfg.linker_flags)
+
+    elf_path = os.path.join(env['OUT_DIR'], APP_NAME + '.elf')
+    if 'map' in cfg.output_formats:
+        env.Append(LINKFLAGS=['-Wl,-Map=' + elf_path.replace('.elf', '.map')])
+
+    elf = env.Program(target=elf_path, source=all_objects)
+
+    # 后处理产物
+    if 'hex' in cfg.output_formats:
+        env.Command(elf_path.replace('.elf', '.hex'), elf,
+                    '$OBJCOPY -O ihex $SOURCE $TARGET')
+    if 'bin' in cfg.output_formats:
+        env.Command(elf_path.replace('.elf', '.bin'), elf,
+                    '$OBJCOPY -O binary $SOURCE $TARGET')
+    if cfg.size_report:
+        env.Command('size_report', elf, '$SIZE $SOURCE')
+    if cfg.compile_commands:
+        try:
+            env.Tool('compilation_db')
+            compdb = env.CompilationDatabase(
+                os.path.join(PROJECT_DIR, 'compile_commands.json')
+            )
+            env.Alias('compdb', compdb)
+        except Exception as exc:
+            print(f'[WARN] compile_commands.json 生成不可用：{exc}')
+
+    Default(elf)
+else:
+    print('[WARN] 无任何启用的模块，跳过链接')
+
+# ── 9. 文档生成 ───────────────────────────────────────────
+if cfg.docs.enabled:
+    enabled_bsw = [m for m in cfg.bsw_modules if m.enabled]
+    doc_targets = build_docs(env, cfg, enabled_modules=enabled_bsw)
+    env.Alias('doc', doc_targets)
+    for mod in enabled_bsw:
+        mod_doc_target = build_docs(
+            env,
+            cfg,
+            enabled_modules=[mod],
+            target_name=f'doc.{mod.name}',
+            include_site=False,
+        )
+        env.Alias(f'doc:{mod.name}', mod_doc_target)
+    env.Alias('doc-clean', [], Delete(cfg.docs.output_dir))
+
+# ── 10. 复合别名：scons all = gen + 编译 + doc ────────────
+env.Alias('all', codegen_targets + (all_objects or []) + (doc_targets if cfg.docs.enabled else []))

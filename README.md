@@ -1,5 +1,7 @@
 # OpenAutosar
 
+[![Build Validation](https://github.com/slg189/OpenAutosar/actions/workflows/build-validation.yml/badge.svg)](https://github.com/slg189/OpenAutosar/actions/workflows/build-validation.yml)
+
 OpenAutosar 是一个 **AUTOSAR Classic Platform** 嵌入式工程项目框架，面向
 Infineon AURIX TC3xx (TC387 / TC367) 平台，覆盖从 MCAL、复杂驱动 (CDD)、
 BSW、组件到上层应用 (ASW) 的完整分层结构，并集成构建 (SCons)、配置

@@ -1,0 +1,54 @@
+name: Build Validation
+
+# 构建门禁 (M1): host gcc 真实编译源码模块 (第一道闸, 无需 TriCore 工具链)
+# 另含: 配置/计划静态校验 + 目标(TriCore)构建图 dry-run。
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+# 同一分支新推送时取消旧运行, 省额度
+concurrency:
+  group: build-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  host-gcc-compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install build deps (scons + pyyaml)
+        run: pip install -r requirements.txt
+
+      - name: Toolchain info
+        run: |
+          gcc --version | head -1
+          scons --version | head -2
+
+      - name: Config + plan sanity (scons list)
+        run: scons -Q list TOOLCHAIN=gcc PLATFORM=host
+
+      - name: Host gcc compile (first gate)
+        run: scons -Q compile TOOLCHAIN=gcc PLATFORM=host
+
+      - name: Target build-graph (dry-run, stub TriCore toolchain)
+        run: |
+          mkdir -p "$RUNNER_TEMP/tcbin"
+          for t in gcc ar ranlib objcopy objdump size; do
+            printf '#!/bin/sh\nexit 0\n' > "$RUNNER_TEMP/tcbin/tricore-$t"
+            chmod +x "$RUNNER_TEMP/tcbin/tricore-$t"
+          done
+          export PATH="$RUNNER_TEMP/tcbin:$PATH"
+          export HIGHTEC_BIN="$RUNNER_TEMP/tcbin"
+          scons -n -Q

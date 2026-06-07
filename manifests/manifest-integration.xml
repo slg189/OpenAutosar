@@ -14,5 +14,5 @@
   <project name="asw_libs_Demo_Tc387.git"  path="ASW_Libs"/>
   <project name="cdd_libs_Demo_Tc387.git"  path="CDD_Libs"/>
   <project name="bsw_libs_Demo_Tc387.git"  path="BSW_Libs"/>
-  <project name="mcal_libs_Demo_Tc387.git" path="MCAL_Libs"/>
+  <project name="MCAL_Demo_Tc387.git" path="MCAL_Libs"/>
 </manifest>

@@ -14,17 +14,17 @@
   "testSuites": [
     {
       "name": "mcal_smoke",
-      "path": "Test/ut/MCAL",
+      "path": "Projects/Demo_Tc387/Test/ut/MCAL",
       "tags": ["smoke", "mcal"]
     },
     {
       "name": "cdd_integration",
-      "path": "Test/Projects/CDD",
+      "path": "Projects/Demo_Tc387/Test/Projects/CDD",
       "tags": ["integration", "cdd"]
     }
   ],
   "report": {
     "format": "junit",
-    "output": "reports/integration_results.xml"
+    "output": "Projects/Demo_Tc387/Reports/integration_results.xml"
   }
 }

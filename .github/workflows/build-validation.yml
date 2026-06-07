@@ -1,0 +1,94 @@
+name: Build Validation
+
+# 构建门禁 (多项目矩阵):
+#   discover -> 发现所有 Projects/*/build.yaml
+#   build    -> 每个项目: 配置校验(scons list) + host gcc 编译(-Werror, 第一道闸) + 目标构建图 dry-run
+#   check    -> 每个项目: scons check = cppcheck 真实bug门禁 + MISRA(资讯) + GoogleTest 单元测试
+# 目标 ELF + QEMU 集成测试 (第二道闸) 见 integration-qemu.yml (自托管 TriCore runner)。
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.find.outputs.projects }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: find
+        run: |
+          projs=$(ls -d Projects/*/build.yaml 2>/dev/null \
+                  | sed 's#^Projects/##; s#/build.yaml$##' \
+                  | jq -R -s -c 'split("\n") | map(select(length>0))')
+          echo "projects=$projs" >> "$GITHUB_OUTPUT"
+          echo "matrix projects: $projs"
+
+  build:
+    needs: discover
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJSON(needs.discover.outputs.projects) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          cache: pip
+          cache-dependency-path: Tools/requirements.txt
+      - run: pip install -r Tools/requirements.txt
+      - name: Toolchain info
+        run: |
+          gcc --version | head -1
+          scons --version | head -1
+      - name: Config + plan sanity (scons list)
+        run: scons -Q list PROJECT=Projects/${{ matrix.project }} TOOLCHAIN=gcc PLATFORM=host
+      - name: Host gcc compile (first gate, -Werror)
+        run: scons -Q compile PROJECT=Projects/${{ matrix.project }} TOOLCHAIN=gcc PLATFORM=host STRICT=1
+      - name: Target build-graph (dry-run, stub TriCore toolchain)
+        run: |
+          mkdir -p "$RUNNER_TEMP/tcbin"
+          for t in gcc ar ranlib objcopy objdump size; do
+            printf '#!/bin/sh\nexit 0\n' > "$RUNNER_TEMP/tcbin/tricore-$t"
+            chmod +x "$RUNNER_TEMP/tcbin/tricore-$t"
+          done
+          export PATH="$RUNNER_TEMP/tcbin:$PATH"
+          export HIGHTEC_BIN="$RUNNER_TEMP/tcbin"
+          scons -n -Q PROJECT=Projects/${{ matrix.project }}
+
+  check:
+    needs: discover
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJSON(needs.discover.outputs.projects) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: 安装 cppcheck
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq cppcheck
+      - run: pip install -r Tools/requirements.txt
+      - name: scons check (cppcheck/MISRA 门禁 + GoogleTest 单测)
+        run: scons -Q check PROJECT=Projects/${{ matrix.project }} TOOLCHAIN=gcc PLATFORM=host
+      - name: 归档报告 (gtest + misra)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-report-${{ matrix.project }}
+          path: |
+            Projects/${{ matrix.project }}/Reports/gtest_results.xml
+            Projects/${{ matrix.project }}/Reports/misra.xml
+          if-no-files-found: ignore

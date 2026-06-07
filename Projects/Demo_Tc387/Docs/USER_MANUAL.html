@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAutosar · 用户手册</title>
+<style>
+  :root{--bg:#0f172a;--panel:#1e293b;--panel2:#273449;--accent:#38bdf8;
+    --accent2:#34d399;--text:#e2e8f0;--muted:#94a3b8;--border:#334155;
+    --code:#0b1220;--warn:#fbbf24;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.65}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  header{background:linear-gradient(120deg,#0ea5e9,#34d399);padding:42px 24px;
+    text-align:center;color:#021018}
+  header h1{margin:0;font-size:2rem}header p{margin:8px 0 0;opacity:.9}
+  .layout{display:flex;max-width:1180px;margin:0 auto}
+  nav{position:sticky;top:0;align-self:flex-start;width:250px;padding:24px 12px;
+    height:100vh;overflow:auto;border-right:1px solid var(--border);font-size:.9rem}
+  nav h3{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;margin:18px 8px 6px}
+  nav a{display:block;padding:5px 10px;border-radius:6px;color:var(--text)}
+  nav a:hover{background:var(--panel2)}
+  main{flex:1;padding:30px 36px;min-width:0}
+  section{margin-bottom:42px;scroll-margin-top:20px}
+  h2{font-size:1.5rem;border-left:4px solid var(--accent);padding-left:12px;margin-top:0}
+  h3{color:var(--accent2);margin-top:26px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+  th,td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--accent)}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  code{background:var(--code);padding:2px 6px;border-radius:4px;
+    font-family:"JetBrains Mono",Consolas,monospace;font-size:.85em;color:#7dd3fc}
+  pre{background:var(--code);border:1px solid var(--border);border-radius:8px;padding:16px;overflow:auto}
+  pre code{background:none;padding:0;color:#cbd5e1}
+  .tree{font-family:"JetBrains Mono",Consolas,monospace;font-size:.83rem;
+    background:var(--code);border:1px solid var(--border);border-radius:8px;
+    padding:18px;overflow:auto;white-space:pre;line-height:1.5}
+  .tree .dir{color:#7dd3fc}.tree .note{color:var(--muted)}.tree .star{color:#fcd34d}
+  .callout{background:var(--panel);border-left:4px solid var(--warn);padding:12px 16px;border-radius:6px;margin:14px 0}
+  .tip{background:var(--panel);border-left:4px solid var(--accent2);padding:12px 16px;border-radius:6px;margin:14px 0}
+  .ok{color:#6ee7b7;font-weight:600}.no{color:#fca5a5;font-weight:600}
+  .badge{display:inline-block;background:var(--panel2);border:1px solid var(--border);
+    border-radius:999px;padding:2px 12px;font-size:.78rem;margin:2px}
+  .step{counter-reset:none;padding-left:0}
+  footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid var(--border)}
+  @media(max-width:880px){nav{display:none}main{padding:20px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>OpenAutosar 用户手册</h1>
+  <p>AUTOSAR Classic · Infineon AURIX TC3xx · v3 构建框架（YAML 驱动）</p>
+  <div>
+    <span class="badge">目录 / 环境 / 功能 / 加删模块 / 命令</span>
+    <span class="badge">面向各层工程师与集成人员</span>
+  </div>
+</header>
+
+<div class="layout">
+<nav>
+  <h3>目录</h3>
+  <a href="index.html">← 框架总览 (index)</a>
+  <a href="build_and_security.html">信息安全/灵活编译</a>
+  <a href="repo_structure.html">Git 多子库划分</a>
+  <hr style="border-color:var(--border)">
+  <a href="#intro">1 这是什么</a>
+  <a href="#concepts">2 核心概念</a>
+  <a href="#dirs">3 目录介绍</a>
+  <a href="#env">4 PC 环境搭建与检查</a>
+  <a href="#features">5 功能介绍</a>
+  <a href="#buildyaml">6 build.yaml 配置详解</a>
+  <a href="#addremove">7 模块的添加与删除</a>
+  <a href="#commands">8 命令大全（作用+用法）</a>
+  <a href="#workflows">9 典型工作流</a>
+  <a href="#ci">10 CI 与两道质量闸</a>
+  <a href="#faq">11 故障排查 / FAQ</a>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>1 · 这是什么</h2>
+  <p>OpenAutosar 是一个 <strong>AUTOSAR Classic Platform</strong> 嵌入式工程框架，面向 Infineon AURIX TC3xx（TC387/TC367），
+  覆盖 MCAL、复杂驱动 (CDD)、BSW、组件 (Components)、上层应用 (ASW) 五层，并提供一套 <strong>v3 构建框架</strong>：
+  用户主要改一份 <code>Projects/&lt;项目&gt;/build.yaml</code> 即可完成 <em>编译 / 代码生成 / 文档 / 静态检查 / 单元测试 / 远程构建</em>。</p>
+  <div class="tip"><strong>一句话上手：</strong>
+  <code>python Tools/setup_env.py</code>（搭环境）→ 激活 venv → <code>scons compile TOOLCHAIN=gcc PLATFORM=host</code>（无需 TriCore 工具链先验证）。</div>
+</section>
+
+<section id="concepts">
+  <h2>2 · 核心概念（先懂这几个词）</h2>
+  <table>
+    <tr><th>概念</th><th>含义</th></tr>
+    <tr><td><strong>层 (layer)</strong></td><td>五层：<code>MCAL</code> / <code>CDD</code> / <code>ASW</code> / <code>BSW</code> / <code>Components</code></td></tr>
+    <tr><td><strong>模块 (module)</strong></td><td>层下的一个功能单元 = 一个目录（含 <code>inc/</code> 头文件，可含 <code>src/</code> 源码）。如 <code>MCAL/Tc387/Adc</code>、<code>BSW/Com</code></td></tr>
+    <tr><td><strong>mode: source / lib</strong></td><td>该模块<strong>从源码编译</strong>（source）还是<strong>链接预编译库</strong>（lib，取自 <code>&lt;层&gt;_Libs/</code> 的 <code>.a</code>）</td></tr>
+    <tr><td><strong>visibility: auto</strong></td><td>未显式写 mode 时，框架按“工作区是否真有该模块源码”自动选 source/lib（信息安全分级用）</td></tr>
+    <tr><td><strong>工具链 / 平台</strong></td><td><code>TOOLCHAIN</code>（hightec / tasking / gcc…）+ <code>PLATFORM</code>（AURIX2G / host…），可插拔适配器</td></tr>
+    <tr><td><strong>*_Libs/</strong></td><td>各层的二进制释放区（<code>ASW_Libs/CDD_Libs/BSW_Libs/MCAL_Libs</code>），存 <code>.a</code>+头文件，供 lib 模式链接 / 信息安全下发</td></tr>
+    <tr><td><strong>Integration</strong></td><td>工程下的集成/胶水层（<code>main.c</code>、RTE 连接、EcuM 回调），由基础工程师维护</td></tr>
+  </table>
+</section>
+
+<section id="dirs">
+  <h2>3 · 目录介绍</h2>
+  <h3>3.1 仓库顶层</h3>
+<div class="tree"><span class="dir">OpenAutosar/</span>
+├── <span class="dir">ASW/  CDD/  MCAL/  BSW/  Components/</span>   <span class="note"># 五层【源码】(每模块 inc/ + src/; MCAL 按芯片 Tc387/Tc367)</span>
+├── <span class="dir">ASW_Libs/ CDD_Libs/ BSW_Libs/ MCAL_Libs/</span>     <span class="note"># 五层【二进制释放区】(.a + inc, lib 模式链接它)</span>
+├── <span class="dir">Projects/</span>            <span class="note"># 各工程 (Demo_Tc387: build.yaml + 配置/产物)</span>
+├── <span class="dir">Tools/</span>               <span class="note"># 构建框架 + 脚本 + 环境工具 (见 3.3)</span>
+├── <span class="dir">manifests/</span>           <span class="note"># google-repo 多仓组装清单 (信息安全三视图)</span>
+├── <span class="dir">SConstruct</span>           <span class="note"># ★ v3 构建顶层入口 (薄, 仓库根运行 scons)</span>
+├── misra.json            <span class="note"># MISRA/cppcheck 范围与豁免</span>
+├── repo_metasar.bat      <span class="note"># google-repo 多仓同步 (Linux 可直接用 repo)</span>
+└── TestPlatform_UintTest_QEMU_Test.json  <span class="note"># QEMU 测试平台配置</span></div>
+
+  <h3>3.2 五层与对应释放区（source ↔ lib）</h3>
+  <table>
+    <tr><th>层（源码）</th><th>当前模块</th><th>释放区（二进制）</th></tr>
+    <tr><td><code>MCAL/&lt;芯片&gt;/</code></td><td>Tc387: Adc, Can, Port · Tc367: Adc, Can</td><td><code>MCAL_Libs/</code>（单芯片，按模块）</td></tr>
+    <tr><td><code>CDD/</code></td><td>CddPwm, CddMotor（src+gen）, CddSent（lib）</td><td><code>CDD_Libs/</code></td></tr>
+    <tr><td><code>ASW/</code></td><td>VehicleControl（src）, EnergyManagement（lib）</td><td><code>ASW_Libs/</code></td></tr>
+    <tr><td><code>BSW/</code></td><td>Os, Com, Crc（均源码）；<code>BSW/inc/</code> 公共头</td><td><code>BSW_Libs/</code></td></tr>
+    <tr><td><code>Components/</code></td><td>Common, Mcu/Sbm（启动代码）</td><td>（恒源码，无独立释放区）</td></tr>
+  </table>
+  <p class="note">约定：模块目录下 <code>inc/</code>=对外头文件、<code>src/</code>=源码、<code>gen/</code>=配置/生成代码；层根 <code>&lt;层&gt;/inc/</code>=该层公共头（如 <code>ASW/inc/Rte_Type.h</code>、<code>MCAL/inc/Std_Types.h</code>、<code>BSW/inc/EcuM.h</code>）。</p>
+
+  <h3>3.3 Tools/（构建框架与工具，已尽量自洽）</h3>
+<div class="tree"><span class="dir">Tools/</span>
+├── <span class="dir">site_scons/</span>          <span class="star"># ★ v3 框架 Python 包 (维护者改这里)</span>
+│   ├── config_loader.py    <span class="note"># 解析+校验 build.yaml (schema 3.0)</span>
+│   ├── workspace.py        <span class="note"># 模块自动发现 + 源码可见性</span>
+│   ├── resolver.py         <span class="note"># 逐模块决策 source/lib (+ *_Libs)</span>
+│   ├── module_builder.py   <span class="note"># 按约定编译 (无需每模块脚本)</span>
+│   ├── report.py           <span class="note"># scons list / explain 输出</span>
+│   ├── toolchain/          <span class="note"># gcc, hightec, tasking, arm_gcc, arm_ghs</span>
+│   ├── platform/           <span class="note"># aurix2g, host</span>
+│   └── codegen/ docgen/ remote/  <span class="note"># 代码生成 / 文档 / 远程 插件</span>
+├── <span class="dir">scripts/</span>             <span class="note"># 跨平台命令脚本</span>
+│   ├── new_module.py       <span class="note"># 生成模块目录骨架</span>
+│   ├── run_gtest.py        <span class="note"># GoogleTest 单元测试</span>
+│   ├── run_check.py        <span class="note"># cppcheck/MISRA + 单测 (scons check 调它)</span>
+│   ├── run_integration_test.py  <span class="note"># QEMU 集成测试</span>
+│   └── remote_build.py     <span class="note"># 远程构建</span>
+├── setup_env.py            <span class="note"># ★ 一键环境: 校验+下载工具+建隔离 venv</span>
+├── fetch_tools.py          <span class="note"># 下载固定版 cmake/googletest 到 .toolcache</span>
+├── requirements.txt        <span class="note"># Python 依赖(固定版本): scons/pyyaml</span>
+├── ENVIRONMENT.md          <span class="note"># 环境说明 (依赖清单/版本/离线)</span>
+├── .venv/  .toolcache/     <span class="note"># 隔离 venv + 下载的工具 (均 gitignore)</span>
+└── A2L/ Compiler/ Doxygen/ Git/  <span class="note"># A2L/工具链封装/Doxygen 模板/多仓脚本</span></div>
+
+  <h3>3.4 工程目录 <code>Projects/Demo_Tc387/</code></h3>
+  <table>
+    <tr><th>子项</th><th>说明</th></tr>
+    <tr><td><code>build.yaml</code></td><td><strong>★ 用户主配置</strong>（schema 3.0，layers/mode 等）</td></tr>
+    <tr><td><code>SConscript</code></td><td>v3 项目编排器（按 build.yaml 构建；一般不用改）</td></tr>
+    <tr><td><code>Cfg/{MCAL,CDD,BSW}/</code></td><td>配置工具工程（EB tresos / ETAS 的 ECUC <code>*.arxml</code>）</td></tr>
+    <tr><td><code>Gen/{MCAL,CDD,BSW}/</code></td><td>配置工具生成的代码（构建产物，已 gitignore）</td></tr>
+    <tr><td><code>Ld/</code></td><td>链接脚本（<code>build.yaml.linker.script</code> 指定）</td></tr>
+    <tr><td><code>Integration/</code></td><td>集成层 <code>inc/ + src/</code>（main、Rte、EcuM 回调）</td></tr>
+    <tr><td><code>Obj/ Out/</code></td><td>编译 <code>.o</code> / 链接 <code>.elf .hex .map</code>（产物，gitignore）</td></tr>
+    <tr><td><code>Test/</code></td><td><code>ut/</code> 单元测试 · <code>Projects/</code> QEMU · <code>QAC/</code> 静态分析</td></tr>
+    <tr><td><code>Reports/</code></td><td>测试/检查报告（<code>gtest_results.xml</code> / <code>misra.xml</code> 等）</td></tr>
+    <tr><td><code>Docs/</code></td><td>本工程文档（含本手册、<code>build-system/</code> 设计文档）</td></tr>
+  </table>
+</section>
+
+<section id="env">
+  <h2>4 · PC 环境搭建与检查</h2>
+  <p>目标：各机器用<strong>同一份固定版本</strong>的工具，避免“在我电脑上能跑”。详见 <code>Tools/ENVIRONMENT.md</code>。</p>
+
+  <h3>4.1 一键搭建</h3>
+<pre><code># 1) 一条命令: 校验外部工具 + 下载固定工具(cmake/googletest) + 建隔离 venv + 装 pinned 依赖
+python Tools/setup_env.py
+
+# 2) 激活隔离环境 (与系统 Python/SCons 隔离)
+source Tools/.venv/bin/activate      # Windows: Tools\.venv\Scripts\activate
+#   或不激活直接用:  Tools/.venv/bin/scons
+
+# 3) 验证 (无需 TriCore 工具链, 用系统 gcc 真编一遍)
+scons compile TOOLCHAIN=gcc PLATFORM=host</code></pre>
+
+  <h3>4.2 只检查环境（不安装）</h3>
+<pre><code>python Tools/setup_env.py --check     # 列出必需/可选工具是否齐备 + cmake>=3.16 版本硬校验
+python Tools/setup_env.py --no-fetch  # 只建 venv, 不下载工具
+python Tools/fetch_tools.py           # 单独下载固定版 cmake/googletest 到 Tools/.toolcache
+python Tools/fetch_tools.py --print-env  # 打印需要的 PATH / GOOGLETEST_DIR</code></pre>
+
+  <h3>4.3 依赖分三类</h3>
+  <table>
+    <tr><th>类别</th><th>项</th><th>来源 / 处理</th></tr>
+    <tr><td>Python（固定+隔离）</td><td><code>scons==4.10.1</code>、<code>PyYAML==6.0.1</code></td><td><code>Tools/requirements.txt</code> → <code>Tools/.venv</code></td></tr>
+    <tr><td>下载固定到仓库</td><td>CMake 3.28.6、GoogleTest v1.14.0</td><td><code>fetch_tools.py</code> → <code>Tools/.toolcache/</code>（gitignore；<code>run_gtest</code> 自动用，可离线）</td></tr>
+    <tr><td>系统工具</td><td><code class="ok">gcc/g++</code>、<code class="ok">cmake</code>、<code class="ok">cppcheck</code>、<code class="ok">git</code>（必需）；doxygen/rsync/ssh（可选）</td><td>系统装；cppcheck Linux 用 <code>apt install cppcheck</code></td></tr>
+    <tr><td>目标工具链（不入库）</td><td><code class="no">tricore-gcc</code>(HighTec)、TASKING、<code class="no">qemu-system-tricore</code></td><td>厂商授权/自建；装好放 PATH（或设 <code>HIGHTEC_BIN</code>/<code>TASKING_BIN</code>/<code>QEMU_TRICORE</code>）</td></tr>
+  </table>
+  <div class="callout"><strong>无 TriCore 工具链也能干活：</strong>host gcc 可做“第一道闸”（语法/头文件/框架连通），单元测试也在 host 跑。只有“生成目标 ELF + QEMU 集成测试”才需 TriCore 工具链。</div>
+</section>
+
+<section id="features">
+  <h2>5 · 功能介绍</h2>
+  <table>
+    <tr><th>功能</th><th>命令</th><th>说明</th></tr>
+    <tr><td>构建固件</td><td><code>scons</code></td><td>按 build.yaml 编译+链接 → <code>Out/Demo_Tc387.elf</code>（需 TriCore 工具链）</td></tr>
+    <tr><td>host 编译验证</td><td><code>scons compile TOOLCHAIN=gcc PLATFORM=host</code></td><td>系统 gcc 只编不链，验证源码/include（不需 TriCore）</td></tr>
+    <tr><td>查看构建计划</td><td><code>scons list</code></td><td>每模块 source/lib + 来源；并提示工作区里未声明的模块</td></tr>
+    <tr><td>解释单模块</td><td><code>scons explain:Adc</code></td><td>为何 source/lib、include/lib 路径、生效 flag</td></tr>
+    <tr><td>代码生成</td><td><code>scons gen</code> / <code>gen:&lt;名&gt;</code></td><td>编译前置：调 Vector/ETAS/EB/Turing/custom 生成器</td></tr>
+    <tr><td>文档生成</td><td><code>scons doc</code></td><td>接口抽取 + 依赖图 + 索引（可选 Doxygen）→ <code>Docs/api/</code></td></tr>
+    <tr><td>释放库</td><td><code>scons release</code></td><td>源码模块编成 <code>.a</code>+头文件 → 各 <code>*_Libs/</code></td></tr>
+    <tr><td>静态检查+单测</td><td><code>scons check</code></td><td>cppcheck 真实 bug 门禁 + MISRA(资讯) + GoogleTest 单测</td></tr>
+    <tr><td>远程构建</td><td><code>scons --remote=&lt;服务器&gt;</code></td><td>rsync 同步 → 远程 scons → 回传产物</td></tr>
+  </table>
+  <h3>5.1 信息安全分级（source/lib 自动决策）</h3>
+  <p>不同角色用不同 manifest 签出：能看到源码的层 → 编译；看不到的 → 自动链接 <code>*_Libs/</code> 的 <code>.a</code>。
+  在 <code>build.yaml</code> 里 <code>defaults.visibility: auto</code> 即开启此自动机；也可对单模块写死 <code>mode: source|lib</code>。</p>
+  <h3>5.2 灵活编译</h3>
+  <p>每模块可独立配 <code>mode</code>、<code>enabled</code>、<code>cflags</code>、<code>extra_defines</code>、<code>extra_includes</code>；命令行可临时过滤
+  <code>only=</code> / <code>skip=</code> / <code>layers=</code>，并用 <code>TOOLCHAIN=</code>/<code>PLATFORM=</code>/<code>BUILD_TYPE=</code>/<code>STRICT=1</code> 覆盖。</p>
+</section>
+
+<section id="buildyaml">
+  <h2>6 · build.yaml 配置详解（用户主要改这份）</h2>
+<pre><code>schema_version: "3.0"
+project: { name: Demo, derivative: Tc387 }      # 产物名 = Demo_Tc387(.elf)
+target:
+  toolchain: hightec        # 目标工具链 (可命令行 TOOLCHAIN= 覆盖)
+  platform:  AURIX2G        # 平台
+  build_type: Release       # Debug | Release
+defaults:
+  visibility: auto          # auto: 按工作区可见性自动 source/lib
+  chip: Tc387               # MCAL 等按芯片的层
+
+global_defines:  [AUTOSAR_CP, PROJECT_Demo_Tc387]
+global_includes: ["${MCAL_DIR}/inc", "${COMP_DIR}/Common/inc", "${PROJECT_DIR}/Gen"]
+
+layers:                     # ★ 显式列要构建的模块 (每层一段)
+  MCAL:
+    Adc:  { mode: source, cflags: [-O3] }   # 源码编译, 加模块级 flag
+    Port: { mode: source }
+    Can:  { mode: lib }                     # 链接 MCAL_Libs/Can/libCan.a
+  CDD:
+    CddPwm:   { mode: source }
+    CddSent:  { mode: lib }
+  ASW:
+    VehicleControl:   { mode: source }
+    EnergyManagement: { mode: lib }
+  BSW:
+    Os:  { mode: source, lib_name: libRtaOs }   # 释放时 .a 命名为 libRtaOs.a
+    Com: { mode: source }
+    Crc: { mode: source }
+  Components:
+    Common:  { mode: source }
+    Mcu/Sbm: { mode: source }               # 嵌套路径模块
+
+integration: { enabled: true, dir: Integration }
+linker:  { script: "", libraries: [], extra_flags: [] }   # 有链接脚本填 Ld/Demo_Tc387.ld
+output:  { formats: [elf, hex, map], size_report: true, compile_commands_json: true }
+codegen: { enabled: true, generators: [ { name: demo_echo, type: custom, cmd: 'echo gen' } ] }
+docs:    { enabled: true, output_dir: "${PROJECT_DIR}/Docs/api" }
+remote:  { enabled: false }</code></pre>
+  <table>
+    <tr><th>模块字段</th><th>作用</th></tr>
+    <tr><td><code>mode: source|lib</code></td><td>从源码编译 / 链接预编译库；省略则按 <code>defaults.visibility</code></td></tr>
+    <tr><td><code>enabled: false</code></td><td>本次不构建该模块</td></tr>
+    <tr><td><code>cflags: [..]</code></td><td>模块级编译选项（追加）</td></tr>
+    <tr><td><code>extra_defines / extra_includes</code></td><td>模块级宏 / 头文件路径</td></tr>
+    <tr><td><code>lib_name: libXxx</code></td><td>覆盖 release/链接时的 <code>.a</code> 基名（默认 <code>lib&lt;模块&gt;</code>）</td></tr>
+  </table>
+</section>
+
+<section id="addremove">
+  <h2>7 · 模块的添加与删除</h2>
+
+  <h3>7.1 添加一个模块（源码模块）</h3>
+  <p><strong>两步：建目录骨架 → 在 build.yaml 声明。</strong>（光建目录只会被 <code>scons list</code> “发现并提示”，<u>声明后才会构建</u>。）</p>
+<pre><code># ① 生成目录骨架 (inc/&lt;名&gt;.h + src/&lt;名&gt;.c 桩)
+python Tools/scripts/new_module.py --bsw CanIf          # BSW/CanIf/
+python Tools/scripts/new_module.py --mcal Tc387/Eth     # MCAL 带芯片
+python Tools/scripts/new_module.py --comp Mcu/Wdg       # Components 嵌套
+#   (也可手动建目录, 放好 inc/ 与 src/)
+
+# ② 在 Projects/Demo_Tc387/build.yaml 的 layers 下加一行:
+#    BSW:
+#      CanIf: { mode: source, extra_includes: ["${BSW_DIR}/Can/inc"] }
+
+# ③ 确认并构建
+scons list                                  # 应能看到 CanIf 在计划里
+scons compile TOOLCHAIN=gcc PLATFORM=host   # 或 scons (目标工具链)</code></pre>
+
+  <h3>7.2 添加一个“预编译库”模块（lib 模式）</h3>
+  <p>把交付的 <code>.a</code> + 头文件放到对应释放区，再在 build.yaml 写 <code>mode: lib</code>：</p>
+<pre><code># 例: 加一个只给 .a 的 CDD 模块 CddLin
+#   CDD_Libs/CddLin/libCddLin.a   +   CDD_Libs/CddLin/inc/CddLin.h
+# build.yaml:
+#   CDD:
+#     CddLin: { mode: lib }
+scons explain:CddLin        # 确认解析到 CDD_Libs/CddLin/libCddLin.a</code></pre>
+
+  <h3>7.3 删除 / 停用一个模块</h3>
+  <table>
+    <tr><th>目的</th><th>做法</th></tr>
+    <tr><td>临时不编（命令行）</td><td><code>scons skip=CddMotor</code>（或只编子集 <code>only=</code>/<code>layers=</code>）</td></tr>
+    <tr><td>本工程长期停用</td><td>build.yaml 里该模块改 <code>{ enabled: false }</code>，或删除该模块条目</td></tr>
+    <tr><td>彻底移除</td><td>删除 build.yaml 条目 <strong>且</strong> 删除模块目录（<code>git rm -r &lt;层&gt;/&lt;模块&gt;</code>）；如有释放库再删 <code>&lt;层&gt;_Libs/&lt;模块&gt;</code></td></tr>
+  </table>
+  <div class="callout"><strong>注意：</strong>只删 build.yaml 条目而留着目录 → 该模块仍在 <code>scons list</code> 的“未声明”提示里，但不会被构建。若删了目录却忘了删 build.yaml 条目 → <code>mode: source</code> 会因找不到源码而<strong>明确报错</strong>（fail-fast）。</div>
+
+  <h3>7.4 source ↔ lib 互换</h3>
+  <p>改 build.yaml 里该模块的 <code>mode</code> 即可：<code>source</code>（编译本层源码）↔ <code>lib</code>（链接 <code>&lt;层&gt;_Libs</code> 的 <code>.a</code>）。
+  用 <code>scons release</code> 可把当前源码模块编成 <code>.a</code> 回灌到 <code>*_Libs/</code>，供下游以 lib 集成。</p>
+</section>
+
+<section id="commands">
+  <h2>8 · 命令大全（作用 + 用法）</h2>
+  <p>除特别说明，均在<strong>仓库根</strong>、激活 venv 后运行。</p>
+
+  <h3>8.1 scons 目标（targets）</h3>
+  <table>
+    <tr><th>命令</th><th>作用</th></tr>
+    <tr><td><code>scons</code></td><td>构建默认项目（编译+链接 ELF；默认 hightec/AURIX2G，需 TriCore 工具链）</td></tr>
+    <tr><td><code>scons compile</code></td><td>只编译源码模块为 <code>.o</code>，不链接（常配 <code>TOOLCHAIN=gcc PLATFORM=host</code> 做验证）</td></tr>
+    <tr><td><code>scons list</code></td><td>打印构建计划（模块 / mode / source或*_Libs 来源）+ 未声明模块提示</td></tr>
+    <tr><td><code>scons explain:&lt;模块&gt;</code></td><td>解释某模块为何 source/lib、include/lib 路径（如 <code>scons explain:Adc</code>）</td></tr>
+    <tr><td><code>scons gen</code> / <code>scons gen:&lt;名&gt;</code></td><td>运行（指定）代码生成器</td></tr>
+    <tr><td><code>scons doc</code> / <code>doc-clean</code></td><td>生成 / 清理 API 文档</td></tr>
+    <tr><td><code>scons release</code></td><td>源码模块编译并释放 <code>.a</code>+inc 到 <code>*_Libs/</code></td></tr>
+    <tr><td><code>scons check</code></td><td>cppcheck 真实bug门禁 + MISRA(资讯→<code>Reports/misra.xml</code>) + GoogleTest 单测</td></tr>
+  </table>
+
+  <h3>8.2 命令行变量（VARIABLE=value）与过滤</h3>
+  <table>
+    <tr><th>变量</th><th>作用</th><th>示例</th></tr>
+    <tr><td><code>PROJECT=</code></td><td>选工程（默认 Projects/Demo_Tc387）</td><td><code>scons PROJECT=Projects/Demo_Tc387</code></td></tr>
+    <tr><td><code>TOOLCHAIN=</code> / <code>PLATFORM=</code></td><td>覆盖目标工具链/平台</td><td><code>scons TOOLCHAIN=gcc PLATFORM=host</code></td></tr>
+    <tr><td><code>BUILD_TYPE=</code></td><td>Debug / Release</td><td><code>scons BUILD_TYPE=Debug</code></td></tr>
+    <tr><td><code>STRICT=1</code></td><td>host gcc 加 <code>-Werror</code>（告警即错）</td><td><code>scons compile TOOLCHAIN=gcc PLATFORM=host STRICT=1</code></td></tr>
+    <tr><td><code>only=A,B</code></td><td>仅构建这些模块（名或 leaf）</td><td><code>scons only=Adc,CddPwm</code></td></tr>
+    <tr><td><code>skip=X</code></td><td>跳过这些模块</td><td><code>scons skip=EnergyManagement</code></td></tr>
+    <tr><td><code>layers=MCAL,ASW</code></td><td>仅构建这些层</td><td><code>scons layers=MCAL</code></td></tr>
+    <tr><td><code>CONFIG=</code></td><td>换配置文件名（默认 build.yaml）</td><td><code>scons CONFIG=build.debug.yaml</code></td></tr>
+    <tr><td><code>--remote=</code> / <code>--no-pull</code> / <code>--skip-gen</code></td><td>远程构建 / 不回传 / 跳过代码生成</td><td><code>scons --remote=auto</code></td></tr>
+  </table>
+
+  <h3>8.3 脚本命令（python Tools/...）</h3>
+  <table>
+    <tr><th>脚本</th><th>作用 / 常用参数</th></tr>
+    <tr><td><code>Tools/setup_env.py</code></td><td>一键环境：<code>--check</code>(只检查) <code>--force</code>(重建venv) <code>--no-fetch</code>(不下工具)</td></tr>
+    <tr><td><code>Tools/fetch_tools.py</code></td><td>下载固定 cmake/googletest 到 <code>.toolcache</code>：<code>--force</code> <code>--print-env</code></td></tr>
+    <tr><td><code>Tools/scripts/new_module.py</code></td><td>建模块骨架：<code>--bsw/--mcal/--cdd/--asw/--comp &lt;名…&gt;</code> <code>--force</code></td></tr>
+    <tr><td><code>Tools/scripts/run_gtest.py</code></td><td>单元测试：<code>--project &lt;P&gt;</code> <code>--module &lt;名&gt;</code>（按名过滤）</td></tr>
+    <tr><td><code>Tools/scripts/run_check.py</code></td><td><code>scons check</code> 的实现：<code>--project</code> <code>--strict-misra</code>(MISRA也门禁) <code>--no-tests</code></td></tr>
+    <tr><td><code>Tools/scripts/run_integration_test.py</code></td><td>构建 ELF + QEMU 集成测试：<code>--project &lt;P&gt;</code>（需 TriCore+qemu）</td></tr>
+    <tr><td><code>Tools/scripts/remote_build.py</code></td><td>独立远程构建：<code>--server</code> / <code>--auto</code> / <code>--extra "BUILD_TYPE=Release"</code></td></tr>
+  </table>
+</section>
+
+<section id="workflows">
+  <h2>9 · 典型工作流</h2>
+  <h3>9.1 新机器首次上手</h3>
+<pre><code>git clone &lt;repo&gt; &amp;&amp; cd OpenAutosar
+python Tools/setup_env.py                      # 环境 + 工具 + venv
+source Tools/.venv/bin/activate
+scons list                                     # 看构建计划
+scons compile TOOLCHAIN=gcc PLATFORM=host      # host 验证 (绿表示源码/框架 OK)
+scons check                                    # 静态检查 + 单测</code></pre>
+  <h3>9.2 改某模块并验证</h3>
+<pre><code>scons explain:Adc                              # 确认它怎么编
+scons compile only=Adc TOOLCHAIN=gcc PLATFORM=host   # 只编它, 快速反馈
+scons check                                    # 跑 cppcheck + 单测</code></pre>
+  <h3>9.3 出目标固件（有 TriCore 工具链）</h3>
+<pre><code>call Tools\Compiler\setup_env.bat              # 设置 tricore-gcc 环境
+scons -j8                                      # -> Projects/Demo_Tc387/Out/Demo_Tc387.elf (+hex/map)
+python Tools/scripts/run_integration_test.py   # QEMU 集成测试 (需 qemu-system-tricore)</code></pre>
+  <h3>9.4 给下游发布二进制</h3>
+<pre><code>scons release                                  # 源码模块 -> *_Libs/*.a + inc
+# 下游把对应层在 build.yaml 改 mode: lib 即可只拿二进制</code></pre>
+</section>
+
+<section id="ci">
+  <h2>10 · CI 与两道质量闸</h2>
+  <p>仓库自带 GitHub Actions（<code>.github/workflows/</code>）：</p>
+  <table>
+    <tr><th>工作流</th><th>触发</th><th>内容</th></tr>
+    <tr><td><code>build-validation.yml</code>（第一道闸）</td><td>push / PR</td><td>discover 发现所有 <code>Projects/*/build.yaml</code> → 每项目：<code>scons list</code> + host gcc <code>-Werror</code> 编译 + 目标构建图 dry-run + <code>scons check</code>（cppcheck/MISRA + 单测）</td></tr>
+    <tr><td><code>integration-qemu.yml</code>（第二道闸）</td><td>手动（workflow_dispatch）</td><td>在<strong>自托管 runner</strong>（标签 <code>tricore</code>）上构建 ELF + QEMU 集成测试；不阻塞 PR</td></tr>
+  </table>
+  <div class="tip">第一道闸不需要 TriCore 工具链（host gcc），PR 必过；第二道闸需你注册带 <code>tricore-gcc</code>+<code>qemu-system-tricore</code> 的自托管 runner 后手动触发。</div>
+</section>
+
+<section id="faq">
+  <h2>11 · 故障排查 / FAQ</h2>
+  <table>
+    <tr><th>现象</th><th>原因 / 解决</th></tr>
+    <tr><td><code>scons</code> 报找不到 <code>tricore-gcc</code></td><td>默认目标是 AURIX。验证用 <code>scons compile TOOLCHAIN=gcc PLATFORM=host</code>；出固件需装 HighTec 并 <code>setup_env.bat</code></td></tr>
+    <tr><td><code>[FATAL] ... 源码不可见且未找到释放库</code></td><td>该模块 <code>mode: source</code> 但没源码，或 <code>mode: lib</code> 但 <code>*_Libs</code> 没有 <code>.a</code>。<code>scons explain:&lt;模块&gt;</code> 看它找了哪些路径</td></tr>
+    <tr><td>新建模块没被编译</td><td>只建目录不够，要在 <code>build.yaml</code> 的 <code>layers</code> 下声明（见 §7.1）；<code>scons list</code> 会把它列在“未声明”里提示</td></tr>
+    <tr><td><code>scons --explain Adc</code> 报 no such option</td><td>正确写法是目标形式 <code>scons explain:Adc</code></td></tr>
+    <tr><td>单元测试拉不到 googletest（离线）</td><td>跑 <code>python Tools/fetch_tools.py</code> 把 googletest 下到 <code>.toolcache</code>，<code>run_gtest</code> 会自动用本地源码</td></tr>
+    <tr><td>cppcheck 未安装</td><td><code>scons check</code> 会跳过静态检查只跑单测；装：<code>apt install cppcheck</code></td></tr>
+    <tr><td>系统 Python/SCons 版本不对</td><td>用隔离 venv：<code>python Tools/setup_env.py</code> 后 <code>source Tools/.venv/bin/activate</code></td></tr>
+    <tr><td>QEMU 集成测试被跳过</td><td>缺 <code>qemu-system-tricore</code> 或 ELF（无 TriCore 工具链）→ 记 skipped，属正常；在自托管 runner 上跑</td></tr>
+  </table>
+  <div class="tip">更多：构建框架设计/迁移见 <a href="build-system/README.md">Docs/build-system/</a>；环境细节见 <a href="../../../Tools/ENVIRONMENT.md">Tools/ENVIRONMENT.md</a>；信息安全与灵活编译见 <a href="build_and_security.html">build_and_security.html</a>。</div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  OpenAutosar 用户手册 · v3 构建框架 · AURIX TC3xx · 由仓库根 <code>scons</code> 驱动
+</footer>
+</body>
+</html>

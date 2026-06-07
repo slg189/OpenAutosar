@@ -1,0 +1,14 @@
+# OpenAutosar 构建系统 Python 依赖 (固定版本, 保证跨机器一致)
+# Python >= 3.9 (实测 3.11)
+#
+# 一键搭建隔离环境:  python Tools/setup_env.py
+#   -> 创建 Tools/.venv 并装本文件 pinned 依赖, 不受系统 Python/SCons 版本影响。
+# CI 亦用本文件 (pip install -r Tools/requirements.txt)。
+#
+# 固定到实测通过的版本; 升级时改这里并重测。
+scons==4.10.1
+PyYAML==6.0.1
+
+# 可选 (当前实现未强依赖; 远程构建走系统 ssh/rsync, 文档为手写 markdown/html):
+# paramiko==3.4.0       # 远程 SSH (仅在改用 ParamikoSshRunner 时)
+# jinja2==3.1.4         # 文档模板渲染 (仅在改用模板渲染时)

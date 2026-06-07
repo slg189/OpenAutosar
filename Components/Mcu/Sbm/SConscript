@@ -1,5 +1,0 @@
-# SConscript - 启动代码模块 Sbm
-Import('env')
-env.Append(CPPPATH=[Dir('inc')])
-lib = env.StaticLibrary(target='Sbm', source=Glob('src/*.c'))
-Return('lib')

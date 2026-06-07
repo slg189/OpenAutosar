@@ -113,10 +113,11 @@ scons compile TOOLCHAIN=gcc PLATFORM=host only=Crc,Adc    # 某些模块
 ## 7. 进度勾选表
 
 - [x] M0 host-gcc 编译验证（13/13，exit 0；修 2 bug）
-- [x] M1 CI 门禁化（`.github/workflows/build-validation.yml`；push/PR 触发，~15s 绿）
+- [x] M1 CI 门禁化（`.github/workflows/build-validation.yml`；push/PR 触发）
 - [ ] M2 告警治理 + `-Werror`
 - [ ] M3 多项目/多配置矩阵
-- [ ] M4 目标工具链第二道闸（真机+QEMU）
-- [ ] M5 check/单测/MISRA 串联
+- [~] M4 第二道闸：`run_qemu.py` 已实现真实 QEMU 加载/半主机解析/JUnit（缺 qemu/ELF 记 skipped）；待 TriCore runner 真跑
+- [~] M5 **真实 GoogleTest 已接入并在 CI 跑**（FetchContent googletest，实测 `AdcTest` 1/1 通过）；`scons check`(cppcheck/MISRA) 已有入口，串联待完善
 
-> M0+M1 已实施并实测（CI 在 PR #2 上 success）；M2 起按需推进。本计划随实施滚动更新。
+> 附：构建框架已**清理未完成 adapter**，仅保留本仓相关且完整的 `toolchain={gcc,hightec}`、`platform={aurix2g,host}`。
+> 真实 gtest（CI 必过）+ 真实 qemu runner（自托管）已落地；本计划随实施滚动更新。

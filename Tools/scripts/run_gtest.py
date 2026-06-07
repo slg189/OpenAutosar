@@ -41,15 +41,17 @@ def main():
         print(f'[gtest] 未找到单元测试目录: {ut_dir}', file=sys.stderr)
         return 1
 
-    rc = run(['cmake', '-S', ut_dir, '-B', build_dir,
-              '-DCMAKE_BUILD_TYPE=Coverage', f'-DGTEST_MODULE={a.module}'])
+    rc = run(['cmake', '-S', ut_dir, '-B', build_dir, '-DCMAKE_BUILD_TYPE=Coverage'])
     if rc:
         return rc
     rc = run(['cmake', '--build', build_dir, '-j', str(os.cpu_count() or 2)])
     if rc:
         return rc
     junit = os.path.join(report_dir, 'gtest_results.xml')
-    rc = run(['ctest', '--test-dir', build_dir, '--output-on-failure', '--output-junit', junit])
+    ctest = ['ctest', '--test-dir', build_dir, '--output-on-failure', '--output-junit', junit]
+    if a.module and a.module != 'all':
+        ctest += ['-R', a.module]        # 按名字过滤 (如 --module Adc)
+    rc = run(ctest)
 
     # 覆盖率 (best-effort, 跨平台)
     if shutil.which('gcovr'):

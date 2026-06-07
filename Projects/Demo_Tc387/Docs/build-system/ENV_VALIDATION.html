@@ -72,7 +72,7 @@
 
 <section id="why">
   <h2>1 · 目的</h2>
-  <p>本仓目标芯片为 Infineon AURIX TC3xx，正式构建用 <code>hightec</code>(tricore-gcc) / <code>tasking</code> 工具链。
+  <p>本仓目标芯片为 Infineon AURIX TC3xx，正式构建用 <code>hightec</code>(GNU tricore-gcc) 工具链。
   但在没有 TriCore 工具链的开发/CI 环境里，仍希望<strong>真实验证</strong>：源码树是否能编、框架的 include 连通性是否正确。</p>
   <p>由于 v3 构建框架<strong>工具链/平台可插拔</strong>，我们新增 <code>toolchain=gcc</code> + <code>platform=host</code> 两个适配器，
   用<strong>系统 gcc 真实编译</strong>各源码模块为 <code>.o</code>（<code>scons compile</code> 目标，只编译不链接）。

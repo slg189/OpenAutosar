@@ -1,7 +1,8 @@
 name: Build Validation
 
-# 构建门禁 (M1): host gcc 真实编译源码模块 (第一道闸, 无需 TriCore 工具链)
-# 另含: 配置/计划静态校验 + 目标(TriCore)构建图 dry-run。
+# 构建门禁: host gcc 真实编译源码模块 (第一道闸, 无需 TriCore 工具链)
+# + 配置/计划静态校验 + 目标(TriCore)构建图 dry-run + GoogleTest 单元测试。
+# 注: 目标 ELF + QEMU 集成测试需 TriCore 工具链, 在自托管 runner 上跑 (见 ENV_VALIDATION_PLAN M4)。
 on:
   push:
     branches: ["**"]
@@ -52,3 +53,23 @@ jobs:
           export PATH="$RUNNER_TEMP/tcbin:$PATH"
           export HIGHTEC_BIN="$RUNNER_TEMP/tcbin"
           scons -n -Q
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: GoogleTest 单元测试 (host, FetchContent googletest)
+        run: python Tools/scripts/run_gtest.py
+      - name: 归档测试报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gtest-report
+          path: Projects/*/Reports/gtest_results.xml
+          if-no-files-found: ignore

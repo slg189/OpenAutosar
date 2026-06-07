@@ -24,6 +24,7 @@ TOOLS = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(TOOLS)
 VENV = os.path.join(TOOLS, '.venv')
 REQ = os.path.join(TOOLS, 'requirements.txt')
+VENDOR_WHEELS = os.path.join(TOOLS, 'vendor', 'wheels')   # 离线 pip (随仓库提交的 wheel)
 
 # 外部(系统)工具: 名称 -> 用途。缺失只提示, 不强制 (按场景而定)。
 REQUIRED = {
@@ -51,12 +52,37 @@ def _ver(tool):
         return ''
 
 
+def _cppcheck_in_cache():
+    import glob
+    g = glob.glob(os.path.join(TOOLS, '.toolcache', 'cppcheck', '**', 'cppcheck.exe'), recursive=True)
+    return g[0] if g else None
+
+
+def _resolve(tool):
+    """系统 PATH 优先; cmake/ctest/cppcheck 再回退到 Tools/.toolcache (vendor 解压而来)。"""
+    p = shutil.which(tool)
+    if p:
+        return p
+    if tool in ('cmake', 'ctest'):
+        c = _cmake_in_cache()
+        if not c:
+            return None
+        if tool == 'cmake':
+            return c
+        # 同目录的 ctest (只换 basename, 不动含 'cmake' 的目录名)
+        return os.path.join(os.path.dirname(c), 'ctest' + ('.exe' if c.endswith('.exe') else ''))
+    if tool == 'cppcheck':
+        return _cppcheck_in_cache()
+    return None
+
+
 def check_tools():
     print('== 必需外部工具 (host 构建/检查/单测) ==')
     missing = []
     for t, why in REQUIRED.items():
-        p = shutil.which(t)
-        print(f'  [{"OK" if p else "!!"}] {t:20} {_ver(t) if p else "缺失"}   ({why})')
+        p = _resolve(t)
+        src = '' if (p and shutil.which(t)) else (' [.toolcache]' if p else '')
+        print(f'  [{"OK" if p else "!!"}] {t:20} {(_ver(p) if p else "缺失")}{src}   ({why})')
         if not p:
             missing.append(t)
     print('== 可选工具 (远程/目标/文档) ==')
@@ -74,9 +100,17 @@ def venv_bin(name):
 
 def _cmake_in_cache():
     import glob
-    g = (glob.glob(os.path.join(TOOLS, '.toolcache', 'cmake-*', 'bin', 'cmake'))
-         + glob.glob(os.path.join(TOOLS, '.toolcache', 'cmake-*', 'CMake.app', 'Contents', 'bin', 'cmake')))
+    tc = os.path.join(TOOLS, '.toolcache')
+    g = (glob.glob(os.path.join(tc, 'cmake-*', 'bin', 'cmake'))
+         + glob.glob(os.path.join(tc, 'cmake-*', 'bin', 'cmake.exe'))          # Windows
+         + glob.glob(os.path.join(tc, 'cmake-*', 'CMake.app', 'Contents', 'bin', 'cmake')))
     return g[0] if g else None
+
+
+def _vendored_wheels():
+    """Tools/vendor/wheels 下有 wheel 时返回该目录 (离线 pip), 否则 None。"""
+    import glob
+    return VENDOR_WHEELS if glob.glob(os.path.join(VENDOR_WHEELS, '*.whl')) else None
 
 
 def check_cmake_min(major=3, minor=16):
@@ -121,8 +155,18 @@ def main():
         subprocess.check_call([sys.executable, '-m', 'venv', VENV])
     print('== 安装 pinned 依赖 (Tools/requirements.txt) ==')
     vpy = venv_bin('python')
-    subprocess.check_call([vpy, '-m', 'pip', 'install', '-q', '--upgrade', 'pip'])
-    subprocess.check_call([vpy, '-m', 'pip', 'install', '-q', '-r', REQ])
+    # pip 自升级是 best-effort: 离线机器升不了 pip 不应中断 (venv 自带的 pip 足够用)
+    try:
+        subprocess.check_call([vpy, '-m', 'pip', 'install', '-q', '--upgrade', 'pip'])
+    except subprocess.CalledProcessError:
+        print('  [warn] 跳过 pip 自升级 (可能离线), 用 venv 自带 pip')
+    wheels = _vendored_wheels()
+    if wheels:
+        print(f'  [offline] 用仓库内 wheel 安装 (不联网): {os.path.relpath(wheels, ROOT)}')
+        subprocess.check_call([vpy, '-m', 'pip', 'install', '-q',
+                               '--no-index', '--find-links', wheels, '-r', REQ])
+    else:
+        subprocess.check_call([vpy, '-m', 'pip', 'install', '-q', '-r', REQ])
 
     print('\n[done] 环境就绪。用法:')
     if os.name == 'nt':

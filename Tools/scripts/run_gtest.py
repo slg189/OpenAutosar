@@ -25,6 +25,7 @@ def _cmake():
     if exe:
         return exe
     for c in (glob.glob(os.path.join(TOOLCACHE, 'cmake-*', 'bin', 'cmake'))
+              + glob.glob(os.path.join(TOOLCACHE, 'cmake-*', 'bin', 'cmake.exe'))          # Windows
               + glob.glob(os.path.join(TOOLCACHE, 'cmake-*', 'CMake.app', 'Contents', 'bin', 'cmake'))):
         return c
     return None
@@ -61,7 +62,8 @@ def main():
     if not cmake:
         print('[gtest] 未找到 cmake (系统或 Tools/.toolcache); 跑 python Tools/fetch_tools.py 下载', file=sys.stderr)
         return 127
-    ctest_exe = shutil.which('ctest') or os.path.join(os.path.dirname(cmake), 'ctest')
+    ctest_exe = shutil.which('ctest') or os.path.join(
+        os.path.dirname(cmake), 'ctest' + ('.exe' if cmake.endswith('.exe') else ''))
     if not os.path.isdir(ut_dir) or not os.path.exists(os.path.join(ut_dir, 'CMakeLists.txt')):
         print(f'[gtest] SKIP: {a.project} 无单元测试 ({ut_dir})')
         return 0   # 无测试视为跳过 (多项目矩阵下不阻塞)

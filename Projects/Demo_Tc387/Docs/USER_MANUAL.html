@@ -144,11 +144,12 @@
 │   ├── run_check.py        <span class="note"># cppcheck/MISRA + 单测 (scons check 调它)</span>
 │   ├── run_integration_test.py  <span class="note"># QEMU 集成测试</span>
 │   └── remote_build.py     <span class="note"># 远程构建</span>
-├── setup_env.py            <span class="note"># ★ 一键环境: 校验+下载工具+建隔离 venv</span>
-├── fetch_tools.py          <span class="note"># 下载固定版 cmake/googletest 到 .toolcache</span>
+├── setup_env.py            <span class="note"># ★ 一键环境: 校验+离线优先准备工具+建隔离 venv</span>
+├── fetch_tools.py          <span class="note"># 把 vendor/ 工具解压到 .toolcache (离线优先, 缺则下载)</span>
 ├── requirements.txt        <span class="note"># Python 依赖(固定版本): scons/pyyaml</span>
+├── <span class="dir">vendor/</span>                <span class="note"># ★ 随仓库提交的离线工具(Win): cmake/gtest/cppcheck + wheel</span>
 ├── ENVIRONMENT.md          <span class="note"># 环境说明 (依赖清单/版本/离线)</span>
-├── .venv/  .toolcache/     <span class="note"># 隔离 venv + 下载的工具 (均 gitignore)</span>
+├── .venv/  .toolcache/     <span class="note"># 隔离 venv + 解压的工具 (均 gitignore)</span>
 └── A2L/ Compiler/ Doxygen/ Git/  <span class="note"># A2L/工具链封装/Doxygen 模板/多仓脚本</span></div>
 
   <h3>3.4 工程目录 <code>Projects/Demo_Tc387/</code></h3>
@@ -170,9 +171,10 @@
 <section id="env">
   <h2>4 · PC 环境搭建与检查</h2>
   <p>目标：各机器用<strong>同一份固定版本</strong>的工具，避免“在我电脑上能跑”。详见 <code>Tools/ENVIRONMENT.md</code>。</p>
+  <div class="callout"><strong>离线优先：</strong>可再分发的工具/依赖（Windows x86_64：cmake / googletest / cppcheck / scons+PyYAML wheel）已<strong>随仓库提交</strong>到 <code>Tools/vendor/</code>。网络受限的机器克隆后直接 <code>python Tools/setup_env.py</code> 即可，<strong>全程不联网</strong>；仅当 <code>vendor/</code> 缺该平台归档时才回退下载。</div>
 
   <h3>4.1 一键搭建</h3>
-<pre><code># 1) 一条命令: 校验外部工具 + 下载固定工具(cmake/googletest) + 建隔离 venv + 装 pinned 依赖
+<pre><code># 1) 一条命令: 校验工具 + 离线优先把 vendor/ 工具解压到 .toolcache + 用 vendor/wheels 离线建 venv
 python Tools/setup_env.py
 
 # 2) 激活隔离环境 (与系统 Python/SCons 隔离)
@@ -184,16 +186,16 @@ scons compile TOOLCHAIN=gcc PLATFORM=host</code></pre>
 
   <h3>4.2 只检查环境（不安装）</h3>
 <pre><code>python Tools/setup_env.py --check     # 列出必需/可选工具是否齐备 + cmake>=3.16 版本硬校验
-python Tools/setup_env.py --no-fetch  # 只建 venv, 不下载工具
-python Tools/fetch_tools.py           # 单独下载固定版 cmake/googletest 到 Tools/.toolcache
+python Tools/setup_env.py --no-fetch  # 只建 venv, 不准备工具
+python Tools/fetch_tools.py           # 单独把 vendor/ 的 cmake/googletest/cppcheck 解压到 .toolcache
 python Tools/fetch_tools.py --print-env  # 打印需要的 PATH / GOOGLETEST_DIR</code></pre>
 
   <h3>4.3 依赖分三类</h3>
   <table>
     <tr><th>类别</th><th>项</th><th>来源 / 处理</th></tr>
-    <tr><td>Python（固定+隔离）</td><td><code>scons==4.10.1</code>、<code>PyYAML==6.0.1</code></td><td><code>Tools/requirements.txt</code> → <code>Tools/.venv</code></td></tr>
-    <tr><td>下载固定到仓库</td><td>CMake 3.28.6、GoogleTest v1.14.0</td><td><code>fetch_tools.py</code> → <code>Tools/.toolcache/</code>（gitignore；<code>run_gtest</code> 自动用，可离线）</td></tr>
-    <tr><td>系统工具</td><td><code class="ok">gcc/g++</code>、<code class="ok">cmake</code>、<code class="ok">cppcheck</code>、<code class="ok">git</code>（必需）；doxygen/rsync/ssh（可选）</td><td>系统装；cppcheck Linux 用 <code>apt install cppcheck</code></td></tr>
+    <tr><td>Python（固定+隔离）</td><td><code>scons==4.10.1</code>、<code>PyYAML==6.0.1</code></td><td><code>Tools/vendor/wheels/</code> 离线 pip → <code>Tools/.venv</code></td></tr>
+    <tr><td><strong>随仓库提交(离线)</strong></td><td>CMake 3.28.6、GoogleTest v1.14.0、cppcheck 2.13.0（Win）</td><td><code>Tools/vendor/</code> 提交归档 → <code>fetch_tools.py</code> 解压到 <code>.toolcache/</code>（不联网；<code>run_gtest</code>/<code>run_check</code> 自动用）</td></tr>
+    <tr><td>系统工具（无法 vendoring）</td><td><code class="ok">gcc/g++</code> 或 MSVC/MinGW、Python≥3.9、<code class="ok">git</code>（必需）；doxygen/rsync/ssh（可选）</td><td>系统装（编译器体积大）；Linux/CI 的 cmake/cppcheck 用 <code>apt</code></td></tr>
     <tr><td>目标工具链（不入库）</td><td><code class="no">tricore-gcc</code>(HighTec)、TASKING、<code class="no">qemu-system-tricore</code></td><td>厂商授权/自建；装好放 PATH（或设 <code>HIGHTEC_BIN</code>/<code>TASKING_BIN</code>/<code>QEMU_TRICORE</code>）</td></tr>
   </table>
   <div class="callout"><strong>无 TriCore 工具链也能干活：</strong>host gcc 可做“第一道闸”（语法/头文件/框架连通），单元测试也在 host 跑。只有“生成目标 ELF + QEMU 集成测试”才需 TriCore 工具链。</div>
@@ -347,8 +349,8 @@ scons explain:CddLin        # 确认解析到 CDD_Libs/CddLin/libCddLin.a</code>
   <h3>8.3 脚本命令（python Tools/...）</h3>
   <table>
     <tr><th>脚本</th><th>作用 / 常用参数</th></tr>
-    <tr><td><code>Tools/setup_env.py</code></td><td>一键环境：<code>--check</code>(只检查) <code>--force</code>(重建venv) <code>--no-fetch</code>(不下工具)</td></tr>
-    <tr><td><code>Tools/fetch_tools.py</code></td><td>下载固定 cmake/googletest 到 <code>.toolcache</code>：<code>--force</code> <code>--print-env</code></td></tr>
+    <tr><td><code>Tools/setup_env.py</code></td><td>一键环境（离线优先）：<code>--check</code>(只检查) <code>--force</code>(重建venv) <code>--no-fetch</code>(不备工具)</td></tr>
+    <tr><td><code>Tools/fetch_tools.py</code></td><td>把 <code>vendor/</code> 的 cmake/googletest/cppcheck 解压到 <code>.toolcache</code>（缺则下载）：<code>--force</code> <code>--print-env</code></td></tr>
     <tr><td><code>Tools/scripts/new_module.py</code></td><td>建模块骨架：<code>--bsw/--mcal/--cdd/--asw/--comp &lt;名…&gt;</code> <code>--force</code></td></tr>
     <tr><td><code>Tools/scripts/run_gtest.py</code></td><td>单元测试：<code>--project &lt;P&gt;</code> <code>--module &lt;名&gt;</code>（按名过滤）</td></tr>
     <tr><td><code>Tools/scripts/run_check.py</code></td><td><code>scons check</code> 的实现：<code>--project</code> <code>--strict-misra</code>(MISRA也门禁) <code>--no-tests</code></td></tr>
@@ -398,7 +400,7 @@ python Tools/scripts/run_integration_test.py   # QEMU 集成测试 (需 qemu-sys
     <tr><td><code>[FATAL] ... 源码不可见且未找到释放库</code></td><td>该模块 <code>mode: source</code> 但没源码，或 <code>mode: lib</code> 但 <code>*_Libs</code> 没有 <code>.a</code>。<code>scons explain:&lt;模块&gt;</code> 看它找了哪些路径</td></tr>
     <tr><td>新建模块没被编译</td><td>只建目录不够，要在 <code>build.yaml</code> 的 <code>layers</code> 下声明（见 §7.1）；<code>scons list</code> 会把它列在“未声明”里提示</td></tr>
     <tr><td><code>scons --explain Adc</code> 报 no such option</td><td>正确写法是目标形式 <code>scons explain:Adc</code></td></tr>
-    <tr><td>单元测试拉不到 googletest（离线）</td><td>跑 <code>python Tools/fetch_tools.py</code> 把 googletest 下到 <code>.toolcache</code>，<code>run_gtest</code> 会自动用本地源码</td></tr>
+    <tr><td>网络受限 / 离线机器搭不了环境</td><td>工具已随仓库提交在 <code>Tools/vendor/</code>（Win）。直接 <code>python Tools/setup_env.py</code> 即可离线建好（cmake/gtest/cppcheck 解压到 <code>.toolcache</code>、wheel 离线装 venv），无需联网</td></tr>
     <tr><td>cppcheck 未安装</td><td><code>scons check</code> 会跳过静态检查只跑单测；装：<code>apt install cppcheck</code></td></tr>
     <tr><td>系统 Python/SCons 版本不对</td><td>用隔离 venv：<code>python Tools/setup_env.py</code> 后 <code>source Tools/.venv/bin/activate</code></td></tr>
     <tr><td>QEMU 集成测试被跳过</td><td>缺 <code>qemu-system-tricore</code> 或 ELF（无 TriCore 工具链）→ 记 skipped，属正常；在自托管 runner 上跑</td></tr>

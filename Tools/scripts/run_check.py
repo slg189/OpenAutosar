@@ -18,6 +18,17 @@ import subprocess
 import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
+TOOLCACHE = os.path.join(ROOT, 'Tools', '.toolcache')
+
+
+def _cppcheck():
+    """系统 cppcheck 优先; 否则用 Tools/.toolcache/cppcheck (vendor MSI 解压而来, Windows 离线)。"""
+    import glob
+    exe = shutil.which('cppcheck')
+    if exe:
+        return exe
+    hits = glob.glob(os.path.join(TOOLCACHE, 'cppcheck', '**', 'cppcheck.exe'), recursive=True)
+    return hits[0] if hits else None
 
 
 def _strip_glob(p):
@@ -58,14 +69,16 @@ def main():
     os.makedirs(build_dir, exist_ok=True)
 
     rc = 0
-    if not shutil.which('cppcheck'):
-        print('[check] 未找到 cppcheck, 跳过静态检查 (apt install cppcheck)')
+    cppcheck = _cppcheck()
+    if not cppcheck:
+        print('[check] 未找到 cppcheck, 跳过静态检查 '
+              '(Windows: python Tools/fetch_tools.py; Linux: apt install cppcheck)')
     else:
         common = ['--inline-suppr', '--quiet', f'--cppcheck-build-dir={build_dir}'] \
                  + [f'-I{h}' for h in hdr] + [f'-i{s}' for s in suppress] + inc_paths
         # 1) 真实 bug 门禁
         print('[check] cppcheck 真实 bug 门禁 (warning/performance/portability)')
-        r = run(['cppcheck', '--enable=warning,performance,portability',
+        r = run([cppcheck, '--enable=warning,performance,portability',
                  '--error-exitcode=2'] + common, cwd=ROOT)
         if r.returncode != 0:
             print('[check] ✗ cppcheck 发现真实问题 (门禁失败)')
@@ -76,7 +89,7 @@ def main():
         print('[check] cppcheck MISRA (--addon=misra, 资讯)')
         misra_xml = os.path.join(report_dir, 'misra.xml')
         ec = ['--error-exitcode=1'] if a.strict_misra else []
-        r2 = run(['cppcheck', '--addon=misra', '--enable=style', '--xml',
+        r2 = run([cppcheck, '--addon=misra', '--enable=style', '--xml',
                   '--output-file=' + misra_xml] + ec + common, cwd=ROOT)
         n = 0
         try:

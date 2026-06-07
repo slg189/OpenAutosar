@@ -71,3 +71,6 @@ build_check/
 
 # ===== 隔离的构建 venv (Tools/setup_env.py) =====
 Tools/.venv/
+
+# ===== 下载固定的工具 (Tools/fetch_tools.py) =====
+Tools/.toolcache/

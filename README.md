@@ -88,7 +88,8 @@ scons release                    # 编译并把源码模块释放回 *_Libs
 | `manifests/` | google-repo 工作区组装清单（须位于顶层，bootstrap 整个工作区） |
 | `SConstruct` | **v3 构建框架顶层入口**（YAML 驱动，见“构建”） |
 | `Tools/requirements.txt` | 构建框架 Python 依赖（**固定版本**：scons/pyyaml） |
-| `Tools/setup_env.py` | 一键搭建仓库内隔离 venv（`Tools/.venv`）+ 校验外部工具，见 `Tools/ENVIRONMENT.md` |
+| `Tools/setup_env.py` | 一键：校验工具 + 下载固定工具 + 建隔离 venv（`Tools/.venv`）；见 `Tools/ENVIRONMENT.md` |
+| `Tools/fetch_tools.py` | 下载固定版本的可分发工具（CMake/GoogleTest）到 `Tools/.toolcache/`（gitignore） |
 | `.clang-format` | 代码格式规范 |
 | `.gitignore` | 忽略构建产物与生成代码 |
 | `misra.json` | MISRA C:2012 静态检查配置 |

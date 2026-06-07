@@ -72,16 +72,48 @@ def venv_bin(name):
     return os.path.join(VENV, sub, exe)
 
 
+def _cmake_in_cache():
+    import glob
+    g = (glob.glob(os.path.join(TOOLS, '.toolcache', 'cmake-*', 'bin', 'cmake'))
+         + glob.glob(os.path.join(TOOLS, '.toolcache', 'cmake-*', 'CMake.app', 'Contents', 'bin', 'cmake')))
+    return g[0] if g else None
+
+
+def check_cmake_min(major=3, minor=16):
+    """硬校验 cmake >= 3.16 (系统或 .toolcache)。返回 True/False。"""
+    exe = shutil.which('cmake') or _cmake_in_cache()
+    if not exe:
+        print(f'  [!!] cmake             未找到 (需 >= {major}.{minor}; 可由本脚本下载到 .toolcache)')
+        return False
+    out = _ver(exe.replace('cmake', 'cmake') if os.path.isabs(exe) else exe)
+    try:
+        nums = [int(x) for x in out.split('version')[-1].strip().split('.')[:2]]
+        ok = (nums[0], nums[1]) >= (major, minor)
+    except Exception:
+        ok = True
+    print(f'  [{"OK" if ok else "!!"}] cmake 版本          {out}  (需 >= {major}.{minor})')
+    return ok
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--check', action='store_true', help='只检查外部工具, 不建 venv')
+    ap.add_argument('--check', action='store_true', help='只检查外部工具/版本, 不建 venv/下载')
     ap.add_argument('--force', action='store_true', help='重建已存在的 venv')
+    ap.add_argument('--no-fetch', action='store_true', help='不下载固定工具到 .toolcache (cmake/googletest)')
     a = ap.parse_args()
 
     missing = check_tools()
+    print('== 版本硬校验 ==')
+    cmake_ok = check_cmake_min(3, 16)
     if a.check:
-        return 1 if missing else 0
+        return 0 if (not missing and cmake_ok) else 1
 
+    # 1) 下载固定工具 (cmake/googletest) 到 Tools/.toolcache
+    if not a.no_fetch:
+        print('\n== 下载固定工具到 Tools/.toolcache (fetch_tools.py) ==')
+        subprocess.call([sys.executable, os.path.join(TOOLS, 'fetch_tools.py')])
+
+    # 2) 建隔离 venv + pinned Python 依赖
     if os.path.isdir(VENV) and a.force:
         shutil.rmtree(VENV)
     if not os.path.isdir(VENV):
@@ -92,12 +124,13 @@ def main():
     subprocess.check_call([vpy, '-m', 'pip', 'install', '-q', '--upgrade', 'pip'])
     subprocess.check_call([vpy, '-m', 'pip', 'install', '-q', '-r', REQ])
 
-    print('\n[done] 隔离环境就绪。激活后用 scons:')
+    print('\n[done] 环境就绪。用法:')
     if os.name == 'nt':
         print(r'  Tools\.venv\Scripts\activate   &&  scons')
     else:
         print('  source Tools/.venv/bin/activate  &&  scons')
         print('  或直接:  Tools/.venv/bin/scons')
+    print('  (run_gtest.py 会自动用 .toolcache 里的 cmake/googletest)')
     if missing:
         print(f'\n[warn] 缺少外部工具: {", ".join(missing)} (相应功能不可用; 见 Tools/ENVIRONMENT.md)')
     return 0

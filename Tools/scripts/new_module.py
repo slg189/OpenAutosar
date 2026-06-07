@@ -68,7 +68,7 @@ def make_one(root, layer, name, force=False):
 
     rel = os.path.relpath(mod_dir, root).replace('\\', '/')
     print(f'[OK  ] {rel}/ (inc/{leaf}.h + src/{leaf}.c)')
-    print(f'        → 自动发现即可编译; 如需显式控制, 在 build.yaml 的 layers.{base} 下加:')
+    print(f'        → 已可被 `scons list` 发现; 要纳入构建, 在 build.yaml 的 layers.{base} 下加:')
     print(f'              {leaf}: {{ mode: source }}')
     return 0
 

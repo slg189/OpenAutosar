@@ -17,9 +17,9 @@ OpenAutosar 顶层构建入口。
     scons check                            # 静态检查 + 单元测试入口
     scons --remote=build_server_01         # 远程构建
 
-说明：这是 v2 框架(YAML 驱动)的顶层入口；旧的 per-project 构建
-(Projects/Demo_Tc387/SConstruct + Tools/Scons/build_helpers.py) 仍保留为
-回退方案，二者可并行 (在 Projects/Demo_Tc387 目录内运行 scons 走旧构建)。
+说明：这是 v3 框架(YAML 驱动)的唯一顶层入口；旧的 per-project 构建
+(Projects/<P>/SConstruct + Tools/Scons/build_helpers.py + module_config.py) 已退役。
+用户手册见 Projects/Demo_Tc387/Docs/USER_MANUAL.html。
 """
 import os
 import sys

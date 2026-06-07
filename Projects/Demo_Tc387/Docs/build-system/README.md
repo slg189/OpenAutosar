@@ -21,7 +21,7 @@
 ```bash
 scons                       # 构建默认项目 -> Out/<App>.elf
 scons list                  # 打印模块/mode/来源 (source 或 *_Libs)
-scons --explain <Mod>       # 解释某模块为何 source/lib
+scons explain:<Mod>       # 解释某模块为何 source/lib
 scons only=Adc,CddPwm       # 仅构建指定模块
 scons skip=EnergyManagement # 跳过指定模块
 scons layers=MCAL,ASW       # 仅构建指定层

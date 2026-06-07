@@ -125,7 +125,7 @@ call Tools\Compiler\setup_env.bat         REM 设置 TriCore 工具链 (hightec/
 
 scons -j %NUMBER_OF_PROCESSORS%           REM 构建默认项目 Demo_Tc387 -> Out\Demo_Tc387.elf
 scons list                                REM 打印解析后的模块/mode/来源 (source 或 *_Libs)
-scons --explain Adc                        REM 解释某模块为何 source/lib
+scons explain:Adc                        REM 解释某模块为何 source/lib
 scons TOOLCHAIN=tasking PLATFORM=AURIX2G  REM 命令行覆盖工具链/平台
 scons gen                                 REM 只跑代码生成
 scons doc                                 REM 生成接口/依赖/索引文档

@@ -170,7 +170,7 @@ resolve(layer, module):
 
 ```
 scons list            # 打印自动发现的模块 + 解析后的 mode/可见性/来源
-scons --explain Adc   # 解释某模块为何 source/lib、include/lib 路径、生效 flag
+scons explain:Adc   # 解释某模块为何 source/lib、include/lib 路径、生效 flag
 scons graph           # 依赖图 (复用 docgen)
 ```
 

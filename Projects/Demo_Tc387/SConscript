@@ -209,25 +209,14 @@ if cfg.docs.enabled:
     env.Alias('doc', doc_targets)
     env.Alias('doc-clean', [], Delete(cfg.docs.output_dir or os.path.join(PROJECT_DIR, 'Docs', 'api')))
 
-# ── 11. check: 静态检查 (MISRA) + 单元测试 (best-effort) ───
+# ── 11. check: 静态检查 (cppcheck/MISRA) + 单元测试 -> Tools/scripts/run_check.py ───
 def _run_check(target, source, env):
-    import shutil, subprocess
-    rc = 0
-    misra = os.path.join(ROOT, 'misra.json')
-    if shutil.which('cppcheck'):
-        print('[CHECK] cppcheck (MISRA, 范围见 misra.json)')
-        inc = ' '.join('-I' + p for p in ('MCAL/inc', 'Components/Common/inc', 'BSW/inc'))
-        rc |= subprocess.call(f'cppcheck --enable=style --inline-suppr {inc} '
-                              f'ASW CDD MCAL BSW Components', shell=True, cwd=ROOT)
-    else:
-        print(f'[CHECK] 未找到 cppcheck; MISRA 规则集见 {misra} (QAC/cppcheck 用)')
-    if shutil.which('ctest'):
-        print('[CHECK] 单元测试 (Projects/<P>/Test/ut, 见 Tools/scripts/run_gtest.py)')
-    else:
-        print('[CHECK] 未找到 ctest; 单元测试入口 Tools/scripts/run_gtest.py')
-    return rc
+    import sys as _sys, subprocess
+    proj = os.path.basename(PROJECT_DIR)
+    return subprocess.call([_sys.executable, os.path.join(ROOT, 'Tools', 'scripts', 'run_check.py'),
+                            '--project', proj])   # 非0 -> action 失败 -> scons check 失败
 env.Alias('check', env.AlwaysBuild(env.Command(
-    os.path.join('Out', '.check.stamp'), [], env.Action(_run_check, '[CHECK] 静态检查+单测'))))
+    os.path.join('Out', '.check.stamp'), [], env.Action(_run_check, '[CHECK] cppcheck/MISRA + 单测'))))
 
 # ── 12. 复合别名 ──────────────────────────────────────────
 env.Alias('all', codegen_targets + ([elf] if elf else []) + doc_targets)

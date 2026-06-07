@@ -84,7 +84,7 @@ scons release                    # 编译并把源码模块释放回 *_Libs
 | `Projects/` | 各项目工程，见下方“工程目录”说明 |
 | `Tools/` | 项目工具：`site_scons/`（v3 构建框架包）、`scripts/`、A2L、Compiler、Doxygen、Git |
 | `Tools/site_scons/` | **v3 构建框架**（Python 包：工具链/平台/代码生成/文档/远程 适配 + workspace/resolver/...）；由 `Tools` 加入 sys.path、按包名 `site_scons` 导入 |
-| `Tools/scripts/` | 跨平台 Python 脚本：`new_module.py`（模块骨架）、`run_gtest.py`（单元测试+覆盖率）、`run_integration_test.py`（QEMU 集成测试）、`remote_build.py`（远程构建） |
+| `Tools/scripts/` | 跨平台 Python 脚本：`new_module.py`（模块骨架）、`run_gtest.py`（单元测试）、`run_check.py`（cppcheck/MISRA+单测，`scons check` 调用）、`run_integration_test.py`（QEMU 集成测试）、`remote_build.py`（远程构建） |
 | `manifests/` | google-repo 工作区组装清单（须位于顶层，bootstrap 整个工作区） |
 | `SConstruct` | **v3 构建框架顶层入口**（YAML 驱动，见“构建”） |
 | `requirements.txt` | 构建框架 Python 依赖（pyyaml 等） |
@@ -144,7 +144,9 @@ scons --remote=build_server_01            REM 远程服务器构建
 ## 测试（跨平台 Python，取代旧 `.bat`）
 
 ```bash
-python Tools/scripts/run_gtest.py                 # 单元测试 + 覆盖率
+scons check                                       # ★ cppcheck 真实bug门禁 + MISRA(资讯) + GoogleTest 单测
+python Tools/scripts/run_gtest.py                 # 仅单元测试 (FetchContent googletest)
 python Tools/scripts/run_integration_test.py      # QEMU 集成测试 (需 TriCore 工具链构建 ELF)
-scons check                                       # 静态检查(MISRA/cppcheck) + 单测入口
 ```
+> `scons check` 由 `Tools/scripts/run_check.py` 实现：cppcheck `warning/perf/portability` 为硬门禁，
+> MISRA(`--addon=misra`) 输出到 `Reports/misra.xml`（`--strict-misra` 可转门禁），单测失败即失败。CI `check` 已接入。

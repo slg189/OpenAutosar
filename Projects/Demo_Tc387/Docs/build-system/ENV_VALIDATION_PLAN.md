@@ -117,7 +117,7 @@ scons compile TOOLCHAIN=gcc PLATFORM=host only=Crc,Adc    # 某些模块
 - [x] M2 `-Werror`：`STRICT=1` → gcc 注入 `-Werror -Wextra`；CI `build` 步用 `STRICT=1`（demo 桩代码零告警通过）
 - [x] M3 多项目矩阵：CI `discover` 自动发现 `Projects/*/build.yaml`，`build`/`unit-tests` 按 `matrix.project` 遍历（新增项目自动纳入）
 - [x] M4 第二道闸：新增 `integration-qemu.yml`（`workflow_dispatch`，`runs-on: [self-hosted, tricore]`）→ 构建 ELF + `run_qemu.py`（真实 qemu 加载/半主机解析/JUnit）；**需自托管 TriCore runner 真跑**（不阻塞 PR）
-- [~] M5 真实 GoogleTest 已接入并在 CI 跑（FetchContent googletest，实测 `AdcTest` 1/1）；`scons check`(cppcheck/MISRA) 已有入口，与单测串联待完善
+- [x] M5 `scons check` 串联落地：cppcheck **真实 bug 门禁**（warning/perf/portability，硬失败）+ **MISRA**（`--addon=misra`，资讯→`Reports/misra.xml`，`--strict-misra` 可转门禁）+ **GoogleTest 单测**（run_gtest）。CI `check` job 安装 cppcheck 跑 `scons check`（实测：bug门禁✓、MISRA 34条、Adc 1/1✓、rc=0）
 
 > 附：adapter 现状 —— `toolchain={gcc,hightec,tasking,arm_gcc,arm_ghs}`（tasking/arm_ghs 为骨架，按需补全）、`platform={aurix2g,host}`（已删未用的 cortex_r5/r52p/cypress/yuntu/cortex_m33、arm_iar）。
 > 真实 gtest（CI 必过）+ 真实 qemu runner（自托管）已落地；本计划随实施滚动更新。

@@ -1,9 +1,9 @@
 name: Build Validation
 
 # 构建门禁 (多项目矩阵):
-#   discover  -> 发现所有 Projects/*/build.yaml
-#   build     -> 每个项目: 配置校验(scons list) + host gcc 编译(-Werror, 第一道闸) + 目标构建图 dry-run
-#   unit-tests-> 每个项目: GoogleTest 单元测试 (host)
+#   discover -> 发现所有 Projects/*/build.yaml
+#   build    -> 每个项目: 配置校验(scons list) + host gcc 编译(-Werror, 第一道闸) + 目标构建图 dry-run
+#   check    -> 每个项目: scons check = cppcheck 真实bug门禁 + MISRA(资讯) + GoogleTest 单元测试
 # 目标 ELF + QEMU 集成测试 (第二道闸) 见 integration-qemu.yml (自托管 TriCore runner)。
 on:
   push:
@@ -65,7 +65,7 @@ jobs:
           export HIGHTEC_BIN="$RUNNER_TEMP/tcbin"
           scons -n -Q PROJECT=Projects/${{ matrix.project }}
 
-  unit-tests:
+  check:
     needs: discover
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -78,12 +78,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: GoogleTest 单元测试 (host, FetchContent googletest)
-        run: python Tools/scripts/run_gtest.py --project ${{ matrix.project }}
-      - name: 归档测试报告
+      - name: 安装 cppcheck
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq cppcheck
+      - run: pip install -r requirements.txt
+      - name: scons check (cppcheck/MISRA 门禁 + GoogleTest 单测)
+        run: scons -Q check PROJECT=Projects/${{ matrix.project }} TOOLCHAIN=gcc PLATFORM=host
+      - name: 归档报告 (gtest + misra)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: gtest-report-${{ matrix.project }}
-          path: Projects/${{ matrix.project }}/Reports/gtest_results.xml
+          name: check-report-${{ matrix.project }}
+          path: |
+            Projects/${{ matrix.project }}/Reports/gtest_results.xml
+            Projects/${{ matrix.project }}/Reports/misra.xml
           if-no-files-found: ignore

@@ -21,11 +21,15 @@ def configure(env):
 
     env.Append(CCFLAGS=[
         '-Wall',
+        '-Wextra',
         '-Wno-unused-parameter',
         '-ffunction-sections',
         '-fdata-sections',
         '-std=c99',
     ])
+    # 严格模式: STRICT=1 时把告警当错误 (CI 门禁用)
+    if str(env.get('STRICT', '0')).lower() in ('1', 'true', 'on', 'yes'):
+        env.Append(CCFLAGS=['-Werror'])
     if env.get('BUILD_TYPE', 'Debug') == 'Release':
         env.Append(CCFLAGS=['-O2'], CPPDEFINES=['NDEBUG'])
     else:

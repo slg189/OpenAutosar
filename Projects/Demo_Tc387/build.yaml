@@ -16,7 +16,7 @@ project:
   app_name_suffix: ""
 
 target:
-  toolchain:  hightec             # GNU TriCore (tricore-gcc); host 验证用 TOOLCHAIN=gcc PLATFORM=host
+  toolchain:  hightec             # GNU TriCore (tricore-gcc); 可 TOOLCHAIN=tasking; host 验证用 TOOLCHAIN=gcc PLATFORM=host
   platform:   AURIX2G             # Infineon AURIX TC3xx
   build_type: Release
 

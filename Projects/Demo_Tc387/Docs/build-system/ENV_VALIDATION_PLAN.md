@@ -114,10 +114,10 @@ scons compile TOOLCHAIN=gcc PLATFORM=host only=Crc,Adc    # 某些模块
 
 - [x] M0 host-gcc 编译验证（13/13，exit 0；修 2 bug）
 - [x] M1 CI 门禁化（`.github/workflows/build-validation.yml`；push/PR 触发）
-- [ ] M2 告警治理 + `-Werror`
-- [ ] M3 多项目/多配置矩阵
-- [~] M4 第二道闸：`run_qemu.py` 已实现真实 QEMU 加载/半主机解析/JUnit（缺 qemu/ELF 记 skipped）；待 TriCore runner 真跑
-- [~] M5 **真实 GoogleTest 已接入并在 CI 跑**（FetchContent googletest，实测 `AdcTest` 1/1 通过）；`scons check`(cppcheck/MISRA) 已有入口，串联待完善
+- [x] M2 `-Werror`：`STRICT=1` → gcc 注入 `-Werror -Wextra`；CI `build` 步用 `STRICT=1`（demo 桩代码零告警通过）
+- [x] M3 多项目矩阵：CI `discover` 自动发现 `Projects/*/build.yaml`，`build`/`unit-tests` 按 `matrix.project` 遍历（新增项目自动纳入）
+- [x] M4 第二道闸：新增 `integration-qemu.yml`（`workflow_dispatch`，`runs-on: [self-hosted, tricore]`）→ 构建 ELF + `run_qemu.py`（真实 qemu 加载/半主机解析/JUnit）；**需自托管 TriCore runner 真跑**（不阻塞 PR）
+- [~] M5 真实 GoogleTest 已接入并在 CI 跑（FetchContent googletest，实测 `AdcTest` 1/1）；`scons check`(cppcheck/MISRA) 已有入口，与单测串联待完善
 
-> 附：构建框架已**清理未完成 adapter**，仅保留本仓相关且完整的 `toolchain={gcc,hightec}`、`platform={aurix2g,host}`。
+> 附：adapter 现状 —— `toolchain={gcc,hightec,tasking,arm_gcc,arm_ghs}`（tasking/arm_ghs 为骨架，按需补全）、`platform={aurix2g,host}`（已删未用的 cortex_r5/r52p/cypress/yuntu/cortex_m33、arm_iar）。
 > 真实 gtest（CI 必过）+ 真实 qemu runner（自托管）已落地；本计划随实施滚动更新。

@@ -61,6 +61,7 @@ vars_.AddVariables(
     ('PLATFORM',   '平台（覆盖 YAML）',           ''),
     ('BUILD_TYPE', '构建类型 Debug/Release',      ''),
     ('JOBS',       '并行编译任务数',              '8'),
+    ('STRICT',     '严格模式: 1 时 -Werror (告警即错)', '0'),
 )
 
 env = Environment(variables=vars_, ENV=os.environ)

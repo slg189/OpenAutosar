@@ -37,9 +37,9 @@ def main():
     if not shutil.which('cmake'):
         print('[gtest] 未找到 cmake, 无法构建单元测试', file=sys.stderr)
         return 127
-    if not os.path.isdir(ut_dir):
-        print(f'[gtest] 未找到单元测试目录: {ut_dir}', file=sys.stderr)
-        return 1
+    if not os.path.isdir(ut_dir) or not os.path.exists(os.path.join(ut_dir, 'CMakeLists.txt')):
+        print(f'[gtest] SKIP: {a.project} 无单元测试 ({ut_dir})')
+        return 0   # 无测试视为跳过 (多项目矩阵下不阻塞)
 
     rc = run(['cmake', '-S', ut_dir, '-B', build_dir, '-DCMAKE_BUILD_TYPE=Coverage'])
     if rc:

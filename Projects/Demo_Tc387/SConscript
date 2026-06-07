@@ -124,14 +124,15 @@ for d in decisions:
         menv = env.Clone()
         menv.Append(CCFLAGS=list(ov.cflags), CPPDEFINES=list(ov.defines),
                     CPPPATH=list(ov.includes))
-        # 模块级 cflags/defines/includes 已在上面应用; build_module 不再重复处理
-        objs = build_module(menv, d.src_dir, d.leaf, mod_cfg=None)
+        # 模块级 cflags/defines/includes 已在上面应用; build_module 不再重复处理。
+        # obj_dir: .o 落到 Projects/<P>/Obj/<Layer>/<Mod>/ (不就地污染源码树)
+        mod_obj_dir = os.path.join(env['OBJ_DIR'], d.layer, d.modname.replace('/', '_'))
+        objs = build_module(menv, d.src_dir, d.leaf, mod_cfg=None, obj_dir=mod_obj_dir)
         source_objs += objs
         pub_inc.append(os.path.join(d.src_dir, 'inc'))
         # release: 归档为 .a 并安装到 <Layer>_Libs/<mod>/ (库名可由 lib_name 覆盖)
         libbase = ov.lib_name or ('lib' + d.leaf)
-        lib = menv.StaticLibrary(
-            os.path.join('Obj', d.layer, d.modname.replace('/', '_'), libbase), objs)
+        lib = menv.StaticLibrary(os.path.join(mod_obj_dir, libbase), objs)
         dst = os.path.join(ROOT, resolver.LAYER_LIB_DIR.get(d.layer, d.layer + '_Libs'), d.modname)
         release_actions += env.Install(dst, lib)
         release_actions += env.Install(os.path.join(dst, 'inc'),
@@ -221,9 +222,9 @@ def _run_check(target, source, env):
     else:
         print(f'[CHECK] 未找到 cppcheck; MISRA 规则集见 {misra} (QAC/cppcheck 用)')
     if shutil.which('ctest'):
-        print('[CHECK] 单元测试 (Projects/<P>/Test/ut, 见 run_gtest.bat)')
+        print('[CHECK] 单元测试 (Projects/<P>/Test/ut, 见 Tools/scripts/run_gtest.py)')
     else:
-        print('[CHECK] 未找到 ctest; 单元测试入口 run_gtest.bat')
+        print('[CHECK] 未找到 ctest; 单元测试入口 Tools/scripts/run_gtest.py')
     return rc
 env.Alias('check', env.AlwaysBuild(env.Command(
     os.path.join('Out', '.check.stamp'), [], env.Action(_run_check, '[CHECK] 静态检查+单测'))))

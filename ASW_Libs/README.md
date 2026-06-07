@@ -10,4 +10,4 @@ ASW_Libs/                # = git 子库 asw_libs_<Project> 的检出
 └── EnergyManagement/    # inc/ + libEnergyManagement.a
 ```
 
-仅含对外 `inc/` 头文件与预编译 `.a`，不含源码。由 `release_libs.bat ASW` 回灌。
+仅含对外 `inc/` 头文件与预编译 `.a`，不含源码。由 `scons release` 回灌。

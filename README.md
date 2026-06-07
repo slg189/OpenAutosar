@@ -48,7 +48,7 @@ REM 无 gh 时用 REST API: 先 set GITHUB_TOKEN=ghp_xxxx
 REM 按角色视图签出 (google-repo)
 set MANIFEST_NAME=manifest-asw.xml && repo_metasar.bat init && repo_metasar.bat sync
 REM 将源码模块编译并释放到 *_Libs/
-release_libs.bat all
+`scons release`
 ```
 
 ## 灵活编译（按模块灵活配置）
@@ -84,17 +84,16 @@ scons release                    # 编译并把源码模块释放回 *_Libs
 | `Projects/` | 各项目工程，见下方“工程目录”说明 |
 | `Tools/` | 项目工具：`site_scons/`（v3 构建框架包）、`scripts/`、A2L、Compiler、Doxygen、Git |
 | `Tools/site_scons/` | **v3 构建框架**（Python 包：工具链/平台/代码生成/文档/远程 适配 + workspace/resolver/...）；由 `Tools` 加入 sys.path、按包名 `site_scons` 导入 |
-| `Tools/scripts/` | 框架脚本：`new_module.py`、`remote_build.py` |
+| `Tools/scripts/` | 跨平台 Python 脚本：`new_module.py`（模块骨架）、`run_gtest.py`（单元测试+覆盖率）、`run_integration_test.py`（QEMU 集成测试）、`remote_build.py`（远程构建） |
 | `manifests/` | google-repo 工作区组装清单（须位于顶层，bootstrap 整个工作区） |
 | `SConstruct` | **v3 构建框架顶层入口**（YAML 驱动，见“构建”） |
 | `requirements.txt` | 构建框架 Python 依赖（pyyaml 等） |
 | `.clang-format` | 代码格式规范 |
 | `.gitignore` | 忽略构建产物与生成代码 |
 | `misra.json` | MISRA C:2012 静态检查配置 |
-| `repo_metasar.bat` | google-repo manifest 多仓同步脚本 |
-| `run_gtest.bat` | 构建并运行 GoogleTest 单元测试 + 覆盖率 |
-| `run_integrationTest.bat` | 在 QEMU 上运行集成测试 |
+| `repo_metasar.bat` | google-repo manifest 多仓同步脚本（Linux 下可直接用 `repo`） |
 | `TestPlatform_UintTest_QEMU_Test.json` | QEMU 测试平台配置 |
+| 释放 / 检查 | 不再用 `.bat`：源码模块释放用 `scons release`，静态检查+单测入口 `scons check` |
 
 ### 工程目录 `Projects/<Project>/`
 
@@ -142,9 +141,10 @@ scons --remote=build_server_01            REM 远程服务器构建
 >
 > 注：原 `Tools/Scons/build_helpers.py` + per-project `SConstruct` + `module_config.py` 的旧构建已退役（git 历史可查）。
 
-## 测试
+## 测试（跨平台 Python，取代旧 `.bat`）
 
-```bat
-run_gtest.bat                 # 单元测试 + 覆盖率
-run_integrationTest.bat Demo_Tc387   # QEMU 集成测试
+```bash
+python Tools/scripts/run_gtest.py                 # 单元测试 + 覆盖率
+python Tools/scripts/run_integration_test.py      # QEMU 集成测试 (需 TriCore 工具链构建 ELF)
+scons check                                       # 静态检查(MISRA/cppcheck) + 单测入口
 ```

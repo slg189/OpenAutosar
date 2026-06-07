@@ -88,7 +88,7 @@
 <section id="libs">
   <h2>库化释放区 *_Libs</h2>
   <p>根目录新增四个释放区，存放各层对外交付的 <code>inc/</code> 头文件与预编译 <code>.a</code>，<strong>不含源码</strong>。
-  由 <code>release_libs.bat</code> 从源码编译后回灌（也可由 CI 产出）。</p>
+  由 <code>scons release</code> 从源码编译后回灌（也可由 CI 产出）。</p>
 <div class="tree"><span class="dir">OpenAutosar/</span>
 ├── <span class="dir">ASW_Libs/</span>    <span class="note"># ASW 释放(按项目, 子库 asw_libs_&lt;P&gt;): &lt;Model&gt;/inc + lib&lt;Model&gt;.a</span>
 ├── <span class="dir">BSW_Libs/</span>    <span class="note"># BSW 释放(按项目, 子库 bsw_libs_&lt;P&gt;): &lt;Mod&gt;/ (Os|Com... inc + .a, 含配置代码)</span>
@@ -190,25 +190,23 @@ repo_metasar.bat sync</code></pre>
     <span>链接 ELF/HEX</span>
   </div>
   <p>释放（供下游二进制集成）：</p>
- <pre>  <code>REM 把各层源码编译并连同头文件释放到根 *_Libs/
-release_libs.bat all
-set CHIP=Tc367 && release_libs.bat MCAL   # 仅释放 TC367 的 MCAL</code></pre>
+ <pre>  <code># 把各层源码模块编译并连同头文件释放到 *_Libs/
+scons release</code></pre>
 </section>
 
 <section id="examples">
   <h2>常用示例</h2>
- <pre>  <code>REM ASW 工程师: 只联调本层模型, 其余用库
-cd Projects/Demo_Tc387
-scons layers=ASW variant=Debug
+ <pre>  <code># ASW 工程师: 只联调本层模型, 其余用库
+scons layers=ASW BUILD_TYPE=Debug
 
-REM 基础工程师: 全部用库, 只编集成层 (其余 mode 已是 lib)
+# 基础工程师: 全部用库, 只编集成层 (其余 mode 已是 lib)
 scons                          # Integration + *_Libs/*.a
 
-REM 单独高优化编译某 MCAL 模块
-scons only=Adc chip=Tc387      # Adc 带 module_config 中的 -O3
+# 单独高优化编译某 MCAL 模块
+scons only=Adc                 # Adc 带 build.yaml 中的 cflags(-O3)
 
-REM 发布: 编译 + 回灌库
-scons release && release_libs.bat all</code></pre>
+# 发布: 编译 + 回灌库
+scons release</code></pre>
 </section>
 
 </main>

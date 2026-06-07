@@ -153,7 +153,7 @@ resolve(layer, module):
 
 - LINK 时自动解析 `<Layer>_Libs` 的 `.a` 与 `inc`（含 MCAL_Libs 单芯片扁平、BSW_Libs 按模块）。
 - 与 `manifests/*.xml`（default/asw/integration 三视图）天然对齐：ASW 工程师只可见 ASW 源码、其余自动走 `*_Libs`。
-- 与 `release_libs.bat`（编源码 → 释放 `*_Libs`）打通：`scons release`。
+- 与 `release_libs.bat`(旧) 打通：由 `scons release`（编源码 → 释放 `*_Libs`）取代。
 
 ### 6.5 项目 = 纯数据（零项目脚本）
 
@@ -200,7 +200,7 @@ def plan(build_yaml, workspace):
 |---|---|
 | `manifests/{default,asw,integration}.xml` | 决定模块源码可见性 → `resolver` 的 `auto` 决策输入 |
 | `ASW_Libs/CDD_Libs/BSW_Libs/MCAL_Libs` | `mode=lib`/不可见时的链接来源（路径规则已在原 `build_helpers` 验证过） |
-| `release_libs.bat` | 映射为 `scons release`：编源码 → 释放 `.a`+inc 到 `*_Libs` |
+| `release_libs.bat`(旧) | 映射为 `scons release`：编源码 → 释放 `.a`+inc 到 `*_Libs` |
 | `Projects/<P>/{Cfg,Gen,Ld}` | 代码生成产物入 `Gen/`；`Ld/<P>.ld` 由 `build.yaml.linker.script` 指定 |
 | `misra.json` / `run_gtest` / QAC | 不变；可加 `scons check` 调用 |
 

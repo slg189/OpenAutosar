@@ -223,7 +223,7 @@ remote:  { enabled: false }</code></pre>
   <ul>
     <li>LINK 时自动解析 <code>*_Libs</code> 的 <code>.a</code> 与 <code>inc</code>（MCAL_Libs 单芯片扁平、BSW_Libs 按模块）。</li>
     <li>与 <code>manifests/*.xml</code>（default/asw/integration 三视图）天然对齐。</li>
-    <li>与 <code>release_libs.bat</code> 打通：<code>scons release</code>。</li>
+    <li>与 <code>release_libs.bat</code>(旧) 打通：由 <code>scons release</code> 取代。</li>
   </ul>
 
   <h3>6.5 项目 = 纯数据（零项目脚本）</h3>
@@ -264,7 +264,7 @@ scons graph           # 依赖图 (复用 docgen)</code></pre>
     <tr><th>现有资产</th><th>对接方式</th></tr>
     <tr><td><code>manifests/{default,asw,integration}.xml</code></td><td>决定模块源码可见性 → <code>resolver</code> 的 <code>auto</code> 决策输入</td></tr>
     <tr><td><code>ASW_Libs/CDD_Libs/BSW_Libs/MCAL_Libs</code></td><td><code>mode=lib</code>/不可见时的链接来源（路径规则已在原 <code>build_helpers</code> 验证过）</td></tr>
-    <tr><td><code>release_libs.bat</code></td><td>映射为 <code>scons release</code>：编源码 → 释放 <code>.a</code>+inc 到 <code>*_Libs</code></td></tr>
+    <tr><td><code>release_libs.bat</code>(旧)</td><td>映射为 <code>scons release</code>：编源码 → 释放 <code>.a</code>+inc 到 <code>*_Libs</code></td></tr>
     <tr><td><code>Projects/&lt;P&gt;/{Cfg,Gen,Ld}</code></td><td>代码生成产物入 <code>Gen/</code>；<code>Ld/&lt;P&gt;.ld</code> 由 <code>build.yaml.linker.script</code> 指定</td></tr>
     <tr><td><code>misra.json</code> / <code>run_gtest</code> / QAC</td><td>不变；可加 <code>scons check</code> 调用</td></tr>
   </table>

@@ -161,8 +161,8 @@
 ├── .gitignore
 ├── misra.json             <span class="note"># MISRA C:2012 检查配置</span>
 ├── repo_metasar.bat        <span class="note"># 多仓同步 (google-repo)</span>
-├── run_gtest.bat           <span class="note"># 单元测试入口</span>
-├── run_integrationTest.bat <span class="note"># 集成测试入口</span>
+├── Tools/scripts/run_gtest.py           <span class="note"># 单元测试入口</span>
+├── Tools/scripts/run_integration_test.py <span class="note"># 集成测试入口</span>
 └── TestPlatform_UintTest_QEMU_Test.json
 </div>
 </section>
@@ -267,8 +267,8 @@
   <p class="muted">测试已随工程下沉到 <code>Projects/&lt;P&gt;/Test/</code>（报告输出到 <code>Projects/&lt;P&gt;/Reports/</code>）。</p>
   <table>
     <tr><th>目录</th><th>说明</th><th>入口</th></tr>
-    <tr><td><code>Projects/&lt;P&gt;/Test/ut/</code></td><td>GoogleTest 单元测试 + 覆盖率</td><td><code>run_gtest.bat</code></td></tr>
-    <tr><td><code>Projects/&lt;P&gt;/Test/Projects/</code></td><td>QEMU 集成测试工程</td><td><code>run_integrationTest.bat</code></td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/Test/ut/</code></td><td>GoogleTest 单元测试 + 覆盖率</td><td><code>Tools/scripts/run_gtest.py</code></td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/Test/Projects/</code></td><td>QEMU 集成测试工程</td><td><code>Tools/scripts/run_integration_test.py</code></td></tr>
     <tr><td><code>Projects/&lt;P&gt;/Test/QAC/</code></td><td>QAC / MISRA 静态分析</td><td><code>misra.json</code></td></tr>
   </table>
 </section>
@@ -280,8 +280,8 @@
     <tr><td><code>.clang-format</code></td><td>代码格式规范（4 空格 / Allman / 对齐）</td></tr>
     <tr><td><code>misra.json</code></td><td>MISRA C:2012 规则集、豁免与扫描范围</td></tr>
     <tr><td><code>repo_metasar.bat</code></td><td>google-repo manifest 多子仓同步</td></tr>
-    <tr><td><code>run_gtest.bat</code></td><td>构建并运行单元测试，产出覆盖率到 <code>coverage_output/</code></td></tr>
-    <tr><td><code>run_integrationTest.bat</code></td><td>在 QEMU 上运行集成测试</td></tr>
+    <tr><td><code>Tools/scripts/run_gtest.py</code></td><td>构建并运行单元测试，产出覆盖率到 <code>coverage_output/</code></td></tr>
+    <tr><td><code>Tools/scripts/run_integration_test.py</code></td><td>在 QEMU 上运行集成测试</td></tr>
     <tr><td><code>TestPlatform_UintTest_QEMU_Test.json</code></td><td>QEMU 测试平台配置</td></tr>
   </table>
 </section>
@@ -300,8 +300,8 @@ REM 产物: Out/Demo_Tc387.elf / .hex / .map</code></pre>
   <code>Libs/</code> → 与 <code>Gen/</code> 配置代码、供应商 BSW 库一同按
   <code>Ld/</code> 链接脚本链接为 ELF → objcopy 生成 HEX。</p>
   <h3>测试</h3>
- <pre>  <code>run_gtest.bat                       REM 单元测试 + OpenCppCoverage 覆盖率
-run_integrationTest.bat Demo_Tc387  # QEMU 集成测试 (JUnit 报告)</code></pre>
+ <pre>  <code>Tools/scripts/run_gtest.py                       REM 单元测试 + OpenCppCoverage 覆盖率
+python Tools/scripts/run_integration_test.py  # QEMU 集成测试 (JUnit 报告)</code></pre>
 </section>
 
 <section id="conventions">

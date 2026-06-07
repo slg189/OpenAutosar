@@ -63,7 +63,7 @@ scons compile TOOLCHAIN=gcc PLATFORM=host only=Crc,Adc    # 某些模块
 
 ### M4 · 目标工具链第二道闸
 - [ ] 在装有 `hightec`/`tasking` 的自托管 runner 上：`scons`（真机编译+链接 ELF）。
-- [ ] `scons` 产物经 `run_integrationTest.bat` 在 QEMU 跑集成测试。
+- [ ] `scons` 产物经 `Tools/scripts/run_integration_test.py` 在 QEMU 跑集成测试。
 - 退出：目标 ELF 构建 + QEMU 冒烟通过（与 host-gcc 互补）。
 
 ### M5 · 串联 check / 单测 / MISRA

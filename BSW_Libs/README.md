@@ -12,4 +12,4 @@ BSW_Libs/                # = git 子库 bsw_libs_<Project> 的检出
 └── Com/                 # inc/ + libCom.a     (Vector COM)
 ```
 
-仅含对外 `inc/` 头文件与预编译 `.a`，不含源码。由 `release_libs.bat BSW` 回灌。
+仅含对外 `inc/` 头文件与预编译 `.a`，不含源码。由 `scons release` 回灌。

@@ -105,7 +105,7 @@
 **目的**：补齐配套命令、清理骨架、收敛文档。
 
 任务
-- [ ] `scons release`：编源码 → 释放 `.a`+inc 到 `*_Libs`（替/包 `release_libs.bat`）。
+- [ ] `scons release`：编源码 → 释放 `.a`+inc 到 `*_Libs`（替/包 `scons release`）。
 - [ ] `scons check`：对接 `misra.json` / `run_gtest`（D4 决定是否本轮做）。
 - [ ] `docgen`：接口抽取支持 MCAL/CDD/ASW（非仅 BSW_DIR）。
 - [ ] 平台清理：补全/标注 `tasking`；移出未完成 adapter 出默认集合。

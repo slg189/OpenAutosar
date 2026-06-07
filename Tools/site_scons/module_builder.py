@@ -5,7 +5,7 @@ from SCons.Script import Glob
 
 
 def build_module(env, module_dir, module_name, mod_cfg=None,
-                 extra_src_dirs=None, extra_inc_dirs=None):
+                 extra_src_dirs=None, extra_inc_dirs=None, obj_dir=None):
     """编译一个模块，返回 object 文件列表。
 
     标准约定：
@@ -14,6 +14,9 @@ def build_module(env, module_dir, module_name, mod_cfg=None,
         {module_dir}/inc/*.h           头文件
         {GEN_DIR}/{module_name}/src/*.c 代码生成器产物
         {GEN_DIR}/{module_name}/inc/*.h 代码生成器头文件
+
+    obj_dir: 若给定, .o 落到该目录 (如 Projects/<P>/Obj/<Layer>/<Mod>), 避免就地污染源码树;
+             否则与源码同目录 (回退行为)。
     """
     src_dir     = os.path.join(module_dir, 'src')
     inc_dir     = os.path.join(module_dir, 'inc')
@@ -58,4 +61,12 @@ def build_module(env, module_dir, module_name, mod_cfg=None,
         if mod_cfg.extra_flags:
             mod_env.Append(CCFLAGS=mod_cfg.extra_flags)
 
+    # 指定 obj_dir 时把 .o 显式落到该目录 (源码为绝对路径, variant_dir 不会自动改写, 故显式指定)
+    if obj_dir:
+        suffix = mod_env.subst('$OBJSUFFIX') or '.o'
+        objs = []
+        for s in sources:
+            base = os.path.splitext(os.path.basename(str(s)))[0]
+            objs.append(mod_env.Object(target=os.path.join(obj_dir, base + suffix), source=s))
+        return objs
     return mod_env.Object(sources)

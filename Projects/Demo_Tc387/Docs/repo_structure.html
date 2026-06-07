@@ -190,7 +190,7 @@ repo_metasar.bat sync</code></pre>
 <section id="addproj">
   <h2>新增一个项目时</h2>
   <ol>
-    <li>用该项目的工作区（其 <code>ASW/</code>、<code>CDD/</code>、<code>*_Libs/</code> 为该项目内容）；<code>release_libs.bat ASW|CDD|BSW|MCAL</code> 回灌到各 <code>*_Libs/</code> 根。</li>
+    <li>用该项目的工作区（其 <code>ASW/</code>、<code>CDD/</code>、<code>*_Libs/</code> 为该项目内容）；<code>scons release</code> 回灌到各 <code>*_Libs/</code> 根。</li>
     <li><code>Tools/Git/init_subrepos.bat &lt;base&gt; --project &lt;NewProj&gt; --github &lt;owner&gt; --push</code> 创建项目源码 <code>asw_&lt;NewProj&gt;</code>、<code>cdd_&lt;NewProj&gt;</code> 与项目库 <code>asw_libs_/cdd_libs_/bsw_libs_&lt;NewProj&gt;</code>、<code>MCAL_&lt;NewProj&gt;</code>（MCAL group）子库。</li>
     <li>为该项目准备一套清单（把 <code>*_&lt;NewProj&gt;</code> / <code>*_libs_&lt;NewProj&gt;</code> 映射到 <code>ASW/CDD/&lt;Layer&gt;_Libs</code>），切换项目即换这套子库。</li>
   </ol>

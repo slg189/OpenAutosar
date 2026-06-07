@@ -108,8 +108,11 @@ def _cmake_in_cache():
 
 
 def _vendored_wheels():
-    """Tools/vendor/wheels 下有 wheel 时返回该目录 (离线 pip), 否则 None。"""
+    """Tools/vendor/wheels 下有 wheel 时返回该目录 (离线 pip), 否则 None。
+    仅 Windows: vendored wheel 是 win_amd64 (PyYAML), 非 Windows 用普通 pip 避免找不到兼容轮子。"""
     import glob
+    if os.name != 'nt':
+        return None
     return VENDOR_WHEELS if glob.glob(os.path.join(VENDOR_WHEELS, '*.whl')) else None
 
 

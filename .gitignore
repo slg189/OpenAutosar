@@ -68,3 +68,6 @@ __pycache__/
 build_check/
 **/*.ctu-info
 **/cppcheck-addon-ctu-file-list*
+
+# ===== 隔离的构建 venv (Tools/setup_env.py) =====
+Tools/.venv/

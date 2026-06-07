@@ -1,8 +1,0 @@
-# OpenAutosar SCons 构建系统 Python 依赖
-# Python >= 3.9
-scons>=4.5
-pyyaml>=6.0
-# 以下为可选 (当前实现未强依赖, 按需放开):
-#   远程构建走系统 ssh/rsync 命令, 不依赖 paramiko; 文档为手写 markdown/html, 不依赖 jinja2。
-# paramiko>=3.0          # 远程 SSH (仅在改用 ParamikoSshRunner 时需要)
-# jinja2>=3.0            # 文档模板渲染 (仅在改用模板渲染时需要)

@@ -44,8 +44,8 @@ jobs:
         with:
           python-version: '3.x'
           cache: pip
-          cache-dependency-path: requirements.txt
-      - run: pip install -r requirements.txt
+          cache-dependency-path: Tools/requirements.txt
+      - run: pip install -r Tools/requirements.txt
       - name: Toolchain info
         run: |
           gcc --version | head -1
@@ -80,7 +80,7 @@ jobs:
           python-version: '3.x'
       - name: 安装 cppcheck
         run: sudo apt-get update -qq && sudo apt-get install -y -qq cppcheck
-      - run: pip install -r requirements.txt
+      - run: pip install -r Tools/requirements.txt
       - name: scons check (cppcheck/MISRA 门禁 + GoogleTest 单测)
         run: scons -Q check PROJECT=Projects/${{ matrix.project }} TOOLCHAIN=gcc PLATFORM=host
       - name: 归档报告 (gtest + misra)

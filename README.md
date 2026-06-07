@@ -87,7 +87,8 @@ scons release                    # 编译并把源码模块释放回 *_Libs
 | `Tools/scripts/` | 跨平台 Python 脚本：`new_module.py`（模块骨架）、`run_gtest.py`（单元测试）、`run_check.py`（cppcheck/MISRA+单测，`scons check` 调用）、`run_integration_test.py`（QEMU 集成测试）、`remote_build.py`（远程构建） |
 | `manifests/` | google-repo 工作区组装清单（须位于顶层，bootstrap 整个工作区） |
 | `SConstruct` | **v3 构建框架顶层入口**（YAML 驱动，见“构建”） |
-| `requirements.txt` | 构建框架 Python 依赖（pyyaml 等） |
+| `Tools/requirements.txt` | 构建框架 Python 依赖（**固定版本**：scons/pyyaml） |
+| `Tools/setup_env.py` | 一键搭建仓库内隔离 venv（`Tools/.venv`）+ 校验外部工具，见 `Tools/ENVIRONMENT.md` |
 | `.clang-format` | 代码格式规范 |
 | `.gitignore` | 忽略构建产物与生成代码 |
 | `misra.json` | MISRA C:2012 静态检查配置 |
@@ -117,7 +118,8 @@ scons release                    # 编译并把源码模块释放回 *_Libs
 从**仓库根**运行：
 
 ```bat
-pip install -r requirements.txt          REM 一次性: 安装 pyyaml 等
+python Tools\setup_env.py                 REM 一次性: 建隔离 venv(Tools\.venv) + 装固定版本依赖 + 校验外部工具
+Tools\.venv\Scripts\activate              REM 激活 (Linux/mac: source Tools/.venv/bin/activate)
 call Tools\Compiler\setup_env.bat         REM 设置 TriCore 工具链 (hightec/tasking)
 
 scons -j %NUMBER_OF_PROCESSORS%           REM 构建默认项目 Demo_Tc387 -> Out\Demo_Tc387.elf

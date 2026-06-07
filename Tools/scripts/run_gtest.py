@@ -41,7 +41,12 @@ def main():
         print(f'[gtest] SKIP: {a.project} 无单元测试 ({ut_dir})')
         return 0   # 无测试视为跳过 (多项目矩阵下不阻塞)
 
-    rc = run(['cmake', '-S', ut_dir, '-B', build_dir, '-DCMAKE_BUILD_TYPE=Coverage'])
+    cfg = ['cmake', '-S', ut_dir, '-B', build_dir, '-DCMAKE_BUILD_TYPE=Coverage']
+    # 离线/固定: 若设 GOOGLETEST_DIR(本地 googletest 源码), FetchContent 用它而非联网拉取
+    gtdir = os.environ.get('GOOGLETEST_DIR')
+    if gtdir and os.path.isdir(gtdir):
+        cfg.append('-DFETCHCONTENT_SOURCE_DIR_GOOGLETEST=' + os.path.abspath(gtdir))
+    rc = run(cfg)
     if rc:
         return rc
     rc = run(['cmake', '--build', build_dir, '-j', str(os.cpu_count() or 2)])

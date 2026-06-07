@@ -11,7 +11,7 @@
 | 顶层入口 | 仓库根 `SConstruct` |
 | 框架包 | `Tools/site_scons/{workspace,config_loader,resolver,module_builder,report,toolchain,platform,codegen,docgen,remote}` |
 | 脚本 | `Tools/scripts/`（`new_module.py`、`remote_build.py`） |
-| 依赖 | 仓库根 `requirements.txt` |
+| 依赖 | `Tools/requirements.txt`（固定版本）+ `Tools/setup_env.py`（隔离 venv）；环境说明见 `Tools/ENVIRONMENT.md` |
 | Doxygen 模板 | `Tools/Doxygen/Doxyfile.in` |
 | 项目主配置 | `Projects/<P>/build.yaml`（schema 3.0，`layers/mode`） |
 | 项目编排器 | `Projects/<P>/SConscript`（按 `build.yaml` 自动发现+决策 source/lib 并构建） |

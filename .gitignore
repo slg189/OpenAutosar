@@ -63,3 +63,8 @@ __pycache__/
 
 # ===== Sub-repo staging =====
 .subrepos/
+
+# ===== cppcheck (scons check) =====
+build_check/
+**/*.ctu-info
+**/cppcheck-addon-ctu-file-list*

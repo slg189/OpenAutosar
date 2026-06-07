@@ -53,13 +53,16 @@ def main():
            if os.path.isdir(os.path.join(ROOT, d))]
     report_dir = os.path.join(ROOT, 'Projects', a.project, 'Reports')
     os.makedirs(report_dir, exist_ok=True)
+    # cppcheck 分析缓存目录 (避免 MISRA addon 的 ctu-info 文件落到源码树)
+    build_dir = os.path.join(ROOT, 'build_check')
+    os.makedirs(build_dir, exist_ok=True)
 
     rc = 0
     if not shutil.which('cppcheck'):
         print('[check] 未找到 cppcheck, 跳过静态检查 (apt install cppcheck)')
     else:
-        common = ['--inline-suppr', '--quiet'] + [f'-I{h}' for h in hdr] \
-                 + [f'-i{s}' for s in suppress] + inc_paths
+        common = ['--inline-suppr', '--quiet', f'--cppcheck-build-dir={build_dir}'] \
+                 + [f'-I{h}' for h in hdr] + [f'-i{s}' for s in suppress] + inc_paths
         # 1) 真实 bug 门禁
         print('[check] cppcheck 真实 bug 门禁 (warning/performance/portability)')
         r = run(['cppcheck', '--enable=warning,performance,portability',

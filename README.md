@@ -82,11 +82,11 @@ scons release                    # 编译并把源码模块释放回 *_Libs
 | `Components/` | 组件模块 / 公共代码；`Components/Mcu/Sbm/` 为启动代码模块（或 `.a` + `inc/`） |
 | `MCAL/` | MCAL 静态代码：`Tc387/`、`Tc367/`，每模块 `inc/` + `src/` 或 `.a` + `inc/` |
 | `Projects/` | 各项目工程，见下方“工程目录”说明 |
-| `Tools/` | 项目工具（A2L、SCons、编译器封装、Doxygen 模板等） |
+| `Tools/` | 项目工具：`site_scons/`（v3 构建框架包）、`scripts/`、A2L、Compiler、Doxygen、Git |
+| `Tools/site_scons/` | **v3 构建框架**（Python 包：工具链/平台/代码生成/文档/远程 适配 + workspace/resolver/...）；由 `Tools` 加入 sys.path、按包名 `site_scons` 导入 |
+| `Tools/scripts/` | 框架脚本：`new_module.py`、`remote_build.py` |
 | `manifests/` | google-repo 工作区组装清单（须位于顶层，bootstrap 整个工作区） |
-| `SConstruct` | **v2 构建框架顶层入口**（YAML 驱动，见“构建”） |
-| `site_scons/autosar/` | v2 构建框架（工具链/平台/代码生成/文档/远程 适配） |
-| `scripts/` | 框架脚本：`new_module.py`（模块脚手架）、`remote_build.py` |
+| `SConstruct` | **v3 构建框架顶层入口**（YAML 驱动，见“构建”） |
 | `requirements.txt` | 构建框架 Python 依赖（pyyaml 等） |
 | `.clang-format` | 代码格式规范 |
 | `.gitignore` | 忽略构建产物与生成代码 |
@@ -136,9 +136,9 @@ scons --remote=build_server_01            REM 远程服务器构建
 > “工作区是否可见源码”（manifest 决定）自动选 编译 / 链接 `*_Libs`，亦可显式 `mode: source|lib`。
 > 模块**自动发现**（目录即模块），`build.yaml` 显式列模块、只写例外；`scons list` 提示未列入的模块。
 >
-> 框架分层：根 `SConstruct` → `site_scons/autosar/**`（框架）→ `Projects/<P>/SConscript`（编排器）。
+> 框架分层：根 `SConstruct` → `Tools/site_scons/**`（框架）→ `Projects/<P>/SConscript`（编排器）。
 > 设计/提案/开发计划见 [`Projects/Demo_Tc387/Docs/build-system/`](Projects/Demo_Tc387/Docs/build-system/)。
-> 新增模块：把目录放进对应层（含 `inc/`+`src/`）即被发现；或 `python scripts/new_module.py`。
+> 新增模块：把目录放进对应层（含 `inc/`+`src/`）即被发现；或 `python Tools/scripts/new_module.py`。
 >
 > 注：原 `Tools/Scons/build_helpers.py` + per-project `SConstruct` + `module_config.py` 的旧构建已退役（git 历史可查）。
 

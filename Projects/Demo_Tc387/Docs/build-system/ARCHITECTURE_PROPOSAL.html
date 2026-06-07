@@ -96,7 +96,7 @@
   <table>
     <tr><th>维度</th><th>原框架（fallback）</th><th>v2 框架（已落地根目录）</th></tr>
     <tr><td>入口</td><td>每项目 <code>Projects/&lt;P&gt;/SConstruct</code></td><td>仓库根 <code>SConstruct</code>（薄）</td></tr>
-    <tr><td>公共逻辑</td><td><code>Tools/Scons/build_helpers.py</code></td><td><code>site_scons/autosar/**</code></td></tr>
+    <tr><td>公共逻辑</td><td><code>Tools/Scons/build_helpers.py</code></td><td><code>Tools/site_scons/**</code></td></tr>
     <tr><td>配置</td><td><code>module_config.py</code>（Python 字典）</td><td><code>build.yaml</code>（数据 + schema 校验）</td></tr>
     <tr><td>目标抽象</td><td>工具链/平台写死（tricore-gcc/AURIX）</td><td>工具链/平台/代码生成/文档/远程 插件化</td></tr>
     <tr><td>领域建模</td><td class="ok">✓ 五层 + source/lib + <code>*_Libs</code> 信息安全 + MCAL 芯片维 + Integration + Gen/Ld</td><td class="no">✗ 仅 bsw/mcal/components 三桶</td></tr>
@@ -152,7 +152,7 @@
   <h2>5 · 目标架构总览</h2>
 <div class="tree">仓库根/
 ├── <span class="dir">SConstruct</span>                  <span class="note"># 薄入口 (不含项目逻辑)</span>
-├── <span class="dir">site_scons/autosar/</span>         <span class="star"># ★ 平台框架 (维护者唯一改动面)</span>
+├── <span class="dir">Tools/site_scons/</span>         <span class="star"># ★ 平台框架 (维护者唯一改动面)</span>
 │   ├── workspace.py            <span class="note"># 工作区/模块自动发现 + 可见性解析</span>
 │   ├── config_loader.py        <span class="note"># build.yaml -&gt; 强类型 + 校验</span>
 │   ├── module_builder.py       <span class="note"># 通用按约定编译 (取代每模块 SConscript)</span>
@@ -164,7 +164,7 @@
     ├── build.yaml              <span class="note"># 唯一主配置 (只写例外)</span>
     ├── Cfg/ Gen/ Ld/ Obj/ Out/ <span class="note"># 配置/生成码/链接脚本/产物</span>
     └── (可选) modules/*.yaml   <span class="note"># 仅特殊模块的 override</span></div>
-  <p>两个<strong>最小改动面</strong>：用户只碰 <code>Projects/&lt;P&gt;/build.yaml</code>；维护者只碰 <code>site_scons/autosar/**</code>。</p>
+  <p>两个<strong>最小改动面</strong>：用户只碰 <code>Projects/&lt;P&gt;/build.yaml</code>；维护者只碰 <code>Tools/site_scons/**</code>。</p>
 </section>
 
 <section id="core">

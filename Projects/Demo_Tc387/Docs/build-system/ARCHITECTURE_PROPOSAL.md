@@ -18,7 +18,7 @@
 | | 原框架（fallback） | v2 框架（已落地根目录） |
 |---|---|---|
 | 入口 | 每项目 `Projects/<P>/SConstruct` | 仓库根 `SConstruct`（薄） |
-| 公共逻辑 | `Tools/Scons/build_helpers.py` | `site_scons/autosar/**`（平台包） |
+| 公共逻辑 | `Tools/Scons/build_helpers.py` | `Tools/site_scons/**`（平台包） |
 | 配置 | `module_config.py`（Python 字典） | `Projects/<P>/build.yaml`（数据 + schema 校验） |
 | 目标抽象 | 工具链/平台写死（tricore-gcc/AURIX） | 工具链/平台/代码生成/文档/远程 插件化 |
 | 领域建模 | ✓ 五层 + source/lib + `*_Libs` 信息安全 + MCAL 芯片维 + Integration + Gen/Ld | ✗ 仅 bsw/mcal/components 三桶，缺 ASW/CDD、缺“只链接的库”、缺信息安全 |
@@ -71,7 +71,7 @@
 ```
 仓库根/
 ├── SConstruct                  # 薄入口 (不含项目逻辑)
-├── site_scons/autosar/         # ★ 平台框架 (维护者唯一改动面)
+├── Tools/site_scons/         # ★ 平台框架 (维护者唯一改动面)
 │   ├── workspace.py            #   工作区/模块自动发现 + 可见性解析
 │   ├── config_loader.py        #   build.yaml -> 强类型 + 校验
 │   ├── module_builder.py       #   通用按约定编译 (取代每模块 SConscript)
@@ -85,7 +85,7 @@
     └── (可选) modules/*.yaml   #   仅特殊模块的 override
 ```
 
-两个**最小改动面**：用户只碰 `Projects/<P>/build.yaml`；维护者只碰 `site_scons/autosar/**`。
+两个**最小改动面**：用户只碰 `Projects/<P>/build.yaml`；维护者只碰 `Tools/site_scons/**`。
 
 ---
 

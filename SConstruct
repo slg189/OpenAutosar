@@ -24,14 +24,16 @@ OpenAutosar 顶层构建入口。
 import os
 import sys
 
-# 把 site_scons 加进 Python 搜索路径
+# 把 Tools 加进 Python 搜索路径, 框架为其下的 site_scons 包 (Tools/site_scons/)。
+# 注: 这里的 site_scons 是普通 Python 包(非 SCons 根目录魔法位置), 用包名隔离避免
+#     platform/codegen 等模块名污染/遮蔽 (如 stdlib 的 platform)。
 ROOT = Dir('#').abspath
-sys.path.insert(0, os.path.join(ROOT, 'site_scons'))
+sys.path.insert(0, os.path.join(ROOT, 'Tools'))
 
 import yaml
-from autosar.toolchain import load_toolchain
-from autosar.platform  import load_platform
-from autosar.remote    import dispatch_if_remote
+from site_scons.toolchain import load_toolchain
+from site_scons.platform  import load_platform
+from site_scons.remote    import dispatch_if_remote
 
 AddOption('--remote',
           dest='remote',

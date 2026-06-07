@@ -93,8 +93,8 @@ scons compile TOOLCHAIN=gcc PLATFORM=host only=Crc,Adc</code></pre>
   这样可绕开预编译 <code>.a</code> 是 TriCore 目标码、无法在主机链接的问题（见 §6）。</p>
   <table>
     <tr><th>适配器</th><th>文件</th><th>作用</th></tr>
-    <tr><td><code>toolchain=gcc</code></td><td><code>site_scons/autosar/toolchain/gcc.py</code></td><td>系统 gcc，通用 C 标志（无嵌入式 flag）</td></tr>
-    <tr><td><code>platform=host</code></td><td><code>site_scons/autosar/platform/host.py</code></td><td>本机架构，不注入目标 CPU flag</td></tr>
+    <tr><td><code>toolchain=gcc</code></td><td><code>Tools/site_scons/toolchain/gcc.py</code></td><td>系统 gcc，通用 C 标志（无嵌入式 flag）</td></tr>
+    <tr><td><code>platform=host</code></td><td><code>Tools/site_scons/platform/host.py</code></td><td>本机架构，不注入目标 CPU flag</td></tr>
   </table>
 </section>
 

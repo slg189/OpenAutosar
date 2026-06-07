@@ -20,7 +20,7 @@ try:
 except Exception:
     mod_cfg = None
 
-from autosar.module_builder import build_module
+from site_scons.module_builder import build_module
 
 objs = build_module(env, Dir('.').abspath, '{name}', mod_cfg)
 Return('objs')

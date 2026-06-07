@@ -54,7 +54,7 @@
 **目的**：消灭“每模块一份 SConscript”，让 `build.yaml` 不必枚举模块。
 
 任务
-- [ ] `site_scons/autosar/workspace.py`：`discover(layer_roots)` 按约定（含 `inc/` 目录）扫描模块；MCAL 支持 `<chip>/<mod>`。
+- [ ] `Tools/site_scons/workspace.py`：`discover(layer_roots)` 按约定（含 `inc/` 目录）扫描模块；MCAL 支持 `<chip>/<mod>`。
 - [ ] `module_builder.py`：增强为“无 SConscript 也能按约定编译”（`src/*.c|*.S` + `inc/` + `Gen/<mod>/`）。
 - [ ] 项目 `SConscript`：改为“遍历 discover 结果”，删除“缺 SConscript 即 fail”的硬约束（保留显式 SConscript 优先级）。
 - [ ] `report.py` + `scons list`：打印发现到的模块。

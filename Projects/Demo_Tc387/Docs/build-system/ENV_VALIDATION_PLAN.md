@@ -13,8 +13,8 @@
 
 ## 1. 已完成（M0）
 
-- [x] `site_scons/autosar/toolchain/gcc.py`：系统 gcc，通用 C 标志（无嵌入式 flag）
-- [x] `site_scons/autosar/platform/host.py`：本机架构，不注入目标 CPU flag
+- [x] `Tools/site_scons/toolchain/gcc.py`：系统 gcc，通用 C 标志（无嵌入式 flag）
+- [x] `Tools/site_scons/platform/host.py`：本机架构，不注入目标 CPU flag
 - [x] `Projects/<P>/SConscript`：新增 `compile` 别名（只编源码模块为 `.o`，不链接）
 - [x] 修复 host-gcc 暴露的 2 个 bug（动作签名 `env`、各层公共头 `<Layer>/inc`）
 - [x] `.gitignore`：忽略就地编译产生的 `**/*.o`、`**/*.d`

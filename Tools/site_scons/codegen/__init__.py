@@ -3,11 +3,11 @@
 import importlib
 
 _REGISTRY = {
-    'vector':    'autosar.codegen.vector:VectorAdapter',
-    'etas':      'autosar.codegen.etas:EtasAdapter',
-    'eb_tresos': 'autosar.codegen.eb_tresos:EbTresosAdapter',
-    'turing':    'autosar.codegen.turing:TuringAdapter',
-    'custom':    'autosar.codegen.custom:CustomAdapter',
+    'vector':    'site_scons.codegen.vector:VectorAdapter',
+    'etas':      'site_scons.codegen.etas:EtasAdapter',
+    'eb_tresos': 'site_scons.codegen.eb_tresos:EbTresosAdapter',
+    'turing':    'site_scons.codegen.turing:TuringAdapter',
+    'custom':    'site_scons.codegen.custom:CustomAdapter',
 }
 
 

@@ -8,10 +8,10 @@
 import os
 Import('env')
 
-from autosar import config_loader, workspace, resolver, report
-from autosar.module_builder import build_module
-from autosar.codegen import create_adapter
-from autosar.docgen import build_docs
+from site_scons import config_loader, workspace, resolver, report
+from site_scons.module_builder import build_module
+from site_scons.codegen import create_adapter
+from site_scons.docgen import build_docs
 
 ROOT        = env['ROOT_DIR']
 PROJECT_DIR = env['PROJECT_DIR']

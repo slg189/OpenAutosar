@@ -9,8 +9,9 @@
 | 内容 | 位置 |
 |------|------|
 | 顶层入口 | 仓库根 `SConstruct` |
-| 框架包 | `site_scons/autosar/{workspace,config_loader,resolver,module_builder,report,toolchain,platform,codegen,docgen,remote}` |
-| 脚本/依赖 | 仓库根 `scripts/`、`requirements.txt` |
+| 框架包 | `Tools/site_scons/{workspace,config_loader,resolver,module_builder,report,toolchain,platform,codegen,docgen,remote}` |
+| 脚本 | `Tools/scripts/`（`new_module.py`、`remote_build.py`） |
+| 依赖 | 仓库根 `requirements.txt` |
 | Doxygen 模板 | `Tools/Doxygen/Doxyfile.in` |
 | 项目主配置 | `Projects/<P>/build.yaml`（schema 3.0，`layers/mode`） |
 | 项目编排器 | `Projects/<P>/SConscript`（按 `build.yaml` 自动发现+决策 source/lib 并构建） |

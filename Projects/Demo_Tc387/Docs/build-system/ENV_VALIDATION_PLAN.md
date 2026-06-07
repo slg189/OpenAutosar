@@ -33,8 +33,8 @@ scons compile TOOLCHAIN=gcc PLATFORM=host only=Crc,Adc    # 某些模块
 
 | 里程碑 | 主题 | 估(人日) | 退出条件 |
 |--------|------|:---:|---------|
-| **M0** | host-gcc 编译验证（已完成） | — | 13/13 源码模块本机编译通过 |
-| **M1** | CI 门禁化 | 1 | PR 触发 `scons compile gcc/host`，失败即红 |
+| **M0** | host-gcc 编译验证（✅ 完成） | — | 13/13 源码模块本机编译通过 |
+| **M1** | CI 门禁化（✅ 完成） | — | PR 触发 `scons compile gcc/host`，~15s 绿 |
 | **M2** | 告警治理 + `-Werror` | 1.5 | 桩代码零告警；CI 开 `-Werror` |
 | **M3** | 多项目 / 多配置矩阵 | 1 | 每个 `build.yaml` 都过；`scons list` 快照入 CI |
 | **M4** | 目标工具链第二道闸 | 2 | 有 TriCore runner 时跑真机编译/链接 + QEMU |
@@ -113,10 +113,10 @@ scons compile TOOLCHAIN=gcc PLATFORM=host only=Crc,Adc    # 某些模块
 ## 7. 进度勾选表
 
 - [x] M0 host-gcc 编译验证（13/13，exit 0；修 2 bug）
-- [ ] M1 CI 门禁化
+- [x] M1 CI 门禁化（`.github/workflows/build-validation.yml`；push/PR 触发，~15s 绿）
 - [ ] M2 告警治理 + `-Werror`
 - [ ] M3 多项目/多配置矩阵
 - [ ] M4 目标工具链第二道闸（真机+QEMU）
 - [ ] M5 check/单测/MISRA 串联
 
-> M0 已实施并实测；M1 起需要 CI 配置权限/runner。本计划随实施滚动更新。
+> M0+M1 已实施并实测（CI 在 PR #2 上 success）；M2 起按需推进。本计划随实施滚动更新。

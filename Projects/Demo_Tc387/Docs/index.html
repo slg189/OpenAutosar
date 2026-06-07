@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAutosar 工程框架文档</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#273449; --accent:#38bdf8;
+    --accent2:#34d399; --text:#e2e8f0; --muted:#94a3b8; --border:#334155;
+    --code:#0b1220; --warn:#fbbf24;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.65;}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header{background:linear-gradient(120deg,#0ea5e9,#10b981);padding:48px 24px;
+    text-align:center;color:#021018}
+  header h1{margin:0;font-size:2.4rem;letter-spacing:1px}
+  header p{margin:8px 0 0;font-size:1.05rem;opacity:.9}
+  .layout{display:flex;max-width:1200px;margin:0 auto}
+  nav{position:sticky;top:0;align-self:flex-start;width:230px;padding:24px 12px;
+    height:100vh;overflow:auto;border-right:1px solid var(--border);font-size:.92rem}
+  nav h3{color:var(--muted);font-size:.75rem;text-transform:uppercase;
+    letter-spacing:1px;margin:18px 8px 6px}
+  nav a{display:block;padding:6px 10px;border-radius:6px;color:var(--text)}
+  nav a:hover{background:var(--panel2);text-decoration:none}
+  main{flex:1;padding:32px 36px;min-width:0}
+  section{margin-bottom:44px;scroll-margin-top:20px}
+  h2{font-size:1.6rem;border-left:4px solid var(--accent);padding-left:12px;margin-top:0}
+  h3{color:var(--accent2);margin-top:28px}
+  p,li{color:var(--text)}
+  .muted{color:var(--muted)}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+  th,td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--accent)}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  code{background:var(--code);padding:2px 6px;border-radius:4px;
+    font-family:"JetBrains Mono",Consolas,monospace;font-size:.88em;color:#7dd3fc}
+  pre{background:var(--code);border:1px solid var(--border);border-radius:8px;
+    padding:16px;overflow:auto}
+  pre code{background:none;padding:0;color:#cbd5e1}
+  .tree{font-family:"JetBrains Mono",Consolas,monospace;font-size:.85rem;
+    background:var(--code);border:1px solid var(--border);border-radius:8px;
+    padding:20px;overflow:auto;white-space:pre;line-height:1.5}
+  .tree .dir{color:#7dd3fc}
+  .tree .note{color:var(--muted)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    padding:16px}
+  .card h4{margin:0 0 6px;color:var(--accent)}
+  .card p{margin:0;font-size:.88rem;color:var(--muted)}
+  .badge{display:inline-block;background:var(--panel2);color:var(--accent2);
+    border:1px solid var(--border);border-radius:20px;padding:2px 10px;
+    font-size:.75rem;margin:2px 4px 2px 0}
+  .callout{background:var(--panel);border-left:4px solid var(--warn);
+    padding:12px 16px;border-radius:6px;margin:14px 0}
+  .layers{display:flex;flex-direction:column;gap:6px;margin:16px 0}
+  .layer{padding:12px 16px;border-radius:8px;font-weight:600;text-align:center;color:#021018}
+  .l-asw{background:#a5f3fc}.l-rte{background:#bef264}.l-bsw{background:#fde68a}
+  .l-cdd{background:#fca5a5}.l-mcal{background:#c4b5fd}.l-hw{background:#94a3b8}
+  footer{text-align:center;padding:28px;color:var(--muted);border-top:1px solid var(--border)}
+  @media(max-width:860px){nav{display:none}main{padding:20px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>OpenAutosar 工程框架</h1>
+  <p>AUTOSAR Classic Platform · Infineon AURIX TC3xx (TC387 / TC367)</p>
+</header>
+
+<div class="layout">
+<nav>
+  <h3>导航</h3>
+  <a href="#overview">项目概述</a>
+  <a href="#arch">分层架构</a>
+  <a href="#tree">目录结构总览</a>
+  <a href="USER_MANUAL.html"><strong>★ 用户手册（命令 / 环境 / 模块增删）</strong></a>
+  <a href="build_and_security.html"><strong>★ 信息安全 / 灵活编译方案</strong></a>
+  <a href="repo_structure.html"><strong>★ Git 多子库划分方案</strong></a>
+  <h3>各层目录</h3>
+  <a href="#asw">ASW · 应用层</a>
+  <a href="#bsw">BSW · 基础软件</a>
+  <a href="#cdd">CDD · 复杂驱动</a>
+  <a href="#components">Components · 组件</a>
+  <a href="#mcal">MCAL · 微控制器抽象</a>
+  <a href="#projects">Projects · 工程</a>
+  <a href="#tools">Tools · 工具</a>
+  <a href="#test">Test · 测试</a>
+  <h3>工程化</h3>
+  <a href="#root">根文件与脚本</a>
+  <a href="#build">构建与测试流程</a>
+  <a href="#conventions">约定与规范</a>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2>项目概述</h2>
+  <p>OpenAutosar 是一个面向量产的 <strong>AUTOSAR Classic Platform</strong> 嵌入式工程框架，
+  按照 AUTOSAR 分层模型组织代码：上层应用软件 (ASW)、基础软件 (BSW)、复杂驱动 (CDD)、
+  公共组件 (Components) 与微控制器抽象层 (MCAL)。每一层既支持 <em>源码形式</em>
+  （<code>inc/</code> 头文件 + <code>src/</code> 静态代码），也支持 <em>预编译交付形式</em>
+  （供应商 <code>.a</code> 库 + <code>inc/</code> 头文件）。</p>
+  <div>
+    <span class="badge">AUTOSAR CP</span>
+    <span class="badge">AURIX TC387 / TC367</span>
+    <span class="badge">SCons 构建</span>
+    <span class="badge">EB tresos / ETAS / Vector</span>
+    <span class="badge">GoogleTest + QEMU</span>
+    <span class="badge">MISRA C:2012</span>
+  </div>
+</section>
+
+<section id="arch">
+  <h2>分层架构</h2>
+  <p>自上而下的软件分层（CDD 可跨层直达硬件）：</p>
+  <div class="layers">
+    <div class="layer l-asw">ASW &nbsp;应用软件 (VehicleControl / EnergyManagement …)</div>
+    <div class="layer l-rte">RTE &nbsp;运行时环境 (Gen / 工具生成)</div>
+    <div class="layer l-bsw">BSW &nbsp;基础软件 (ETAS RTA-OS / Vector MICROSAR COM …)</div>
+    <div class="layer l-cdd">CDD &nbsp;复杂驱动 (CddPwm / CddMotor / CddSent)</div>
+    <div class="layer l-mcal">MCAL &nbsp;微控制器抽象 (Adc / Can / Port)</div>
+    <div class="layer l-hw">Hardware &nbsp;Infineon AURIX TC3xx</div>
+  </div>
+  <p class="muted">Components 提供跨层公共代码（类型、编译器抽象、CRC 等）与启动模块 Sbm；
+  Projects 负责把各层产物（<code>.a</code>）与生成的配置代码链接为最终镜像。</p>
+</section>
+
+<section id="tree">
+  <h2>目录结构总览</h2>
+<div class="tree"><span class="dir">OpenAutosar/</span>
+├── <span class="dir">ASW/</span>                   <span class="note"># 上层应用软件</span>
+│   ├── inc/                <span class="note"># 公共对外头文件</span>
+│   ├── VehicleControl/     <span class="note"># 应用模型: inc/ + src/ + SConscript</span>
+│   └── EnergyManagement/   <span class="note"># 预编译交付: inc/ + libEnergyManagement.a</span>
+├── <span class="dir">BSW/</span>                   <span class="note"># BSW 供应商源码 (按模块名, 不分供应商; .a 释放到 BSW_Libs/)</span>
+│   ├── inc/                <span class="note"># 公共头文件 (EcuM.h …)</span>
+│   ├── Os/                 <span class="note"># src/ + inc/ + SConscript (子库 BSW_Etas_TC387_RtaOs)</span>
+│   ├── Com/                <span class="note"># src/ + inc/ + SConscript (子库 BSW_Vector_TC387_CBDxxxxxx)</span>
+│   └── Crc/                <span class="note"># src/ + inc/ + SConscript (v2 框架冒烟模块)</span>
+├── <span class="dir">CDD/</span>                   <span class="note"># 复杂驱动</span>
+│   ├── CddPwm/             <span class="note"># inc/ + src/ + gen/ + SConscript</span>
+│   ├── CddMotor/           <span class="note"># inc/ + src/ + gen/ + SConscript</span>
+│   └── CddSent/            <span class="note"># 预编译: inc/ + libCddSent.a</span>
+├── <span class="dir">Components/</span>             <span class="note"># 组件 / 公共代码</span>
+│   ├── Common/             <span class="note"># Std_Types / Compiler / Platform 抽象</span>
+│   └── Mcu/Sbm/            <span class="note"># 启动代码模块 (inc/ + src/)</span>
+├── <span class="dir">MCAL/</span>                  <span class="note"># 微控制器抽象层静态代码</span>
+│   ├── inc/                <span class="note"># Std_Types.h 等公共类型</span>
+│   ├── Tc387/              <span class="note"># Adc / Can / Port (inc/ + src/)</span>
+│   └── Tc367/              <span class="note"># Adc(源码) / Can(libCan.a + inc/)</span>
+├── <span class="dir">Projects/</span>              <span class="note"># 项目工程</span>
+│   └── Demo_Tc387/         <span class="note"># Cfg/ Ld/ Gen/ Obj/ Out/ Libs/ + SConstruct</span>
+│       ├── Test/           <span class="note"># ut/ (单元) · Projects/ (集成) · QAC/ (随工程下沉)</span>
+│       ├── Docs/           <span class="note"># 本文档 (随工程下沉)</span>
+│       └── Reports/        <span class="note"># 测试/检查报告输出 (随工程下沉)</span>
+├── <span class="dir">Tools/</span>                 <span class="note"># A2L / SCons / 编译器工具</span>
+├── <span class="dir">manifests/</span>             <span class="note"># google-repo 组装清单 (须位于顶层)</span>
+├── .clang-format          <span class="note"># 代码格式</span>
+├── .gitignore
+├── misra.json             <span class="note"># MISRA C:2012 检查配置</span>
+├── repo_metasar.bat        <span class="note"># 多仓同步 (google-repo)</span>
+├── Tools/scripts/run_gtest.py           <span class="note"># 单元测试入口</span>
+├── Tools/scripts/run_integration_test.py <span class="note"># 集成测试入口</span>
+└── TestPlatform_UintTest_QEMU_Test.json
+</div>
+</section>
+
+<section id="asw">
+  <h2>ASW · 应用层</h2>
+  <p>存放上层各应用模型的代码。每个应用既可以 <strong>源码形式</strong> 组织
+  （模块文件夹下 <code>src/</code> 源码 + <code>inc/</code> 头文件 + <code>SConscript</code>），
+  也可以 <strong>预编译形式</strong> 交付（模块根目录下 <code>.a</code> 库 + <code>inc/</code> 头文件）。
+  <code>ASW/inc/</code> 放置应用层公共对外头文件（如共享 RTE 类型）。</p>
+  <table>
+    <tr><th>路径</th><th>形式</th><th>说明</th></tr>
+    <tr><td><code>ASW/inc/</code></td><td>头文件</td><td>公共对外类型 (Rte_Type.h)</td></tr>
+    <tr><td><code>ASW/VehicleControl/</code></td><td>源码</td><td>整车控制：inc/ + src/ + SConscript</td></tr>
+    <tr><td><code>ASW/EnergyManagement/</code></td><td>预编译</td><td>能量管理：inc/ + libEnergyManagement.a</td></tr>
+  </table>
+</section>
+
+<section id="bsw">
+  <h2>BSW · 基础软件</h2>
+  <p>项目 BSW 供应商<strong>源码</strong>。<strong>不再分 Vector/Etas 目录，直接按模块名</strong>（<code>Os</code>/<code>Com</code>/<code>Crc</code>/…）组织；
+  供应商、芯片、交付版本编码进 git 子库名（<code>BSW_&lt;Vendor&gt;_&lt;Chip&gt;_&lt;Delivery&gt;</code>，归 BSW group）。
+  每模块 <code>src/</code> + <code>inc/</code>（按约定自动发现，无需每模块 SConscript），编译产物 <code>.a</code> 释放到 <code>BSW_Libs/</code>（非源码可见者只拿二进制）；<code>BSW/inc/</code> 为跨模块公共头文件。</p>
+  <div class="cards">
+    <div class="card"><h4>BSW/Os/</h4><p>ETAS RTA-OS：<code>src/Os.c</code> + <code>inc/Os.h</code><br><span class="note">子库 BSW_Etas_TC387_RtaOs → BSW_Libs/Os/libRtaOs.a</span></p></div>
+    <div class="card"><h4>BSW/Com/</h4><p>Vector MICROSAR COM：<code>src/Com.c</code> + <code>inc/Com.h</code><br><span class="note">子库 BSW_Vector_TC387_CBDxxxxxx → BSW_Libs/Com/libCom.a</span></p></div>
+    <div class="card"><h4>BSW/inc/</h4><p>公共对外接口 (EcuM.h 等)</p></div>
+  </div>
+</section>
+
+<section id="cdd">
+  <h2>CDD · 复杂驱动</h2>
+  <p>各模块为一个复杂驱动 (Complex Device Driver)，可直接访问硬件外设。
+  源码模块在子目录下分 <code>inc/</code>（头文件）、<code>src/</code>（静态代码）、
+  <code>gen/</code>（配置代码），模块根目录提供 <code>SConscript</code> 构建脚本；
+  预编译模块则在模块根目录放 <code>.a</code> 库 + <code>inc/</code> 头文件。</p>
+  <table>
+    <tr><th>模块</th><th>组成</th><th>说明</th></tr>
+    <tr><td><code>CddPwm/</code></td><td>inc/ src/ gen/ SConscript</td><td>GTM PWM 输出</td></tr>
+    <tr><td><code>CddMotor/</code></td><td>inc/ src/ gen/ SConscript</td><td>电机控制</td></tr>
+    <tr><td><code>CddSent/</code></td><td>inc/ + libCddSent.a</td><td>SENT 接收（预编译）</td></tr>
+  </table>
+</section>
+
+<section id="components">
+  <h2>Components · 组件</h2>
+  <p>组件模块代码与公共代码。其中 <code>Mcu/Sbm/</code> 为启动代码模块
+  （Startup / Secure Boot Manager），在 <code>main</code> 之前完成时钟、看门狗、
+  内存初始化与应用镜像校验。同样支持 <code>.a</code> + <code>inc/</code> 预编译形式。</p>
+  <table>
+    <tr><th>路径</th><th>说明</th></tr>
+    <tr><td><code>Components/Common/</code></td><td>Std_Types / Compiler / Platform_Types 抽象，公共工具 (CRC)</td></tr>
+    <tr><td><code>Components/Mcu/Sbm/</code></td><td>启动代码模块：inc/ + src/ + SConscript</td></tr>
+  </table>
+</section>
+
+<section id="mcal">
+  <h2>MCAL · 微控制器抽象层</h2>
+  <p>按芯片型号划分（<code>Tc387/</code>、<code>Tc367/</code>），每个驱动模块以
+  <code>inc/</code> + <code>src/</code> 源码形式，或 <code>.a</code> + <code>inc/</code>
+  预编译形式提供。<code>MCAL/inc/</code> 放公共标准类型。
+  本工程中 MCAL 的配置代码由 EB tresos 依据 <code>Projects/&lt;P&gt;/Cfg/MCAL/*.arxml</code>
+  生成至 <code>Projects/&lt;P&gt;/Gen/MCAL/</code>。</p>
+  <table>
+    <tr><th>芯片</th><th>模块</th><th>形式</th></tr>
+    <tr><td>Tc387</td><td>Adc / Can / Port</td><td>inc/ + src/</td></tr>
+    <tr><td>Tc367</td><td>Adc</td><td>inc/ + src/</td></tr>
+    <tr><td>Tc367</td><td>Can</td><td>inc/ + libCan.a (预编译)</td></tr>
+  </table>
+</section>
+
+<section id="projects">
+  <h2>Projects · 工程</h2>
+  <p>每个项目一个文件夹（示例 <code>Demo_Tc387/</code>），是构建的入口与产物聚合地：</p>
+  <table>
+    <tr><th>子目录</th><th>说明</th></tr>
+    <tr><td><code>Cfg/MCAL/</code></td><td>MCAL 的 EB tresos 工程配置（ECUC <code>*.arxml</code>）</td></tr>
+    <tr><td><code>Cfg/BSW/</code></td><td>BSW 的 ETAS 工程配置文件</td></tr>
+    <tr><td><code>Cfg/CDD/</code></td><td>复杂驱动配置</td></tr>
+    <tr><td><code>Ld/</code></td><td>链接脚本 (<code>Demo_Tc387.ld</code>)</td></tr>
+    <tr><td><code>Gen/{MCAL,CDD,BSW}/</code></td><td>工具生成的配置代码（构建产物）</td></tr>
+    <tr><td><code>Obj/</code></td><td>编译临时 <code>.o</code> 文件</td></tr>
+    <tr><td><code>Out/</code></td><td>链接输出 <code>.hex</code> / <code>.elf</code> / <code>.map</code></td></tr>
+    <tr><td><code>Libs/{ASW,BSW,CDD,MCAL}/</code></td><td>各层编译生成的静态库 <code>.a</code></td></tr>
+    <tr><td><code>SConstruct</code></td><td>SCons 构建入口脚本</td></tr>
+  </table>
+  <div class="callout"><code>Gen/</code>、<code>Obj/</code>、<code>Out/</code> 与
+  <code>Libs/*.a</code> 均为构建产物，已在 <code>.gitignore</code> 中忽略。</div>
+</section>
+
+<section id="tools">
+  <h2>Tools · 工具</h2>
+  <div class="cards">
+    <div class="card"><h4>A2L/</h4><p>ASAP2 标定描述文件生成 / 合并</p></div>
+    <div class="card"><h4>Scons/</h4><p>SCons 公共构建脚本与工具链定义</p></div>
+    <div class="card"><h4>Compiler/</h4><p>TriCore 交叉工具链 (TASKING / GCC) 环境封装</p></div>
+  </div>
+</section>
+
+<section id="test">
+  <h2>Test · 测试</h2>
+  <p class="muted">测试已随工程下沉到 <code>Projects/&lt;P&gt;/Test/</code>（报告输出到 <code>Projects/&lt;P&gt;/Reports/</code>）。</p>
+  <table>
+    <tr><th>目录</th><th>说明</th><th>入口</th></tr>
+    <tr><td><code>Projects/&lt;P&gt;/Test/ut/</code></td><td>GoogleTest 单元测试 + 覆盖率</td><td><code>Tools/scripts/run_gtest.py</code></td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/Test/Projects/</code></td><td>QEMU 集成测试工程</td><td><code>Tools/scripts/run_integration_test.py</code></td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/Test/QAC/</code></td><td>QAC / MISRA 静态分析</td><td><code>misra.json</code></td></tr>
+  </table>
+</section>
+
+<section id="root">
+  <h2>根文件与脚本</h2>
+  <table>
+    <tr><th>文件</th><th>说明</th></tr>
+    <tr><td><code>.clang-format</code></td><td>代码格式规范（4 空格 / Allman / 对齐）</td></tr>
+    <tr><td><code>misra.json</code></td><td>MISRA C:2012 规则集、豁免与扫描范围</td></tr>
+    <tr><td><code>repo_metasar.bat</code></td><td>google-repo manifest 多子仓同步</td></tr>
+    <tr><td><code>Tools/scripts/run_gtest.py</code></td><td>构建并运行单元测试，产出覆盖率到 <code>coverage_output/</code></td></tr>
+    <tr><td><code>Tools/scripts/run_integration_test.py</code></td><td>在 QEMU 上运行集成测试</td></tr>
+    <tr><td><code>TestPlatform_UintTest_QEMU_Test.json</code></td><td>QEMU 测试平台配置</td></tr>
+  </table>
+</section>
+
+<section id="build">
+  <h2>构建与测试流程</h2>
+  <h3>构建</h3>
+ <pre>  <code>REM 1. 配置 TriCore 工具链环境
+call Tools\Compiler\setup_env.bat
+
+REM 2. 进入工程并构建 (SCons)
+cd Projects/Demo_Tc387
+scons -j %NUMBER_OF_PROCESSORS%
+REM 产物: Out/Demo_Tc387.elf / .hex / .map</code></pre>
+  <p class="muted">构建顺序：各模块 <code>SConscript</code> 编译为 <code>.a</code> → 安装到
+  <code>Libs/</code> → 与 <code>Gen/</code> 配置代码、供应商 BSW 库一同按
+  <code>Ld/</code> 链接脚本链接为 ELF → objcopy 生成 HEX。</p>
+  <h3>测试</h3>
+ <pre>  <code>Tools/scripts/run_gtest.py                       REM 单元测试 + OpenCppCoverage 覆盖率
+python Tools/scripts/run_integration_test.py  # QEMU 集成测试 (JUnit 报告)</code></pre>
+</section>
+
+<section id="conventions">
+  <h2>约定与规范</h2>
+  <ul>
+    <li><strong>模块两种形态</strong>：源码形态（<code>inc/</code> + <code>src/</code>[+ <code>gen/</code>] + <code>SConscript</code>）
+        或预编译形态（模块根 <code>.a</code> + <code>inc/</code> 头文件）。</li>
+    <li><strong>配置与代码分离</strong>：工程配置 (<code>Cfg/</code>, arxml) → 工具生成 (<code>Gen/</code>) → 参与构建。</li>
+    <li><strong>产物隔离</strong>：<code>Obj/</code>、<code>Out/</code>、<code>Gen/</code>、<code>Libs/*.a</code> 不入库。</li>
+    <li><strong>代码质量</strong>：统一 <code>.clang-format</code> 风格，MISRA C:2012 + QAC 静态检查。</li>
+    <li><strong>命名</strong>：遵循 AUTOSAR 规范（如 <code>&lt;Module&gt;_&lt;Function&gt;</code>、<code>Std_ReturnType</code>）。</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>
+  OpenAutosar · AUTOSAR Classic Platform 工程框架文档 · 自动生成
+</footer>
+</body>
+</html>

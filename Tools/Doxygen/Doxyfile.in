@@ -1,0 +1,36 @@
+# Doxygen 模板 —— 由 docgen/doxygen_runner.py 在运行时填充占位符。
+# 占位符：@INPUT_DIRS@  @OUTPUT_DIR@  @PROJECT_NAME@
+
+PROJECT_NAME           = "@PROJECT_NAME@"
+PROJECT_BRIEF          = "OpenAutosar API Reference"
+OUTPUT_DIRECTORY       = "@OUTPUT_DIR@/doxygen"
+CREATE_SUBDIRS         = NO
+
+INPUT                  = @INPUT_DIRS@
+FILE_PATTERNS          = *.c *.h *.S
+RECURSIVE              = NO
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+GENERATE_TREEVIEW      = YES
+
+GENERATE_LATEX         = NO
+
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+DIRECTORY_GRAPH        = YES
+DOT_IMAGE_FORMAT       = svg
+
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_AS_ERROR          = NO

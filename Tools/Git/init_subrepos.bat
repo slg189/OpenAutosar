@@ -2,11 +2,12 @@
 REM ============================================================================
 REM init_subrepos.bat
 REM 将当前 monorepo 的各文件夹拆分/发布为独立 git 子库, 可选在 GitHub 建仓并推送。
-REM   - 固定子库: 读取 Tools\Git\repo_map.txt (路径^|仓库名^|分组) —— BSW/MCAL 静态源码等
+REM   - 固定子库: 读取 Tools\Git\repo_map.txt (路径^|仓库名^|分组) —— MCAL 静态源码、
+REM               BSW group 各供应商交付库 (BSW_<Vendor>_<Chip>_<Delivery>) 等
 REM   - 项目相关子库: 仓库名 <name>_<PROJECT>, 工作区检出到对应目录根:
-REM       项目源码 ASWs->asw_<P>, CDDs->cdd_<P> (ASW/CDD 未按静态/配置分离)
-REM       项目库   ASW_Libs->asw_libs_<P>, CDD_Libs->cdd_libs_<P>,
-REM               BSW_Libs->bsw_libs_<P>, MCAL_Libs->mcal_libs_<P> (MCAL 配置+静态合并为库)
+REM       项目源码 ASW->asw_<P>, CDD->cdd_<P> (ASW/CDD 未按静态/配置分离)
+REM       项目库   ASW_Libs->asw_libs_<P>, CDD_Libs->cdd_libs_<P>, BSW_Libs->bsw_libs_<P>
+REM               MCAL_Libs->MCAL_<P> (MCAL group 下按项目区分; 已固定单一芯片, 不分 <Chip>)
 REM
 REM 用法:
 REM   Tools\Git\init_subrepos.bat <REMOTE_BASE> [选项]
@@ -71,13 +72,14 @@ for /F "usebackq eol=# tokens=1,2,3 delims=|" %%P in ("%MAP%") do (
 
 REM ---- 2) 项目相关子库 -> 仓库名 <name>_<PROJECT> (工作区检出到对应目录根) ----
 REM      项目源码: ASW / CDD (未按静态/配置分离, 整体与项目相关)
-call :make_proj "ASWs"      "asw"       "src"
-call :make_proj "CDDs"      "cdd"       "src"
+call :make_proj "ASW"       "asw"       "src"
+call :make_proj "CDD"       "cdd"       "src"
 REM      项目库: ASW / CDD / BSW / MCAL (含配置代码, 全部按项目)
 call :make_proj "ASW_Libs"  "asw_libs"  "libs"
 call :make_proj "CDD_Libs"  "cdd_libs"  "libs"
 call :make_proj "BSW_Libs"  "bsw_libs"  "libs"
-call :make_proj "MCAL_Libs" "mcal_libs" "libs"
+REM      MCAL_Libs 归 MCAL group, 按项目区分 (已固定单一芯片): 仓库名 MCAL_<PROJECT>
+call :make_proj "MCAL_Libs" "MCAL"      "mcal"
 
 echo.
 echo [init] 完成。临时子库位于 %STAGE% (可在确认后删除)。

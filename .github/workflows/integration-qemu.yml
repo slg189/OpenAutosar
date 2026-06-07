@@ -1,0 +1,42 @@
+name: Integration Test (QEMU / TriCore)
+
+# 第二道闸: 用目标工具链构建 ELF + qemu-system-tricore 跑集成测试。
+# 需自托管 runner: 标签 [self-hosted, tricore], 预装 TriCore 工具链(hightec/tasking)
+# 与 qemu-system-tricore。仅手动触发, 不阻塞 PR (github-hosted 无 TriCore 工具链)。
+#
+# 注册 runner: 仓库 Settings → Actions → Runners → New self-hosted runner,
+#   打标签 `tricore`; 在该机上确保 `tricore-gcc` 与 `qemu-system-tricore` 在 PATH。
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: '项目名 (Projects/<name>)'
+        type: string
+        default: Demo_Tc387
+
+jobs:
+  qemu-integration:
+    runs-on: [self-hosted, tricore]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python deps
+        run: pip install -r Tools/requirements.txt
+
+      - name: Toolchain / QEMU 自检
+        run: |
+          echo "PROJECT=${{ inputs.project }}"
+          (tricore-gcc --version | head -1) || echo "WARN: tricore-gcc 不在 PATH"
+          (qemu-system-tricore --version | head -1) || echo "WARN: qemu-system-tricore 不在 PATH"
+
+      - name: 构建 ELF + QEMU 集成测试
+        run: python Tools/scripts/run_integration_test.py --project ${{ inputs.project }}
+
+      - name: 归档集成测试报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-report-${{ inputs.project }}
+          path: Projects/${{ inputs.project }}/Reports/integration_*.xml
+          if-no-files-found: ignore

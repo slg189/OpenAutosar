@@ -5,7 +5,7 @@
 | Manifest | 角色 | 源码可见 | 二进制 (.a + inc) |
 |----------|------|----------|-------------------|
 | `default.xml` | 平台/集成负责人 | 全部 | — |
-| `manifest-asw.xml` | ASW 工程师 | `ASWs/`、`Components/`、`Projects/` | `BSW_Libs`、`CDD_Libs`、`MCAL_Libs` |
+| `manifest-asw.xml` | ASW 工程师 | `ASW/`、`Components/`、`Projects/` | `BSW_Libs`、`CDD_Libs`、`MCAL_Libs` |
 | `manifest-integration.xml` | 基础(集成)工程师 | `Projects/*/Integration` | `ASW_Libs`、`BSW_Libs`、`CDD_Libs`、`MCAL_Libs` |
 
 切换视图:

@@ -1,0 +1,111 @@
+# =============================================================
+# Projects/Demo_Tc387/build.yaml  —  v3 主配置 (schema 3.0)
+# 用户主要改这份: 模块开关 / source|lib / 代码生成 / 文档 / 远程。
+#   产物 = <project.name>_<derivative>  ->  Demo_Tc387.elf
+#
+# 模型: layers/mode 统一表达五层; defaults.visibility=auto 时, 框架按
+# "工作区是否可见源码"(manifest 决定) 自动选 编译/链接; 显式 mode 可覆盖。
+# 显式清单 + 自动发现: 这里显式列模块; `scons list` 会提示工作区里未列入的模块。
+# =============================================================
+
+schema_version: "3.0"
+
+project:
+  name:            Demo            # + derivative => Demo_Tc387
+  derivative:      Tc387
+  app_name_suffix: ""
+
+target:
+  toolchain:  hightec             # GNU TriCore (tricore-gcc); 可 TOOLCHAIN=tasking; host 验证用 TOOLCHAIN=gcc PLATFORM=host
+  platform:   AURIX2G             # Infineon AURIX TC3xx
+  build_type: Release
+
+defaults:
+  visibility: auto                # auto | source | lib
+  chip:       Tc387               # MCAL 等按芯片的层
+
+global_defines:
+  - AUTOSAR_CP
+  - PROJECT_Demo_Tc387
+
+global_includes:
+  - ${MCAL_DIR}/inc
+  - ${COMP_DIR}/Common/inc
+  - ${PROJECT_DIR}/Gen
+
+# ── 分层模块 (显式清单; 留空配置即用默认) ────────────────────
+layers:
+  MCAL:
+    Adc:  { mode: source, cflags: [-O3] }
+    Port: { mode: source }
+    Can:  { mode: lib }                  # 链接 MCAL_Libs/Can/libCan.a
+  CDD:
+    CddPwm:   { mode: source }
+    CddMotor: { mode: source }
+    CddSent:  { mode: lib }              # 链接 CDD_Libs/CddSent/libCddSent.a
+  ASW:
+    VehicleControl:   { mode: source }
+    EnergyManagement: { mode: lib }      # 链接 ASW_Libs/EnergyManagement/...
+  BSW:
+    Os:  { mode: source, lib_name: libRtaOs }   # 供应商源码 (ETAS RTA-OS); 释放为 libRtaOs.a
+    Com: { mode: source }                        # 供应商源码 (Vector COM)
+    Crc: { mode: source }
+  Components:
+    Common:   { mode: source }
+    Mcu/Sbm:  { mode: source }           # 启动代码模块 (嵌套路径)
+
+# ── 集成层 (基础工程师胶水代码) ─────────────────────────────
+integration:
+  enabled: true
+  dir:     Integration
+
+# ── 链接器 ────────────────────────────────────────────────
+linker:
+  script: ""                      # 有链接脚本时填 Ld/Demo_Tc387.ld
+  libraries: []
+  extra_flags: []
+
+# ── 输出格式 ──────────────────────────────────────────────
+output:
+  formats: [elf, hex, map]
+  size_report:           true
+  compile_commands_json: true
+
+# ── 代码生成 (编译前置) ────────────────────────────────────
+codegen:
+  enabled: true
+  output_dir: ${PROJECT_DIR}/Gen
+  generators:
+    - name:    demo_echo
+      type:    custom
+      enabled: true
+      cmd:     'echo [CODEGEN] Demo_Tc387 codegen placeholder'
+      inputs:  []
+      outputs_glob: ""
+    # —— 接入真实工具 (示例, 默认关) ——
+    # - { name: eb_tresos, type: eb_tresos, enabled: false,
+    #     tool_path: C:/EB/tresos/bin/tresos_b.bat, workspace: ${PROJECT_DIR}/Cfg/MCAL, project: Demo_Tc387 }
+
+# ── 文档自动生成 ─────────────────────────────────────────
+docs:
+  enabled: true
+  output_dir: ${PROJECT_DIR}/Docs/api
+  doxygen:
+    enabled: false
+    config_file: ${ROOT_DIR}/Tools/Doxygen/Doxyfile.in
+  interface_extract: { enabled: true, output_format: markdown }
+  dependency_graph:  { enabled: true, format: mermaid }
+  module_index:      { enabled: true, title: "Demo_Tc387 模块清单" }
+
+# ── 远程构建 ──────────────────────────────────────────────
+remote:
+  enabled: false
+  default_target: build_server_01
+  servers:
+    - { name: build_server_01, host: 10.0.20.31, port: 22, user: ci, auth: key,
+        key_file: ~/.ssh/id_rsa_ci, remote_dir: /home/ci/work/OpenAutosar,
+        capabilities: [hightec, tasking], jobs: 16 }
+  sync:
+    method: rsync
+    excludes: ["Obj/", "Out/", "**/.git", "**/__pycache__", "**/Docs/api/"]
+    pull_back: ["Projects/Demo_Tc387/Out/", "Projects/Demo_Tc387/Docs/api/"]

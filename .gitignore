@@ -4,6 +4,9 @@ Projects/*/Obj/*
 !Projects/*/Obj/README.md
 **/Obj/*.o
 **/Obj/*.d
+# 目标文件/依赖文件 (源码模块按约定就地编译时也会产生)
+**/*.o
+**/*.d
 
 # 链接输出 (hex / elf / map) — 保留目录占位 README
 Projects/*/Out/*
@@ -30,14 +33,21 @@ Projects/*/Libs/MCAL/*.a
 # ===== Test / coverage outputs =====
 build_test/
 coverage_output/
-reports/*.xml
-reports/*.html
+Projects/*/Reports/*.xml
+Projects/*/Reports/*.html
+!Projects/*/Reports/.gitkeep
 log_repo
 
 # ===== SCons =====
 .sconsign.dblite
 .sconf_temp/
 config.log
+
+# ===== v2 构建框架产物 (YAML 驱动) =====
+# 自动生成的 API 文档 / 编译数据库 / 代码生成 stamp
+Projects/*/Docs/api/
+**/compile_commands.json
+**/.*.stamp
 
 # ===== Editor / OS =====
 .vscode/
@@ -53,3 +63,14 @@ __pycache__/
 
 # ===== Sub-repo staging =====
 .subrepos/
+
+# ===== cppcheck (scons check) =====
+build_check/
+**/*.ctu-info
+**/cppcheck-addon-ctu-file-list*
+
+# ===== 隔离的构建 venv (Tools/setup_env.py) =====
+Tools/.venv/
+
+# ===== 下载固定的工具 (Tools/fetch_tools.py) =====
+Tools/.toolcache/

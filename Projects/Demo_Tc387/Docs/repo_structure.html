@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAutosar · Git 多子库划分方案</title>
+<style>
+  :root{--bg:#0f172a;--panel:#1e293b;--panel2:#273449;--accent:#38bdf8;
+    --accent2:#34d399;--text:#e2e8f0;--muted:#94a3b8;--border:#334155;
+    --code:#0b1220;--warn:#fbbf24;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.65}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  header{background:linear-gradient(120deg,#f59e0b,#0ea5e9);padding:42px 24px;
+    text-align:center;color:#021018}
+  header h1{margin:0;font-size:2rem}header p{margin:8px 0 0;opacity:.9}
+  .layout{display:flex;max-width:1180px;margin:0 auto}
+  nav{position:sticky;top:0;align-self:flex-start;width:240px;padding:24px 12px;
+    height:100vh;overflow:auto;border-right:1px solid var(--border);font-size:.9rem}
+  nav h3{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;margin:18px 8px 6px}
+  nav a{display:block;padding:6px 10px;border-radius:6px;color:var(--text)}
+  nav a:hover{background:var(--panel2)}
+  main{flex:1;padding:30px 36px;min-width:0}
+  section{margin-bottom:42px;scroll-margin-top:20px}
+  h2{font-size:1.5rem;border-left:4px solid var(--accent);padding-left:12px;margin-top:0}
+  h3{color:var(--accent2);margin-top:26px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
+  th,td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--accent)}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  code{background:var(--code);padding:2px 6px;border-radius:4px;
+    font-family:"JetBrains Mono",Consolas,monospace;font-size:.86em;color:#7dd3fc}
+  pre{background:var(--code);border:1px solid var(--border);border-radius:8px;padding:16px;overflow:auto}
+  pre code{background:none;padding:0;color:#cbd5e1}
+  .tree{font-family:"JetBrains Mono",Consolas,monospace;font-size:.84rem;
+    background:var(--code);border:1px solid var(--border);border-radius:8px;
+    padding:18px;overflow:auto;white-space:pre;line-height:1.5}
+  .tree .dir{color:#7dd3fc}.tree .note{color:var(--muted)}.tree .repo{color:#fcd34d}
+  .callout{background:var(--panel);border-left:4px solid var(--warn);padding:12px 16px;border-radius:6px;margin:14px 0}
+  .tag{display:inline-block;border-radius:6px;padding:1px 8px;font-size:.78rem;font-weight:600}
+  .t-src{background:#334155;color:#7dd3fc}.t-shared{background:#064e3b;color:#6ee7b7}
+  .t-proj{background:#78350f;color:#fcd34d}.t-meta{background:#3730a3;color:#c7d2fe}
+  footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid var(--border)}
+  @media(max-width:860px){nav{display:none}main{padding:20px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Git 多子库 (multi-repo) 划分方案</h1>
+  <p>按文件夹拆库 · ASW / CDD 库按项目分库 · google-repo 组装</p>
+</header>
+
+<div class="layout">
+<nav>
+  <h3>导航</h3>
+  <a href="index.html">← 返回框架总览</a>
+  <a href="build_and_security.html">信息安全 / 灵活编译</a>
+  <a href="#principle">划分原则</a>
+  <a href="#map">子库清单</a>
+  <a href="#tree">组装后目录</a>
+  <a href="#perproj">ASW/CDD 按项目</a>
+  <a href="#create">创建子库</a>
+  <a href="#assemble">组装工作区</a>
+  <a href="#addproj">新增一个项目</a>
+</nav>
+
+<main>
+
+<section id="principle">
+  <h2>划分原则</h2>
+  <ul>
+    <li><span class="tag t-src">共享源码</span> <code>MCAL/</code>（供应商静态码，静态/配置分离、跨项目复用）及 <code>Components/</code>、<code>Projects/</code>、<code>Tools/</code> 各一个子库。<code>Test/</code>、<code>Docs/</code>、<code>Reports/</code> 已随工程下沉到 <code>Projects/&lt;P&gt;/</code>，属 <code>projects</code> 子库。</li>
+    <li><span class="tag t-src">BSW 供应商交付</span> <code>BSW/</code> 不再分 <code>Vector</code>/<code>Etas</code> 目录，仅按模块名（<code>Os</code>/<code>Com</code>/…）组织；供应商/芯片/交付版本编码进子库名 <code>BSW_&lt;Vendor&gt;_&lt;Chip&gt;_&lt;Delivery&gt;</code>，归 <strong>BSW group</strong>，<strong>每家供应商一个交付库</strong>，各自检出到 <code>BSW/&lt;模块&gt;</code>，共同组成扁平的 <code>BSW/</code> 树。</li>
+    <li><span class="tag t-proj">项目源码</span> <code>ASW/</code>、<code>CDD/</code> 的模块代码<strong>未按 AUTOSAR 静态/配置分离</strong>，整体与项目相关，故源码也按项目：<code>asw_&lt;Project&gt;</code>、<code>cdd_&lt;Project&gt;</code>。</li>
+    <li><span class="tag t-proj">项目库</span> <code>ASW_Libs/</code>、<code>CDD_Libs/</code>、<code>BSW_Libs/</code> <strong>按项目各建一个子库</strong>：<code>asw_libs_&lt;Project&gt;</code>、<code>cdd_libs_&lt;Project&gt;</code>、<code>bsw_libs_&lt;Project&gt;</code>（扁平命名、下划线分隔）。</li>
+    <li><span class="tag t-proj">MCAL 库 (MCAL group)</span> <code>MCAL_Libs/</code> 针对项目芯片已固定（TC387/TC367 不同时存在），<strong>只保留该项目芯片、不分 <code>&lt;Chip&gt;</code> 一级</strong>；芯片/项目身份编码进子库名，归 <strong>MCAL group</strong> 按项目区分：<code>MCAL_&lt;Project&gt;</code>。</li>
+    <li><span class="tag t-meta">元信息</span> 清单与根脚本/配置归 <code>meta</code> 子库（或 manifest 仓）。</li>
+  </ul>
+  <div class="callout">为什么这些库/源码都按项目分？因为其内容随项目而异——ASW 模型、CDD 复杂驱动（均未按静态/配置分离），
+  <strong>MCAL 的 <code>.a</code>（配置代码与静态代码一并编译链接）</strong> 与 <strong>BSW 的 <code>.a</code>（已打包该项目 ECUC 配置生成代码）</strong>。
+  按项目分库可做到：① 不同项目互不可见、独立授权；② 一个项目升级不影响他人；③ 配合信息安全分级，只给某项目的工程师下发其对应子库。</div>
+</section>
+
+<section id="map">
+  <h2>子库清单</h2>
+  <table>
+    <tr><th>类型</th><th>工作区路径</th><th>git 仓库</th><th>说明</th></tr>
+    <tr><td><span class="tag t-proj">项目源码</span></td><td><code>ASW/</code></td><td><code>asw_Demo_Tc387.git</code></td><td>ASW 模型源码 (按项目)</td></tr>
+    <tr><td><span class="tag t-proj">项目源码</span></td><td><code>CDD/</code></td><td><code>cdd_Demo_Tc387.git</code></td><td>复杂驱动源码 (按项目)</td></tr>
+    <tr><td><span class="tag t-src">BSW 交付</span></td><td><code>BSW/Os</code></td><td><code>BSW_Etas_TC387_RtaOs.git</code></td><td>ETAS RTA-OS 交付 (BSW group)</td></tr>
+    <tr><td><span class="tag t-src">BSW 交付</span></td><td><code>BSW/Com</code></td><td><code>BSW_Vector_TC387_CBDxxxxxx.git</code></td><td>Vector COM 交付 (BSW group)</td></tr>
+    <tr><td><span class="tag t-src">BSW 交付</span></td><td><code>BSW/inc</code></td><td><code>BSW_Common_TC387.git</code></td><td>BSW 公共头 (BSW group)</td></tr>
+    <tr><td><span class="tag t-src">共享源码</span></td><td><code>MCAL/</code></td><td><code>mcal.git</code></td><td>MCAL 静态源码</td></tr>
+    <tr><td><span class="tag t-src">共享源码</span></td><td><code>Components/</code></td><td><code>components.git</code></td><td>组件/公共代码</td></tr>
+    <tr><td><span class="tag t-src">共享源码</span></td><td><code>Projects/</code></td><td><code>projects.git</code></td><td>工程 (Integration/Cfg/Ld/Test/Docs/Reports...)</td></tr>
+    <tr><td><span class="tag t-src">共享源码</span></td><td><code>Tools/</code></td><td><code>tools.git</code></td><td>工具</td></tr>
+    <tr><td><span class="tag t-proj">项目库</span></td><td><code>ASW_Libs/</code></td><td><code>asw_libs_Demo_Tc387.git</code></td><td>该项目 ASW 二进制 (检出到根)</td></tr>
+    <tr><td><span class="tag t-proj">项目库</span></td><td><code>CDD_Libs/</code></td><td><code>cdd_libs_Demo_Tc387.git</code></td><td>该项目 CDD 二进制 (检出到根)</td></tr>
+    <tr><td><span class="tag t-proj">项目库</span></td><td><code>BSW_Libs/</code></td><td><code>bsw_libs_Demo_Tc387.git</code></td><td>该项目 BSW 二进制 (含配置代码)</td></tr>
+    <tr><td><span class="tag t-proj">MCAL 库</span></td><td><code>MCAL_Libs/</code></td><td><code>MCAL_Demo_Tc387.git</code></td><td>该项目 MCAL 二进制 (MCAL group, 单一芯片, 配置+静态)</td></tr>
+    <tr><td><span class="tag t-meta">元信息</span></td><td><code>.</code> (根)</td><td><code>meta.git</code></td><td>manifests/ + 根脚本/配置</td></tr>
+  </table>
+  <p class="muted">该清单见 <code>Tools/Git/repo_map.txt</code> 与 <code>manifests/default.xml</code>。</p>
+</section>
+
+<section id="tree">
+  <h2>google-repo 组装后的目录</h2>
+<div class="tree"><span class="dir">OpenAutosar/</span>
+├── <span class="dir">ASW/</span>           <span class="repo"># asw_Demo_Tc387.git   (项目源码)</span>
+├── <span class="dir">CDD/</span>           <span class="repo"># cdd_Demo_Tc387.git   (项目源码)</span>
+├── <span class="dir">BSW/</span>           <span class="repo"># BSW group: Os→BSW_Etas_TC387_RtaOs, Com→BSW_Vector_TC387_CBDxxxxxx</span>
+├── <span class="dir">MCAL/</span>          <span class="repo"># mcal.git             (共享源码)</span>
+├── <span class="dir">Components/</span>    <span class="repo"># components.git</span>
+├── <span class="dir">Projects/</span>     <span class="repo"># projects.git  (含 &lt;P&gt;/Test, &lt;P&gt;/Docs, &lt;P&gt;/Reports)</span>
+├── <span class="dir">Tools/</span>        <span class="repo"># tools.git</span>
+├── <span class="dir">ASW_Libs/</span>     <span class="repo"># asw_libs_Demo_Tc387.git    (按项目, 检出到根)</span>
+├── <span class="dir">CDD_Libs/</span>     <span class="repo"># cdd_libs_Demo_Tc387.git    (按项目, 检出到根)</span>
+├── <span class="dir">BSW_Libs/</span>     <span class="repo"># bsw_libs_Demo_Tc387.git    (按项目, 检出到根)</span>
+├── <span class="dir">MCAL_Libs/</span>    <span class="repo"># MCAL_Demo_Tc387.git    (MCAL group, 单一芯片, 检出到根)</span>
+└── manifests/ + 根脚本   <span class="repo"># meta.git</span>
+</div>
+</section>
+
+<section id="perproj">
+  <h2>项目库的目录结构（检出到根）</h2>
+<div class="tree"><span class="dir">ASW_Libs/</span>                  <span class="repo"># = 子库 asw_libs_Demo_Tc387 的检出</span>
+├── inc/Rte_Type.h          <span class="note"># 项目级公共头</span>
+├── VehicleControl/inc + libVehicleControl.a
+└── EnergyManagement/inc + libEnergyManagement.a
+
+<span class="dir">CDD_Libs/</span>                  <span class="repo"># = 子库 cdd_libs_Demo_Tc387 的检出</span>
+├── CddPwm/inc  + libCddPwm.a
+├── CddMotor/inc + libCddMotor.a
+└── CddSent/inc  + libCddSent.a
+
+<span class="dir">BSW_Libs/</span>                  <span class="repo"># = 子库 bsw_libs_Demo_Tc387 (.a 含项目配置代码)</span>
+├── inc/EcuM.h
+├── Os/inc  + libRtaOs.a    <span class="note"># 按模块名, 不分供应商</span>
+└── Com/inc + libCom.a
+
+<span class="dir">MCAL_Libs/</span>                 <span class="repo"># = 子库 MCAL_Demo_Tc387 (MCAL group, 单一芯片, .a 含配置+静态)</span>
+├── inc/Std_Types.h
+└── &lt;Mod&gt;/inc + lib&lt;Mod&gt;.a    <span class="note"># Adc/Can/Port; 芯片已固定, 不分 &lt;Chip&gt; 一级</span>
+</div>
+  <p class="muted">项目身份只在 <strong>git 子库名</strong> 中（<code>&lt;layer&gt;_libs_&lt;project&gt;</code>），
+  工作区路径直接是 <code>&lt;Layer&gt;_Libs/...</code>，不带项目子目录（MCAL_Libs 芯片已固定，亦不分芯片级）。
+  构建侧由 v3 框架 <code>Tools/site_scons/resolver.py</code> 据此解析 source/lib；
+  <code>scons release</code> 把源码模块释放到 <code>&lt;Layer&gt;_Libs/</code>。</p>
+</section>
+
+<section id="create">
+  <h2>创建子库</h2>
+  <p>用 <code>Tools/Git/init_subrepos.bat</code> 把当前 monorepo 各文件夹打包为独立子库并推送。
+  共享子库取自 <code>repo_map.txt</code>（MCAL 静态源码、BSW group 各供应商交付库等）；项目相关子库按 <code>--project</code>（默认 <code>Demo_Tc387</code>）生成：
+  源码 <code>ASW→asw_&lt;P&gt;</code>、<code>CDD→cdd_&lt;P&gt;</code>，库 <code>ASW_Libs→asw_libs_&lt;P&gt;</code>、<code>CDD_Libs→cdd_libs_&lt;P&gt;</code>、<code>BSW_Libs→bsw_libs_&lt;P&gt;</code>、<code>MCAL_Libs→MCAL_&lt;P&gt;</code>（MCAL group）。</p>
+<pre><code>REM 预览将创建的子库 (不写任何东西)
+Tools\Git\init_subrepos.bat https://github.com/&lt;owner&gt; --project Demo_Tc387 --dry-run
+
+REM 本地初始化 + 推送 (远端空仓库需已存在)
+Tools\Git\init_subrepos.bat https://github.com/&lt;owner&gt; --project Demo_Tc387 --push</code></pre>
+  <div class="callout">脚本在 <code>.subrepos\&lt;name&gt;</code> 临时目录内 <code>git init</code> 并提交，避免在工作树里
+  产生嵌套 <code>.git</code>，不影响当前 monorepo。</div>
+
+  <h3>在 GitHub 上建仓 + 推送</h3>
+  <p><code>init_subrepos.bat</code> 可在推送前自动创建 GitHub 仓库：优先 <strong>gh CLI</strong>，无 gh 时回退 <strong>REST API</strong>（需 <code>GITHUB_TOKEN</code>）。</p>
+<pre><code>REM 方式 A: gh CLI (推荐) —— 先 gh auth login
+Tools\Git\init_subrepos.bat https://github.com/&lt;user&gt; --github &lt;user&gt; --push
+REM 组织账户加 --org; 公开仓加 --public
+Tools\Git\init_subrepos.bat https://github.com/&lt;org&gt; --github &lt;org&gt; --org --public --push
+
+REM 方式 B: REST API (无 gh) —— 用 PAT
+set GITHUB_TOKEN=ghp_xxxxxxxx
+Tools\Git\init_subrepos.bat https://github.com/&lt;owner&gt; --github &lt;owner&gt; --push</code></pre>
+  <p class="muted">手动建单个仓库：<code>gh repo create &lt;owner&gt;/asw_libs_Demo_Tc387 --private</code>，
+  或 <code>curl -H "Authorization: token %GITHUB_TOKEN%" https://api.github.com/user/repos -d "{\"name\":\"asw_libs_Demo_Tc387\",\"private\":true}"</code>。</p>
+</section>
+
+<section id="assemble">
+  <h2>组装工作区 (google-repo)</h2>
+<pre><code>REM 完整视图 (平台/集成负责人)
+set MANIFEST_NAME=default.xml && repo_metasar.bat init
+repo_metasar.bat sync
+
+REM ASW 工程师视图 (仅 ASW 源码 + 库)
+set MANIFEST_NAME=manifest-asw.xml && repo_metasar.bat init
+repo_metasar.bat sync</code></pre>
+</section>
+
+<section id="addproj">
+  <h2>新增一个项目时</h2>
+  <ol>
+    <li>用该项目的工作区（其 <code>ASW/</code>、<code>CDD/</code>、<code>*_Libs/</code> 为该项目内容）；<code>scons release</code> 回灌到各 <code>*_Libs/</code> 根。</li>
+    <li><code>Tools/Git/init_subrepos.bat &lt;base&gt; --project &lt;NewProj&gt; --github &lt;owner&gt; --push</code> 创建项目源码 <code>asw_&lt;NewProj&gt;</code>、<code>cdd_&lt;NewProj&gt;</code> 与项目库 <code>asw_libs_/cdd_libs_/bsw_libs_&lt;NewProj&gt;</code>、<code>MCAL_&lt;NewProj&gt;</code>（MCAL group）子库。</li>
+    <li>为该项目准备一套清单（把 <code>*_&lt;NewProj&gt;</code> / <code>*_libs_&lt;NewProj&gt;</code> 映射到 <code>ASW/CDD/&lt;Layer&gt;_Libs</code>），切换项目即换这套子库。</li>
+  </ol>
+</section>
+
+</main>
+</div>
+<footer>OpenAutosar · Git 多子库划分方案 · 自动生成</footer>
+</body>
+</html>

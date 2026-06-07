@@ -5,8 +5,8 @@
   "deviations": [
     {
       "rule": "21.6",
-      "reason": "标准库 I/O 仅在测试桩 (Test/ut) 中使用",
-      "scope": ["Test/ut/**"]
+      "reason": "标准库 I/O 仅在测试桩 (Projects/*/Test/ut) 中使用",
+      "scope": ["Projects/*/Test/ut/**"]
     },
     {
       "rule": "8.7",
@@ -15,14 +15,14 @@
     }
   ],
   "suppressPaths": [
-    "BSW/Etas/**",
-    "BSW/Vector/**",
+    "BSW/Os/**",
+    "BSW/Com/**",
     "Tools/**",
-    "Test/QAC/**"
+    "Projects/*/Test/QAC/**"
   ],
   "include": [
-    "ASWs/**",
-    "CDDs/**",
+    "ASW/**",
+    "CDD/**",
     "Components/**",
     "MCAL/**"
   ]

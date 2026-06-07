@@ -4,17 +4,26 @@
 #
 # 注意: 与项目相关的子库不在此固定清单中, 由 init_subrepos.bat 按 --project 生成
 #       (仓库名 <name>_<PROJECT>, 扁平命名/下划线; 工作区检出到对应目录根):
-#         - 项目源码: ASWs -> asw_<PROJECT>,  CDDs -> cdd_<PROJECT>
+#         - 项目源码: ASW -> asw_<PROJECT>,  CDD -> cdd_<PROJECT>
 #                     (ASW/CDD 模块代码未按 AUTOSAR 静态/配置分离, 整体与项目相关)
 #         - 项目库:   ASW_Libs -> asw_libs_<PROJECT>,  CDD_Libs -> cdd_libs_<PROJECT>,
-#                     BSW_Libs -> bsw_libs_<PROJECT>,  MCAL_Libs -> mcal_libs_<PROJECT>
-#                     (MCAL 配置代码与静态代码一并编译为库, 故 MCAL 库也按项目)
+#                     BSW_Libs -> bsw_libs_<PROJECT>
+#                     (BSW 配置代码与静态代码一并打包为库, 故库也按项目)
+#         - MCAL 库:  MCAL_Libs -> MCAL_<PROJECT> (归 MCAL group, 按项目区分;
+#                     针对项目已固定单一芯片, 库目录不含 <Chip> 一级)
 
 # ===== 共享源码子库 (静态/配置分离, 跨项目复用) =====
-BSW|bsw|src
+# 注: Test / Docs / Reports 已随工程下沉到 Projects/<P>/, 属 projects 子库, 不再单列。
 MCAL|mcal|src
 Components|components|src
 Projects|projects|src
 Tools|tools|src
-Test|test|src
-docs|docs|docs
+
+# ===== BSW 供应商交付子库 (BSW group) =====
+# BSW 不再分 Vector/Etas 目录, 仅按模块名 (Os/Com/...) 组织; 供应商/芯片/交付版本
+# 信息编码进子库名 (BSW_<Vendor>_<Chip>_<Delivery>), 各交付库归 "bsw" 分组(BSW group)。
+# 每个 BSW 模块/交付目录映射一个子库, 检出到 BSW/<模块> —— 共同组成扁平的 BSW/ 树。
+# 交付版本号 (如 CBDxxxxxx) 由实际供应商交付决定, 下面为示例占位, 请按实际交付改名。
+BSW/inc|BSW_Common_TC387|bsw
+BSW/Os|BSW_Etas_TC387_RtaOs|bsw
+BSW/Com|BSW_Vector_TC387_CBDxxxxxx|bsw

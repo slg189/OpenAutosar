@@ -35,25 +35,30 @@ global_includes:
 
 # ── 分层模块 (显式清单; 留空配置即用默认) ────────────────────
 # 每模块三种结果 (由框架自动判定, mode 可覆盖):
-#   source —— 有 .c/.S, 编译 (.o->Obj/, .a->Libs/; release 归档 .a+全部头文件 到 <Layer>_Libs)
+#   source —— 有 .c/.S, 编译 (.o->Obj/, .a->Libs/; release 归档 .a+头文件 到 <Layer>_Libs)
 #   lib    —— 有预编译 .a, 直接链接不编译; 若 .a 在模块目录(<Layer>/<Mod>/lib*.a)而非
-#             <Layer>_Libs, release 会把 .a+全部头文件 更新到 <Layer>_Libs
+#             <Layer>_Libs, release 会把 .a+头文件 更新到 <Layer>_Libs
 #   header —— 只有 .h、无 .c 也无 .a, 仅提供 include 路径 (不编译不链接)
 #
-# release 时自动收集的头文件来源 (有则安装, 无则跳过):
-#   1. <Layer>/<Mod>/inc/*.h              —— 静态 API 头
-#   2. <Layer>/<Mod>/gen/*.h              —— 模块级配置/生成头 (如 CDD/CddPwm/gen/CddPwm_Cfg.h)
-#   3. Gen/<Layer>/<Mod>/*.h              —— 工程级 Gen 按层目录 (如 Gen/BSW/CanIf/CanIf_Cfg.h)
-#   4. Gen/<leaf>/inc/*.h                 —— 工程级 Gen 不分层 (如 Gen/Adc/inc/Adc_Cfg.h)
-#   5. release_includes: [路径, ...]       —— 模块级自定义 (支持 ${VAR}, 见下方示例)
+# release 时收集的头文件:
+#   自动: <Layer>/<Mod>/inc/*.h            —— 模块静态 API 头 (始终收集)
+#   显式: release_includes: [文件, ...]    —— 用户逐文件列出需额外发布的头文件
+#         (支持 ${VAR} 展开; 如配置/生成头 CDD/CddPwm/gen/CddPwm_Cfg.h,
+#          或工程 Gen 头 ${PROJECT_DIR}/Gen/BSW/CanIf/CanIf_Cfg.h)
 layers:
   MCAL:
     Adc:  { mode: source, cflags: [-O3] }
     Port: { mode: source }
     Can:  { mode: lib }                  # 链接 MCAL_Libs/Can/libCan.a
   CDD:
-    CddPwm:   { mode: source }
-    CddMotor: { mode: source }
+    CddPwm:
+      mode: source
+      release_includes:                  # release 时把 gen 配置头也发布到 CDD_Libs/CddPwm/inc/
+        - CDD/CddPwm/gen/CddPwm_Cfg.h
+    CddMotor:
+      mode: source
+      release_includes:
+        - CDD/CddMotor/gen/CddMotor_Cfg.h
     CddSent:  { mode: lib }              # 链接 CDD_Libs/CddSent/libCddSent.a
   ASW:
     VehicleControl:   { mode: source }
@@ -62,10 +67,11 @@ layers:
     Os:  { mode: source, lib_name: libRtaOs }   # 供应商源码 (ETAS RTA-OS); 释放为 libRtaOs.a
     Com: { mode: source }                        # 供应商源码 (Vector COM)
     Crc: { mode: source }
-    # CanIf:                                     # 示例: 额外带工程 Gen 配置头
+    # CanIf:                                     # 示例: release 时额外发布配置/生成头文件
     #   mode: source
-    #   release_includes:
-    #     - ${PROJECT_DIR}/Gen/BSW/CanIf          # Gen/BSW/CanIf/CanIf_Cfg.h 等也释放到 BSW_Libs/CanIf/inc/
+    #   release_includes:                        # 逐文件列出, 发布到 BSW_Libs/CanIf/inc/
+    #     - ${PROJECT_DIR}/Gen/BSW/CanIf/CanIf_Cfg.h
+    #     - ${PROJECT_DIR}/Gen/BSW/CanIf/CanIf_PBcfg.h
   Components:
     Common:   { mode: source }
     Mcu/Sbm:  { mode: source }           # 启动代码模块 (嵌套路径)

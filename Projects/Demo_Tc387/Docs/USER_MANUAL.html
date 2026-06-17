@@ -160,7 +160,7 @@
     <tr><td><code>Gen/{MCAL,CDD,BSW}/</code></td><td>配置工具生成的代码（构建产物，已 gitignore）</td></tr>
     <tr><td><code>Ld/</code></td><td>链接脚本（<code>build.yaml.linker.script</code> 指定）</td></tr>
     <tr><td><code>Integration/</code></td><td>集成层 <code>inc/ + src/</code>（main、Rte、EcuM 回调）</td></tr>
-    <tr><td><code>Obj/ Out/</code></td><td>编译 <code>.o</code> / 链接 <code>.elf .hex .map</code>（产物，gitignore）</td></tr>
+    <tr><td><code>Obj/ Libs/ Out/</code></td><td><code>.o</code> 编译临时文件(<code>Obj/&lt;层&gt;/&lt;模块&gt;/</code>) / <code>.a</code> 各层静态库(<code>Libs/&lt;层&gt;/</code>) / <code>.elf .hex .map</code> 链接产物(<code>Out/</code>)（均 gitignore）</td></tr>
     <tr><td><code>Test/</code></td><td><code>ut/</code> 单元测试 · <code>Projects/</code> QEMU · <code>QAC/</code> 静态分析</td></tr>
     <tr><td><code>Reports/</code></td><td>测试/检查报告（<code>gtest_results.xml</code> / <code>misra.xml</code> 等）</td></tr>
     <tr><td><code>Docs/</code></td><td>本工程文档（含本手册、<code>build-system/</code> 设计文档）</td></tr>
@@ -209,7 +209,7 @@ python Tools/fetch_tools.py --print-env  # 打印需要的 PATH / GOOGLETEST_DIR
     <tr><td>解释单模块</td><td><code>scons explain:Adc</code></td><td>为何 source/lib、include/lib 路径、生效 flag</td></tr>
     <tr><td>代码生成</td><td><code>scons gen</code> / <code>gen:&lt;名&gt;</code></td><td>编译前置：调 Vector/ETAS/EB/Turing/custom 生成器</td></tr>
     <tr><td>文档生成</td><td><code>scons doc</code></td><td>接口抽取 + 依赖图 + 索引（可选 Doxygen）→ <code>Docs/api/</code></td></tr>
-    <tr><td>释放库</td><td><code>scons release</code></td><td>源码模块编成 <code>.a</code>+头文件 → 各 <code>*_Libs/</code></td></tr>
+    <tr><td>释放库</td><td><code>scons release</code></td><td>源码模块 → <code>.a</code>(<code>Libs/&lt;层&gt;/</code>) + 头文件 → 各 <code>*_Libs/</code>；配置/生成头需在 <code>release_includes</code> 显式列出</td></tr>
     <tr><td>静态检查+单测</td><td><code>scons check</code></td><td>cppcheck 真实 bug 门禁 + MISRA(资讯) + GoogleTest 单测</td></tr>
     <tr><td>远程构建</td><td><code>scons --remote=&lt;服务器&gt;</code></td><td>rsync 同步 → 远程 scons → 回传产物</td></tr>
   </table>
@@ -242,7 +242,10 @@ layers:                     # ★ 显式列要构建的模块 (每层一段)
     Port: { mode: source }
     Can:  { mode: lib }                     # 链接 MCAL_Libs/Can/libCan.a
   CDD:
-    CddPwm:   { mode: source }
+    CddPwm:                                 # release 时额外发布 gen 配置头
+      mode: source
+      release_includes:
+        - CDD/CddPwm/gen/CddPwm_Cfg.h      # 显式列出 → CDD_Libs/CddPwm/inc/
     CddSent:  { mode: lib }
   ASW:
     VehicleControl:   { mode: source }
@@ -251,6 +254,10 @@ layers:                     # ★ 显式列要构建的模块 (每层一段)
     Os:  { mode: source, lib_name: libRtaOs }   # 释放时 .a 命名为 libRtaOs.a
     Com: { mode: source }
     Crc: { mode: source }
+    # CanIf:
+    #   mode: source
+    #   release_includes:                   # 工程 Gen 里的配置头
+    #     - ${PROJECT_DIR}/Gen/BSW/CanIf/CanIf_Cfg.h
   Components:
     Common:  { mode: source }
     Mcu/Sbm: { mode: source }               # 嵌套路径模块
@@ -268,6 +275,10 @@ remote:  { enabled: false }</code></pre>
     <tr><td><code>cflags: [..]</code></td><td>模块级编译选项（追加）</td></tr>
     <tr><td><code>extra_defines / extra_includes</code></td><td>模块级宏 / 头文件路径</td></tr>
     <tr><td><code>lib_name: libXxx</code></td><td>覆盖 release/链接时的 <code>.a</code> 基名（默认 <code>lib&lt;模块&gt;</code>）</td></tr>
+    <tr><td><code>release_includes: [文件,&nbsp;...]</code></td><td>release 时需额外发布到 <code>*_Libs/&lt;模块&gt;/inc/</code> 的<strong>具体头文件</strong>路径（相对仓库根或 <code>${VAR}</code>）。<br>
+    静态头 <code>&lt;模块&gt;/inc/*.h</code> 始终自动收集；配置/生成头需在此显式列出，如：<br>
+    <code>- CDD/CddPwm/gen/CddPwm_Cfg.h</code><br>
+    <code>- ${PROJECT_DIR}/Gen/BSW/CanIf/CanIf_Cfg.h</code></td></tr>
   </table>
 </section>
 
@@ -311,6 +322,24 @@ scons explain:CddLin        # 确认解析到 CDD_Libs/CddLin/libCddLin.a</code>
   <h3>7.4 source ↔ lib 互换</h3>
   <p>改 build.yaml 里该模块的 <code>mode</code> 即可：<code>source</code>（编译本层源码）↔ <code>lib</code>（链接 <code>&lt;层&gt;_Libs</code> 的 <code>.a</code>）。
   用 <code>scons release</code> 可把当前源码模块编成 <code>.a</code> 回灌到 <code>*_Libs/</code>，供下游以 lib 集成。</p>
+
+  <h3>7.5 release 头文件发布规则</h3>
+  <p><code>scons release</code> 会自动把模块 <code>inc/*.h</code>（静态 API 头）发布到 <code>*_Libs/&lt;模块&gt;/inc/</code>。
+  但配置/生成头（如 <code>CddPwm_Cfg.h</code>、<code>CanIf_Cfg.h</code>）<strong>不会自动收集</strong>，
+  需在 build.yaml 的 <code>release_includes</code> 中逐文件显式列出：</p>
+<pre><code>CDD:
+  CddPwm:
+    mode: source
+    release_includes:
+      - CDD/CddPwm/gen/CddPwm_Cfg.h               # 模块级 gen 配置头
+BSW:
+  CanIf:
+    mode: source
+    release_includes:
+      - ${PROJECT_DIR}/Gen/BSW/CanIf/CanIf_Cfg.h    # 工程级 Gen 配置头
+      - ${PROJECT_DIR}/Gen/BSW/CanIf/CanIf_PBcfg.h  # 支持 ${VAR} 展开</code></pre>
+  <div class="callout"><strong>为什么不自动扫描 gen/ 目录？</strong>——Gen 目录可能包含仅编译期需要的内部头文件或中间产物，
+  不应全部对外发布。显式列出可精确控制下游看到的接口，避免信息泄露。</div>
 </section>
 
 <section id="commands">
@@ -326,7 +355,7 @@ scons explain:CddLin        # 确认解析到 CDD_Libs/CddLin/libCddLin.a</code>
     <tr><td><code>scons explain:&lt;模块&gt;</code></td><td>解释某模块为何 source/lib、include/lib 路径（如 <code>scons explain:Adc</code>）</td></tr>
     <tr><td><code>scons gen</code> / <code>scons gen:&lt;名&gt;</code></td><td>运行（指定）代码生成器</td></tr>
     <tr><td><code>scons doc</code> / <code>doc-clean</code></td><td>生成 / 清理 API 文档</td></tr>
-    <tr><td><code>scons release</code></td><td>源码模块编译并释放 <code>.a</code>+inc 到 <code>*_Libs/</code></td></tr>
+    <tr><td><code>scons release</code></td><td>源码模块 → <code>.a</code>(<code>Libs/&lt;层&gt;/</code>) + <code>inc/*.h</code> + <code>release_includes</code> 显式列出的 gen/cfg 头 → 各 <code>*_Libs/</code></td></tr>
     <tr><td><code>scons check</code></td><td>cppcheck 真实bug门禁 + MISRA(资讯→<code>Reports/misra.xml</code>) + GoogleTest 单测</td></tr>
   </table>
 
@@ -375,7 +404,8 @@ scons check                                    # 跑 cppcheck + 单测</code></p
 scons -j8                                      # -> Projects/Demo_Tc387/Out/Demo_Tc387.elf (+hex/map)
 python Tools/scripts/run_integration_test.py   # QEMU 集成测试 (需 qemu-system-tricore)</code></pre>
   <h3>9.4 给下游发布二进制</h3>
-<pre><code>scons release                                  # 源码模块 -> *_Libs/*.a + inc
+<pre><code># 确保 build.yaml 各模块的 release_includes 已列好需要发布的 gen/cfg 头文件
+scons release                                  # 源码模块 -> Libs/<层>/*.a + *_Libs/<模块>/(*.a + inc/*.h)
 # 下游把对应层在 build.yaml 改 mode: lib 即可只拿二进制</code></pre>
 </section>
 

@@ -117,32 +117,29 @@ for name, tgt in codegen_by_name.items():
 # ── 6. 逐模块: 编译源码 / 收集预编译库 ─────────────────────
 source_objs, prebuilt_libs, release_actions = [], [], []
 pub_inc = []   # 所有模块对外头文件目录 (供集成层/跨模块 include)
-GEN_DIR = env['GEN_DIR']
 
-def _release_headers(dst_inc, layer, modname, leaf, mod_dir, ov):
-    """release 时收集模块所有头文件 (静态 + 模块 gen + 工程 Gen + 自定义) 安装到 *_Libs/<mod>/inc/。
+def _release_headers(dst_inc, mod_dir, ov):
+    """release 时安装头文件到 *_Libs/<mod>/inc/。
 
-    头文件来源 (有则安装, 目录不存在则跳过):
-        1. <Layer>/<Mod>/inc/*.h                     — 静态 API 头
-        2. <Layer>/<Mod>/gen/*.h                     — 模块级配置/生成头 (如 CDD/CddPwm/gen/CddPwm_Cfg.h)
-        3. Gen/<Layer>/<Mod>/*.h                     — 工程级 Gen 按层分目录 (如 Gen/BSW/CanIf/CanIf_Cfg.h)
-        4. Gen/<leaf>/inc/*.h                        — 工程级 Gen 不分层 (如 Gen/Adc/inc/Adc_Cfg.h)
-        5. build.yaml 模块 release_includes 列表     — 用户自定义路径 (支持 ${VAR})
+    自动收集:
+        <Layer>/<Mod>/inc/*.h  — 模块静态 API 头
+    显式列举 (build.yaml 模块级 release_includes):
+        用户指定的具体文件路径 (如 CDD/CddPwm/gen/CddPwm_Cfg.h,
+        ${PROJECT_DIR}/Gen/BSW/CanIf/CanIf_Cfg.h 等), 支持 ${VAR} 展开。
+        路径相对仓库根或绝对路径均可。
     """
     actions = []
-    header_dirs = [
-        os.path.join(mod_dir, 'inc'),                        # 1) 静态头
-        os.path.join(mod_dir, 'gen'),                        # 2) 模块 gen
-        os.path.join(GEN_DIR, layer, modname),               # 3) Gen/<Layer>/<Mod>/
-        os.path.join(GEN_DIR, leaf, 'inc'),                  # 4) Gen/<leaf>/inc/
-    ]
-    for extra in (ov.release_includes if ov else []):        # 5) 自定义路径
-        header_dirs.append(extra)
-    for hdir in header_dirs:
-        if os.path.isdir(hdir):
-            hdrs = Glob(os.path.join(hdir, '*.h'))
-            if hdrs:
-                actions += env.Install(dst_inc, hdrs)
+    inc_dir = os.path.join(mod_dir, 'inc')
+    if os.path.isdir(inc_dir):
+        hdrs = Glob(os.path.join(inc_dir, '*.h'))
+        if hdrs:
+            actions += env.Install(dst_inc, hdrs)
+    for fpath in (ov.release_includes if ov else []):
+        abs_path = fpath if os.path.isabs(fpath) else os.path.join(ROOT, fpath)
+        if os.path.isfile(abs_path):
+            actions += env.Install(dst_inc, File(abs_path))
+        else:
+            print(f'[WARN] release_includes: 文件不存在 {fpath} (解析为 {abs_path})')
     return actions
 
 for d in decisions:
@@ -161,10 +158,10 @@ for d in decisions:
         libbase = ov.lib_name or ('lib' + d.leaf)
         lib_out_dir = os.path.join(env['LIBS_DIR'], d.layer)
         lib = menv.StaticLibrary(os.path.join(lib_out_dir, libbase), objs)
-        # release: .a + 全部头文件 -> <Layer>_Libs/<mod>/
+        # release: .a + 头文件 -> <Layer>_Libs/<mod>/
         dst = os.path.join(ROOT, resolver.LAYER_LIB_DIR.get(d.layer, d.layer + '_Libs'), d.modname)
         release_actions += env.Install(dst, lib)
-        release_actions += _release_headers(os.path.join(dst, 'inc'), d.layer, d.modname, d.leaf, d.src_dir, ov)
+        release_actions += _release_headers(os.path.join(dst, 'inc'), d.src_dir, ov)
         print(f'[SRC ] {d.layer}/{d.modname}')
     elif d.kind == 'lib':
         prebuilt_libs.append(File(d.a_file))
@@ -175,7 +172,7 @@ for d in decisions:
             ov = cfg.layers[d.layer][d.modname]
             dst = os.path.join(ROOT, resolver.LAYER_LIB_DIR.get(d.layer, d.layer + '_Libs'), d.modname)
             release_actions += env.Install(dst, File(d.a_file))
-            release_actions += _release_headers(os.path.join(dst, 'inc'), d.layer, d.modname, d.leaf, d.src_dir, ov)
+            release_actions += _release_headers(os.path.join(dst, 'inc'), d.src_dir, ov)
             print(f'[REL ] {d.layer}/{d.modname} -> {os.path.relpath(dst, ROOT)} (发布模块 .a+inc)')
     elif d.kind == 'header':
         env.Append(CPPPATH=d.inc_dirs)

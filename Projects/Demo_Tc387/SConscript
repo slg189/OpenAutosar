@@ -117,6 +117,33 @@ for name, tgt in codegen_by_name.items():
 # ── 6. 逐模块: 编译源码 / 收集预编译库 ─────────────────────
 source_objs, prebuilt_libs, release_actions = [], [], []
 pub_inc = []   # 所有模块对外头文件目录 (供集成层/跨模块 include)
+GEN_DIR = env['GEN_DIR']
+
+def _release_headers(dst_inc, layer, modname, leaf, mod_dir, ov):
+    """release 时收集模块所有头文件 (静态 + 模块 gen + 工程 Gen + 自定义) 安装到 *_Libs/<mod>/inc/。
+
+    头文件来源 (有则安装, 目录不存在则跳过):
+        1. <Layer>/<Mod>/inc/*.h                     — 静态 API 头
+        2. <Layer>/<Mod>/gen/*.h                     — 模块级配置/生成头 (如 CDD/CddPwm/gen/CddPwm_Cfg.h)
+        3. Gen/<Layer>/<Mod>/*.h                     — 工程级 Gen 按层分目录 (如 Gen/BSW/CanIf/CanIf_Cfg.h)
+        4. Gen/<leaf>/inc/*.h                        — 工程级 Gen 不分层 (如 Gen/Adc/inc/Adc_Cfg.h)
+        5. build.yaml 模块 release_includes 列表     — 用户自定义路径 (支持 ${VAR})
+    """
+    actions = []
+    header_dirs = [
+        os.path.join(mod_dir, 'inc'),                        # 1) 静态头
+        os.path.join(mod_dir, 'gen'),                        # 2) 模块 gen
+        os.path.join(GEN_DIR, layer, modname),               # 3) Gen/<Layer>/<Mod>/
+        os.path.join(GEN_DIR, leaf, 'inc'),                  # 4) Gen/<leaf>/inc/
+    ]
+    for extra in (ov.release_includes if ov else []):        # 5) 自定义路径
+        header_dirs.append(extra)
+    for hdir in header_dirs:
+        if os.path.isdir(hdir):
+            hdrs = Glob(os.path.join(hdir, '*.h'))
+            if hdrs:
+                actions += env.Install(dst_inc, hdrs)
+    return actions
 
 for d in decisions:
     if d.kind == 'source':
@@ -124,40 +151,33 @@ for d in decisions:
         menv = env.Clone()
         menv.Append(CCFLAGS=list(ov.cflags), CPPDEFINES=list(ov.defines),
                     CPPPATH=list(ov.includes))
-        # 模块级 cflags/defines/includes 已在上面应用; build_module 不再重复处理。
-        # obj_dir: .o 落到 Projects/<P>/Obj/<Layer>/<Mod>/ (不就地污染源码树)
         mod_obj_dir = os.path.join(env['OBJ_DIR'], d.layer, d.modname.replace('/', '_'))
         objs = build_module(menv, d.src_dir, d.leaf, mod_cfg=None, obj_dir=mod_obj_dir)
         pub_inc.append(os.path.join(d.src_dir, 'inc'))
         if not objs:
-            # 仅头文件 (src/ 无 .c): 不编译, 只贡献 include 路径
             print(f'[HDR ] {d.layer}/{d.modname} (源码模块但无 .c, 仅头文件)')
             continue
         source_objs += objs
-        # .a 落到 Projects/<P>/Libs/<Layer>/lib<name>.a (库名可由 lib_name 覆盖)
         libbase = ov.lib_name or ('lib' + d.leaf)
         lib_out_dir = os.path.join(env['LIBS_DIR'], d.layer)
         lib = menv.StaticLibrary(os.path.join(lib_out_dir, libbase), objs)
-        # release: 把 .a + inc 安装到 <Layer>_Libs/<mod>/
+        # release: .a + 全部头文件 -> <Layer>_Libs/<mod>/
         dst = os.path.join(ROOT, resolver.LAYER_LIB_DIR.get(d.layer, d.layer + '_Libs'), d.modname)
         release_actions += env.Install(dst, lib)
-        release_actions += env.Install(os.path.join(dst, 'inc'),
-                                       Glob(os.path.join(d.src_dir, 'inc', '*.h')))
+        release_actions += _release_headers(os.path.join(dst, 'inc'), d.layer, d.modname, d.leaf, d.src_dir, ov)
         print(f'[SRC ] {d.layer}/{d.modname}')
     elif d.kind == 'lib':
         prebuilt_libs.append(File(d.a_file))
         env.Append(CPPPATH=d.inc_dirs)
         pub_inc += d.inc_dirs
         print(f'[LIB ] {d.layer}/{d.modname} <- {os.path.relpath(d.a_file, ROOT)}')
-        # 模块目录内交付的预编译 .a: release 时更新 .a + .h 到 <Layer>_Libs/<mod>/
         if d.lib_from_module:
+            ov = cfg.layers[d.layer][d.modname]
             dst = os.path.join(ROOT, resolver.LAYER_LIB_DIR.get(d.layer, d.layer + '_Libs'), d.modname)
             release_actions += env.Install(dst, File(d.a_file))
-            release_actions += env.Install(os.path.join(dst, 'inc'),
-                                           Glob(os.path.join(d.src_dir, 'inc', '*.h')))
-            print(f'[REL ] {d.layer}/{d.modname} -> {os.path.relpath(dst, ROOT)} (发布模块 .a)')
+            release_actions += _release_headers(os.path.join(dst, 'inc'), d.layer, d.modname, d.leaf, d.src_dir, ov)
+            print(f'[REL ] {d.layer}/{d.modname} -> {os.path.relpath(dst, ROOT)} (发布模块 .a+inc)')
     elif d.kind == 'header':
-        # 仅头文件模块: 只贡献 include 路径, 不编译不链接
         env.Append(CPPPATH=d.inc_dirs)
         pub_inc += d.inc_dirs
         print(f'[HDR ] {d.layer}/{d.modname} (仅头文件)')

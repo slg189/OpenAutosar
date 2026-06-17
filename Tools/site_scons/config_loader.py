@@ -32,6 +32,7 @@ class ModuleOverride:
     cflags:   List[str] = field(default_factory=list)
     defines:  List[str] = field(default_factory=list)
     includes: List[str] = field(default_factory=list)
+    release_includes: List[str] = field(default_factory=list)  # release 时额外发布到 *_Libs 的头文件路径 (支持 ${VAR})
 
 
 @dataclass
@@ -187,6 +188,7 @@ def _parse_module(name, d) -> ModuleOverride:
         cflags=list(d.get('cflags', []) or []),
         defines=list(d.get('defines', []) or []),
         includes=list(d.get('includes', []) or []),
+        release_includes=list(d.get('release_includes', []) or []),
     )
 
 

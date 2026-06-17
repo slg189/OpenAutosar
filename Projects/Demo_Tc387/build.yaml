@@ -34,6 +34,11 @@ global_includes:
   - ${PROJECT_DIR}/Gen
 
 # ── 分层模块 (显式清单; 留空配置即用默认) ────────────────────
+# 每模块三种结果 (由框架自动判定, mode 可覆盖):
+#   source —— 有 .c/.S, 编译 (.o->Obj/, .a->Libs/; release 归档 .a+inc 到 <Layer>_Libs)
+#   lib    —— 有预编译 .a, 直接链接不编译; 若 .a 在模块目录(<Layer>/<Mod>/lib*.a)而非
+#             <Layer>_Libs, release 会把 .a+inc 更新到 <Layer>_Libs
+#   header —— 只有 .h、无 .c 也无 .a, 仅提供 include 路径 (不编译不链接)
 layers:
   MCAL:
     Adc:  { mode: source, cflags: [-O3] }

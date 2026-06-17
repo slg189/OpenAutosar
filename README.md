@@ -72,6 +72,20 @@ scons release                    # 编译并把源码模块释放回 *_Libs
 
 每个模块可配 `mode`（`source` 源码编译 / `lib` 库集成）、`enabled`、`cflags`（模块级编译选项）。
 
+框架对每个模块给出三种结果（`mode` 留空时自动判定，可显式覆盖）：
+
+| 结果 | 触发条件 | 行为 | release |
+|------|----------|------|---------|
+| `source` | 有 `src/*.c`（或 `.S`） | 编译：`.o → Projects/<P>/Obj/<Layer>/<Mod>/`，`.a → Projects/<P>/Libs/<Layer>/` | 归档 `.a` + `inc/*.h` 到 `<Layer>_Libs/<Mod>/` |
+| `lib` | 有预编译 `.a` | 直接链接、不编译 | 若 `.a` 在**模块目录**（`<Layer>/<Mod>/lib*.a`）而非 `<Layer>_Libs`，把 `.a` + `inc/*.h` **更新到** `<Layer>_Libs/<Mod>/` |
+| `header` | 只有 `.h`、无 `.c` 也无 `.a` | 仅贡献 include 路径，**不编译不链接** | — |
+
+> 例：`BSW/<Mod>/src` 只有 `.h`（接口/配置头，无 `.c`）→ 自动 `header`，不会编译报错；
+> `BSW/<Mod>/lib<Mod>.a`（供应商把配置代码一并编进的 `.a`）→ `lib` 直接链接，`scons release` 同步到 `BSW_Libs/`。
+
+**产物落点**：编译临时 `.o` → `Projects/<P>/Obj/`，各层静态库 `.a` → `Projects/<P>/Libs/<Layer>/`，链接产物 `.elf`/`.hex`/`.map` → `Projects/<P>/Out/`。
+所有用户可改配置集中在 `Projects/<P>/build.yaml`（工具链/平台/构建类型/模块/代码生成/文档/远程）；`SConstruct`、`Tools/scripts/*.py` 等均从中读取（如集成测试的 ELF 名由 `project.name`_`derivative` 推导，不再假设等于工程目录名），命令行仅做临时覆盖。
+
 ## 目录结构
 
 | 目录 / 文件 | 说明 |

@@ -259,6 +259,17 @@ def _parse_remote(d) -> RemoteConfig:
 
 # ───────────────────────── 主入口 ─────────────────────────
 
+def app_name(cfg: 'BuildConfig') -> str:
+    """工程产物基名: <project.name>_<derivative>[-<app_name_suffix>] (与 SConscript 一致)。
+
+    供独立脚本 (集成测试等) 从 build.yaml 推导 ELF 名, 不再假设 = 工程目录名。
+    """
+    name = f'{cfg.project_name}_{cfg.derivative}' if cfg.derivative else cfg.project_name
+    if cfg.app_name_suffix:
+        name += f'-{cfg.app_name_suffix}'
+    return name
+
+
 def load(yaml_path: str, variables: Optional[Dict[str, str]] = None) -> BuildConfig:
     variables = dict(variables or {})
     with open(yaml_path, encoding='utf-8') as f:

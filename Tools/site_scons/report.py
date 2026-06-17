@@ -19,7 +19,9 @@ def print_list(root, decisions, undeclared):
         if d.kind == 'source':
             where = _rel(root, d.src_dir) + '/src'
         elif d.kind == 'lib':
-            where = _rel(root, d.a_file)
+            where = _rel(root, d.a_file) + (' [release->*_Libs]' if d.lib_from_module else '')
+        elif d.kind == 'header':
+            where = _rel(root, d.src_dir) + '/inc (仅头文件)'
         else:
             where = 'ERROR: ' + d.reason
         print('%-6s %-22s %-7s %s' % (d.layer, d.modname, d.kind, where))
@@ -43,6 +45,12 @@ def print_explain(root, decision):
     elif d.kind == 'lib':
         print('  链接库  : %s' % _rel(root, d.a_file))
         print('  头文件  : %s' % ', '.join(_rel(root, i) for i in d.inc_dirs))
+        if d.lib_from_module:
+            print('  发布    : release 时 .a + inc 更新到 %s'
+                  % _rel(root, os.path.join(root, '%s_Libs' % d.layer, d.modname)))
+    elif d.kind == 'header':
+        print('  头文件  : %s  (仅头文件, 不编译不链接)'
+              % ', '.join(_rel(root, i) for i in d.inc_dirs))
     if d.tried:
         print('  尝试过  : %s' % ', '.join(_rel(root, t) for t in d.tried))
     print('-' * 56 + '\n')

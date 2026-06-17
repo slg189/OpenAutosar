@@ -123,12 +123,13 @@ env['MCAL_DIR']    = os.path.join(ROOT, 'MCAL')
 env['COMP_DIR']    = os.path.join(ROOT, 'Components')
 env['PROJECT_DIR'] = os.path.join(ROOT, env['PROJECT'])
 env['GEN_DIR']     = os.path.join(env['PROJECT_DIR'], 'Gen')
-env['OBJ_DIR']     = os.path.join(env['PROJECT_DIR'], 'Obj')
-env['OUT_DIR']     = os.path.join(env['PROJECT_DIR'], 'Out')
+env['OBJ_DIR']     = os.path.join(env['PROJECT_DIR'], 'Obj')   # .o 编译临时产物
+env['LIBS_DIR']    = os.path.join(env['PROJECT_DIR'], 'Libs')  # .a 各层静态库
+env['OUT_DIR']     = os.path.join(env['PROJECT_DIR'], 'Out')   # .elf/.hex/.map 链接产物
 env['DOCS_DIR']    = os.path.join(env['PROJECT_DIR'], 'Docs', 'api')
 
 # 确保输出目录存在
-for d in (env['OBJ_DIR'], env['OUT_DIR']):
+for d in (env['OBJ_DIR'], env['LIBS_DIR'], env['OUT_DIR']):
     os.makedirs(d, exist_ok=True)
 
 # 并行度

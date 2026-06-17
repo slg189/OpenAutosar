@@ -128,11 +128,17 @@ for d in decisions:
         # obj_dir: .o 落到 Projects/<P>/Obj/<Layer>/<Mod>/ (不就地污染源码树)
         mod_obj_dir = os.path.join(env['OBJ_DIR'], d.layer, d.modname.replace('/', '_'))
         objs = build_module(menv, d.src_dir, d.leaf, mod_cfg=None, obj_dir=mod_obj_dir)
-        source_objs += objs
         pub_inc.append(os.path.join(d.src_dir, 'inc'))
-        # release: 归档为 .a 并安装到 <Layer>_Libs/<mod>/ (库名可由 lib_name 覆盖)
+        if not objs:
+            # 仅头文件 (src/ 无 .c): 不编译, 只贡献 include 路径
+            print(f'[HDR ] {d.layer}/{d.modname} (源码模块但无 .c, 仅头文件)')
+            continue
+        source_objs += objs
+        # .a 落到 Projects/<P>/Libs/<Layer>/lib<name>.a (库名可由 lib_name 覆盖)
         libbase = ov.lib_name or ('lib' + d.leaf)
-        lib = menv.StaticLibrary(os.path.join(mod_obj_dir, libbase), objs)
+        lib_out_dir = os.path.join(env['LIBS_DIR'], d.layer)
+        lib = menv.StaticLibrary(os.path.join(lib_out_dir, libbase), objs)
+        # release: 把 .a + inc 安装到 <Layer>_Libs/<mod>/
         dst = os.path.join(ROOT, resolver.LAYER_LIB_DIR.get(d.layer, d.layer + '_Libs'), d.modname)
         release_actions += env.Install(dst, lib)
         release_actions += env.Install(os.path.join(dst, 'inc'),
@@ -143,6 +149,18 @@ for d in decisions:
         env.Append(CPPPATH=d.inc_dirs)
         pub_inc += d.inc_dirs
         print(f'[LIB ] {d.layer}/{d.modname} <- {os.path.relpath(d.a_file, ROOT)}')
+        # 模块目录内交付的预编译 .a: release 时更新 .a + .h 到 <Layer>_Libs/<mod>/
+        if d.lib_from_module:
+            dst = os.path.join(ROOT, resolver.LAYER_LIB_DIR.get(d.layer, d.layer + '_Libs'), d.modname)
+            release_actions += env.Install(dst, File(d.a_file))
+            release_actions += env.Install(os.path.join(dst, 'inc'),
+                                           Glob(os.path.join(d.src_dir, 'inc', '*.h')))
+            print(f'[REL ] {d.layer}/{d.modname} -> {os.path.relpath(dst, ROOT)} (发布模块 .a)')
+    elif d.kind == 'header':
+        # 仅头文件模块: 只贡献 include 路径, 不编译不链接
+        env.Append(CPPPATH=d.inc_dirs)
+        pub_inc += d.inc_dirs
+        print(f'[HDR ] {d.layer}/{d.modname} (仅头文件)')
 
 env.Append(CPPPATH=pub_inc)
 

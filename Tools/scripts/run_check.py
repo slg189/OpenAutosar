@@ -16,8 +16,14 @@ import os
 import shutil
 import subprocess
 import sys
+import glob
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
+
+
+def bundled_cppcheck():
+    matches = glob.glob(os.path.join(ROOT, 'Tools', 'Offline', 'tools', 'windows-x86_64', 'cppcheck', '**', 'cppcheck.exe'), recursive=True)
+    return matches[0] if matches else None
 
 
 def _strip_glob(p):
@@ -58,25 +64,26 @@ def main():
     os.makedirs(build_dir, exist_ok=True)
 
     rc = 0
-    if not shutil.which('cppcheck'):
+    cppcheck = shutil.which('cppcheck') or bundled_cppcheck()
+    if not cppcheck:
         print('[check] 未找到 cppcheck, 跳过静态检查 (apt install cppcheck)')
     else:
         common = ['--inline-suppr', '--quiet', f'--cppcheck-build-dir={build_dir}'] \
                  + [f'-I{h}' for h in hdr] + [f'-i{s}' for s in suppress] + inc_paths
         # 1) 真实 bug 门禁
         print('[check] cppcheck 真实 bug 门禁 (warning/performance/portability)')
-        r = run(['cppcheck', '--enable=warning,performance,portability',
+        r = run([cppcheck, '--enable=warning,performance,portability',
                  '--error-exitcode=2'] + common, cwd=ROOT)
         if r.returncode != 0:
-            print('[check] ✗ cppcheck 发现真实问题 (门禁失败)')
+            print('[check] FAIL: cppcheck found issues')
             rc = 2
         else:
-            print('[check] ✓ cppcheck 真实 bug 门禁通过')
+            print('[check] PASS: cppcheck warning/performance/portability gate')
         # 2) MISRA (资讯, 写报告)
         print('[check] cppcheck MISRA (--addon=misra, 资讯)')
         misra_xml = os.path.join(report_dir, 'misra.xml')
         ec = ['--error-exitcode=1'] if a.strict_misra else []
-        r2 = run(['cppcheck', '--addon=misra', '--enable=style', '--xml',
+        r2 = run([cppcheck, '--addon=misra', '--enable=style', '--xml',
                   '--output-file=' + misra_xml] + ec + common, cwd=ROOT)
         n = 0
         try:
@@ -95,7 +102,7 @@ def main():
         rt = subprocess.call([sys.executable, os.path.join(ROOT, 'Tools', 'scripts', 'run_gtest.py'),
                               '--project', a.project])
         if rt != 0:
-            print('[check] ✗ 单元测试失败')
+            print('[check] FAIL: unit tests failed')
             rc = rc or rt
 
     print(f'[check] 完成, rc={rc}')

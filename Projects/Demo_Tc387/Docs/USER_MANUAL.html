@@ -68,10 +68,12 @@
   <a href="#concepts">2 核心概念</a>
   <a href="#dirs">3 目录介绍</a>
   <a href="#env">4 PC 环境搭建与检查</a>
+  <a href="#offline-tools">4.4 离线工具包与验证</a>
   <a href="#features">5 功能介绍</a>
   <a href="#buildyaml">6 build.yaml 配置详解</a>
   <a href="#addremove">7 模块的添加与删除</a>
   <a href="#commands">8 命令大全（作用+用法）</a>
+  <a href="#commands">8.4 常用批处理</a>
   <a href="#workflows">9 典型工作流</a>
   <a href="#ci">10 CI 与两道质量闸</a>
   <a href="#faq">11 故障排查 / FAQ</a>
@@ -197,6 +199,31 @@ python Tools/fetch_tools.py --print-env  # 打印需要的 PATH / GOOGLETEST_DIR
     <tr><td>目标工具链（不入库）</td><td><code class="no">tricore-gcc</code>(HighTec)、TASKING、<code class="no">qemu-system-tricore</code></td><td>厂商授权/自建；装好放 PATH（或设 <code>HIGHTEC_BIN</code>/<code>TASKING_BIN</code>/<code>QEMU_TRICORE</code>）</td></tr>
   </table>
   <div class="callout"><strong>无 TriCore 工具链也能干活：</strong>host gcc 可做“第一道闸”（语法/头文件/框架连通），单元测试也在 host 跑。只有“生成目标 ELF + QEMU 集成测试”才需 TriCore 工具链。</div>
+</section>
+
+<section id="offline-tools">
+  <h2>4.4 离线工具包与验证</h2>
+  <p>Windows x64 离线工具包按 GitHub 友好的大小拆成 10 个分卷，放在 <code>Tools/Offline_Tools_Windows_x64/</code>。执行 <code>py -3.11 Tools/setup_env.py --offline --no-fetch</code> 时，如果 <code>Tools/Offline/</code> 或 <code>Tools/.toolcache/</code> 缺失，脚本会自动把分卷还原并解包。</p>
+  <table>
+    <tr><th>工具</th><th>版本 / 位置</th><th>验证方式</th></tr>
+    <tr><td>Python</td><td><code>3.11.9</code>, <code>Tools/Offline/software/windows-x86_64/python-3.11.9-amd64.exe</code></td><td><code>py -3.11 Tools/setup_env.py --offline --no-fetch</code></td></tr>
+    <tr><td>SCons / PyYAML</td><td><code>scons==4.10.1</code>, <code>PyYAML==6.0.1</code></td><td>离线 wheelhouse 安装到 <code>Tools/.venv</code></td></tr>
+    <tr><td>GCC / G++</td><td><code>w64devkit v2.8.0</code>, <code>Tools/Offline/tools/windows-x86_64/w64devkit</code></td><td><code>gcc --version</code>, <code>g++ --version</code></td></tr>
+    <tr><td>CMake / CTest</td><td><code>3.28.6</code>, <code>Tools/.toolcache/cmake-3.28.6-windows-x86_64</code></td><td><code>cmake --version</code>, <code>ctest --version</code>, GoogleTest 构建通过</td></tr>
+    <tr><td>GoogleTest</td><td><code>1.14.0</code>, <code>Tools/.toolcache/googletest-1.14.0</code></td><td><code>Projects/Demo_Tc387/04_run_gtest.bat</code>，当前 1/1 测试通过</td></tr>
+    <tr><td>Cppcheck</td><td><code>2.21.0</code>, <code>Tools/Offline/tools/windows-x86_64/cppcheck</code></td><td><code>Projects/Demo_Tc387/05_run_check.bat</code>，warning/performance/portability 门禁通过</td></tr>
+    <tr><td>Doxygen</td><td><code>1.17.0</code>, <code>Tools/Offline/tools/windows-x86_64/doxygen</code></td><td>最小 Doxyfile 生成 HTML 成功；项目文档入口为 <code>06_gen_doc.bat</code></td></tr>
+  </table>
+<pre><code>Tools\Offline\software\windows-x86_64\python-3.11.9-amd64.exe
+py -3.11 Tools\setup_env.py --offline --no-fetch --force
+Tools\activate_offline.bat
+scons list TOOLCHAIN=gcc PLATFORM=host</code></pre>
+<pre><code>分卷文件:
+Tools\Offline_Tools_Windows_x64\OpenAutosar_Offline_Tools_Windows_x64.zip.001
+...
+Tools\Offline_Tools_Windows_x64\OpenAutosar_Offline_Tools_Windows_x64.zip.010</code></pre>
+  <div class="tip">Windows 下仓库路径包含中文时，MinGW/Ninja 等工具可能出现路径编码问题。项目批处理 <code>Projects/Demo_Tc387/oa.bat</code> 会在运行期间临时把仓库映射到空闲 ASCII 盘符（如 <code>O:\</code>），命令结束后自动释放，避免手动搬目录。</div>
+  <div class="callout">仍需用户自行提供的授权/自建工具：HighTec/TASKING TriCore 工具链、EB tresos、Vector/ETAS 配置工具、<code>qemu-system-tricore</code>。这些无法从公共源合法自动打包。</div>
 </section>
 
 <section id="features">
@@ -384,6 +411,23 @@ BSW:
     <tr><td><code>Tools/scripts/run_integration_test.py</code></td><td>构建 ELF + QEMU 集成测试：<code>--project &lt;P&gt;</code>（需 TriCore+qemu）</td></tr>
     <tr><td><code>Tools/scripts/remote_build.py</code></td><td>独立远程构建：<code>--server</code> / <code>--auto</code> / <code>--extra "BUILD_TYPE=Release"</code></td></tr>
   </table>
+
+  <h3>8.4 Demo_Tc387 常用批处理</h3>
+  <p>以下批处理位于 <code>Projects/Demo_Tc387/</code>，可在项目目录或仓库根目录直接执行。它们会自动调用 <code>Tools/activate_offline.bat</code>，并在 Windows 中文路径下临时映射 ASCII 盘符运行构建。</p>
+  <table>
+    <tr><th>批处理</th><th>作用</th><th>等价命令</th></tr>
+    <tr><td><code>oa.bat check-tools</code><br><code>01_env_check.bat</code></td><td>验证离线工具链是否可用</td><td><code>py -3 Tools/setup_env.py --check</code></td></tr>
+    <tr><td><code>oa.bat list</code><br><code>02_list.bat</code></td><td>查看构建计划</td><td><code>scons list PROJECT=Projects/Demo_Tc387</code></td></tr>
+    <tr><td><code>oa.bat host</code><br><code>03_build_host.bat</code></td><td>使用离线 GCC 做 host 编译验证</td><td><code>scons compile PROJECT=Projects/Demo_Tc387 TOOLCHAIN=gcc PLATFORM=host</code></td></tr>
+    <tr><td><code>oa.bat gtest</code><br><code>04_run_gtest.bat</code></td><td>运行 CMake / CTest / GoogleTest 单元测试</td><td><code>py -3.11 Tools/scripts/run_gtest.py --project Demo_Tc387</code></td></tr>
+    <tr><td><code>oa.bat check</code><br><code>05_run_check.bat</code></td><td>运行 Cppcheck/MISRA 入口并串联单测</td><td><code>scons check PROJECT=Projects/Demo_Tc387 TOOLCHAIN=gcc PLATFORM=host</code></td></tr>
+    <tr><td><code>oa.bat doc</code><br><code>06_gen_doc.bat</code></td><td>生成项目文档</td><td><code>scons doc PROJECT=Projects/Demo_Tc387 TOOLCHAIN=gcc PLATFORM=host</code></td></tr>
+  </table>
+<pre><code>cd Projects\Demo_Tc387
+02_list.bat
+03_build_host.bat only=Adc
+04_run_gtest.bat --module Adc
+05_run_check.bat</code></pre>
 </section>
 
 <section id="workflows">

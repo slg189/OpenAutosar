@@ -21,12 +21,13 @@ TOOLCACHE = os.path.join(ROOT, 'Tools', '.toolcache')
 
 def _cmake():
     """优先用系统 cmake; 否则用 Tools/.toolcache 里下载固定的 cmake。"""
+    for c in (glob.glob(os.path.join(TOOLCACHE, 'cmake-*', 'bin', 'cmake'))
+              + glob.glob(os.path.join(TOOLCACHE, 'cmake-*', 'bin', 'cmake.exe'))
+              + glob.glob(os.path.join(TOOLCACHE, 'cmake-*', 'CMake.app', 'Contents', 'bin', 'cmake'))):
+        return c
     exe = shutil.which('cmake')
     if exe:
         return exe
-    for c in (glob.glob(os.path.join(TOOLCACHE, 'cmake-*', 'bin', 'cmake'))
-              + glob.glob(os.path.join(TOOLCACHE, 'cmake-*', 'CMake.app', 'Contents', 'bin', 'cmake'))):
-        return c
     return None
 
 
@@ -50,10 +51,12 @@ def main():
     ap.add_argument('--module', default='all', help='GTEST_MODULE (默认 all)')
     a = ap.parse_args()
 
-    build_dir = os.path.join(ROOT, 'build_test')
+    build_dir = os.path.join(ROOT, 'build_test', 'mingw' if os.name == 'nt' else '')
     cov_dir = os.path.join(ROOT, 'coverage_output')
     report_dir = os.path.join(ROOT, 'Projects', a.project, 'Reports')
     ut_dir = os.path.join(ROOT, 'Projects', a.project, 'Test', 'ut')
+    if os.name == 'nt' and os.path.isdir(build_dir):
+        shutil.rmtree(build_dir)
     for d in (build_dir, cov_dir, report_dir):
         os.makedirs(d, exist_ok=True)
 
@@ -67,6 +70,8 @@ def main():
         return 0   # 无测试视为跳过 (多项目矩阵下不阻塞)
 
     cfg = [cmake, '-S', ut_dir, '-B', build_dir, '-DCMAKE_BUILD_TYPE=Coverage']
+    if os.name == 'nt' and 'CMAKE_GENERATOR' not in os.environ:
+        cfg[1:1] = ['-G', 'MinGW Makefiles']
     # 离线/固定: 用本地 googletest 源码 (Tools/.toolcache 或 GOOGLETEST_DIR), FetchContent 不联网
     gtdir = _gtest_dir()
     if gtdir:

@@ -74,3 +74,7 @@ Tools/.venv/
 
 # ===== 下载固定的工具 (Tools/fetch_tools.py) =====
 Tools/.toolcache/
+
+# ===== Offline package artifacts =====
+Tools/OpenAutosar_Offline_Tools_Windows_x64.zip
+Tools/Offline_Tools_Windows_x64/_joined_OpenAutosar_Offline_Tools_Windows_x64.zip

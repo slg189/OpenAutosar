@@ -6,6 +6,26 @@
 |------|------|
 | `repo_map.txt` | 固定子库清单 (路径\|仓库名\|分组) |
 | `init_subrepos.bat` | 按 repo_map + 自动遍历项目库, 初始化、(可选)GitHub 建仓并推送 |
+| `repo` | google-repo 官方启动脚本 (Python; 随仓库自带, 离线可用) |
+| `repo.bat` | Windows 封装: 用 python 调起上面的 `repo` 脚本, 使 `repo <子命令>` 在 Windows 可用 |
+
+## google-repo 工具 (随仓库自带, 无需另装)
+
+google-repo 的 `repo` 本体是个 **Python 脚本**(非编译 exe), 已随仓库放在 `Tools\Git\repo`,
+配套 `Tools\Git\repo.bat` 在 Windows 下用 python 调起它。**前提: 系统已装 Python 3.6+ 与 Git 并在 PATH 上**。
+
+```bat
+REM 方式1: 把 Tools\Git 加入 PATH, 直接用 repo
+set "PATH=%CD%\Tools\Git;%PATH%"
+repo --version
+
+REM 方式2: 显式调用
+Tools\Git\repo.bat --version
+```
+
+`repo_metasar.bat` 会自动选择: 系统 PATH 上有 `repo` 就用系统的, 否则回退到 `Tools\Git\repo.bat`。
+如需更新到最新版 repo 启动脚本:
+`curl https://storage.googleapis.com/git-repo-downloads/repo -o Tools\Git\repo`
 
 ## 子库划分
 

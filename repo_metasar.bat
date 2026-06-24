@@ -12,6 +12,10 @@ REM 信息安全分级视图 (见 manifests\): default.xml ^| manifest-asw.xml ^
 if "%MANIFEST_NAME%"==""   set "MANIFEST_NAME=default.xml"
 set "REPO_DIR=Repo"
 
+REM 选 repo 命令: 优先系统 PATH 上的 repo; 没有则回退到随仓库自带的 Tools\Git\repo.bat
+set "REPO=repo"
+where repo >nul 2>nul || set "REPO=%~dp0Tools\Git\repo.bat"
+
 set "CMD=%~1"
 if "%CMD%"=="" set "CMD=sync"
 
@@ -19,20 +23,20 @@ if /I "%CMD%"=="init" (
     echo [metasar] 初始化 repo manifest: %MANIFEST_URL% ^(%MANIFEST_BRANCH%^) -^> %MANIFEST_NAME%
     if not exist "%REPO_DIR%" mkdir "%REPO_DIR%"
     pushd "%REPO_DIR%"
-    repo init -u "%MANIFEST_URL%" -b "%MANIFEST_BRANCH%" -m "%MANIFEST_NAME%"
+    call "%REPO%" init -u "%MANIFEST_URL%" -b "%MANIFEST_BRANCH%" -m "%MANIFEST_NAME%"
     popd
     goto :eof
 )
 if /I "%CMD%"=="sync" (
     echo [metasar] 同步所有子仓库 ...
     pushd "%REPO_DIR%"
-    repo sync -j%NUMBER_OF_PROCESSORS%
+    call "%REPO%" sync -j%NUMBER_OF_PROCESSORS%
     popd
     goto :eof
 )
 if /I "%CMD%"=="status" (
     pushd "%REPO_DIR%"
-    repo status
+    call "%REPO%" status
     popd
     goto :eof
 )

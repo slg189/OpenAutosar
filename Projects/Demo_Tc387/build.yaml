@@ -55,6 +55,12 @@ layers:
       mode: source
       release_includes:                  # release 时把 gen 配置头也发布到 CDD_Libs/CddPwm/inc/
         - CDD/CddPwm/gen/CddPwm_Cfg.h
+      # Optional build inputs for generated/config or delivered object code:
+      # generated_source_dirs: [${PROJECT_DIR}/Gen/CDD/CddPwm/src]
+      # generated_include_dirs: [${PROJECT_DIR}/Gen/CDD/CddPwm/inc]
+      # extra_sources: [CDD/CddPwm/gen/CddPwm_PBcfg.c]
+      # extra_objects: [CDD/CddPwm/obj/CddPwm_PBcfg.o]
+      # public_includes: [${PROJECT_DIR}/Gen/CDD/CddPwm/inc]
     CddMotor:
       mode: source
       release_includes:
@@ -104,6 +110,27 @@ codegen:
       cmd:     'echo [CODEGEN] Demo_Tc387 codegen placeholder'
       inputs:  []
       outputs_glob: ""
+    - name:    etas_bsw
+      type:    etas
+      enabled: false
+      # Set this path directly or define environment variable ISOLAR_B_CMD.
+      tool_path: ""
+      workspace: ${PROJECT_DIR}/Cfg/BSW
+      project: ${PROJECT_DIR}/Cfg/BSW
+      target: RTA-BSW
+      output_dir: ${PROJECT_DIR}/Gen/BSW
+      inputs:
+        - ${PROJECT_DIR}/Cfg/BSW/Os.arxml
+      # Public examples commonly use -generate with -p=<project/path> and
+      # -t=<target>. Keep option names configurable for ETAS version variants.
+      workspace_option: -data
+      generate_option: -generate
+      project_option: -p
+      project_arg_style: joined
+      target_option: -t
+      target_arg_style: joined
+      output_option: -o
+      options: []
     # —— 接入真实工具 (示例, 默认关) ——
     # - { name: eb_tresos, type: eb_tresos, enabled: false,
     #     tool_path: C:/EB/tresos/bin/tresos_b.bat, workspace: ${PROJECT_DIR}/Cfg/MCAL, project: Demo_Tc387 }

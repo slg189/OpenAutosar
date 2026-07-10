@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
-"""ETAS ISOLAR-AB / RTA-OS Configurator 适配器。
+"""ETAS ISOLAR-B / RTA-BSW code generation adapter.
 
-典型命令行（ISOLAR）：
-    ISOLAR.exe -application com.etas.isolar.codegenerator
-               -data <workspace> -- -project <name>
+Typical ISOLAR-B headless generation uses options such as:
+    ISOLAR-B.cmd -generate -p=<project> -t=<target>
+
+Workspace, output directory and version-specific options are delegated to
+Tools/scripts/run_etas_isolar_b.py so the same command can be validated
+manually with --dry-run.
 """
 import os
+import sys
+
 from .base import CodegenAdapter
 
 
@@ -13,18 +18,15 @@ class EtasAdapter(CodegenAdapter):
     type_name = 'etas'
 
     def build_command(self, spec, output_dir):
-        workspace = spec.extra.get('workspace', '')
-        project   = spec.extra.get('project',   '')
+        project_dir = os.path.dirname(os.path.abspath(output_dir))
         return [[
-            spec.tool_path,
-            '-application', 'com.etas.isolar.codegenerator',
-            '-data', workspace,
-            '-nosplash',
-            '--',
-            '-project', project,
-            '-output',  os.path.join(output_dir, 'Etas'),
+            sys.executable,
+            os.path.join('Tools', 'scripts', 'run_etas_isolar_b.py'),
+            '--project-dir', project_dir,
+            '--generator', spec.name,
         ]]
 
     def expected_outputs(self, spec, output_dir):
-        stamp = os.path.join(output_dir, 'Etas', '.etas.stamp')
+        out = spec.extra.get('output_dir') or spec.extra.get('output') or os.path.join(output_dir, 'BSW')
+        stamp = os.path.join(out, f'.{spec.name}.stamp')
         return [stamp]

@@ -18,6 +18,10 @@ def configure(env):
     env['OBJCOPY'] = prefix + 'objcopy'
     env['OBJDUMP'] = prefix + 'objdump'
     env['SIZE']    = prefix + 'size'
+    # MinGW host links PE/COFF images around 0x140000000. Shift addresses down
+    # so smoke-build HEX generation stays representable as Intel HEX.
+    env['OBJCOPY_HEX_FLAGS'] = '--change-addresses -0x140000000'
+    env['OBJCOPY_BIN_FLAGS'] = '--change-addresses -0x140000000'
 
     env.Append(CCFLAGS=[
         '-Wall',

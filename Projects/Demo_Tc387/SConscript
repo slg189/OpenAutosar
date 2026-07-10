@@ -115,8 +115,31 @@ for name, tgt in codegen_by_name.items():
     env.Alias(f'gen:{name}', tgt)
 
 # ── 6. 逐模块: 编译源码 / 收集预编译库 ─────────────────────
-source_objs, prebuilt_libs, release_actions = [], [], []
+source_objs, source_libs, prebuilt_libs, release_actions = [], [], [], []
 pub_inc = []   # 所有模块对外头文件目录 (供集成层/跨模块 include)
+
+def _existing_dirs(paths):
+    return [p for p in paths if p and os.path.isdir(p)]
+
+def _module_gen_src_dirs(layer, modname, leaf):
+    return _existing_dirs([
+        os.path.join(PROJECT_DIR, 'Gen', modname),
+        os.path.join(PROJECT_DIR, 'Gen', modname, 'src'),
+        os.path.join(PROJECT_DIR, 'Gen', leaf),
+        os.path.join(PROJECT_DIR, 'Gen', leaf, 'src'),
+        os.path.join(PROJECT_DIR, 'Gen', layer, modname),
+        os.path.join(PROJECT_DIR, 'Gen', layer, modname, 'src'),
+        os.path.join(PROJECT_DIR, 'Gen', layer, leaf),
+        os.path.join(PROJECT_DIR, 'Gen', layer, leaf, 'src'),
+    ])
+
+def _module_gen_inc_dirs(layer, modname, leaf):
+    return _existing_dirs([
+        os.path.join(PROJECT_DIR, 'Gen', modname, 'inc'),
+        os.path.join(PROJECT_DIR, 'Gen', leaf, 'inc'),
+        os.path.join(PROJECT_DIR, 'Gen', layer, modname, 'inc'),
+        os.path.join(PROJECT_DIR, 'Gen', layer, leaf, 'inc'),
+    ])
 
 def _release_headers(dst_inc, mod_dir, ov):
     """release 时安装头文件到 *_Libs/<mod>/inc/。
@@ -148,9 +171,18 @@ for d in decisions:
         menv = env.Clone()
         menv.Append(CCFLAGS=list(ov.cflags), CPPDEFINES=list(ov.defines),
                     CPPPATH=list(ov.includes))
+        auto_gen_inc = _module_gen_inc_dirs(d.layer, d.modname, d.leaf)
+        if auto_gen_inc:
+            menv.Append(CPPPATH=auto_gen_inc)
         mod_obj_dir = os.path.join(env['OBJ_DIR'], d.layer, d.modname.replace('/', '_'))
-        objs = build_module(menv, d.src_dir, d.leaf, mod_cfg=None, obj_dir=mod_obj_dir)
+        objs = build_module(menv, d.src_dir, d.leaf, mod_cfg=ov,
+                            extra_src_dirs=_module_gen_src_dirs(d.layer, d.modname, d.leaf),
+                            extra_inc_dirs=auto_gen_inc,
+                            obj_dir=mod_obj_dir)
         pub_inc.append(os.path.join(d.src_dir, 'inc'))
+        pub_inc += auto_gen_inc
+        pub_inc += list(ov.public_includes)
+        pub_inc += list(ov.generated_include_dirs)
         if not objs:
             print(f'[HDR ] {d.layer}/{d.modname} (源码模块但无 .c, 仅头文件)')
             continue
@@ -158,27 +190,40 @@ for d in decisions:
         libbase = ov.lib_name or ('lib' + d.leaf)
         lib_out_dir = os.path.join(env['LIBS_DIR'], d.layer)
         lib = menv.StaticLibrary(os.path.join(lib_out_dir, libbase), objs)
+        source_libs += lib
         # release: .a + 头文件 -> <Layer>_Libs/<mod>/
         dst = os.path.join(ROOT, resolver.LAYER_LIB_DIR.get(d.layer, d.layer + '_Libs'), d.modname)
         release_actions += env.Install(dst, lib)
         release_actions += _release_headers(os.path.join(dst, 'inc'), d.src_dir, ov)
         print(f'[SRC ] {d.layer}/{d.modname}')
     elif d.kind == 'lib':
+        ov = cfg.layers[d.layer][d.modname]
         prebuilt_libs.append(File(d.a_file))
         env.Append(CPPPATH=d.inc_dirs)
         pub_inc += d.inc_dirs
+        pub_inc += list(ov.public_includes)
+        pub_inc += list(ov.generated_include_dirs)
         print(f'[LIB ] {d.layer}/{d.modname} <- {os.path.relpath(d.a_file, ROOT)}')
         if d.lib_from_module:
-            ov = cfg.layers[d.layer][d.modname]
             dst = os.path.join(ROOT, resolver.LAYER_LIB_DIR.get(d.layer, d.layer + '_Libs'), d.modname)
             release_actions += env.Install(dst, File(d.a_file))
             release_actions += _release_headers(os.path.join(dst, 'inc'), d.src_dir, ov)
             print(f'[REL ] {d.layer}/{d.modname} -> {os.path.relpath(dst, ROOT)} (发布模块 .a+inc)')
     elif d.kind == 'header':
+        ov = cfg.layers[d.layer][d.modname]
         env.Append(CPPPATH=d.inc_dirs)
         pub_inc += d.inc_dirs
+        pub_inc += list(ov.public_includes)
+        pub_inc += list(ov.generated_include_dirs)
         print(f'[HDR ] {d.layer}/{d.modname} (仅头文件)')
 
+if cfg.integration_enabled:
+    pub_inc += _existing_dirs([
+        os.path.join(cfg.integration_dir, 'inc'),
+        os.path.join(PROJECT_DIR, 'Gen', 'inc'),
+        os.path.join(PROJECT_DIR, 'Gen', 'Integration', 'inc'),
+    ])
+pub_inc = list(dict.fromkeys(pub_inc))
 env.Append(CPPPATH=pub_inc)
 
 # ── 7. 集成层 (基础工程师维护的胶水代码) ───────────────────
@@ -186,19 +231,24 @@ integration_objs = []
 if cfg.integration_enabled:
     ienv = env.Clone()
     ienv.Append(CPPPATH=[os.path.join(cfg.integration_dir, 'inc')] + pub_inc)
-    integration_objs = ienv.Object(Glob(os.path.join(cfg.integration_dir, 'src', '*.c')))
+    integration_sources = []
+    integration_sources += Glob(os.path.join(cfg.integration_dir, 'src', '*.c'))
+    integration_sources += Glob(os.path.join(PROJECT_DIR, 'Gen', '*.c'))
+    integration_sources += Glob(os.path.join(PROJECT_DIR, 'Gen', 'src', '*.c'))
+    integration_sources += Glob(os.path.join(PROJECT_DIR, 'Gen', 'Integration', '*.c'))
+    integration_sources += Glob(os.path.join(PROJECT_DIR, 'Gen', 'Integration', 'src', '*.c'))
+    integration_objs = ienv.Object(integration_sources)
 
-# compile: 只编译源码模块为 .o (不链接) —— 环境验证用 (如 TOOLCHAIN=gcc PLATFORM=host)
-env.Alias('compile', source_objs + integration_objs)
+# compile: compile module/integration objects and create module static libraries.
+env.Alias('compile', source_objs + source_libs + integration_objs)
 
 # ── 8. 链接 ELF + 产物 ─────────────────────────────────────
 if codegen_targets:
-    env.Depends(source_objs + integration_objs, codegen_targets)
+    env.Depends(source_objs + source_libs + integration_objs, codegen_targets)
 
 elf = None
-link_inputs = integration_objs + source_objs + prebuilt_libs \
-    + Glob('Gen/*/*.c') + Glob('Gen/*.c')
-if source_objs or integration_objs or prebuilt_libs:
+link_inputs = integration_objs + source_libs + prebuilt_libs
+if source_libs or integration_objs or prebuilt_libs:
     lenv = env.Clone()
     out = lambda ext: os.path.join(PROJECT_DIR, 'Out', APP_NAME + ext)   # 产物落到 Out/ (非 Obj/)
     if cfg.linker_script:
@@ -211,13 +261,21 @@ if source_objs or integration_objs or prebuilt_libs:
         lenv.Append(LINKFLAGS=list(cfg.linker_flags))
     if 'map' in cfg.output_formats:
         lenv.Append(LINKFLAGS=['-Wl,-Map=' + out('.map')])
+    output_nodes = []
     elf = lenv.Program(target=out('.elf'), source=link_inputs)
-    if 'hex' in cfg.output_formats:
-        lenv.Command(out('.hex'), elf, '$OBJCOPY -O ihex $SOURCE $TARGET')
-    if 'bin' in cfg.output_formats:
-        lenv.Command(out('.bin'), elf, '$OBJCOPY -O binary $SOURCE $TARGET')
-    if cfg.size_report:
-        lenv.Command('size_report', elf, '$SIZE $SOURCE')
+    output_nodes += elf
+    objcopy = lenv.subst('$OBJCOPY')
+    if ('hex' in cfg.output_formats or 'bin' in cfg.output_formats) and not objcopy:
+        print('[WARN] OBJCOPY is not configured; skip hex/bin outputs')
+    if 'hex' in cfg.output_formats and objcopy:
+        output_nodes += lenv.Command(out('.hex'), elf, '$OBJCOPY $OBJCOPY_HEX_FLAGS -O ihex $SOURCE $TARGET')
+    if 'bin' in cfg.output_formats and objcopy:
+        output_nodes += lenv.Command(out('.bin'), elf, '$OBJCOPY $OBJCOPY_BIN_FLAGS -O binary $SOURCE $TARGET')
+    size_tool = lenv.subst('$SIZE')
+    if cfg.size_report and size_tool:
+        output_nodes += lenv.Command('size_report', elf, '$SIZE $SOURCE')
+    elif cfg.size_report:
+        print('[WARN] SIZE is not configured; skip size_report')
     if cfg.compile_commands:
         try:
             env.Tool('compilation_db')
@@ -225,7 +283,7 @@ if source_objs or integration_objs or prebuilt_libs:
                 os.path.join(PROJECT_DIR, 'compile_commands.json')))
         except Exception as exc:
             print(f'[WARN] compile_commands.json 不可用: {exc}')
-    Default(elf)
+    Default(output_nodes)
 else:
     print('[WARN] 无可构建模块')
 

@@ -51,12 +51,25 @@ def _has_headers(d):
     return False
 
 
+def _has_configured_build_inputs(mod_dir, ov):
+    if getattr(ov, 'extra_sources', None) or getattr(ov, 'extra_source_dirs', None):
+        return True
+    if getattr(ov, 'extra_objects', None) or getattr(ov, 'generated_source_dirs', None):
+        return True
+    gen_dir = os.path.join(mod_dir, 'gen')
+    if os.path.isdir(gen_dir):
+        for f in os.listdir(gen_dir):
+            if f.endswith(('.c', '.S', '.o')):
+                return True
+    return False
+
+
 def resolve(ws, layer, ov, defaults_visibility) -> Decision:
     """ws: Workspace; ov: ModuleOverride; 返回 Decision。"""
     modname = ov.name
     leaf = modname.split('/')[-1]
     mod_dir = ws.module_dir(layer, modname)
-    visible = ws.source_visible(layer, modname)
+    visible = ws.source_visible(layer, modname) or _has_configured_build_inputs(mod_dir, ov)
     mode = ov.mode or defaults_visibility
 
     # ---- 源码编译 ----

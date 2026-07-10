@@ -28,13 +28,28 @@ def build_module(env, module_dir, module_name, mod_cfg=None,
     sources += Glob(os.path.join(src_dir,     '*.c'))
     sources += Glob(os.path.join(src_dir,     '*.S'))
     sources += Glob(os.path.join(mod_gen_dir, '*.c'))
+    sources += Glob(os.path.join(mod_gen_dir, '*.S'))
     sources += Glob(os.path.join(gen_src_dir, '*.c'))
+    sources += Glob(os.path.join(gen_src_dir, '*.S'))
 
     for d in (extra_src_dirs or []):
         sources += Glob(os.path.join(d, '*.c'))
         sources += Glob(os.path.join(d, '*.S'))
 
-    if not sources:
+    extra_objects = []
+    if mod_cfg is not None:
+        for d in getattr(mod_cfg, 'extra_source_dirs', []) or []:
+            sources += Glob(os.path.join(d, '*.c'))
+            sources += Glob(os.path.join(d, '*.S'))
+        for d in getattr(mod_cfg, 'generated_source_dirs', []) or []:
+            sources += Glob(os.path.join(d, '*.c'))
+            sources += Glob(os.path.join(d, '*.S'))
+        for f in getattr(mod_cfg, 'extra_sources', []) or []:
+            sources.append(env.File(f))
+        for f in getattr(mod_cfg, 'extra_objects', []) or []:
+            extra_objects.append(env.File(f))
+
+    if not sources and not extra_objects:
         print(f'[WARN] {module_name}: 无 .c / .S 源文件，跳过')
         return []
 
@@ -54,19 +69,22 @@ def build_module(env, module_dir, module_name, mod_cfg=None,
 
     # 注入 YAML 中模块级配置
     if mod_cfg is not None:
-        if mod_cfg.extra_defines:
-            mod_env.Append(CPPDEFINES=mod_cfg.extra_defines)
-        if mod_cfg.extra_includes:
-            mod_env.Append(CPPPATH=mod_cfg.extra_includes)
-        if mod_cfg.extra_flags:
-            mod_env.Append(CCFLAGS=mod_cfg.extra_flags)
+        if getattr(mod_cfg, 'defines', None):
+            mod_env.Append(CPPDEFINES=mod_cfg.defines)
+        if getattr(mod_cfg, 'includes', None):
+            mod_env.Append(CPPPATH=mod_cfg.includes)
+        if getattr(mod_cfg, 'generated_include_dirs', None):
+            mod_env.Append(CPPPATH=mod_cfg.generated_include_dirs)
+        if getattr(mod_cfg, 'cflags', None):
+            mod_env.Append(CCFLAGS=mod_cfg.cflags)
 
     # 指定 obj_dir 时把 .o 显式落到该目录 (源码为绝对路径, variant_dir 不会自动改写, 故显式指定)
     if obj_dir:
         suffix = mod_env.subst('$OBJSUFFIX') or '.o'
         objs = []
         for s in sources:
-            base = os.path.splitext(os.path.basename(str(s)))[0]
+            rel = os.path.relpath(str(s), env['ROOT_DIR']).replace('\\', '_').replace('/', '_').replace(':', '')
+            base = os.path.splitext(rel)[0]
             objs.append(mod_env.Object(target=os.path.join(obj_dir, base + suffix), source=s))
-        return objs
-    return mod_env.Object(sources)
+        return objs + extra_objects
+    return mod_env.Object(sources) + extra_objects

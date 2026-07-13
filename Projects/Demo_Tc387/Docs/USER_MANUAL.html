@@ -74,6 +74,8 @@
   <a href="#addremove">7 模块的添加与删除</a>
   <a href="#commands">8 命令大全（作用+用法）</a>
   <a href="#commands">8.4 常用批处理</a>
+  <a href="#static-check-report">8.5 静态检查与 HTML 报告</a>
+  <a href="#etas-bsw-codegen">8.6 ETAS ISOLAR-B 生成 BSW</a>
   <a href="#workflows">9 典型工作流</a>
   <a href="#ci">10 CI 与两道质量闸</a>
   <a href="#faq">11 故障排查 / FAQ</a>
@@ -114,7 +116,7 @@
 ├── <span class="dir">Tools/</span>               <span class="note"># 构建框架 + 脚本 + 环境工具 (见 3.3)</span>
 ├── <span class="dir">manifests/</span>           <span class="note"># google-repo 多仓组装清单 (信息安全三视图)</span>
 ├── <span class="dir">SConstruct</span>           <span class="note"># ★ v3 构建顶层入口 (薄, 仓库根运行 scons)</span>
-├── misra.json            <span class="note"># MISRA/cppcheck 范围与豁免</span>
+├── Projects/&lt;P&gt;/misra.json <span class="note"># 项目级 MISRA/cppcheck 范围与豁免；根 misra.json 仅兼容回退</span>
 ├── repo_metasar.bat      <span class="note"># google-repo 多仓同步 (Linux 可直接用 repo)</span>
 └── TestPlatform_UintTest_QEMU_Test.json  <span class="note"># QEMU 测试平台配置</span></div>
 
@@ -163,7 +165,8 @@
     <tr><td><code>Ld/</code></td><td>链接脚本（<code>build.yaml.linker.script</code> 指定）</td></tr>
     <tr><td><code>Integration/</code></td><td>集成层 <code>inc/ + src/</code>（main、Rte、EcuM 回调）</td></tr>
     <tr><td><code>Obj/ Libs/ Out/</code></td><td><code>.o</code> 编译临时文件(<code>Obj/&lt;层&gt;/&lt;模块&gt;/</code>) / <code>.a</code> 各层静态库(<code>Libs/&lt;层&gt;/</code>) / <code>.elf .hex .map</code> 链接产物(<code>Out/</code>)（均 gitignore）</td></tr>
-    <tr><td><code>Test/</code></td><td><code>ut/</code> 单元测试 · <code>Projects/</code> QEMU · <code>QAC/</code> 静态分析</td></tr>
+    <tr><td><code>misra.json</code></td><td>本项目 MISRA C:2012 / cppcheck 扫描范围、排除路径与 deviation 配置</td></tr>
+    <tr><td><code>Test/</code></td><td><code>ut/</code> 单元测试 · <code>Projects/</code> QEMU · <code>QAC/</code> 静态分析；<code>QAC/AUTOSAR_CP_MISRA_RULES.txt</code> 记录 AUTOSAR CP / MISRA 项目策略</td></tr>
     <tr><td><code>Reports/</code></td><td>测试/检查报告（<code>gtest_results.xml</code> / <code>misra.xml</code> 等）</td></tr>
     <tr><td><code>Docs/</code></td><td>本工程文档（含本手册、<code>build-system/</code> 设计文档）</td></tr>
   </table>
@@ -244,7 +247,7 @@ Tools\Offline_Tools_Windows_x64\OpenAutosar_Offline_Tools_Windows_x64.zip.010</c
   <p>不同角色用不同 manifest 签出：能看到源码的层 → 编译；看不到的 → 自动链接 <code>*_Libs/</code> 的 <code>.a</code>。
   在 <code>build.yaml</code> 里 <code>defaults.visibility: auto</code> 即开启此自动机；也可对单模块写死 <code>mode: source|lib</code>。</p>
   <h3>5.2 灵活编译</h3>
-  <p>每模块可独立配 <code>mode</code>、<code>enabled</code>、<code>cflags</code>、<code>extra_defines</code>、<code>extra_includes</code>；命令行可临时过滤
+  <p>每模块可独立配 <code>mode</code>、<code>enabled</code>、<code>cflags</code>、<code>defines</code>、<code>includes</code>、生成代码目录和交付对象文件；命令行可临时过滤
   <code>only=</code> / <code>skip=</code> / <code>layers=</code>，并用 <code>TOOLCHAIN=</code>/<code>PLATFORM=</code>/<code>BUILD_TYPE=</code>/<code>STRICT=1</code> 覆盖。</p>
 </section>
 
@@ -300,13 +303,37 @@ remote:  { enabled: false }</code></pre>
     <tr><td><code>mode: source|lib</code></td><td>从源码编译 / 链接预编译库；省略则按 <code>defaults.visibility</code></td></tr>
     <tr><td><code>enabled: false</code></td><td>本次不构建该模块</td></tr>
     <tr><td><code>cflags: [..]</code></td><td>模块级编译选项（追加）</td></tr>
-    <tr><td><code>extra_defines / extra_includes</code></td><td>模块级宏 / 头文件路径</td></tr>
+    <tr><td><code>defines / includes</code></td><td>模块级宏 / 头文件路径，会追加到该模块编译环境</td></tr>
+    <tr><td><code>extra_sources: [文件,&nbsp;...]</code></td><td>额外参与该模块编译的 C/ASM 源文件，适合模块本地 <code>gen/</code> 配置源码</td></tr>
+    <tr><td><code>extra_source_dirs: [目录,&nbsp;...]</code></td><td>额外扫描源码目录，目录下 <code>*.c</code> / <code>*.S</code> 会和模块静态代码一起编译</td></tr>
+    <tr><td><code>extra_objects: [文件,&nbsp;...]</code></td><td>供应商只交付 <code>.o</code>、没有 <code>.c</code> 时使用；对象文件会进入该模块构建输入</td></tr>
+    <tr><td><code>generated_source_dirs: [目录,&nbsp;...]</code></td><td>工程级 Gen 配置代码目录，例如 <code>${PROJECT_DIR}/Gen/BSW/CanIf/src</code>；会和模块源码一起归档进同一个 <code>.a</code></td></tr>
+    <tr><td><code>generated_include_dirs: [目录,&nbsp;...]</code></td><td>工程级 Gen 配置头目录，会加入模块编译 include，并对 Integration/其他模块公开</td></tr>
+    <tr><td><code>public_includes: [目录,&nbsp;...]</code></td><td>额外对外公开的 include 目录，供跨模块和 Integration 编译使用</td></tr>
     <tr><td><code>lib_name: libXxx</code></td><td>覆盖 release/链接时的 <code>.a</code> 基名（默认 <code>lib&lt;模块&gt;</code>）</td></tr>
     <tr><td><code>release_includes: [文件,&nbsp;...]</code></td><td>release 时需额外发布到 <code>*_Libs/&lt;模块&gt;/inc/</code> 的<strong>具体头文件</strong>路径（相对仓库根或 <code>${VAR}</code>）。<br>
     静态头 <code>&lt;模块&gt;/inc/*.h</code> 始终自动收集；配置/生成头需在此显式列出，如：<br>
     <code>- CDD/CddPwm/gen/CddPwm_Cfg.h</code><br>
     <code>- ${PROJECT_DIR}/Gen/BSW/CanIf/CanIf_Cfg.h</code></td></tr>
   </table>
+  <p>模块没有静态 <code>src/*.c</code> 但有交付 <code>.o</code>，可这样配置：</p>
+<pre><code>CDD:
+  CddFoo:
+    mode: source
+    extra_objects:
+      - CDD/CddFoo/obj/CddFoo_PBcfg.o
+    public_includes:
+      - CDD/CddFoo/inc</code></pre>
+  <p>BSW/MCAL/CDD 模块的配置代码由 <code>Projects/&lt;P&gt;/Gen</code> 生成时，建议把 Gen 源码归到对应模块，最终和模块静态代码一起生成一个 <code>.a</code>：</p>
+<pre><code>BSW:
+  CanIf:
+    mode: source
+    generated_source_dirs:
+      - ${PROJECT_DIR}/Gen/BSW/CanIf/src
+    generated_include_dirs:
+      - ${PROJECT_DIR}/Gen/BSW/CanIf/inc
+    release_includes:
+      - ${PROJECT_DIR}/Gen/BSW/CanIf/inc/CanIf_Cfg.h</code></pre>
 </section>
 
 <section id="addremove">
@@ -322,7 +349,7 @@ python Tools/scripts/new_module.py --comp Mcu/Wdg       # Components 嵌套
 
 # ② 在 Projects/Demo_Tc387/build.yaml 的 layers 下加一行:
 #    BSW:
-#      CanIf: { mode: source, extra_includes: ["${BSW_DIR}/Can/inc"] }
+#      CanIf: { mode: source, includes: ["${BSW_DIR}/Can/inc"] }
 
 # ③ 确认并构建
 scons list                                  # 应能看到 CanIf 在计划里
@@ -407,7 +434,9 @@ BSW:
     <tr><td><code>Tools/fetch_tools.py</code></td><td>下载固定 cmake/googletest 到 <code>.toolcache</code>：<code>--force</code> <code>--print-env</code></td></tr>
     <tr><td><code>Tools/scripts/new_module.py</code></td><td>建模块骨架：<code>--bsw/--mcal/--cdd/--asw/--comp &lt;名…&gt;</code> <code>--force</code></td></tr>
     <tr><td><code>Tools/scripts/run_gtest.py</code></td><td>单元测试：<code>--project &lt;P&gt;</code> <code>--module &lt;名&gt;</code>（按名过滤）</td></tr>
-    <tr><td><code>Tools/scripts/run_check.py</code></td><td><code>scons check</code> 的实现：<code>--project</code> <code>--strict-misra</code>(MISRA也门禁) <code>--no-tests</code></td></tr>
+    <tr><td><code>Tools/scripts/run_check.py</code></td><td><code>scons check</code> 的实现：<code>--project</code> <code>--strict-misra</code>(MISRA也门禁) <code>--no-tests</code> <code>--html</code> <code>--module</code> <code>--path</code> <code>--config-only</code></td></tr>
+    <tr><td><code>Tools/scripts/check_dashboard.py</code></td><td>本地静态检查页面：<code>--project &lt;P&gt;</code>，启动 <code>127.0.0.1</code> 页面后选择模块/文件并运行检查</td></tr>
+    <tr><td><code>Tools/scripts/run_etas_isolar_b.py</code></td><td>调用 ETAS <code>ISOLAR-B.cmd</code>，从 <code>Cfg/BSW</code> 配置生成 BSW 代码到 <code>Gen/BSW</code>；常用 <code>--dry-run</code> 检查最终命令</td></tr>
     <tr><td><code>Tools/scripts/run_integration_test.py</code></td><td>构建 ELF + QEMU 集成测试：<code>--project &lt;P&gt;</code>（需 TriCore+qemu）</td></tr>
     <tr><td><code>Tools/scripts/remote_build.py</code></td><td>独立远程构建：<code>--server</code> / <code>--auto</code> / <code>--extra "BUILD_TYPE=Release"</code></td></tr>
   </table>
@@ -420,14 +449,109 @@ BSW:
     <tr><td><code>oa.bat list</code><br><code>02_list.bat</code></td><td>查看构建计划</td><td><code>scons list PROJECT=Projects/Demo_Tc387</code></td></tr>
     <tr><td><code>oa.bat host</code><br><code>03_build_host.bat</code></td><td>使用离线 GCC 做 host 编译验证</td><td><code>scons compile PROJECT=Projects/Demo_Tc387 TOOLCHAIN=gcc PLATFORM=host</code></td></tr>
     <tr><td><code>oa.bat gtest</code><br><code>04_run_gtest.bat</code></td><td>运行 CMake / CTest / GoogleTest 单元测试</td><td><code>py -3.11 Tools/scripts/run_gtest.py --project Demo_Tc387</code></td></tr>
-    <tr><td><code>oa.bat check</code><br><code>05_run_check.bat</code></td><td>运行 Cppcheck/MISRA 入口并串联单测</td><td><code>scons check PROJECT=Projects/Demo_Tc387 TOOLCHAIN=gcc PLATFORM=host</code></td></tr>
+    <tr><td><code>05_run_check.bat</code></td><td>默认打开本地静态检查页面；在页面选择全项目、模块或文件，勾选配置，点击运行并打开 HTML 报告</td><td><code>oa.bat check-ui</code></td></tr>
+    <tr><td><code>05_run_check.bat --run</code><br><code>oa.bat check</code></td><td>不打开页面，直接运行 Cppcheck/MISRA 入口并串联单测，生成 <code>cppcheck.xml</code> / <code>misra.xml</code></td><td><code>scons check PROJECT=Projects/Demo_Tc387 TOOLCHAIN=gcc PLATFORM=host</code></td></tr>
+    <tr><td><code>oa.bat check-ui</code><br><code>07_check_dashboard.bat</code></td><td>打开本地静态检查页面，选择模块目录或单个文件后点击运行</td><td><code>py -3.11 Tools/scripts/check_dashboard.py --project Demo_Tc387</code></td></tr>
+    <tr><td><code>oa.bat gen-bsw</code><br><code>08_gen_bsw_etas.bat</code></td><td>调用 ETAS ISOLAR-B，从 <code>Cfg/BSW</code> 生成到 <code>Gen/BSW</code>；加 <code>--dry-run</code> 可只打印命令</td><td><code>py -3.11 Tools/scripts/run_etas_isolar_b.py --project Demo_Tc387 --generator etas_bsw</code></td></tr>
     <tr><td><code>oa.bat doc</code><br><code>06_gen_doc.bat</code></td><td>生成项目文档</td><td><code>scons doc PROJECT=Projects/Demo_Tc387 TOOLCHAIN=gcc PLATFORM=host</code></td></tr>
   </table>
 <pre><code>cd Projects\Demo_Tc387
 02_list.bat
 03_build_host.bat only=Adc
 04_run_gtest.bat --module Adc
-05_run_check.bat</code></pre>
+05_run_check.bat          # 打开页面选择范围并运行检查
+05_run_check.bat --run    # 保留旧方式: 直接跑完整 check
+08_gen_bsw_etas.bat --dry-run</code></pre>
+
+  <h3 id="static-check-report">8.5 静态检查与 HTML 报告</h3>
+  <p>静态检查由 <code>Tools/scripts/run_check.py</code> 统一驱动，默认流程是：先按项目配置补全 cppcheck 上下文，再运行 warning/performance/portability 硬门禁，再运行 MISRA addon 生成资讯报告，最后在完整 <code>scons check</code> 流程中串联 GoogleTest。</p>
+
+  <h4>8.5.1 配置职责</h4>
+  <table>
+    <tr><th>文件 / 产物</th><th>用途</th></tr>
+    <tr><td><code>Projects/&lt;P&gt;/misra.json</code></td><td>项目级策略配置：扫描范围、排除路径、deviation、MISRA 规则说明文件、少量必须人工确认的覆盖项。它不再要求每个项目手工维护完整 include/gen 依赖。</td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/build.yaml</code></td><td>构建配置来源：项目名、derivative、全局 include/define、模块清单、<code>release_includes</code> 等会参与静态检查上下文补全。</td></tr>
+    <tr><td><code>build_check/cppcheck_effective_config.json</code></td><td>运行前生成的有效配置快照，用于排查最终传给 cppcheck 的 include、define、扫描路径和排除路径是否正确、是否重复。</td></tr>
+  </table>
+  <p>自动补全会合并并去重：<code>misra.json</code> 显式配置、<code>build.yaml</code> 的 <code>global_includes</code> / <code>global_defines</code>、模块目录中的 <code>inc</code> / <code>include</code> / <code>gen</code> / <code>cfg</code>、模块 <code>release_includes</code> 所在目录，以及项目 <code>Cfg</code> / <code>Gen</code> / <code>Integration/inc</code>。</p>
+
+  <h4>8.5.2 常用命令</h4>
+<pre><code># 打开检查页面：推荐日常入口，不需要手动输入 run_check.py 命令
+Projects\Demo_Tc387\05_run_check.bat
+
+# 命令行直跑完整检查：cppcheck/MISRA + GoogleTest
+Projects\Demo_Tc387\05_run_check.bat --run
+
+# 只做静态检查，不跑 GoogleTest
+py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests
+
+# 生成 XML + HTML 报告
+py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html
+
+# 检查单个模块
+py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html --module CDD/CddPwm
+
+# 检查单个文件或目录
+py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html --path CDD/CddPwm/src/CddPwm.c
+
+# 只生成/查看有效配置，不执行 cppcheck
+py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --config-only
+
+# 生成报告后自动打开
+py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html --open-report</code></pre>
+
+  <h4>8.5.3 报告位置</h4>
+  <table>
+    <tr><th>报告</th><th>说明</th></tr>
+    <tr><td><code>Projects/Demo_Tc387/Reports/cppcheck.xml</code></td><td>warning/performance/portability 门禁报告，门禁失败时优先看这里。</td></tr>
+    <tr><td><code>Projects/Demo_Tc387/Reports/misra.xml</code></td><td>MISRA addon 报告，默认资讯模式；加 <code>--strict-misra</code> 后可转为门禁。</td></tr>
+    <tr><td><code>Projects/Demo_Tc387/Reports/static_check/index.html</code></td><td>离线 HTML 汇总报告，包含项目名、版本/commit、检查时间、工具版本、扫描范围、配置来源、统计和明细表。</td></tr>
+  </table>
+
+  <h4>8.5.4 本地检查页面</h4>
+  <p>普通 <code>file://</code> 静态 HTML 页面不能直接执行本机命令；浏览器会因安全限制阻止它调用 cppcheck。因此“点击运行检查”使用本地 Python Web 服务完成，页面只作为控制台。</p>
+<pre><code># 推荐：执行 05_run_check.bat，默认打开检查页面
+Projects\Demo_Tc387\05_run_check.bat
+
+# 等价：使用专用 dashboard 批处理
+Projects\Demo_Tc387\07_check_dashboard.bat
+
+# 等价：直接启动脚本
+py -3.11 Tools\scripts\check_dashboard.py --project Demo_Tc387</code></pre>
+  <ol>
+    <li>命令启动后浏览器会打开 <code>http://127.0.0.1:&lt;port&gt;/</code>。</li>
+    <li>在页面选择检查范围：全项目、模块目录（等价 <code>--module CDD/CddPwm</code>），或单个文件/目录（等价 <code>--path CDD/CddPwm/src/CddPwm.c</code>）。</li>
+    <li>勾选配置选项：不跑单测、生成 HTML、运行后打开报告、MISRA 严格门禁、只生成有效配置。</li>
+    <li>点击“保存配置”会写入 <code>Projects/Demo_Tc387/Reports/check_dashboard_config.json</code> 并显示命令预览。</li>
+    <li>点击“保存并运行”会按配置执行，例如 <code>py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html --path CDD/CddPwm/src/CddPwm.c</code>。</li>
+    <li>运行完成后点击“打开报告”，直接打开最新 <code>Reports/static_check/index.html</code>。</li>
+  </ol>
+  <div class="tip">本地页面仅监听 <code>127.0.0.1</code>，用于开发机离线检查；不要把它作为远程服务暴露到网络。</div>
+
+  <h3 id="etas-bsw-codegen">8.6 ETAS ISOLAR-B 生成 BSW</h3>
+  <p>BSW 配置输入放在 <code>Projects/Demo_Tc387/Cfg/BSW</code>，生成输出放在 <code>Projects/Demo_Tc387/Gen/BSW</code>。仓库不能内置商业 ETAS 工具，需本机安装 ISOLAR-B/RTA-BSW 后配置 <code>ISOLAR-B.cmd</code> 路径。</p>
+  <table>
+    <tr><th>配置项</th><th>说明</th></tr>
+    <tr><td><code>tool_path</code> / <code>ISOLAR_B_CMD</code></td><td><code>ISOLAR-B.cmd</code> 路径；可写在 <code>build.yaml</code>，也可设置环境变量。</td></tr>
+    <tr><td><code>workspace</code></td><td>ISOLAR workspace 或配置数据目录，Demo 默认为 <code>${PROJECT_DIR}/Cfg/BSW</code>。</td></tr>
+    <tr><td><code>project</code></td><td>传给 <code>-p</code> 的 ISOLAR 工程名或工程路径，Demo 默认为 <code>${PROJECT_DIR}/Cfg/BSW</code>，用于强调从 BSW 配置目录生成。</td></tr>
+    <tr><td><code>target</code></td><td>传给 <code>-t</code> 的生成目标，Demo 默认为 <code>RTA-BSW</code>；如实际安装版本要求其他 target，请按 ETAS 手册调整。</td></tr>
+    <tr><td><code>output_dir</code></td><td>生成目录，Demo 默认为 <code>${PROJECT_DIR}/Gen/BSW</code>。</td></tr>
+    <tr><td><code>options</code></td><td>追加版本相关参数，例如 license、variant、log 或 clean 选项。</td></tr>
+  </table>
+<pre><code># 只验证命令，不调用商业工具
+Projects\Demo_Tc387\08_gen_bsw_etas.bat --dry-run
+
+# 指定工具路径后真实生成
+set ISOLAR_B_CMD=C:\ETAS\ISOLAR-B\ISOLAR-B.cmd
+Projects\Demo_Tc387\08_gen_bsw_etas.bat
+
+# 临时覆盖 target / 输出目录
+py -3.11 Tools\scripts\run_etas_isolar_b.py --project Demo_Tc387 --target RTA-BSW --output Projects\Demo_Tc387\Gen\BSW
+
+# 若已在 build.yaml 中启用 etas_bsw
+scons gen:etas_bsw PROJECT=Projects/Demo_Tc387</code></pre>
+  <div class="tip">脚本会把最终命令保存到 <code>Projects/Demo_Tc387/Gen/BSW/isolar_b_command.txt</code>，便于核对 <code>-generate</code>、<code>-p</code>、<code>-t</code>、<code>-data</code> 和 <code>-o</code> 等 option 是否符合当前 ISOLAR-B 版本；若你的版本要求 <code>-p</code> 填工程名而不是路径，把 <code>build.yaml</code> 的 <code>project</code> 改为 ISOLAR 工程名即可。</div>
 </section>
 
 <section id="workflows">
@@ -471,9 +595,18 @@ scons release                                  # 源码模块 -> Libs/<层>/*.a 
     <tr><td><code>scons</code> 报找不到 <code>tricore-gcc</code></td><td>默认目标是 AURIX。验证用 <code>scons compile TOOLCHAIN=gcc PLATFORM=host</code>；出固件需装 HighTec 并 <code>setup_env.bat</code></td></tr>
     <tr><td><code>[FATAL] ... 源码不可见且未找到释放库</code></td><td>该模块 <code>mode: source</code> 但没源码，或 <code>mode: lib</code> 但 <code>*_Libs</code> 没有 <code>.a</code>。<code>scons explain:&lt;模块&gt;</code> 看它找了哪些路径</td></tr>
     <tr><td>新建模块没被编译</td><td>只建目录不够，要在 <code>build.yaml</code> 的 <code>layers</code> 下声明（见 §7.1）；<code>scons list</code> 会把它列在“未声明”里提示</td></tr>
+    <tr><td>模块没有 <code>.c</code>，只有供应商交付的 <code>.o</code></td><td>不要强行补空源码；在模块配置里写 <code>extra_objects</code>，必要时再写 <code>public_includes</code>。该模块仍按 <code>mode: source</code> 参与解析，对象文件会进入模块构建输入。</td></tr>
+    <tr><td>BSW/MCAL/CDD 没有静态 <code>.c</code>，但 Gen 下生成了配置代码</td><td>在对应模块写 <code>generated_source_dirs</code> 和 <code>generated_include_dirs</code>。这样生成配置代码会和模块静态代码一起编译/归档为同一个 <code>Libs/&lt;层&gt;/lib&lt;模块&gt;.a</code>。</td></tr>
+    <tr><td><code>Project/Gen</code> 或 Integration Gen 头找不到</td><td>框架默认加入 <code>Projects/&lt;P&gt;/Gen/inc</code>、<code>Projects/&lt;P&gt;/Gen/Integration/inc</code> 和 <code>Integration/inc</code>；模块私有 Gen 头请通过 <code>generated_include_dirs</code> 或 <code>public_includes</code> 明确公开。</td></tr>
+    <tr><td>没有生成 <code>.hex</code> / <code>.bin</code></td><td>先用 <code>scons -n PROJECT=Projects/Demo_Tc387 TOOLCHAIN=gcc PLATFORM=host</code> 查看是否出现 <code>objcopy -O ihex</code>。若没有，说明当前工具链未配置 <code>OBJCOPY</code>；TASKING 可设置 <code>TASKING_OBJCOPY</code>，HighTec/GCC 使用工具链自带 <code>objcopy</code>。</td></tr>
+    <tr><td>ETAS BSW 生成提示找不到 <code>ISOLAR-B.cmd</code></td><td>先运行 <code>Projects\Demo_Tc387\08_gen_bsw_etas.bat --dry-run</code> 看最终命令；真实生成前需要设置 <code>ISOLAR_B_CMD</code>，或在 <code>build.yaml</code> 的 <code>etas_bsw.tool_path</code> 写绝对路径。</td></tr>
+    <tr><td>ISOLAR-B 生成时 <code>-t</code> / <code>-p</code> / <code>-o</code> 参数不被识别</td><td>不同 ETAS/ISOLAR-B/RTA-BSW 版本 option 可能有差异。修改 <code>build.yaml</code> 中 <code>generate_option</code>、<code>project_option</code>、<code>target_option</code>、<code>output_option</code>、<code>project_arg_style</code>、<code>target_arg_style</code> 或 <code>options</code> 后再 dry-run 核对。</td></tr>
     <tr><td><code>scons --explain Adc</code> 报 no such option</td><td>正确写法是目标形式 <code>scons explain:Adc</code></td></tr>
     <tr><td>单元测试拉不到 googletest（离线）</td><td>跑 <code>python Tools/fetch_tools.py</code> 把 googletest 下到 <code>.toolcache</code>，<code>run_gtest</code> 会自动用本地源码</td></tr>
     <tr><td>cppcheck 未安装</td><td><code>scons check</code> 会跳过静态检查只跑单测；装：<code>apt install cppcheck</code></td></tr>
+    <tr><td>HTML 页面不能点击执行 cppcheck</td><td>普通 <code>file://</code> 页面没有执行本机命令的权限。请执行 <code>Projects\Demo_Tc387\05_run_check.bat</code> 打开本地检查页面，或用 <code>Projects\Demo_Tc387\07_check_dashboard.bat</code> / <code>py -3.11 Tools\scripts\check_dashboard.py --project Demo_Tc387</code> 启动 <code>127.0.0.1</code> 服务。</td></tr>
+    <tr><td>MISRA 报告出现 <code>misra-config</code></td><td>说明 cppcheck 上下文不完整，可能缺 include 路径、生成头或分析宏。先看 <code>build_check/cppcheck_effective_config.json</code>，确认 <code>includePaths</code> / <code>defines</code> 是否包含对应模块配置。</td></tr>
+    <tr><td>HTML 报告打不开或不是最新</td><td>重新运行 <code>py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html --open-report</code>；也可直接打开 <code>Projects/Demo_Tc387/Reports/static_check/index.html</code>。</td></tr>
     <tr><td>系统 Python/SCons 版本不对</td><td>用隔离 venv：<code>python Tools/setup_env.py</code> 后 <code>source Tools/.venv/bin/activate</code></td></tr>
     <tr><td>QEMU 集成测试被跳过</td><td>缺 <code>qemu-system-tricore</code> 或 ELF（无 TriCore 工具链）→ 记 skipped，属正常；在自托管 runner 上跑</td></tr>
   </table>

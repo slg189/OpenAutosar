@@ -15,6 +15,9 @@ def configure(env):
     env['AS']   = 'astc'
     env['AR']   = 'artc'
     env['LINK'] = 'ltc'
+    env['RANLIB'] = os.environ.get('TASKING_RANLIB', '')
+    env['OBJCOPY'] = os.environ.get('TASKING_OBJCOPY', 'elf2hex')
+    env['SIZE'] = os.environ.get('TASKING_SIZE', '')
 
     env.Append(CCFLAGS=[
         # '--cpu=tc39xx',  by platform layer

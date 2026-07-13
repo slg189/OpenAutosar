@@ -33,6 +33,12 @@ class ModuleOverride:
     defines:  List[str] = field(default_factory=list)
     includes: List[str] = field(default_factory=list)
     release_includes: List[str] = field(default_factory=list)  # release 时额外发布到 *_Libs 的头文件路径 (支持 ${VAR})
+    extra_sources: List[str] = field(default_factory=list)
+    extra_source_dirs: List[str] = field(default_factory=list)
+    extra_objects: List[str] = field(default_factory=list)
+    generated_source_dirs: List[str] = field(default_factory=list)
+    generated_include_dirs: List[str] = field(default_factory=list)
+    public_includes: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -189,6 +195,12 @@ def _parse_module(name, d) -> ModuleOverride:
         defines=list(d.get('defines', []) or []),
         includes=list(d.get('includes', []) or []),
         release_includes=list(d.get('release_includes', []) or []),
+        extra_sources=list(d.get('extra_sources', []) or []),
+        extra_source_dirs=list(d.get('extra_source_dirs', []) or []),
+        extra_objects=list(d.get('extra_objects', []) or []),
+        generated_source_dirs=list(d.get('generated_source_dirs', []) or []),
+        generated_include_dirs=list(d.get('generated_include_dirs', []) or []),
+        public_includes=list(d.get('public_includes', []) or []),
     )
 
 

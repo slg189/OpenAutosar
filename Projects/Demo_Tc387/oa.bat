@@ -30,6 +30,8 @@ if /I "%ACTION%"=="host" goto :host
 if /I "%ACTION%"=="build-host" goto :host
 if /I "%ACTION%"=="gtest" goto :gtest
 if /I "%ACTION%"=="check" goto :check
+if /I "%ACTION%"=="check-ui" goto :check_ui
+if /I "%ACTION%"=="gen-bsw" goto :gen_bsw
 if /I "%ACTION%"=="doc" goto :doc
 if /I "%ACTION%"=="target" goto :target
 if /I "%ACTION%"=="build-target" goto :target
@@ -61,6 +63,14 @@ goto :done
 scons check PROJECT=%PROJECT_DIR% TOOLCHAIN=gcc PLATFORM=host %2 %3 %4 %5 %6 %7 %8 %9
 goto :done
 
+:check_ui
+py -3.11 Tools\scripts\check_dashboard.py --project Demo_Tc387 %2 %3 %4 %5 %6 %7 %8 %9
+goto :done
+
+:gen_bsw
+py -3.11 Tools\scripts\run_etas_isolar_b.py --project Demo_Tc387 --generator etas_bsw %2 %3 %4 %5 %6 %7 %8 %9
+goto :done
+
 :doc
 scons doc PROJECT=%PROJECT_DIR% TOOLCHAIN=gcc PLATFORM=host %2 %3 %4 %5 %6 %7 %8 %9
 goto :done
@@ -80,7 +90,9 @@ echo   check-tools  Verify bundled tools
 echo   list         Show build plan
 echo   host         Host compile with bundled GCC
 echo   gtest        Run GoogleTest via bundled CMake/CTest/GTest
-echo   check        Run cppcheck/MISRA entry plus unit tests
+echo   check        Run cppcheck/MISRA entry plus unit tests directly
+echo   check-ui     Open local static-check dashboard
+echo   gen-bsw      Run ETAS ISOLAR-B BSW code generation from Cfg\BSW to Gen\BSW
 echo   doc          Generate project docs
 echo   target       Build default target toolchain from build.yaml
 echo.

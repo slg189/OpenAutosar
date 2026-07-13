@@ -35,6 +35,8 @@ build_test/
 coverage_output/
 Projects/*/Reports/*.xml
 Projects/*/Reports/*.html
+Projects/*/Reports/static_check/
+Projects/*/Reports/check_dashboard_config.json
 !Projects/*/Reports/.gitkeep
 log_repo
 

@@ -83,12 +83,16 @@ jobs:
       - run: pip install -r Tools/requirements.txt
       - name: scons check (cppcheck/MISRA 门禁 + GoogleTest 单测)
         run: scons -Q check PROJECT=Projects/${{ matrix.project }} TOOLCHAIN=gcc PLATFORM=host
-      - name: 归档报告 (gtest + misra)
+        env:
+          CHECK_ARGS: --require-cppcheck --html   # 缺 cppcheck 直接失败 (防"假绿"); 顺带出 HTML 汇总
+      - name: 归档报告 (gtest + cppcheck + misra)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: check-report-${{ matrix.project }}
           path: |
             Projects/${{ matrix.project }}/Reports/gtest_results.xml
+            Projects/${{ matrix.project }}/Reports/cppcheck.xml
             Projects/${{ matrix.project }}/Reports/misra.xml
+            Projects/${{ matrix.project }}/Reports/static_check/
           if-no-files-found: ignore

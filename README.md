@@ -177,6 +177,7 @@ Projects\Demo_Tc387\08_gen_bsw_etas.bat
 
 ```bash
 scons check                                       # ★ cppcheck 真实bug门禁 + MISRA(资讯) + GoogleTest 单测
+python Tools/scripts/check_dashboard.py           # 本地静态检查页面 (127.0.0.1; Windows: oa.bat check-ui / 05_run_check.bat)
 python Tools/scripts/run_gtest.py                 # 仅单元测试 (FetchContent googletest)
 python Tools/scripts/run_integration_test.py      # QEMU 集成测试 (需 TriCore 工具链构建 ELF)
 ```

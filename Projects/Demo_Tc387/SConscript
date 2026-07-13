@@ -304,10 +304,11 @@ if cfg.docs.enabled:
 
 # ── 11. check: 静态检查 (cppcheck/MISRA) + 单元测试 -> Tools/scripts/run_check.py ───
 def _run_check(target, source, env):
-    import sys as _sys, subprocess
+    import sys as _sys, shlex, subprocess
     proj = os.path.basename(PROJECT_DIR)
+    extra = shlex.split(os.environ.get('CHECK_ARGS', ''))   # 如 CHECK_ARGS=--require-cppcheck scons check
     return subprocess.call([_sys.executable, os.path.join(ROOT, 'Tools', 'scripts', 'run_check.py'),
-                            '--project', proj])   # 非0 -> action 失败 -> scons check 失败
+                            '--project', proj] + extra)   # 非0 -> action 失败 -> scons check 失败
 env.Alias('check', env.AlwaysBuild(env.Command(
     os.path.join('Out', '.check.stamp'), [], env.Action(_run_check, '[CHECK] cppcheck/MISRA + 单测'))))
 

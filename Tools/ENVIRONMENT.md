@@ -44,11 +44,16 @@ Tools/.venv/bin/scons            # Windows: Tools\.venv\Scripts\scons.exe
 | 工具 | 必需性 | 用途 | 为何不下载 |
 |------|--------|------|-----------|
 | `gcc` / `g++` | host 验证/单测 | `TOOLCHAIN=gcc` 编译、GoogleTest | 体积大, 用系统 |
-| `cppcheck` | 静态检查 | `scons check`（cppcheck/MISRA） | Linux 无官方 portable, 用 `apt`/源码构建 |
+| `cppcheck` | 静态检查 | `scons check`（cppcheck/MISRA） | Windows 已随离线包内置 (`Tools/Offline/.../cppcheck`, 含 misra addon 与 GUI); Linux 无官方 portable, 用 `apt`/源码构建 |
 | `git` | 必需 | 版本控制 | 系统基础工具 |
 | `doxygen` / `rsync` / `ssh` | 可选 | `scons doc` / `--remote` | 系统按需 |
 
 > `cmake`/`ctest` 优先用系统; 若系统没有, `fetch_tools` 下载的版本兜底。
+>
+> **Linux 离线机器注意**: 离线工具包只覆盖 Windows。Linux 离线环境需预装 cppcheck
+> （联网机 `apt download cppcheck libtinyxml2-*` 拷贝 `.deb` 后 `dpkg -i`, 或源码构建）;
+> 缺 cppcheck 时 `scons check` 默认跳过静态检查只跑单测——防"假绿"可用
+> `CHECK_ARGS=--require-cppcheck scons check`（CI 已启用, 缺工具即失败, rc=3）。
 
 ### D. 目标工具链 (TriCore / QEMU) —— 厂商授权 / 按需自建，不可再分发
 | 工具 | 用途 | 获取方式（不放仓库） |

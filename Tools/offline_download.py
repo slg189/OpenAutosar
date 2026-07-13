@@ -33,6 +33,13 @@ MANIFEST = os.path.join(OFFLINE, 'manifest.json')
 W64DEVKIT_REPO = 'skeeto/w64devkit'
 DOXYGEN_REPO = 'doxygen/doxygen'
 CPPCHECK_REPO = 'danmar/cppcheck'
+# 固定版本 (与项目 pinned 依赖同一原则; 重新打包不漂移)。--latest 可临时改抓最新。
+PINNED_TAGS = {
+    W64DEVKIT_REPO: 'v2.8.0',
+    DOXYGEN_REPO: 'Release_1_17_0',
+    CPPCHECK_REPO: '2.21.0',
+}
+USE_LATEST = False
 
 
 def sha256(path):
@@ -60,13 +67,17 @@ def download(url, dest, force=False):
 
 
 def latest_asset(repo, predicate):
-    url = f'https://api.github.com/repos/{repo}/releases/latest'
+    """按 PINNED_TAGS 固定版本取 release 资产; --latest 时回退抓最新。"""
+    tag = None if USE_LATEST else PINNED_TAGS.get(repo)
+    url = (f'https://api.github.com/repos/{repo}/releases/tags/{tag}' if tag
+           else f'https://api.github.com/repos/{repo}/releases/latest')
     data = json.load(urllib.request.urlopen(url, timeout=60))
     for asset in data.get('assets', []):
         name = asset.get('name', '')
         if predicate(name):
             return data.get('tag_name'), name, asset.get('browser_download_url')
-    raise SystemExit(f'[fatal] no matching release asset found for {repo}')
+    raise SystemExit(f'[fatal] no matching release asset found for {repo}'
+                     + (f' tag {tag}' if tag else ''))
 
 
 def find_file(root, name):
@@ -202,9 +213,14 @@ def main():
     ap.add_argument('--force', action='store_true', help='redownload existing assets')
     ap.add_argument('--skip-toolcache', action='store_true', help='do not run Tools/fetch_tools.py')
     ap.add_argument('--skip-extra-tools', action='store_true', help='do not download GCC/Cppcheck/Doxygen bundles')
+    ap.add_argument('--latest', action='store_true',
+                    help='ignore PINNED_TAGS and fetch latest releases (version may drift)')
     ap.add_argument('--include-current', action='store_true',
                     help='also try to download wheels for the currently running Python')
     a = ap.parse_args()
+    if a.latest:
+        global USE_LATEST
+        USE_LATEST = True
 
     python_installer = download(PYTHON_URL, os.path.join(SOFTWARE, PYTHON_INSTALLER), a.force)
     pip_download(WHEELHOUSE, a.force)

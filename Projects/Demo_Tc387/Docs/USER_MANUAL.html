@@ -469,7 +469,7 @@ BSW:
   <h4>8.5.1 配置职责</h4>
   <table>
     <tr><th>文件 / 产物</th><th>用途</th></tr>
-    <tr><td><code>Projects/&lt;P&gt;/misra.json</code></td><td>项目级策略配置：扫描范围、排除路径、deviation、MISRA 规则说明文件、少量必须人工确认的覆盖项。它不再要求每个项目手工维护完整 include/gen 依赖。</td></tr>
+    <tr><td><code>Projects/&lt;P&gt;/misra.json</code></td><td>项目级策略配置：扫描范围（<code>include</code>）、排除路径（<code>suppressPaths</code>，支持 <code>*</code> 与 <code>/**</code>）、偏离（<code>deviations</code>）、MISRA 规则正文文件（可选 <code>ruleTexts</code>，指向自备的授权规则文本，配置后报告带规则正文）。它不再要求每个项目手工维护完整 include/gen 依赖。</td></tr>
     <tr><td><code>Projects/&lt;P&gt;/build.yaml</code></td><td>构建配置来源：项目名、derivative、全局 include/define、模块清单、<code>release_includes</code> 等会参与静态检查上下文补全。</td></tr>
     <tr><td><code>build_check/cppcheck_effective_config.json</code></td><td>运行前生成的有效配置快照，用于排查最终传给 cppcheck 的 include、define、扫描路径和排除路径是否正确、是否重复。</td></tr>
   </table>
@@ -498,7 +498,17 @@ py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html --pat
 py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --config-only
 
 # 生成报告后自动打开
-py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html --open-report</code></pre>
+py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html --open-report
+
+# 只检查 git 改动的 .c/.h（含未跟踪文件；提交前增量自查）
+py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --changed-only
+
+# 指定并行度；缺 cppcheck 时不再跳过而是失败（CI 防"假绿"，rc=3）
+py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --jobs 8 --require-cppcheck
+
+# 经 scons check 透传参数（CI 即此用法）
+set CHECK_ARGS=--require-cppcheck --html
+scons check PROJECT=Projects/Demo_Tc387 TOOLCHAIN=gcc PLATFORM=host</code></pre>
 
   <h4>8.5.3 报告位置</h4>
   <table>
@@ -520,8 +530,9 @@ Projects\Demo_Tc387\07_check_dashboard.bat
 py -3.11 Tools\scripts\check_dashboard.py --project Demo_Tc387</code></pre>
   <ol>
     <li>命令启动后浏览器会打开 <code>http://127.0.0.1:&lt;port&gt;/</code>。</li>
-    <li>在页面选择检查范围：全项目、模块目录（等价 <code>--module CDD/CddPwm</code>），或单个文件/目录（等价 <code>--path CDD/CddPwm/src/CddPwm.c</code>）。</li>
-    <li>勾选配置选项：不跑单测、生成 HTML、运行后打开报告、MISRA 严格门禁、只生成有效配置。</li>
+    <li>在页面选择检查范围：全项目、模块（多选下拉，清单 = build.yaml 显式模块 + 工作区自动发现，等价 <code>--module CDD/CddPwm</code>）、单个文件/目录（等价 <code>--path CDD/CddPwm/src/CddPwm.c</code>），或仅 git 改动的 .c/.h（等价 <code>--changed-only</code>）。</li>
+    <li>勾选配置选项：不跑单测、生成 HTML、运行后打开报告、MISRA 严格门禁、只生成有效配置、缺 cppcheck 视为失败、并行度 <code>-j</code>。</li>
+    <li>MISRA 配置区可直接查看/增删 <code>misra.json</code> 的排除路径（suppressPaths）与偏离（deviations，规则号+理由+scope），并填写 rule-texts 规则正文文件路径（需自备 MISRA 授权文本）；保存时自动备份 <code>misra.json.bak</code>。</li>
     <li>点击“保存配置”会写入 <code>Projects/Demo_Tc387/Reports/check_dashboard_config.json</code> 并显示命令预览。</li>
     <li>点击“保存并运行”会按配置执行，例如 <code>py -3.11 Tools\scripts\run_check.py --project Demo_Tc387 --no-tests --html --path CDD/CddPwm/src/CddPwm.c</code>。</li>
     <li>运行完成后点击“打开报告”，直接打开最新 <code>Reports/static_check/index.html</code>。</li>

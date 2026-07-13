@@ -20,6 +20,7 @@ Projects/*/Out/*
 Projects/*/Gen/MCAL/*
 Projects/*/Gen/CDD/*
 Projects/*/Gen/BSW/*
+Projects/*/Gen/Vector/*
 !Projects/*/Gen/MCAL/README.md
 !Projects/*/Gen/CDD/README.md
 !Projects/*/Gen/BSW/README.md
@@ -39,6 +40,7 @@ Projects/*/Reports/static_check/
 Projects/*/Reports/check_dashboard_config.json
 Projects/*/Reports/parasoft/
 Projects/*/parasoft.json.bak
+Projects/*/vector_codegen.json.bak
 !Projects/*/Reports/.gitkeep
 log_repo
 

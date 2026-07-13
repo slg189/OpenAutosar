@@ -33,6 +33,7 @@ if /I "%ACTION%"=="check" goto :check
 if /I "%ACTION%"=="check-ui" goto :check_ui
 if /I "%ACTION%"=="parasoft" goto :parasoft
 if /I "%ACTION%"=="gen-bsw" goto :gen_bsw
+if /I "%ACTION%"=="gen-vector" goto :gen_vector
 if /I "%ACTION%"=="doc" goto :doc
 if /I "%ACTION%"=="target" goto :target
 if /I "%ACTION%"=="build-target" goto :target
@@ -76,6 +77,10 @@ goto :done
 py -3.11 Tools\scripts\run_etas_isolar_b.py --project Demo_Tc387 --generator etas_bsw %2 %3 %4 %5 %6 %7 %8 %9
 goto :done
 
+:gen_vector
+py -3.11 Tools\scripts\run_vector_davinci.py --project Demo_Tc387 %2 %3 %4 %5 %6 %7 %8 %9
+goto :done
+
 :doc
 scons doc PROJECT=%PROJECT_DIR% TOOLCHAIN=gcc PLATFORM=host %2 %3 %4 %5 %6 %7 %8 %9
 goto :done
@@ -99,6 +104,7 @@ echo   check        Run cppcheck/MISRA entry plus unit tests directly
 echo   check-ui     Open local static-check dashboard
 echo   parasoft     Run Parasoft C/C++test analysis (needs cpptestcli; --dry-run to preview)
 echo   gen-bsw      Run ETAS ISOLAR-B BSW code generation from Cfg\BSW to Gen\BSW
+echo   gen-vector   Run Vector DaVinci code generation (needs DVCfgCmd; --dry-run to preview)
 echo   doc          Generate project docs
 echo   target       Build default target toolchain from build.yaml
 echo.

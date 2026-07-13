@@ -28,6 +28,7 @@ sys.path.insert(0, SCRIPTS)
 sys.path.insert(0, os.path.join(ROOT, 'Tools'))
 import run_check  # noqa: E402  复用 cppcheck 探测 / misra.json 与 build.yaml 加载
 import run_parasoft  # noqa: E402  复用 parasoft.json 加载 / cpptestcli 探测 / 命令拼装
+import run_vector_davinci  # noqa: E402  复用 vector 配置分层 / DVCfgCmd 命令拼装
 
 
 # ───────────────────────── 运行状态 (单并发) ─────────────────────────
@@ -166,6 +167,7 @@ def api_state(project):
         'config': load_config(project),
         'reportExists': os.path.exists(report),
         'parasoft': parasoft_state(project),
+        'vector': vector_state(project),
     }
 
 
@@ -206,6 +208,86 @@ def save_parasoft(project, raw):
 def parasoft_run_cmd(project, extra=None):
     return [sys.executable, os.path.join('Tools', 'scripts', 'run_parasoft.py'),
             '--project', project] + (extra or [])
+
+
+# ───────────────────────── Vector DaVinci 代码生成 ─────────────────────────
+
+def _vector_merge_body(project, body):
+    """页面未保存的字段值合并进当前配置 (含 ${VAR} 展开)。"""
+    project_dir, spec, merged, source = run_vector_davinci.load_merged(project)
+    variables = run_vector_davinci.project_variables(project_dir)
+    for k in run_vector_davinci.OVERRIDE_KEYS:
+        if k in body:
+            merged[k] = run_vector_davinci._expand(body[k], variables)
+    return project_dir, spec, merged, source
+
+
+def vector_state(project):
+    try:
+        project_dir, spec, merged, source = run_vector_davinci.load_merged(project)
+    except (SystemExit, Exception) as exc:  # build.yaml 无 vector generator 等
+        return {'error': str(exc)}
+    cmd, _dpa, output_dir = run_vector_davinci.build_command(merged, project_dir)
+    tool = run_vector_davinci.find_tool(merged)
+    # 展示"生效值": 选项名空则回填默认, 与 build_command 的取值一致
+    defaults = {'project_option': '-p', 'project_arg_style': 'split', 'generate_option': '-g',
+                'gen_type_option': '--genType', 'modules_option': '--modules', 'log_option': '-l'}
+    config = {k: merged.get(k, [] if k in ('modules', 'options') else '')
+              for k in run_vector_davinci.OVERRIDE_KEYS}
+    for k, dv in defaults.items():
+        config[k] = config.get(k) or dv
+    return {
+        'generator': spec.name,
+        'source': (source['base'] + (' + ' + source['override'] if source['override'] else '')),
+        'file': f'Projects/{project}/vector_codegen.json',
+        'config': config,
+        'tool': {'path': tool, 'exists': run_vector_davinci._tool_exists(tool)},
+        'preview': subprocess.list2cmdline([str(a) for a in cmd]),
+        'logExists': os.path.exists(os.path.join(str(output_dir), 'davinci_command.txt')),
+    }
+
+
+def vector_preview(project, body):
+    project_dir, _spec, merged, _source = _vector_merge_body(project, body)
+    cmd, _dpa, _out = run_vector_davinci.build_command(merged, project_dir)
+    return subprocess.list2cmdline([str(a) for a in cmd])
+
+
+def save_vector(project, body):
+    project_dir, _spec, _merged, _source = run_vector_davinci.load_merged(project)
+    f = str(run_vector_davinci.override_file(project_dir))
+    keep = {}
+    if os.path.exists(f):
+        shutil.copyfile(f, f + '.bak')
+        with open(f, encoding='utf-8') as fh:
+            keep = json.load(fh)
+    for k in run_vector_davinci.OVERRIDE_KEYS:
+        if k in body:
+            if body[k] in ('', []):     # 空值不落盘 -> 回落 build.yaml 基底/默认
+                keep.pop(k, None)
+            else:
+                keep[k] = body[k]
+    with open(f, 'w', encoding='utf-8') as fh:
+        json.dump(keep, fh, ensure_ascii=False, indent=2)
+        fh.write('\n')
+    return os.path.relpath(f, ROOT)
+
+
+def vector_run_cmd(project, dry_run=False):
+    return [sys.executable, os.path.join('Tools', 'scripts', 'run_vector_davinci.py'),
+            '--project', project] + (['--dry-run'] if dry_run else [])
+
+
+def vector_log_text(project):
+    project_dir, _spec, merged, _src = run_vector_davinci.load_merged(project)
+    _cmd, _dpa, out = run_vector_davinci.build_command(merged, project_dir)
+    parts = []
+    for name in ('davinci_command.txt', 'davinci_codegen.log'):
+        p = os.path.join(str(out), name)
+        if os.path.exists(p):
+            with open(p, encoding='utf-8', errors='replace') as fh:
+                parts.append(f'── {name} ──\n' + fh.read())
+    return '\n'.join(parts) or '(尚无命令留痕/日志, 先运行一次)'
 
 
 def save_misra(project, data):
@@ -351,6 +433,38 @@ PAGE = """<!DOCTYPE html>
  <span id="psmsg" class="hint"></span>
 </fieldset>
 
+<fieldset><legend>Vector DaVinci 代码生成 (商业工具)</legend>
+ <p class="hint" id="vctool"></p>
+ <div class="row"><label>DVCfgCmd 路径 <input type="text" id="vc_tool_path" size="42" placeholder="空则用环境变量 DVCFG_CMD 或 PATH"></label>
+  <button class="sec" type="button" onclick="vcDetect()">检测</button>
+  <span class="hint">配置分层: build.yaml 基底 + vector_codegen.json 覆盖 (本页保存写后者, 支持 ${PROJECT_DIR} 等变量)</span></div>
+ <div class="row"><label>.dpa 工程 <input type="text" id="vc_project" size="52"></label></div>
+ <div class="row"><label>输出目录 <input type="text" id="vc_output_dir" size="40"></label>
+  <label>生成类型 <input type="text" id="vc_gen_type" size="8" list="vcgentypes" placeholder="留空不传"></label>
+  <datalist id="vcgentypes"><option value="REAL"></option><option value="VTT"></option></datalist>
+  <label>模块 (逗号分隔, 空=全部) <input type="text" id="vc_modules" size="24"></label></div>
+ <details class="row"><summary class="hint">高级: 选项名/风格 (按 DaVinci 版本调整)</summary>
+  <div class="row">
+   <label>project <input type="text" id="vc_project_option" size="5"></label>
+   <label>风格 <select id="vc_project_arg_style"><option value="split">split (-p X)</option><option value="joined">joined (-p=X)</option></select></label>
+   <label>generate <input type="text" id="vc_generate_option" size="5"></label>
+   <label>genType <input type="text" id="vc_gen_type_option" size="10"></label>
+   <label>modules <input type="text" id="vc_modules_option" size="10"></label>
+   <label>output <input type="text" id="vc_output_option" size="5" placeholder="空=不传"></label>
+   <label>log <input type="text" id="vc_log_option" size="5"></label>
+  </div>
+ </details>
+ <div class="row">附加参数 (每行一个, 原样透传):
+  <textarea id="vc_options" rows="2"></textarea></div>
+ <div class="row">命令预览: <pre id="vc_preview" style="max-height:6rem"></pre></div>
+ <label><input type="checkbox" id="vc_dryrun"> 本次以 dry-run 运行 (只核对命令)</label><br>
+ <button type="button" onclick="vcSave(false)">保存配置</button>
+ <button type="button" id="vcrunbtn" onclick="vcSave(true)">保存并运行</button>
+ <button class="sec" type="button" onclick="vcShowLog()">查看命令留痕/日志</button>
+ <span id="vcmsg" class="hint"></span>
+ <pre id="vc_log" hidden></pre>
+</fieldset>
+
 <p class="hint">本页面仅监听 127.0.0.1, 供开发机本地(含离线)静态检查使用; 请勿暴露到网络。</p>
 
 <script>
@@ -393,8 +507,7 @@ function startPoll() {
   SEEN = 0;
   const out = document.getElementById('output');
   out.hidden = false; out.textContent = '';
-  document.getElementById('runbtn').disabled = true;
-  document.getElementById('psrunbtn').disabled = true;
+  for (const b of ['runbtn', 'psrunbtn', 'vcrunbtn']) document.getElementById(b).disabled = true;
   setStatus('运行中 …');
   POLL = setInterval(pollOutput, 800);
 }
@@ -416,8 +529,7 @@ async function pollOutput() {
   SEEN = d.total;
   if (!d.running && d.rc !== null) {
     clearInterval(POLL);
-    document.getElementById('runbtn').disabled = false;
-    document.getElementById('psrunbtn').disabled = false;
+    for (const b of ['runbtn', 'psrunbtn', 'vcrunbtn']) document.getElementById(b).disabled = false;
     setStatus(d.rc === 0 ? '完成 ✔ (rc=0)' : `失败 ✖ (rc=${d.rc})`, d.rc === 0 ? 'ok' : 'bad');
     refreshState();
   }
@@ -510,6 +622,66 @@ async function psListCompilers() {
   startPoll();
 }
 
+// ── Vector DaVinci 代码生成 ──
+function vcFromUI() {
+  const v = id => document.getElementById('vc_' + id).value.trim();
+  return {
+    tool_path: v('tool_path'), project: v('project'), output_dir: v('output_dir'),
+    gen_type: v('gen_type'),
+    modules: v('modules').split(',').map(s => s.trim()).filter(Boolean),
+    project_option: v('project_option'), project_arg_style: v('project_arg_style'),
+    generate_option: v('generate_option'), gen_type_option: v('gen_type_option'),
+    modules_option: v('modules_option'), output_option: v('output_option'), log_option: v('log_option'),
+    options: document.getElementById('vc_options').value.split('\\n').map(s => s.trim()).filter(Boolean),
+    dry_run: document.getElementById('vc_dryrun').checked,
+  };
+}
+
+function vcToolInfo(t) {
+  document.getElementById('vctool').innerHTML = t.exists
+    ? `DVCfgCmd: <span class="ok">已找到</span> (${t.path})`
+    : `<span class="bad">DVCfgCmd 未找到 (${t.path}) — 填工具路径或设环境变量 DVCFG_CMD (商业软件, 需本机安装+授权); 无工具也可保存配置/dry-run 核对命令</span>`;
+}
+
+function vcApply(p) {
+  if (p.error) { document.getElementById('vctool').innerHTML = `<span class="bad">${p.error}</span>`; return; }
+  const c = p.config;
+  for (const k of ['tool_path','project','output_dir','gen_type','project_option',
+                   'generate_option','gen_type_option','modules_option','output_option','log_option'])
+    document.getElementById('vc_' + k).value = c[k] || '';
+  document.getElementById('vc_project_arg_style').value = c.project_arg_style || 'split';
+  document.getElementById('vc_modules').value = (c.modules || []).join(', ');
+  document.getElementById('vc_options').value = (c.options || []).join('\\n');
+  document.getElementById('vc_preview').textContent = p.preview || '';
+  document.getElementById('vcmsg').textContent = `生成器 ${p.generator} · 配置来源: ${p.source}`;
+  vcToolInfo(p.tool);
+}
+
+async function vcPreview() {
+  const r = await fetch('/api/vector/preview', {method:'POST', body: JSON.stringify(vcFromUI())});
+  document.getElementById('vc_preview').textContent = (await r.json()).preview;
+}
+
+async function vcDetect() {
+  vcToolInfo(await (await fetch('/api/vector/detect', {method:'POST', body: JSON.stringify(vcFromUI())})).json());
+}
+
+async function vcSave(run) {
+  const d = await (await fetch(run ? '/api/vector/run' : '/api/vector/save',
+                               {method:'POST', body: JSON.stringify(vcFromUI())})).json();
+  document.getElementById('vc_preview').textContent = d.preview || '';
+  if (run) {
+    if (!d.started) { setStatus('已有任务在运行', 'bad'); return; }
+    startPoll();
+  } else document.getElementById('vcmsg').textContent = '已写入 ' + d.file + ' (备份 .bak)';
+}
+
+async function vcShowLog() {
+  const t = await (await fetch('/vector-log')).text();
+  const el = document.getElementById('vc_log');
+  el.hidden = false; el.textContent = t;
+}
+
 async function refreshState() {
   const s = await (await fetch('/api/state')).json();
   document.getElementById('proj').textContent = '· ' + s.project;
@@ -530,6 +702,7 @@ async function refreshState() {
     psToolInfo(s.parasoft.tool);
     document.getElementById('psreportbtn').disabled = !s.parasoft.reportExists;
   }
+  if (s.vector && !s.vector.error) vcToolInfo(s.vector.tool);
   return s;
 }
 
@@ -537,8 +710,13 @@ async function refreshState() {
   const s = await refreshState();
   applyCfg(s.config);
   psApply(s.parasoft);
-  for (const el of document.querySelectorAll('input,select,textarea'))
-    el.addEventListener('change', (el.id || '').startsWith('ps_') || el.name === 'psedition' ? psPreview : preview);
+  vcApply(s.vector);
+  for (const el of document.querySelectorAll('input,select,textarea')) {
+    const id = el.id || '';
+    const fn = id.startsWith('vc_') ? vcPreview
+             : (id.startsWith('ps_') || el.name === 'psedition') ? psPreview : preview;
+    el.addEventListener('change', fn);
+  }
   for (const r of document.querySelectorAll('input[name=scope]')) r.addEventListener('change', scopeUI);
   for (const r of document.querySelectorAll('input[name=psedition]')) r.addEventListener('change', psEditionUI);
   preview();
@@ -595,6 +773,8 @@ def make_handler(project):
                         self._send(200, f.read(), 'text/html; charset=utf-8')
                 else:
                     self._send(404, {'error': 'Parasoft 报告不存在, 请先运行一次分析'})
+            elif path == '/vector-log':
+                self._send(200, vector_log_text(project).encode('utf-8'), 'text/plain; charset=utf-8')
             else:
                 self._send(404, {'error': 'not found'})
 
@@ -631,6 +811,19 @@ def make_handler(project):
                 merged = run_parasoft.expand_config(project, {**run_parasoft.DEFAULT_CONFIG, **cfg})
                 exe = run_parasoft.find_cpptestcli(merged)
                 self._send(200, {'path': exe or '', 'version': run_parasoft.tool_version(exe) if exe else ''})
+            elif self.path == '/api/vector/preview':
+                self._send(200, {'preview': vector_preview(project, cfg)})
+            elif self.path == '/api/vector/save':
+                f = save_vector(project, cfg)
+                self._send(200, {'saved': True, 'file': f, 'preview': vector_preview(project, cfg)})
+            elif self.path == '/api/vector/run':
+                save_vector(project, cfg)
+                started = RUN.start(vector_run_cmd(project, dry_run=bool(cfg.get('dry_run'))))
+                self._send(200, {'started': started, 'preview': vector_preview(project, cfg)})
+            elif self.path == '/api/vector/detect':
+                _pd, _sp, merged, _src = _vector_merge_body(project, cfg)
+                tool = run_vector_davinci.find_tool(merged)
+                self._send(200, {'path': tool, 'exists': run_vector_davinci._tool_exists(tool)})
             else:
                 self._send(404, {'error': 'not found'})
 

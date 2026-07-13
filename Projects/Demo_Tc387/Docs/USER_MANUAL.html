@@ -592,6 +592,33 @@ scons gen:etas_bsw PROJECT=Projects/Demo_Tc387</code></pre>
 </section>
 
 <section id="workflows">
+  <h3 id="vector-codegen">8.7 Vector DaVinci 生成代码</h3>
+  <p>Vector DaVinci Configurator 的批处理生成通过其命令行工具 <code>DVCfgCmd</code> 完成（商业授权软件，不入仓库）。本项目由 <code>Tools/scripts/run_vector_davinci.py</code> 包装：<b>命令行一条命令可跑</b>（AI/CI 接入面），<b>检查页面可视化配置</b>（用户直接使用），<code>scons gen</code> 走同一条路径。</p>
+  <p><b>配置分层</b>：<code>build.yaml codegen.generators</code>（<code>type: vector</code>，基底）← <code>Projects/&lt;P&gt;/vector_codegen.json</code>（页面保存写这份，字段级覆盖，不破坏 build.yaml 注释）← 命令行参数（临时覆盖）。</p>
+  <table>
+    <tr><th>配置项</th><th>说明</th></tr>
+    <tr><td><code>tool_path</code> / <code>DVCFG_CMD</code></td><td><code>DVCfgCmd</code> 路径；留空则依次找环境变量 <code>DVCFG_CMD</code>、PATH</td></tr>
+    <tr><td><code>project</code></td><td>DaVinci <code>.dpa</code> 工程文件，Demo 默认 <code>${PROJECT_DIR}/Cfg/BSW/Demo_Tc387.dpa</code></td></tr>
+    <tr><td><code>output_dir</code></td><td>产物/日志/命令留痕目录，默认 <code>${PROJECT_DIR}/Gen/Vector</code>（实际生成输出目录通常定义在 .dpa 内）</td></tr>
+    <tr><td><code>gen_type</code></td><td>生成类型 <code>REAL</code> / <code>VTT</code>；留空不传 <code>--genType</code></td></tr>
+    <tr><td><code>modules</code></td><td>只生成指定模块（列表）；空 = 全部</td></tr>
+    <tr><td>选项名/风格</td><td><code>project_option</code>(-p)、<code>project_arg_style</code>(split/joined)、<code>generate_option</code>(-g)、<code>gen_type_option</code>、<code>modules_option</code>、<code>output_option</code>(默认空=不传)、<code>log_option</code>(-l) —— 按你安装的 DaVinci 版本手册调整</td></tr>
+    <tr><td><code>options</code></td><td>追加原样透传的参数列表</td></tr>
+  </table>
+<pre><code># 命令行（AI/CI 接入面：一条命令 + 确定性退出码 + 命令留痕/日志）
+py -3.11 Tools\scripts\run_vector_davinci.py --project Demo_Tc387 --dry-run   # 只打印命令（无 Vector 也可核对）
+py -3.11 Tools\scripts\run_vector_davinci.py --project Demo_Tc387             # 执行生成
+py -3.11 Tools\scripts\run_vector_davinci.py --gen-type REAL --module Can --module CanIf
+oa.bat gen-vector --dry-run                                                    # 批处理入口等价 (09_gen_bsw_vector.bat)
+
+# 若已在 build.yaml 启用 vector_bsw (enabled: true)
+scons gen PROJECT=Projects/Demo_Tc387</code></pre>
+  <ul>
+    <li><b>页面配置</b>：<code>oa.bat check-ui</code> 打开页面，"Vector DaVinci 代码生成" 区可视化编辑上表全部配置项（高级折叠区调选项名/风格）、检测工具、实时命令预览、保存（写 <code>vector_codegen.json</code>，备份 .bak；空值不落盘、回落 build.yaml 基底）、保存并运行（可勾选 dry-run 只核对命令）、查看命令留痕/日志。</li>
+    <li><b>留痕</b>：最终命令写 <code>Gen/Vector/davinci_command.txt</code>，生成日志 <code>davinci_codegen.log</code>，成功后写 <code>.vector_bsw.stamp</code>；便于核对 <code>-p/-g/--genType</code> 等 option 是否符合当前 DaVinci 版本。</li>
+    <li><b>退出码</b>：dry-run 恒 0；真跑透传 DVCfgCmd rc；缺工具 rc=2（<code>--allow-missing-tool</code> 可放行）。</li>
+  </ul>
+
   <h2>9 · 典型工作流</h2>
   <h3>9.1 新机器首次上手</h3>
 <pre><code>git clone &lt;repo&gt; &amp;&amp; cd OpenAutosar

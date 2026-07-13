@@ -539,6 +539,32 @@ py -3.11 Tools\scripts\check_dashboard.py --project Demo_Tc387</code></pre>
   </ol>
   <div class="tip">本地页面仅监听 <code>127.0.0.1</code>，用于开发机离线检查；不要把它作为远程服务暴露到网络。</div>
 
+  <h4>8.5.6 Parasoft C/C++test 商业静态检查</h4>
+  <p>在 cppcheck（开源、离线内置）之外，可选接入 <b>Parasoft C/C++test</b> 商业静态检查（MISRA / AUTOSAR / CERT 认证工具链）。Parasoft 为商业授权软件、不入仓库，需本机安装并配置授权；本项目通过 <code>Tools/scripts/run_parasoft.py</code> 包装其命令行工具 <code>cpptestcli</code>，报告独立输出到 <code>Reports/parasoft/</code>。</p>
+  <table>
+    <tr><th>配置项（<code>Projects/&lt;P&gt;/parasoft.json</code>）</th><th>说明</th></tr>
+    <tr><td><code>edition</code></td><td><code>standard</code>（默认，Standard/DTP Engine，<code>-input</code> 输入）或 <code>professional</code>（Eclipse 版，<code>-data</code> workspace + <code>-bdf</code>）</td></tr>
+    <tr><td><code>toolPath</code></td><td><code>cpptestcli</code> 路径；留空则依次找环境变量 <code>CPPTEST_CLI</code>、PATH（与 HighTec/ETAS 同模式）</td></tr>
+    <tr><td><code>compilerConfig</code></td><td>传 <code>-compiler</code> 的编译器配置 id（如 <code>gcc_13-64</code>、HighTec TriCore 对应 id）；用 <code>--list-compilers</code> 枚举</td></tr>
+    <tr><td><code>testConfig</code></td><td>传 <code>-config</code> 的测试配置：内置 <code>builtin://MISRA C 2012</code> / <code>builtin://Recommended Rules</code>、用户自定义或 DTP 托管 <code>dtp://...</code></td></tr>
+    <tr><td><code>input</code> / <code>bdf</code> / <code>workspace</code></td><td>分析输入 scope：standard 用 <code>compile_commands.json</code>（scons 构建自动生成，<code>build.yaml output.compile_commands_json</code>）或 <code>cpptestscan.bdf</code>；professional 用 <code>bdf</code>+<code>workspace</code></td></tr>
+    <tr><td><code>localsettings</code></td><td>许可/DTP properties 文件路径（<code>license.network.enabled/host/port</code>、<code>dtp.server/port/user</code> 等）</td></tr>
+    <tr><td><code>reportFormats</code></td><td><code>xml</code> / <code>html</code> / <code>sarif</code>（SARIF 结构化结果最适合 AI/工具消费）</td></tr>
+    <tr><td><code>failOnFindings</code></td><td><code>true</code> → 加 <code>-fail</code>，有静态分析发现即非零退出（门禁）；命令行 <code>--fail</code> 可临时覆盖</td></tr>
+    <tr><td><code>options</code></td><td>追加原样透传给 cpptestcli 的参数列表</td></tr>
+  </table>
+<pre><code># 命令行（AI/CI 接入面：一条命令 + 确定性退出码 + SARIF 报告）
+py -3.11 Tools\scripts\run_parasoft.py --project Demo_Tc387 --dry-run   # 只打印命令（无 Parasoft 也可验证）
+py -3.11 Tools\scripts\run_parasoft.py --project Demo_Tc387             # 执行分析
+py -3.11 Tools\scripts\run_parasoft.py --project Demo_Tc387 --fail      # 有发现即失败（门禁）
+py -3.11 Tools\scripts\run_parasoft.py --list-compilers                 # 枚举编译器配置 id
+oa.bat parasoft --dry-run                                                # 批处理入口等价</code></pre>
+  <ul>
+    <li><b>页面配置</b>：<code>oa.bat check-ui</code> 打开检查页面，"Parasoft C/C++test" 区可视化编辑上表全部配置项（edition 切换联动 input/bdf 字段）、检测工具、列出编译器配置、命令预览、保存（写 <code>parasoft.json</code>，备份 .bak）、保存并运行、打开 Parasoft HTML 报告。</li>
+    <li><b>报告</b>：<code>Reports/parasoft/report.xml|html|sarif</code>，实际执行命令留痕于 <code>Reports/parasoft/parasoft_command.txt</code>；运行摘要打印各严重级发现数。</li>
+    <li><b>CI</b>：<code>parasoft-analysis.yml</code>（手动触发，需自托管 runner 标签 <code>[self-hosted, parasoft]</code> 并预装授权工具），不阻塞 PR。</li>
+  </ul>
+
   <h3 id="etas-bsw-codegen">8.6 ETAS ISOLAR-B 生成 BSW</h3>
   <p>BSW 配置输入放在 <code>Projects/Demo_Tc387/Cfg/BSW</code>，生成输出放在 <code>Projects/Demo_Tc387/Gen/BSW</code>。仓库不能内置商业 ETAS 工具，需本机安装 ISOLAR-B/RTA-BSW 后配置 <code>ISOLAR-B.cmd</code> 路径。</p>
   <table>

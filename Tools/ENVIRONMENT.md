@@ -61,6 +61,7 @@ Tools/.venv/bin/scons            # Windows: Tools\.venv\Scripts\scons.exe
 | `tricore-gcc` (HighTec GNU TriCore) | AURIX ELF（`TOOLCHAIN=hightec`） | HighTec 官网下载安装；装好后确保 `tricore-gcc` 在 PATH（或设 `HIGHTEC_BIN`） |
 | TASKING VX-toolset | `TOOLCHAIN=tasking` | TASKING 授权安装；`ctc/ltc` 在 PATH（或设 `TASKING_BIN`） |
 | `qemu-system-tricore` | 集成测试（第二道闸） | 用支持 TriCore 的 QEMU 分支自建；二进制在 PATH（或设 `QEMU_TRICORE`） |
+| `cpptestcli` (Parasoft C/C++test) | 商业静态检查（可选，`run_parasoft.py`/页面/`parasoft-analysis.yml`） | Parasoft 授权安装；`cpptestcli` 在 PATH（或设 `CPPTEST_CLI`，或填 `Projects/<P>/parasoft.json:toolPath`） |
 
 > 这三者因**授权/体积/需自建**不放仓库；在**自托管 runner**（标签 `tricore`）或本机装好即可，`integration-qemu.yml` 与 `run_qemu.py`/`run_integration_test.py` 会自动调用，缺失则记 skipped。
 

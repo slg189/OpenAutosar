@@ -27,6 +27,7 @@ ROOT = os.path.abspath(os.path.join(SCRIPTS, '..', '..'))
 sys.path.insert(0, SCRIPTS)
 sys.path.insert(0, os.path.join(ROOT, 'Tools'))
 import run_check  # noqa: E402  复用 cppcheck 探测 / misra.json 与 build.yaml 加载
+import run_parasoft  # noqa: E402  复用 parasoft.json 加载 / cpptestcli 探测 / 命令拼装
 
 
 # ───────────────────────── 运行状态 (单并发) ─────────────────────────
@@ -164,7 +165,47 @@ def api_state(project):
                   'ruleTexts': misra.get('ruleTexts', '')},
         'config': load_config(project),
         'reportExists': os.path.exists(report),
+        'parasoft': parasoft_state(project),
     }
+
+
+# ───────────────────────── Parasoft (商业, 独立报告) ─────────────────────────
+
+def parasoft_state(project):
+    raw = run_parasoft.raw_config(project)
+    exe = run_parasoft.find_cpptestcli(run_parasoft.expand_config(project, raw))
+    report_dir = run_parasoft.expand_config(project, raw)['reportDir']
+    return {
+        'file': os.path.relpath(run_parasoft.config_path(project), ROOT),
+        'config': raw,
+        'tool': {'path': exe or '', 'version': run_parasoft.tool_version(exe) if exe else ''},
+        'reportExists': os.path.exists(os.path.join(report_dir, 'report.html')),
+    }
+
+
+def parasoft_preview(project, raw):
+    cfg = run_parasoft.expand_config(project, {**run_parasoft.DEFAULT_CONFIG, **raw})
+    tool = run_parasoft.find_cpptestcli(cfg) or 'cpptestcli'
+    return subprocess.list2cmdline(run_parasoft.build_command(cfg, tool, bool(cfg.get('failOnFindings'))))
+
+
+def save_parasoft(project, raw):
+    f = run_parasoft.config_path(project)
+    keep = {}
+    if os.path.exists(f):
+        shutil.copyfile(f, f + '.bak')
+        with open(f, encoding='utf-8') as fh:
+            keep = json.load(fh)
+    keep.update({k: raw[k] for k in run_parasoft.DEFAULT_CONFIG if k in raw})
+    with open(f, 'w', encoding='utf-8') as fh:
+        json.dump(keep, fh, ensure_ascii=False, indent=2)
+        fh.write('\n')
+    return os.path.relpath(f, ROOT)
+
+
+def parasoft_run_cmd(project, extra=None):
+    return [sys.executable, os.path.join('Tools', 'scripts', 'run_parasoft.py'),
+            '--project', project] + (extra or [])
 
 
 def save_misra(project, data):
@@ -271,6 +312,45 @@ PAGE = """<!DOCTYPE html>
  <pre id="output" hidden></pre>
 </fieldset>
 
+<fieldset><legend>Parasoft C/C++test (商业工具, 独立报告)</legend>
+ <p class="hint" id="pstool"></p>
+ <div class="row">
+  <label><input type="radio" name="psedition" value="standard"> Standard / DTP Engine (-input)</label>
+  <label><input type="radio" name="psedition" value="professional"> Professional (-data/-bdf)</label>
+ </div>
+ <div class="row"><label>cpptestcli 路径 <input type="text" id="ps_toolPath" size="42" placeholder="空则用环境变量 CPPTEST_CLI 或 PATH"></label>
+  <button class="sec" type="button" onclick="psDetect()">检测</button></div>
+ <div class="row"><label>编译器配置 (-compiler) <input type="text" id="ps_compilerConfig" size="20"></label>
+  <button class="sec" type="button" onclick="psListCompilers()">列出编译器配置</button></div>
+ <div class="row"><label>测试配置 (-config) <input type="text" id="ps_testConfig" size="42" list="pscfgs"></label>
+  <datalist id="pscfgs">
+   <option value="builtin://MISRA C 2012"></option>
+   <option value="builtin://MISRA C 2023"></option>
+   <option value="builtin://Recommended Rules"></option>
+   <option value="builtin://CERT C Rules"></option>
+   <option value="builtin://AUTOSAR C++14 Coding Guidelines"></option>
+  </datalist></div>
+ <div class="row" id="ps_std"><label>输入 scope (-input) <input type="text" id="ps_input" size="52"></label>
+  <span class="hint">compile_commands.json 由 scons 构建生成 (build.yaml output.compile_commands_json)</span></div>
+ <div class="row" id="ps_pro" hidden>
+  <label>workspace (-data) <input type="text" id="ps_workspace" size="28"></label>
+  <label>bdf (-bdf) <input type="text" id="ps_bdf" size="28"></label>
+ </div>
+ <div class="row"><label>许可 localsettings <input type="text" id="ps_localsettings" size="42" placeholder="license.network.* / dtp.* properties 文件路径"></label>
+  <span>报告格式:</span>
+  <label><input type="checkbox" id="ps_fmt_xml"> xml</label>
+  <label><input type="checkbox" id="ps_fmt_html"> html</label>
+  <label><input type="checkbox" id="ps_fmt_sarif"> sarif (AI 友好)</label>
+  <label><input type="checkbox" id="ps_fail"> 有发现即失败 (-fail)</label></div>
+ <div class="row">附加参数 (每行一个, 原样透传):
+  <textarea id="ps_options" rows="2"></textarea></div>
+ <div class="row">命令预览: <pre id="ps_preview" style="max-height:6rem"></pre></div>
+ <button type="button" onclick="psSave(false)">保存配置</button>
+ <button type="button" id="psrunbtn" onclick="psSave(true)">保存并运行</button>
+ <button type="button" class="sec" id="psreportbtn" onclick="window.open('/parasoft-report')">打开 Parasoft 报告</button>
+ <span id="psmsg" class="hint"></span>
+</fieldset>
+
 <p class="hint">本页面仅监听 127.0.0.1, 供开发机本地(含离线)静态检查使用; 请勿暴露到网络。</p>
 
 <script>
@@ -309,17 +389,23 @@ async function preview() {
   document.getElementById('preview').textContent = (await r.json()).preview;
 }
 
+function startPoll() {
+  SEEN = 0;
+  const out = document.getElementById('output');
+  out.hidden = false; out.textContent = '';
+  document.getElementById('runbtn').disabled = true;
+  document.getElementById('psrunbtn').disabled = true;
+  setStatus('运行中 …');
+  POLL = setInterval(pollOutput, 800);
+}
+
 async function save(run) {
   const r = await fetch(run ? '/api/run' : '/api/save', {method:'POST', body: JSON.stringify(cfgFromUI())});
   const d = await r.json();
   document.getElementById('preview').textContent = d.preview || '';
   if (run) {
     if (!d.started) { setStatus('已有检查在运行', 'bad'); return; }
-    SEEN = 0; document.getElementById('output').hidden = false;
-    document.getElementById('output').textContent = '';
-    document.getElementById('runbtn').disabled = true;
-    setStatus('运行中 …');
-    POLL = setInterval(pollOutput, 800);
+    startPoll();
   } else setStatus('配置已保存', 'ok');
 }
 
@@ -331,6 +417,7 @@ async function pollOutput() {
   if (!d.running && d.rc !== null) {
     clearInterval(POLL);
     document.getElementById('runbtn').disabled = false;
+    document.getElementById('psrunbtn').disabled = false;
     setStatus(d.rc === 0 ? '完成 ✔ (rc=0)' : `失败 ✖ (rc=${d.rc})`, d.rc === 0 ? 'ok' : 'bad');
     refreshState();
   }
@@ -358,6 +445,71 @@ async function saveMisra() {
   document.getElementById('misramsg').textContent = `已写入 ${d.file} (备份 .bak)`;
 }
 
+// ── Parasoft ──
+function psFromUI() {
+  const fmts = [];
+  for (const f of ['xml','html','sarif']) if (document.getElementById('ps_fmt_'+f).checked) fmts.push(f);
+  const v = id => document.getElementById('ps_'+id).value.trim();
+  return {
+    edition: document.querySelector('input[name=psedition]:checked').value,
+    toolPath: v('toolPath'), compilerConfig: v('compilerConfig'), testConfig: v('testConfig'),
+    input: v('input'), bdf: v('bdf'), workspace: v('workspace'), localsettings: v('localsettings'),
+    reportFormats: fmts, failOnFindings: document.getElementById('ps_fail').checked,
+    options: document.getElementById('ps_options').value.split('\\n').map(s => s.trim()).filter(Boolean),
+  };
+}
+
+function psToolInfo(t) {
+  document.getElementById('pstool').innerHTML = t.path
+    ? `cpptestcli: <span class="ok">${t.version || t.path}</span> (${t.path})`
+    : '<span class="bad">未找到 cpptestcli — 填工具路径或设环境变量 CPPTEST_CLI (商业软件, 需本机安装+授权); 无工具也可先保存配置/看命令预览</span>';
+}
+
+function psApply(p) {
+  const c = p.config;
+  document.querySelector(`input[name=psedition][value=${c.edition || 'standard'}]`).checked = true;
+  for (const k of ['toolPath','compilerConfig','testConfig','input','bdf','workspace','localsettings'])
+    document.getElementById('ps_' + k).value = c[k] || '';
+  for (const f of ['xml','html','sarif']) document.getElementById('ps_fmt_'+f).checked = (c.reportFormats || []).includes(f);
+  document.getElementById('ps_fail').checked = !!c.failOnFindings;
+  document.getElementById('ps_options').value = (c.options || []).join('\\n');
+  psToolInfo(p.tool);
+  document.getElementById('psreportbtn').disabled = !p.reportExists;
+  psEditionUI();
+}
+
+function psEditionUI() {
+  const pro = document.querySelector('input[name=psedition]:checked').value === 'professional';
+  document.getElementById('ps_std').hidden = pro;
+  document.getElementById('ps_pro').hidden = !pro;
+  psPreview();
+}
+
+async function psPreview() {
+  const r = await fetch('/api/parasoft/preview', {method:'POST', body: JSON.stringify(psFromUI())});
+  document.getElementById('ps_preview').textContent = (await r.json()).preview;
+}
+
+async function psDetect() {
+  psToolInfo(await (await fetch('/api/parasoft/detect', {method:'POST', body: JSON.stringify(psFromUI())})).json());
+}
+
+async function psSave(run) {
+  const d = await (await fetch(run ? '/api/parasoft/run' : '/api/parasoft/save',
+                               {method:'POST', body: JSON.stringify(psFromUI())})).json();
+  document.getElementById('ps_preview').textContent = d.preview || '';
+  if (run) {
+    if (!d.started) { setStatus('已有检查在运行', 'bad'); return; }
+    startPoll();
+  } else document.getElementById('psmsg').textContent = '已写入 ' + d.file + ' (备份 .bak)';
+}
+
+async function psListCompilers() {
+  const d = await (await fetch('/api/parasoft/list-compilers', {method:'POST', body:'{}'})).json();
+  if (!d.started) { setStatus('已有检查在运行', 'bad'); return; }
+  startPoll();
+}
+
 async function refreshState() {
   const s = await (await fetch('/api/state')).json();
   document.getElementById('proj').textContent = '· ' + s.project;
@@ -374,14 +526,21 @@ async function refreshState() {
   const tb = document.querySelector('#devtable tbody'); tb.innerHTML = '';
   for (const d of s.misra.deviations) tb.appendChild(devRow(d));
   document.getElementById('reportbtn').disabled = !s.reportExists;
+  if (s.parasoft) {  // 运行结束后只刷新工具/报告状态, 不覆盖表单编辑中的值
+    psToolInfo(s.parasoft.tool);
+    document.getElementById('psreportbtn').disabled = !s.parasoft.reportExists;
+  }
   return s;
 }
 
 (async () => {
   const s = await refreshState();
   applyCfg(s.config);
-  for (const el of document.querySelectorAll('input,select,textarea')) el.addEventListener('change', preview);
+  psApply(s.parasoft);
+  for (const el of document.querySelectorAll('input,select,textarea'))
+    el.addEventListener('change', (el.id || '').startsWith('ps_') || el.name === 'psedition' ? psPreview : preview);
   for (const r of document.querySelectorAll('input[name=scope]')) r.addEventListener('change', scopeUI);
+  for (const r of document.querySelectorAll('input[name=psedition]')) r.addEventListener('change', psEditionUI);
   preview();
 })();
 </script>
@@ -429,6 +588,13 @@ def make_handler(project):
                         self._send(200, f.read(), 'text/html; charset=utf-8')
                 else:
                     self._send(404, {'error': '报告不存在, 请先勾选"生成 HTML 报告"运行一次'})
+            elif path == '/parasoft-report':
+                report = os.path.join(run_parasoft.load_config(project)['reportDir'], 'report.html')
+                if os.path.exists(report):
+                    with open(report, 'rb') as f:
+                        self._send(200, f.read(), 'text/html; charset=utf-8')
+                else:
+                    self._send(404, {'error': 'Parasoft 报告不存在, 请先运行一次分析'})
             else:
                 self._send(404, {'error': 'not found'})
 
@@ -449,6 +615,22 @@ def make_handler(project):
                 self._send(200, {'started': started, 'preview': ' '.join(build_cmd(project, cfg))})
             elif self.path == '/api/misra':
                 self._send(200, {'file': save_misra(project, cfg)})
+            elif self.path == '/api/parasoft/preview':
+                self._send(200, {'preview': parasoft_preview(project, cfg)})
+            elif self.path == '/api/parasoft/save':
+                f = save_parasoft(project, cfg)
+                self._send(200, {'saved': True, 'file': f, 'preview': parasoft_preview(project, cfg)})
+            elif self.path == '/api/parasoft/run':
+                save_parasoft(project, cfg)
+                started = RUN.start(parasoft_run_cmd(project))
+                self._send(200, {'started': started, 'preview': parasoft_preview(project, cfg)})
+            elif self.path == '/api/parasoft/list-compilers':
+                started = RUN.start(parasoft_run_cmd(project, ['--list-compilers']))
+                self._send(200, {'started': started})
+            elif self.path == '/api/parasoft/detect':
+                merged = run_parasoft.expand_config(project, {**run_parasoft.DEFAULT_CONFIG, **cfg})
+                exe = run_parasoft.find_cpptestcli(merged)
+                self._send(200, {'path': exe or '', 'version': run_parasoft.tool_version(exe) if exe else ''})
             else:
                 self._send(404, {'error': 'not found'})
 

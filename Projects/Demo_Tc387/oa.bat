@@ -31,6 +31,7 @@ if /I "%ACTION%"=="build-host" goto :host
 if /I "%ACTION%"=="gtest" goto :gtest
 if /I "%ACTION%"=="check" goto :check
 if /I "%ACTION%"=="check-ui" goto :check_ui
+if /I "%ACTION%"=="parasoft" goto :parasoft
 if /I "%ACTION%"=="gen-bsw" goto :gen_bsw
 if /I "%ACTION%"=="doc" goto :doc
 if /I "%ACTION%"=="target" goto :target
@@ -67,6 +68,10 @@ goto :done
 py -3.11 Tools\scripts\check_dashboard.py --project Demo_Tc387 %2 %3 %4 %5 %6 %7 %8 %9
 goto :done
 
+:parasoft
+py -3.11 Tools\scripts\run_parasoft.py --project Demo_Tc387 %2 %3 %4 %5 %6 %7 %8 %9
+goto :done
+
 :gen_bsw
 py -3.11 Tools\scripts\run_etas_isolar_b.py --project Demo_Tc387 --generator etas_bsw %2 %3 %4 %5 %6 %7 %8 %9
 goto :done
@@ -92,6 +97,7 @@ echo   host         Host compile with bundled GCC
 echo   gtest        Run GoogleTest via bundled CMake/CTest/GTest
 echo   check        Run cppcheck/MISRA entry plus unit tests directly
 echo   check-ui     Open local static-check dashboard
+echo   parasoft     Run Parasoft C/C++test analysis (needs cpptestcli; --dry-run to preview)
 echo   gen-bsw      Run ETAS ISOLAR-B BSW code generation from Cfg\BSW to Gen\BSW
 echo   doc          Generate project docs
 echo   target       Build default target toolchain from build.yaml

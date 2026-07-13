@@ -1,0 +1,19 @@
+{
+  "description": "Parasoft C/C++test 静态检查配置 (Tools/scripts/run_parasoft.py 与检查页面读写)",
+  "edition": "standard",
+  "toolPath": "",
+  "compilerConfig": "gcc_13-64",
+  "testConfig": "builtin://MISRA C 2012",
+  "input": "${PROJECT_DIR}/compile_commands.json",
+  "bdf": "",
+  "workspace": "",
+  "localsettings": "",
+  "reportDir": "${PROJECT_DIR}/Reports/parasoft",
+  "reportFormats": [
+    "xml",
+    "html",
+    "sarif"
+  ],
+  "failOnFindings": false,
+  "options": []
+}

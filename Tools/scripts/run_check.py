@@ -22,6 +22,7 @@ import glob
 import html
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -81,6 +82,64 @@ def load_misra(project):
         return {}, f
     with open(f, encoding='utf-8') as fh:
         return json.load(fh), f
+
+
+def default_rule_texts(project):
+    """Find an explicitly supplied, licensed MISRA Appendix A text export."""
+    candidates = [
+        os.path.join(ROOT, 'Tools', 'misra_rule_texts.txt'),
+        os.path.join(ROOT, 'misra_rule_texts.txt'),
+    ]
+    for path in candidates:
+        if os.path.exists(path):
+            return path
+    return ''
+
+
+def is_cppcheck_rule_text_file(path):
+    """Cppcheck accepts a converted MISRA Appendix A, not a project policy note."""
+    if not path or not os.path.isfile(path):
+        return False
+    try:
+        with open(path, encoding='utf-8', errors='replace') as stream:
+            text = stream.read()
+    except OSError:
+        return False
+    return ('Appendix A' in text and 'Summary of guidelines' in text
+            and re.search(r'^Rule\s+\d+\.\d+\s+(Required|Mandatory|Advisory)\s*$', text, re.MULTILINE) is not None)
+
+
+def compile_commands_path(project):
+    path = os.path.join(ROOT, 'Projects', project, 'compile_commands.json')
+    return path if os.path.exists(path) else ''
+
+
+def activate_compile_db_drive(compile_db):
+    """Restore the ASCII subst drive recorded by an SCons compilation database."""
+    if os.name != 'nt' or not compile_db:
+        return ''
+    try:
+        with open(compile_db, encoding='utf-8') as stream:
+            entries = json.load(stream)
+        directory = next((entry.get('directory', '') for entry in entries
+                          if isinstance(entry, dict) and entry.get('directory')), '')
+    except (OSError, ValueError, StopIteration):
+        return ''
+    match = re.match(r'^([A-Za-z]:)\\', directory)
+    if not match or os.path.isdir(directory):
+        return ''
+    drive = match.group(1)
+    result = subprocess.run(['subst', drive, ROOT], capture_output=True, text=True)
+    if result.returncode == 0 and os.path.isdir(directory):
+        print(f'[check] mapped {drive} for compile_commands.json')
+        return drive
+    print(f'[check] WARN: cannot map {drive} for compile_commands.json: {result.stderr.strip()}')
+    return ''
+
+
+def release_compile_db_drive(drive):
+    if drive:
+        subprocess.run(['subst', drive, '/d'], capture_output=True, text=True)
 
 
 def load_build_config(project):
@@ -184,6 +243,21 @@ def resolve_scan_paths(a, cfg, scan_roots):
             return []
         paths.extend(changed)
     return paths or scan_roots
+
+
+def scan_paths_to_filters(scan_paths):
+    """把扫描路径转换成 cppcheck --file-filter 模式。"""
+    filters = []
+    for p in scan_paths:
+        rel = p.replace('\\', '/').rstrip('/')
+        ap = os.path.join(ROOT, p)
+        if os.path.isdir(ap):
+            filters.append(rel + '/**')
+        elif rel.lower().endswith(('.c', '.h', '.cpp', '.cxx', '.cc', '.hpp', '.hh')):
+            filters.append(rel)
+        else:
+            filters.append(rel + '/**')
+    return filters
 
 
 def git_changed_files(scan_roots):
@@ -312,9 +386,11 @@ def main():
     scan_paths = resolve_scan_paths(a, cfg, scan_roots)
 
     cppcheck = find_cppcheck()
-    rule_texts = misra.get('ruleTexts', '')
+    compile_db = compile_commands_path(a.project)
+    rule_texts = misra.get('ruleTexts', '') or default_rule_texts(a.project)
     if rule_texts and not os.path.isabs(rule_texts):
         rule_texts = os.path.join(ROOT, rule_texts)
+    rule_texts_valid = is_cppcheck_rule_text_file(rule_texts)
 
     # 有效配置快照 (排查 include/define/范围是否正确)
     effective = {
@@ -325,11 +401,14 @@ def main():
             'misraJson': os.path.relpath(misra_file, ROOT),
             'buildYaml': f'Projects/{a.project}/build.yaml' if cfg is not None else '(未解析, 用回退)',
         },
+        'analysisMode': 'compile_commands' if compile_db else 'manual',
+        'compileCommands': os.path.relpath(compile_db, ROOT) if compile_db else '',
         'includePaths': inc,
         'defines': defines,
         'scanPaths': scan_paths,
         'excludePaths': suppress,
         'misraRuleTexts': os.path.relpath(rule_texts, ROOT) if rule_texts else '',
+        'misraRuleTextsValid': rule_texts_valid,
     }
     eff_path = os.path.join(build_dir, 'cppcheck_effective_config.json')
     with open(eff_path, 'w', encoding='utf-8') as f:
@@ -339,6 +418,8 @@ def main():
         return 0
     if not scan_paths:  # --changed-only 且无改动
         return 0
+
+    mapped_drive = activate_compile_db_drive(compile_db)
 
     rc = 0
     gate_errors, misra_errors = [], []
@@ -356,8 +437,14 @@ def main():
     else:
         jobs = a.jobs or os.cpu_count() or 1
         common = ['--inline-suppr', '--quiet', f'-j{jobs}', f'--cppcheck-build-dir={build_dir}'] \
-                 + [f'-D{d}' for d in defines] + [f'-I{h}' for h in inc] \
-                 + [f'-i{s}' for s in suppress] + scan_paths
+                 + [f'-i{s}' for s in suppress]
+        if compile_db:
+            # The compilation database supplies the exact compiler, include paths and defines.
+            # File filters preserve --module/--path selections made in the dashboard or CLI.
+            common += [f'--project={compile_db}'] + [f'--file-filter={p}' for p in scan_paths_to_filters(scan_paths)]
+            print(f'[check] compile_commands.json -> {os.path.relpath(compile_db, ROOT)}')
+        else:
+            common += [f'-D{d}' for d in defines] + [f'-I{h}' for h in inc] + scan_paths
         # 1) 真实 bug 门禁
         print('[check] cppcheck 真实 bug 门禁 (warning/performance/portability)')
         run([cppcheck, '--enable=warning,performance,portability',
@@ -371,11 +458,16 @@ def main():
         # 2) MISRA (资讯, 写报告)
         print('[check] cppcheck MISRA (--addon=misra, ' + ('门禁' if a.strict_misra else '资讯') + ')')
         addon = 'misra'
-        if rule_texts and os.path.exists(rule_texts):
+        if rule_texts_valid:
             addon_json = os.path.join(build_dir, 'misra_addon.json')
             with open(addon_json, 'w', encoding='utf-8') as f:
                 json.dump({'script': 'misra', 'args': [f'--rule-texts={rule_texts}']}, f)
             addon = addon_json
+            print(f'[check] MISRA rule texts -> {os.path.relpath(rule_texts, ROOT)}')
+        elif rule_texts:
+            print('[check] WARN: ruleTexts is not a cppcheck MISRA Appendix A export; report descriptions are unavailable')
+        else:
+            print('[check] WARN: MISRA rule texts not configured; report descriptions are unavailable')
         run([cppcheck, f'--addon={addon}', '--enable=style', '--xml',
              '--output-file=' + misra_xml] + common, cwd=ROOT)
         misra_errors = parse_xml_errors(misra_xml)
@@ -414,6 +506,7 @@ def main():
             print('[check] FAIL: unit tests failed')
             rc = rc or rt
 
+    release_compile_db_drive(mapped_drive)
     print(f'[check] 完成, rc={rc}')
     return rc
 

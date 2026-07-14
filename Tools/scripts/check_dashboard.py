@@ -471,8 +471,9 @@ PAGE = """<!DOCTYPE html>
 let SEEN = 0, POLL = null;
 
 function cfgFromUI() {
+  const scope = document.querySelector('input[name=scope]:checked');
   return {
-    scope: document.querySelector('input[name=scope]:checked').value,
+    scope: scope ? scope.value : 'project',
     modules: Array.from(document.getElementById('modules').selectedOptions).map(o => o.value),
     paths: document.getElementById('paths').value.split('\\n').map(s => s.trim()).filter(Boolean),
     no_tests: no_tests.checked, html: html.checked, open_report: open_report.checked,
@@ -492,7 +493,8 @@ function applyCfg(c) {
 }
 
 function scopeUI() {
-  const s = document.querySelector('input[name=scope]:checked').value;
+  const scope = document.querySelector('input[name=scope]:checked');
+  const s = scope ? scope.value : 'project';
   document.getElementById('modrow').hidden = s !== 'modules';
   document.getElementById('pathrow').hidden = s !== 'paths';
   preview();

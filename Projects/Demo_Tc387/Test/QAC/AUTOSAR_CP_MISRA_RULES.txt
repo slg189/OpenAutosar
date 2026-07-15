@@ -46,3 +46,31 @@ Deviation process
 Each deviation records its rule ID, technical reason, owner, review evidence,
 and the narrowest applicable scope in misra.json. Review deviations for every
 release and remove them when the underlying condition no longer applies.
+
+Cppcheck Rule Texts
+-------------------
+The section below follows the cppcheck MISRA addon format. These are project
+summaries, not verbatim MISRA C:2012 text. Cppcheck uses them as report text
+for matching rule IDs; the addon continues to perform the actual checks.
+
+Appendix A Summary of guidelines
+
+Rule 2.3 Advisory
+Project summary: Type declarations should be used when introduced. Unused
+typedefs, enums, or similar declarations should be removed or justified.
+
+Rule 2.5 Advisory
+Project summary: Macro declarations should be used when introduced. Unused
+macros should be removed or justified as configuration interface placeholders.
+
+Rule 8.4 Required
+Project summary: Objects and functions with external linkage should have a
+visible compatible declaration in a header or appropriate interface unit.
+
+Rule 8.6 Required
+Project summary: Externally linked identifiers should have exactly one
+definition in the linked program image.
+
+Rule 15.5 Advisory
+Project summary: A function should preferably have a single final exit path.
+Early returns require a readability, defensive-programming, or safety rationale.

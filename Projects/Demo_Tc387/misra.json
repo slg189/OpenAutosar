@@ -2,6 +2,7 @@
   "standard": "MISRA C:2012",
   "description": "Demo_Tc387 static-analysis policy for AUTOSAR Classic Platform C code.",
   "checkLevel": "required+advisory",
+  "ruleTexts": "Projects/Demo_Tc387/Test/QAC/AUTOSAR_CP_MISRA_RULES.txt",
   "deviations": [
     {
       "rule": "21.6",

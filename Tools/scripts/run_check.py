@@ -387,7 +387,9 @@ def main():
 
     cppcheck = find_cppcheck()
     compile_db = compile_commands_path(a.project)
-    rule_texts = misra.get('ruleTexts', '') or default_rule_texts(a.project)
+    # ruleTextFile is accepted for configurations created by earlier dashboard versions.
+    rule_texts = (misra.get('ruleTexts', '') or misra.get('ruleTextFile', '')
+                  or default_rule_texts(a.project))
     if rule_texts and not os.path.isabs(rule_texts):
         rule_texts = os.path.join(ROOT, rule_texts)
     rule_texts_valid = is_cppcheck_rule_text_file(rule_texts)

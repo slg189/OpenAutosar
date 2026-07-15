@@ -1,0 +1,43 @@
+name: Parasoft Static Analysis
+
+# Parasoft C/C++test 商业静态检查 (可选闸)。
+# 需自托管 runner: 标签 [self-hosted, parasoft], 预装 Parasoft C/C++test 并配置授权
+# (cpptestcli 在 PATH 或设 CPPTEST_CLI); 仅手动触发, 不阻塞 PR (github-hosted 无授权)。
+# 配置见 Projects/<P>/parasoft.json (edition/compilerConfig/testConfig/localsettings...)。
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: '项目名 (Projects/<name>)'
+        type: string
+        default: Demo_Tc387
+      fail_on_findings:
+        description: '有发现即失败 (-fail 门禁)'
+        type: boolean
+        default: true
+
+jobs:
+  parasoft:
+    runs-on: [self-hosted, parasoft]
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python deps
+        run: pip install -r Tools/requirements.txt
+
+      - name: 生成 compile_commands.json (分析输入 scope)
+        run: scons -Q compile PROJECT=Projects/${{ inputs.project }} TOOLCHAIN=gcc PLATFORM=host
+
+      - name: Parasoft C/C++test 分析
+        run: >
+          python Tools/scripts/run_parasoft.py --project ${{ inputs.project }}
+          ${{ inputs.fail_on_findings && '--fail' || '' }}
+
+      - name: 归档 Parasoft 报告 (xml/html/sarif)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parasoft-report-${{ inputs.project }}
+          path: Projects/${{ inputs.project }}/Reports/parasoft/
+          if-no-files-found: ignore

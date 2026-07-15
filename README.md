@@ -153,6 +153,14 @@ scons check                               REM 静态检查(MISRA)+单元测试�
 scons --remote=build_server_01            REM 远程服务器构建
 ```
 
+Vector DaVinci 代码生成（配置分层 `build.yaml` ← `Projects/<P>/vector_codegen.json`(页面写) ← 命令行；详见 USER_MANUAL §8.7）：
+
+```bat
+Projects\Demo_Tc387\09_gen_bsw_vector.bat --dry-run   REM 无 Vector 环境核对命令
+set DVCFG_CMD=C:\Vector\DaVinciConfigurator\Bin\DVCfgCmd.exe
+Projects\Demo_Tc387\09_gen_bsw_vector.bat             REM 真实生成 (或 oa.bat gen-vector / scons gen)
+```
+
 ETAS BSW 代码生成可直接验证命令：
 
 ```bat
@@ -177,6 +185,8 @@ Projects\Demo_Tc387\08_gen_bsw_etas.bat
 
 ```bash
 scons check                                       # ★ cppcheck 真实bug门禁 + MISRA(资讯) + GoogleTest 单测
+python Tools/scripts/check_dashboard.py           # 本地静态检查页面 (127.0.0.1; Windows: oa.bat check-ui / 05_run_check.bat)
+python Tools/scripts/run_parasoft.py --dry-run    # Parasoft C/C++test 商业静态检查 (可选; 配置 Projects/<P>/parasoft.json)
 python Tools/scripts/run_gtest.py                 # 仅单元测试 (FetchContent googletest)
 python Tools/scripts/run_integration_test.py      # QEMU 集成测试 (需 TriCore 工具链构建 ELF)
 ```

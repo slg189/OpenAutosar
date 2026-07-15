@@ -44,11 +44,16 @@ Tools/.venv/bin/scons            # Windows: Tools\.venv\Scripts\scons.exe
 | 工具 | 必需性 | 用途 | 为何不下载 |
 |------|--------|------|-----------|
 | `gcc` / `g++` | host 验证/单测 | `TOOLCHAIN=gcc` 编译、GoogleTest | 体积大, 用系统 |
-| `cppcheck` | 静态检查 | `scons check`（cppcheck/MISRA） | Linux 无官方 portable, 用 `apt`/源码构建 |
+| `cppcheck` | 静态检查 | `scons check`（cppcheck/MISRA） | Windows 已随离线包内置 (`Tools/Offline/.../cppcheck`, 含 misra addon 与 GUI); Linux 无官方 portable, 用 `apt`/源码构建 |
 | `git` | 必需 | 版本控制 | 系统基础工具 |
 | `doxygen` / `rsync` / `ssh` | 可选 | `scons doc` / `--remote` | 系统按需 |
 
 > `cmake`/`ctest` 优先用系统; 若系统没有, `fetch_tools` 下载的版本兜底。
+>
+> **Linux 离线机器注意**: 离线工具包只覆盖 Windows。Linux 离线环境需预装 cppcheck
+> （联网机 `apt download cppcheck libtinyxml2-*` 拷贝 `.deb` 后 `dpkg -i`, 或源码构建）;
+> 缺 cppcheck 时 `scons check` 默认跳过静态检查只跑单测——防"假绿"可用
+> `CHECK_ARGS=--require-cppcheck scons check`（CI 已启用, 缺工具即失败, rc=3）。
 
 ### D. 目标工具链 (TriCore / QEMU) —— 厂商授权 / 按需自建，不可再分发
 | 工具 | 用途 | 获取方式（不放仓库） |
@@ -56,6 +61,8 @@ Tools/.venv/bin/scons            # Windows: Tools\.venv\Scripts\scons.exe
 | `tricore-gcc` (HighTec GNU TriCore) | AURIX ELF（`TOOLCHAIN=hightec`） | HighTec 官网下载安装；装好后确保 `tricore-gcc` 在 PATH（或设 `HIGHTEC_BIN`） |
 | TASKING VX-toolset | `TOOLCHAIN=tasking` | TASKING 授权安装；`ctc/ltc` 在 PATH（或设 `TASKING_BIN`） |
 | `qemu-system-tricore` | 集成测试（第二道闸） | 用支持 TriCore 的 QEMU 分支自建；二进制在 PATH（或设 `QEMU_TRICORE`） |
+| `cpptestcli` (Parasoft C/C++test) | 商业静态检查（可选，`run_parasoft.py`/页面/`parasoft-analysis.yml`） | Parasoft 授权安装；`cpptestcli` 在 PATH（或设 `CPPTEST_CLI`，或填 `Projects/<P>/parasoft.json:toolPath`） |
+| `DVCfgCmd` (Vector DaVinci Configurator) | Vector BSW 代码生成（可选，`run_vector_davinci.py`/页面/`scons gen`） | Vector 授权安装；`DVCfgCmd` 在 PATH（或设 `DVCFG_CMD`，或填 build.yaml/`vector_codegen.json` 的 `tool_path`） |
 
 > 这三者因**授权/体积/需自建**不放仓库；在**自托管 runner**（标签 `tricore`）或本机装好即可，`integration-qemu.yml` 与 `run_qemu.py`/`run_integration_test.py` 会自动调用，缺失则记 skipped。
 

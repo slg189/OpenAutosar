@@ -1,0 +1,48 @@
+OpenAutosar Demo_Tc387 - AUTOSAR CP C / MISRA C:2012 rule-text summary
+=======================================================================
+
+Purpose
+-------
+This project-owned file supplies readable rule descriptions to the cppcheck
+MISRA addon report. It is a compliance summary, not a copy of the licensed
+MISRA C:2012 publication. The authoritative rule text remains the licensed
+MISRA document held by the project.
+
+Applicable baseline
+-------------------
+* MISRA C:2012 is the C coding-rule baseline.
+* AUTOSAR Classic Platform project policy adds embedded-C constraints.
+* Mandatory rules require an approved deviation before merge. Required rules
+  require correction or an approved, scoped deviation. Advisory rules are
+  reviewed and recorded when not adopted.
+
+AUTOSAR CP C project constraints
+--------------------------------
+* Use fixed-width integer types for interfaces and persistent data.
+* Keep externally linked declarations in headers; avoid duplicate or unused
+  external objects and functions.
+* Use explicit, reviewed casts at signed/unsigned, width and pointer
+  conversions. Do not rely on implicit narrowing or enum conversions.
+* Bounds-check array indexing and validate pointers before dereference.
+* Keep expressions free of unsequenced side effects.
+* Use braces for control-flow bodies; switches have a default path and
+  intentional fall-through is documented.
+* Restrict preprocessor macros to guarded, parameter-safe uses.
+* Do not use dynamic allocation, recursion, unrestricted standard I/O, or
+  non-deterministic library facilities in production ECU code.
+* Encapsulate volatile register access in MCAL/CDD interfaces.
+
+Cppcheck coverage and reporting
+-------------------------------
+Cppcheck checks a useful subset of MISRA-related defects and reports rule IDs.
+It cannot prove all semantic, timing, concurrency, architecture, or complete
+MISRA compliance. Review, compiler diagnostics, tests, and qualified tools
+remain required. To show MISRA rule descriptions, configure ruleTexts in
+Projects/Demo_Tc387/misra.json to a licensed MISRA C:2012 Appendix A text
+export in the format required by the cppcheck MISRA addon.
+
+Deviation process
+-----------------
+Each deviation records its rule ID, technical reason, owner, review evidence,
+and the narrowest applicable scope in misra.json. Review deviations for every
+release and remove them when the underlying condition no longer applies.

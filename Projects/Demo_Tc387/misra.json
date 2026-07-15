@@ -1,0 +1,24 @@
+{
+  "standard": "MISRA C:2012",
+  "description": "Demo_Tc387 static-analysis policy for AUTOSAR Classic Platform C code.",
+  "checkLevel": "required+advisory",
+  "deviations": [
+    {
+      "rule": "21.6",
+      "reason": "Standard I/O is restricted to unit-test code.",
+      "scope": ["Projects/*/Test/ut/**"]
+    },
+    {
+      "rule": "8.7",
+      "reason": "Generated code can contain externally linked objects shared by translation units.",
+      "scope": ["Projects/*/Gen/**"]
+    }
+  ],
+  "suppressPaths": [
+    "BSW/Os/**",
+    "BSW/Com/**",
+    "Tools/**",
+    "Projects/*/Test/QAC/**"
+  ],
+  "include": ["ASW/**", "CDD/**", "Components/**", "MCAL/**"]
+}

@@ -131,6 +131,19 @@ codegen:
       target_arg_style: joined
       output_option: -o
       options: []
+    - name:    vector_bsw
+      type:    vector
+      enabled: false
+      # DVCfgCmd 路径; 留空则用环境变量 DVCFG_CMD 或 PATH。
+      tool_path: ""
+      project: ${PROJECT_DIR}/Cfg/BSW/Demo_Tc387.dpa   # DaVinci .dpa 工程
+      output_dir: ${PROJECT_DIR}/Gen/Vector
+      gen_type: ""                  # REAL | VTT (留空不传 --genType)
+      modules: []                   # 空 = 全部; 或 [Can, CanIf, Com]
+      # 选项名/风格按 DaVinci 版本可调 (页面 vector_codegen.json 可覆盖这里全部字段):
+      # project_option: -p / project_arg_style: split|joined / generate_option: -g
+      # output_option: "" (输出目录通常定义在 .dpa 内) / log_option: -l
+      options: []
     # —— 接入真实工具 (示例, 默认关) ——
     # - { name: eb_tresos, type: eb_tresos, enabled: false,
     #     tool_path: C:/EB/tresos/bin/tresos_b.bat, workspace: ${PROJECT_DIR}/Cfg/MCAL, project: Demo_Tc387 }

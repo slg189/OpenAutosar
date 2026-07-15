@@ -32,6 +32,16 @@ if cfg.app_name_suffix:
     APP_NAME += f'-{cfg.app_name_suffix}'
 print(f'[INFO] project={cfg.project_name}/{cfg.derivative} chip={cfg.chip} app={APP_NAME}')
 
+# Register the emitter before any Object/Program nodes are created. The SCons
+# compilation_db tool records commands while nodes are constructed.
+compilation_db_enabled = False
+if cfg.compile_commands:
+    try:
+        env.Tool('compilation_db')
+        compilation_db_enabled = True
+    except Exception as exc:
+        print(f'[WARN] compile_commands.json 不可用: {exc}')
+
 # ── 2. 自动发现 + 逐模块决策 (显式清单 authoritative; 发现用于补全/校验) ──
 ws = workspace.Workspace(ROOT, chip=cfg.chip)
 
@@ -276,14 +286,18 @@ if source_libs or integration_objs or prebuilt_libs:
         output_nodes += lenv.Command('size_report', elf, '$SIZE $SOURCE')
     elif cfg.size_report:
         print('[WARN] SIZE is not configured; skip size_report')
-    if cfg.compile_commands:
+    compdb = None
+    if compilation_db_enabled:
         try:
-            env.Tool('compilation_db')
-            env.Alias('compdb', env.CompilationDatabase(
+            compdb = env.Alias('compdb', env.CompilationDatabase(
                 os.path.join(PROJECT_DIR, 'compile_commands.json')))
+            # oa.bat host invokes the compile alias rather than the default target.
+            # Attach compdb here so every host build refreshes the analysis database.
+            env.Alias('compile', compdb)
         except Exception as exc:
             print(f'[WARN] compile_commands.json 不可用: {exc}')
-    Default(output_nodes)
+    # Keep "scons compdb" available and generate the database during normal builds.
+    Default(output_nodes + ([compdb] if compdb is not None else []))
 else:
     print('[WARN] 无可构建模块')
 
@@ -304,10 +318,11 @@ if cfg.docs.enabled:
 
 # ── 11. check: 静态检查 (cppcheck/MISRA) + 单元测试 -> Tools/scripts/run_check.py ───
 def _run_check(target, source, env):
-    import sys as _sys, subprocess
+    import sys as _sys, shlex, subprocess
     proj = os.path.basename(PROJECT_DIR)
+    extra = shlex.split(os.environ.get('CHECK_ARGS', ''))   # 如 CHECK_ARGS=--require-cppcheck scons check
     return subprocess.call([_sys.executable, os.path.join(ROOT, 'Tools', 'scripts', 'run_check.py'),
-                            '--project', proj])   # 非0 -> action 失败 -> scons check 失败
+                            '--project', proj] + extra)   # 非0 -> action 失败 -> scons check 失败
 env.Alias('check', env.AlwaysBuild(env.Command(
     os.path.join('Out', '.check.stamp'), [], env.Action(_run_check, '[CHECK] cppcheck/MISRA + 单测'))))
 

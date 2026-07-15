@@ -1,0 +1,14 @@
+/*
+ * Dcm_Cfg_Prot.h
+ *
+ *  Created on: May 23, 2019
+ *      Author: ALN3KOR
+ */
+
+/* BSW-13439 */
+#ifndef RBA_RTA_BSW_DIAGNOSIS_DCM_API_DCM_CFG_PROT_H_
+#define RBA_RTA_BSW_DIAGNOSIS_DCM_API_DCM_CFG_PROT_H_
+/* END BSW-13439 */
+#define CHECK_APICONSISTENCY
+
+#endif /* RBA_RTA-BSW_DIAGNOSIS_DCM_API_DCM_CFG_PROT_H_ */

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>IoHwAb_DIO</SHORT-NAME>
+      <ELEMENTS>
+        <ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>IoHwAb_DIO</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <P-PORT-PROTOTYPE UUID="646818b5-57fb-482d-8100-f24b2acdeb57">
+              <SHORT-NAME>PPort_DIO_Get_0</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_IO_Interface/IoHwAb_IO_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="551555de-89ab-4b64-b317-10769ac6dceb">
+              <SHORT-NAME>PPort_DIO_Get_1</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_IO_Interface/IoHwAb_IO_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="a0b80bba-d205-4fab-b34d-bac6170efbc5">
+              <SHORT-NAME>PPort_DIO_Set_0</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_IO_Interface/IoHwAb_IO_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="aef37699-dcc3-4193-a93e-285e236b94ac">
+              <SHORT-NAME>PPort_DIO_Set_1</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_IO_Interface/IoHwAb_IO_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="05afa17b-9855-424c-a8c5-4dc94ce7ff76">
+              <SHORT-NAME>IB_IoHwAb_DIO</SHORT-NAME>
+              <EVENTS>
+                <OPERATION-INVOKED-EVENT UUID="11366d5d-5aaf-4bc2-86f4-1a15c44c9a4a">
+                  <SHORT-NAME>OperationInvokedEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_DIO/IoHwAb_DIO/IB_IoHwAb_DIO/IoHwAb_DIO_Get_0</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO/IoHwAb_DIO/PPort_DIO_Get_0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_IO_Interface/IoHwAb_IO_Interface/IoHwAb_IO_Get</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="2e24f2b3-8666-4f2e-99c7-fe26d4e18882">
+                  <SHORT-NAME>OperationInvokedEvent_1</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_DIO/IoHwAb_DIO/IB_IoHwAb_DIO/IoHwAb_DIO_Set_1</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO/IoHwAb_DIO/PPort_DIO_Set_1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_IO_Interface/IoHwAb_IO_Interface/IoHwAb_IO_Set</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="f8bf63dd-ae29-476d-8238-d35c0e00b4b4">
+                  <SHORT-NAME>OperationInvokedEvent_3</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_DIO/IoHwAb_DIO/IB_IoHwAb_DIO/IoHwAb_DIO_Get_1</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO/IoHwAb_DIO/PPort_DIO_Get_1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_IO_Interface/IoHwAb_IO_Interface/IoHwAb_IO_Get</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="2d641eaf-3b3b-4596-8c68-1a44f18a49c1">
+                  <SHORT-NAME>OperationInvokedEvent_4</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_DIO/IoHwAb_DIO/IB_IoHwAb_DIO/IoHwAb_DIO_Set_0</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO/IoHwAb_DIO/PPort_DIO_Set_0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_IO_Interface/IoHwAb_IO_Interface/IoHwAb_IO_Set</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="05a2a6eb-24be-406e-81e3-82c024c2b4ee">
+                  <SHORT-NAME>IoHwAb_DIO_Get_0</SHORT-NAME>
+                  <SYMBOL>IoHwAb_DIO_Get_0_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="58e28ed2-081f-4867-80a3-70609bc9895b">
+                  <SHORT-NAME>IoHwAb_DIO_Get_1</SHORT-NAME>
+                  <SYMBOL>IoHwAb_DIO_Get_1_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="58a83827-290d-45cc-8bb7-73358c9176cb">
+                  <SHORT-NAME>IoHwAb_DIO_Set_0</SHORT-NAME>
+                  <SYMBOL>IoHwAb_DIO_Set_0_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="c3ba9d7a-b5d9-43d0-a80e-0d35fd1c2af2">
+                  <SHORT-NAME>IoHwAb_DIO_Set_1</SHORT-NAME>
+                  <SYMBOL>IoHwAb_DIO_Set_1_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

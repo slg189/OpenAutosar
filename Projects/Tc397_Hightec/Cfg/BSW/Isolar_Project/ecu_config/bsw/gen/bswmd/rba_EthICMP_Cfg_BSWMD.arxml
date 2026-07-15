@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://autosar.org/schema/r4.0"
+    xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-2-2.xsd">
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 L="EN" xml:space="default">English</L-10>
+    </USED-LANGUAGES>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>RB</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>RBA</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>rba_EthICMP</SHORT-NAME>
+              <AR-PACKAGES>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswImplementations</SHORT-NAME>
+                  <ELEMENTS>
+                    <BSW-IMPLEMENTATION>
+                      <SHORT-NAME>rba_EthICMP</SHORT-NAME>
+                      <CODE-DESCRIPTORS>
+                        <CODE>
+                          <SHORT-NAME>CodeDescriptor</SHORT-NAME>
+                          <ARTIFACT-DESCRIPTORS>
+                            <AUTOSAR-ENGINEERING-OBJECT>
+                              <SHORT-LABEL>ArEngObj</SHORT-LABEL>
+                              <CATEGORY>SWSRC</CATEGORY>
+                            </AUTOSAR-ENGINEERING-OBJECT>
+                          </ARTIFACT-DESCRIPTORS>
+                        </CODE>
+                      </CODE-DESCRIPTORS>
+                      <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+                      <RESOURCE-CONSUMPTION>
+                        <SHORT-NAME>rba_EthICMP_ResourceConsumption</SHORT-NAME>
+                        <MEMORY-SECTIONS>
+                          <MEMORY-SECTION>
+                            <SHORT-NAME>RBA_ETHICMP_CONST_UNSPECIFIED</SHORT-NAME>
+                            <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                            <PREFIX-REF DEST="SECTION-NAME-PREFIX">/RB/RBA/rba_EthICMP/BswImplementations/rba_EthICMP/rba_EthICMP_ResourceConsumption/RBA_ETHICMP</PREFIX-REF>
+                            <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+                            <SYMBOL>CONST_UNSPECIFIED</SYMBOL>
+                          </MEMORY-SECTION>
+                          <MEMORY-SECTION>
+                            <SHORT-NAME>RBA_ETHICMP_VAR_CLEARED_16</SHORT-NAME>
+                            <ALIGNMENT>16</ALIGNMENT>
+                            <PREFIX-REF DEST="SECTION-NAME-PREFIX">/RB/RBA/rba_EthICMP/BswImplementations/rba_EthICMP/rba_EthICMP_ResourceConsumption/RBA_ETHICMP</PREFIX-REF>
+                            <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_CLEARED</SW-ADDRMETHOD-REF>
+                            <SYMBOL>VAR_CLEARED_16</SYMBOL>
+                          </MEMORY-SECTION>
+                          <MEMORY-SECTION>
+                            <SHORT-NAME>RBA_ETHICMP_VAR_INIT_8</SHORT-NAME>
+                            <ALIGNMENT>8</ALIGNMENT>
+                            <PREFIX-REF DEST="SECTION-NAME-PREFIX">/RB/RBA/rba_EthICMP/BswImplementations/rba_EthICMP/rba_EthICMP_ResourceConsumption/RBA_ETHICMP</PREFIX-REF>
+                            <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_INIT</SW-ADDRMETHOD-REF>
+                            <SYMBOL>VAR_INIT_8</SYMBOL>
+                          </MEMORY-SECTION>
+                          <MEMORY-SECTION>
+                            <SHORT-NAME>RBA_ETHICMP_VAR_INIT_UNSPECIFIED</SHORT-NAME>
+                            <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                            <PREFIX-REF DEST="SECTION-NAME-PREFIX">/RB/RBA/rba_EthICMP/BswImplementations/rba_EthICMP/rba_EthICMP_ResourceConsumption/RBA_ETHICMP</PREFIX-REF>
+                            <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_INIT</SW-ADDRMETHOD-REF>
+                            <SYMBOL>VAR_INIT_UNSPECIFIED</SYMBOL>
+                          </MEMORY-SECTION>
+                          <MEMORY-SECTION>
+                            <SHORT-NAME>rba_EthICMP_CODE</SHORT-NAME>
+                            <PREFIX-REF DEST="SECTION-NAME-PREFIX">/RB/RBA/rba_EthICMP/BswImplementations/rba_EthICMP/rba_EthICMP_ResourceConsumption/rba_EthICMP</PREFIX-REF>
+                            <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                            <SYMBOL>CODE</SYMBOL>
+                          </MEMORY-SECTION>
+                          <MEMORY-SECTION>
+                            <SHORT-NAME>RBA_ETHICMP_CODE</SHORT-NAME>
+                            <PREFIX-REF DEST="SECTION-NAME-PREFIX">/RB/RBA/rba_EthICMP/BswImplementations/rba_EthICMP/rba_EthICMP_ResourceConsumption/RBA_ETHICMP</PREFIX-REF>
+                            <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                            <SYMBOL>CODE</SYMBOL>
+                          </MEMORY-SECTION>
+                        </MEMORY-SECTIONS>
+                        <SECTION-NAME-PREFIXS>
+                          <SECTION-NAME-PREFIX>
+                            <SHORT-NAME>rba_EthICMP</SHORT-NAME>
+                            <SYMBOL>rba_EthICMP</SYMBOL>
+                          </SECTION-NAME-PREFIX>
+                          <SECTION-NAME-PREFIX>
+                            <SHORT-NAME>RBA_ETHICMP</SHORT-NAME>
+                            <SYMBOL>RBA_ETHICMP</SYMBOL>
+                          </SECTION-NAME-PREFIX>
+                        </SECTION-NAME-PREFIXS>
+                      </RESOURCE-CONSUMPTION>
+                      <SW-VERSION>10.0.0</SW-VERSION>
+                      <AR-RELEASE-VERSION>4.2.2</AR-RELEASE-VERSION>
+                      <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/RB/RBA/rba_EthICMP/BswModuleDescriptions/rba_EthICMP/BswInternalBehavior</BEHAVIOR-REF>
+                    </BSW-IMPLEMENTATION>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswModuleDescriptions</SHORT-NAME>
+                  <ELEMENTS>
+                    <BSW-MODULE-DESCRIPTION>
+                      <SHORT-NAME>rba_EthICMP</SHORT-NAME>
+                      <INTERNAL-BEHAVIORS>
+                        <BSW-INTERNAL-BEHAVIOR>
+                          <SHORT-NAME>BswInternalBehavior</SHORT-NAME>
+                          <DATA-TYPE-MAPPING-REFS> </DATA-TYPE-MAPPING-REFS>
+                        </BSW-INTERNAL-BEHAVIOR>
+                      </INTERNAL-BEHAVIORS>
+                    </BSW-MODULE-DESCRIPTION>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
+                  <SHORT-NAME>Units</SHORT-NAME>
+                  <ELEMENTS>
+                    <UNIT>
+                      <SHORT-NAME>NoUnit</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">No Unit</L-4>
+                      </LONG-NAME>
+                      <DISPLAY-NAME>noUnit</DISPLAY-NAME>
+                      <FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+                      <OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+                      <PHYSICAL-DIMENSION-REF DEST="PHYSICAL-DIMENSION">/RB/RBA/rba_EthICMP/PhysicalDimensions/NoUnit</PHYSICAL-DIMENSION-REF>
+                    </UNIT>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
+                  <SHORT-NAME>PhysicalDimensions</SHORT-NAME>
+                  <ELEMENTS>
+                    <PHYSICAL-DIMENSION>
+                      <SHORT-NAME>NoUnit</SHORT-NAME>
+                      <LENGTH-EXP>0</LENGTH-EXP>
+                    </PHYSICAL-DIMENSION>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+              </AR-PACKAGES>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

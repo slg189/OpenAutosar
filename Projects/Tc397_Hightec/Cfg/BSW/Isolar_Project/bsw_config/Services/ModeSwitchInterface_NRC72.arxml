@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ModeSwitchInterface_NRC72</SHORT-NAME>
+      <ELEMENTS>
+        <MODE-SWITCH-INTERFACE>
+          <SHORT-NAME>ModeSwitchInterface_NRC72</SHORT-NAME>
+          <IS-SERVICE>true</IS-SERVICE>
+          <MODE-GROUP>
+            <SHORT-NAME>MDGP_ModeDeclarationGroup_NRC72</SHORT-NAME>
+            <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/ModeDeclarationGroup_NRC72/ModeDeclarationGroup_NRC72</TYPE-TREF>
+          </MODE-GROUP>
+        </MODE-SWITCH-INTERFACE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

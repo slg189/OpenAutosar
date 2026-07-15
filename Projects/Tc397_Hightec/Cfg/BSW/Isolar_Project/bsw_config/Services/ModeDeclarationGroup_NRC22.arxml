@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ModeDeclarationGroup_NRC22</SHORT-NAME>
+      <ELEMENTS>
+        <MODE-DECLARATION-GROUP>
+          <SHORT-NAME>ModeDeclarationGroup_NRC22</SHORT-NAME>
+          <INITIAL-MODE-REF DEST="MODE-DECLARATION">/ModeDeclarationGroup_NRC22/ModeDeclarationGroup_NRC22/ModeDeclaration_true</INITIAL-MODE-REF>
+          <MODE-DECLARATIONS>
+            <MODE-DECLARATION>
+              <SHORT-NAME>ModeDeclaration_true</SHORT-NAME>
+              <VALUE>1</VALUE>
+            </MODE-DECLARATION>
+            <MODE-DECLARATION>
+              <SHORT-NAME>ModeDeclaration_false</SHORT-NAME>
+              <VALUE>0</VALUE>
+            </MODE-DECLARATION>
+          </MODE-DECLARATIONS>
+        </MODE-DECLARATION-GROUP>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

@@ -1,0 +1,551 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: REMOTE MCU HCU
+VAL_TABLE_ NRF_DCLINKCURRENT_SAMPLING 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ LI_DCLINK_UNDERVOLTAGE 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ LI_INV_OVERTEMP 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ LI_MOTORTEMP_OVERTEMP 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ LI_OVERSPEED 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ LI_DCLINK_OVERVOLTAGE 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_MOTORTEMP_OVERTEMP 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_OVERSPEED 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_CAN_BUSOFF 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_MSGMISSING 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_HW_OVERCURRENT 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_PHASE_A_OVERCURRENT 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_PHASE_B_OVERCURRENT 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_PHASE_C_OVERCURRENT 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_POWER12V_SUPPLY 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_DCLINK_OVERCURRENT 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_DCLINK_OVERVOLTAGE 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_CONTROLTORQUE_IMP 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_INVTEMP_OVERTEMP 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_DCLINK_UNDERVOLTAGE 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_INTERNAL 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ RF_UNBANLANCEDCURRENT 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_DCLINKVOLTAGE_SAMPLING 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_INVTEMP_SAMPLING 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_COMMUNICATE_IMP 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_SYSTEM_IMP 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_GATEDESAT 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_ANALOG5V_SUPPLY 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_RDC 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_PHASE_A_SAMPLING 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_PHASE_B_SAMPLING 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_PHASE_C_SAMPLING 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ NRF_MOTORTEMP_SAMPLING 1 "Trouble" 0 "NoTrouble" ;
+VAL_TABLE_ MCU_Ready 1 "forbidding getting torquecommand" 0 "allow mcu to get torque command" ;
+VAL_TABLE_ MCU_HighVolAllowed 1 "forbidding to turn on HV" 0 "allowing to turn on HV" ;
+VAL_TABLE_ MCU_Status 3 "recoverable fault" 2 "recoverable fault" 1 "warning (derating" 0 "normal" ;
+VAL_TABLE_ MCU_ActDischStatus 3 "failed" 2 "OK" 1 "selfchecking" 0 "default" ;
+VAL_TABLE_ MCU_SelfCheck 3 "failed" 2 "OK" 1 "selfchecking" 0 "default" ;
+VAL_TABLE_ MCU_ShutDownAllowed 1 "allowing" 0 "forbidding" ;
+VAL_TABLE_ HCU_Poweroff 1 "Sleep" 0 "normal" ;
+VAL_TABLE_ HCU_ActiveDischarge 1 "allowing" 0 "forbidding" ;
+VAL_TABLE_ HCU_McuModeCmd 3 "reserved" 2 "speed mode" 1 "torque mode" 0 "default" ;
+VAL_TABLE_ HCU_ready 1 "allowing" 0 "forbidding" ;
+VAL_TABLE_ HCU_Shift 3 "P" 2 "D" 1 "R" 0 "N" ;
+
+
+BO_ 1856 Diag_Physical_request: 8 REMOTE
+ SG_ UDS_RX_SIGNAL : 0|8@1- (1,0) [0|0] ""  MCU
+
+BO_ 2015 Diag_Functional_request: 8 REMOTE
+ SG_ UDS_RX_SIGNAL : 0|8@1- (1,0) [0|0] ""  MCU
+
+BO_ 1864 Diag_Physical_response: 8 MCU
+ SG_ UDS_TX_SIGNAL : 0|8@1- (1,0) [0|0] ""  REMOTE
+
+BO_ 262 MCU_03: 8 MCU
+ SG_ MCU03_LI_OverSpeed : 59|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_LI_OverTempEM : 58|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_LI_OverTempINV : 57|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_LI_UdcUnder : 56|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_LI_UdcOver : 60|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_PhaseImp : 39|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_12VSupply : 32|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_PhCOver : 47|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_PhBOver : 46|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_PhAOver : 45|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_OverSpeed : 41|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_MsgTO : 43|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_OverTempEM : 40|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_OverTempINV : 36|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_IntError : 38|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_HWOverCur : 44|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_UDCUnder : 37|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_UdcOver : 34|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_IdcOver : 33|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_ToqError : 35|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_RF_BusOff : 42|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_SysFailure : 11|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_Resolver : 2|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_PhCSamp : 5|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_PhBSamp : 4|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_InvTempSamp : 9|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_PhASamp : 3|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_DESAT : 0|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_UdcSamp : 8|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_COMError : 10|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_5VSupply : 1|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_EMTempSamp : 6|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU03_NRF_IdcSamp : 7|1@0+ (1,0) [0|1] ""  HCU
+
+BO_ 151 MCU_02: 7 MCU
+ SG_ MCU02_IGBTTmp : 47|8@0+ (1,-40) [-40|214] "deg"  HCU
+ SG_ MCU02_MotorTmp : 55|8@0+ (1,-40) [-40|214] "deg"  HCU
+ SG_ MCU02_Vdc : 19|10@0+ (1,0) [0|1022] "V"  HCU
+ SG_ MCU02_Idc : 25|10@0+ (1,-511) [-511|511] "A"  HCU
+ SG_ MCU02_MinTor : 12|9@0+ (1,0) [0|510] "Nm"  HCU
+ SG_ MCU02_MaxTor : 7|11@0+ (1,0) [0|2046] "Nm"  HCU
+
+BO_ 85 MCU_01: 8 MCU
+ SG_ MCU01_ShutDownAllowed : 24|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU01_Ready : 40|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU01_HighVolAllowed : 41|1@0+ (1,0) [0|1] ""  HCU
+ SG_ MCU01_Status : 43|2@0+ (1,0) [0|3] ""  HCU
+ SG_ MCU01_ActDischStatus : 45|2@0+ (1,0) [0|3] ""  HCU
+ SG_ MCU01_SelfCheck : 47|2@0+ (1,0) [0|3] ""  HCU
+ SG_ MCU01_CheckSum : 63|8@0+ (1,0) [0|254] ""  HCU
+ SG_ MCU01_Counter : 35|4@0+ (1,0) [0|3] ""  HCU
+ SG_ MCU01_CurCntTor : 23|13@0+ (0.5,-2047) [-2047|2047.5] "Nm"  HCU
+ SG_ MCU01_Motorspd : 7|16@0+ (1,-32767) [-32767|32767] "rpm"  HCU
+ SG_ MCU01_EmergShutDown : 48|1@0+ (1,0) [0|1] ""  HCU
+
+BO_ 609 HCU_02: 1 HCU
+ SG_ HCU02_Poweroff : 0|1@0+ (1,0) [0|1] ""  MCU
+
+BO_ 129 HCU_01: 8 HCU
+ SG_ HCU01_EmergShutDown : 36|1@0+ (1,0) [0|1] ""  MCU
+ SG_ HCU01_CheckSum : 63|8@0+ (1,0) [0|255] ""  MCU
+ SG_ HCU01_Counter : 51|4@0+ (1,0) [0|15] ""  MCU
+ SG_ HCU01_ActiveDischarge : 37|1@0+ (1,0) [0|1] ""  MCU
+ SG_ HCU01_McuModeCmd : 39|2@0+ (1,0) [0|3] ""  MCU
+ SG_ HCU01_EnaMCU : 24|1@0+ (1,0) [0|1] ""  MCU
+ SG_ HCU01_SpeedCmd : 23|15@0+ (1,-16384) [-16384|16383] "rpm"  MCU
+ SG_ HCU01_Shift : 9|2@0+ (1,0) [0|3] ""  MCU
+ SG_ HCU01_TqCmd : 7|14@0+ (0.25,-2048) [-2048|2047.75] "Nm"  MCU
+
+BO_ 1536 NM_VCU_Rx_ETAS: 8 HCU
+ SG_ NMVCU_SourceID : 7|8@0+ (1,0) [0|255] ""  MCU
+ SG_ NMVCU_RepeatFromSleep : 16|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_RepeatFromPrepare : 17|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_RepeatFromNormal : 18|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_RepeatFromReady : 19|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_NormalFromRepeat : 20|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_NormalFromReady : 21|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_WakeFromGW : 22|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_GWRequest : 23|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_WakeSource : 27|4@0+ (1,0) [0|15] ""  MCU
+ SG_ NMVCU_ActiveSource1 : 32|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_ActiveSource2 : 33|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_ActiveSource3 : 34|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_ActiveSource4 : 35|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_ActiveSource5 : 36|1@0+ (1,0) [0|1] ""  MCU
+ SG_ NMVCU_RepeatReq : 8|1@0+ (1,0) [0|1] ""  MCU
+
+BO_ 1655 NM_VCU: 8 MCU
+ SG_ NMVCU_SourceID : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ NMVCU_RepeatFromSleep : 16|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_RepeatFromPrepare : 17|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_RepeatFromNormal : 18|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_RepeatFromReady : 19|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_NormalFromRepeat : 20|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_NormalFromReady : 21|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_WakeFromGW : 22|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_GWRequest : 23|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_WakeSource : 27|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ NMVCU_ActiveSource1 : 32|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_ActiveSource2 : 33|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_ActiveSource3 : 34|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_ActiveSource4 : 35|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_ActiveSource5 : 36|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ NMVCU_RepeatReq : 8|1@0+ (1,0) [0|1] "" Vector__XXX
+
+
+
+CM_ SG_ 262 MCU03_LI_OverSpeed "超速
+";
+CM_ SG_ 262 MCU03_LI_OverTempEM "电机定子过温
+";
+CM_ SG_ 262 MCU03_LI_OverTempINV "逆变器过温
+";
+CM_ SG_ 262 MCU03_LI_UdcUnder "母线欠压
+";
+CM_ SG_ 262 MCU03_LI_UdcOver "母线过压
+";
+CM_ SG_ 262 MCU03_RF_PhaseImp "三相电流不平衡
+";
+CM_ SG_ 262 MCU03_12VSupply "弱电电源故障
+";
+CM_ SG_ 262 MCU03_RF_PhCOver "C相过流
+";
+CM_ SG_ 262 MCU03_RF_PhBOver "B相过流
+";
+CM_ SG_ 262 MCU03_RF_PhAOver "A相过流
+";
+CM_ SG_ 262 MCU03_RF_OverSpeed "电机过速
+";
+CM_ SG_ 262 MCU03_RF_MsgTO "消息丢失
+";
+CM_ SG_ 262 MCU03_RF_OverTempEM "定子绕组过温
+";
+CM_ SG_ 262 MCU03_RF_OverTempINV "逆变器过温
+";
+CM_ SG_ 262 MCU03_RF_IntError "程序超时
+";
+CM_ SG_ 262 MCU03_RF_HWOverCur "相电流硬件检测过流
+";
+CM_ SG_ 262 MCU03_RF_UDCUnder "母线欠压
+";
+CM_ SG_ 262 MCU03_RF_UdcOver "母线过压
+";
+CM_ SG_ 262 MCU03_RF_IdcOver "母线过流
+";
+CM_ SG_ 262 MCU03_RF_ToqError "力矩输出异常
+";
+CM_ SG_ 262 MCU03_RF_BusOff "CAN总线通信中断
+";
+CM_ SG_ 262 MCU03_NRF_SysFailure "系统异常
+";
+CM_ SG_ 262 MCU03_NRF_Resolver "旋变解析故障
+";
+CM_ SG_ 262 MCU03_NRF_PhCSamp "C相电流采样故障
+";
+CM_ SG_ 262 MCU03_NRF_PhBSamp "B相电流采样故障
+";
+CM_ SG_ 262 MCU03_NRF_InvTempSamp "逆变器温度采样故障
+";
+CM_ SG_ 262 MCU03_NRF_PhASamp "A相电流采样故障
+";
+CM_ SG_ 262 MCU03_NRF_DESAT "IGBT退饱和故障
+";
+CM_ SG_ 262 MCU03_NRF_UdcSamp "母线电压采样故障
+";
+CM_ SG_ 262 MCU03_NRF_COMError "通讯模块故障
+";
+CM_ SG_ 262 MCU03_NRF_5VSupply "模拟5V电源故障
+";
+CM_ SG_ 262 MCU03_NRF_EMTempSamp "电机温度采样故障
+";
+CM_ SG_ 262 MCU03_NRF_IdcSamp "母线电流采样故障
+";
+CM_ SG_ 151 MCU02_IGBTTmp "IGBT温度
+";
+CM_ SG_ 151 MCU02_MotorTmp "电机温度
+";
+CM_ SG_ 151 MCU02_Vdc "母线电压
+";
+CM_ SG_ 151 MCU02_Idc "母线电流
+";
+CM_ SG_ 151 MCU02_MinTor "最小扭矩
+";
+CM_ SG_ 151 MCU02_MaxTor "最大扭矩
+";
+CM_ SG_ 85 MCU01_ShutDownAllowed "允许下电
+";
+CM_ SG_ 85 MCU01_Ready "高压上电完成
+";
+CM_ SG_ 85 MCU01_HighVolAllowed "允许高压上电
+";
+CM_ SG_ 85 MCU01_Status "电机工作状态
+";
+CM_ SG_ 85 MCU01_ActDischStatus "电机快速放电状态
+";
+CM_ SG_ 85 MCU01_SelfCheck "MCU自检
+";
+CM_ SG_ 85 MCU01_CheckSum "报文checksum
+";
+CM_ SG_ 85 MCU01_Counter "报文滚码信息
+";
+CM_ SG_ 85 MCU01_CurCntTor "电机当前扭矩
+";
+CM_ SG_ 85 MCU01_Motorspd "电机当前转速
+";
+CM_ SG_ 85 MCU01_EmergShutDown "紧急下电请求
+";
+CM_ SG_ 609 HCU02_Poweroff "HCU低压下电
+";
+CM_ SG_ 129 HCU01_EmergShutDown "MCU使能信号
+";
+CM_ SG_ 129 HCU01_CheckSum "检查
+";
+CM_ SG_ 129 HCU01_Counter "滚码信息
+";
+CM_ SG_ 129 HCU01_ActiveDischarge "MCU主动放电
+";
+CM_ SG_ 129 HCU01_McuModeCmd "电机工作模式请求
+";
+CM_ SG_ 129 HCU01_EnaMCU "MCU使能信号
+";
+CM_ SG_ 129 HCU01_SpeedCmd "需求转速
+";
+CM_ SG_ 129 HCU01_Shift "当前整车档位信息
+";
+CM_ SG_ 129 HCU01_TqCmd "HCU对MCU扭矩请求";
+CM_ SG_ 1536 NMVCU_SourceID "The source node id";
+CM_ SG_ 1536 NMVCU_WakeSource "The wakeup source";
+CM_ SG_ 1536 NMVCU_ActiveSource1 "The NM active sorce is KL15";
+CM_ SG_ 1536 NMVCU_ActiveSource2 "The NM active sorce is Diagnose";
+CM_ SG_ 1536 NMVCU_ActiveSource3 "The NM active sorce is Repeat message timer has not expired";
+CM_ SG_ 1536 NMVCU_ActiveSource4 "The NM active sorce is AC Charging";
+CM_ SG_ 1536 NMVCU_ActiveSource5 "The NM active sorce is DC Charging";
+CM_ SG_ 1536 NMVCU_RepeatReq "The repeat message request";
+CM_ SG_ 1655 NMVCU_SourceID "The source node id";
+CM_ SG_ 1655 NMVCU_WakeSource "The wakeup source";
+CM_ SG_ 1655 NMVCU_ActiveSource1 "The NM active sorce is KL15";
+CM_ SG_ 1655 NMVCU_ActiveSource2 "The NM active sorce is Diagnose";
+CM_ SG_ 1655 NMVCU_ActiveSource3 "The NM active sorce is Repeat message timer has not expired";
+CM_ SG_ 1655 NMVCU_ActiveSource4 "The NM active sorce is AC Charging";
+CM_ SG_ 1655 NMVCU_ActiveSource5 "The NM active sorce is DC Charging";
+CM_ SG_ 1655 NMVCU_RepeatReq "The repeat message request";
+BA_DEF_ BO_  "AliveTimeout" INT 0 65535;
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 50000;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 999999;
+BA_DEF_  "NmBaseAddress" HEX 1024 1087;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_  "GenNWMApBusSleep" STRING ;
+BA_DEF_  "GenNWMApCanNormal" STRING ;
+BA_DEF_  "GenNWMApCanOff" STRING ;
+BA_DEF_  "GenNWMApCanOn" STRING ;
+BA_DEF_  "GenNWMApCanSleep" STRING ;
+BA_DEF_  "GenNWMApCanWakeUp" STRING ;
+BA_DEF_  "GenNWMGotoMode_Awake" STRING ;
+BA_DEF_  "GenNWMGotoMode_BusSleep" STRING ;
+BA_DEF_  "GenNWMSleepTime" INT 0 1000000;
+BA_DEF_  "GenNWMTalkNM" STRING ;
+BA_DEF_ BU_  "GenNodSleepTime" INT 0 1000000;
+BA_DEF_ BO_  "NmMessage" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmNode" ENUM  "No","Yes";
+BA_DEF_ SG_  "NWM-WakeupAllowed" ENUM  "No","Yes";
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 2 50000;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 1 1000;
+BA_DEF_ BO_  "GenMsgNrOfRepetitions" INT 1 999999;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "cyclic","spontaneous","cyclicIfActive","spontaneousWithDelay","cyclicAndSpontaneous","cyclicAndSpontaneousWithDelay","spontaneousWithRepetition","cyclicIfActiveAndSpontaneousWD";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 100000;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "spontaneous";
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 1215752192;
+BA_DEF_ EV_  "GenEnvControlType" ENUM  "NoControl","SliderHoriz","SliderVert","PushButton","Edit","BitmapSwitch";
+BA_DEF_ EV_  "GenEnvMsgName" STRING ;
+BA_DEF_ EV_  "GenEnvMsgOffset" INT 0 999999999;
+BA_DEF_ EV_  "GenEnvAutoGenCtrl" ENUM  "No","Yes";
+BA_DEF_  "GenEnvVarEndingDsp" STRING ;
+BA_DEF_  "GenEnvVarEndingSnd" STRING ;
+BA_DEF_  "GenEnvVarPrefix" STRING ;
+BA_DEF_ BO_  "GenMsgAltSetting" STRING ;
+BA_DEF_ BO_  "GenMsgAutoGenDsp" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgAutoGenSnd" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgConditionalSend" STRING ;
+BA_DEF_ BO_  "GenMsgEVName" STRING ;
+BA_DEF_ BO_  "GenMsgPostIfSetting" STRING ;
+BA_DEF_ BO_  "GenMsgPostSetting" STRING ;
+BA_DEF_ BO_  "GenMsgPreIfSetting" STRING ;
+BA_DEF_ BO_  "GenMsgPreSetting" STRING ;
+BA_DEF_ BU_  "GenNodAutoGenSnd" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigAltSetting" STRING ;
+BA_DEF_ SG_  "GenSigAssignSetting" STRING ;
+BA_DEF_ SG_  "GenSigAutoGenDsp" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigAutoGenSnd" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigConditionalSend" STRING ;
+BA_DEF_ SG_  "GenSigEnvVarType" ENUM  "int","float","undef";
+BA_DEF_ SG_  "GenSigEVName" STRING ;
+BA_DEF_ SG_  "GenSigPostIfSetting" STRING ;
+BA_DEF_ SG_  "GenSigPostSetting" STRING ;
+BA_DEF_ SG_  "GenSigPreIfSetting" STRING ;
+BA_DEF_ SG_  "GenSigPreSetting" STRING ;
+BA_DEF_ SG_  "GenSigReceiveSetting" STRING ;
+BA_DEF_DEF_  "AliveTimeout" 0;
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "NmBaseAddress" 1024;
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "GenNWMApBusSleep" "apBusSleep()";
+BA_DEF_DEF_  "GenNWMApCanNormal" "apCanNormal()";
+BA_DEF_DEF_  "GenNWMApCanOff" "apCanOff()";
+BA_DEF_DEF_  "GenNWMApCanOn" "apCanOn()";
+BA_DEF_DEF_  "GenNWMApCanSleep" "apCanSleep()";
+BA_DEF_DEF_  "GenNWMApCanWakeUp" "apCanWakeUp()";
+BA_DEF_DEF_  "GenNWMGotoMode_Awake" "GotoMode_Awake()";
+BA_DEF_DEF_  "GenNWMGotoMode_BusSleep" "GotoMode_BusSleep()";
+BA_DEF_DEF_  "GenNWMSleepTime" 0;
+BA_DEF_DEF_  "GenNWMTalkNM" "TalkNM()";
+BA_DEF_DEF_  "GenNodSleepTime" 0;
+BA_DEF_DEF_  "NmMessage" "No";
+BA_DEF_DEF_  "NmNode" "No";
+BA_DEF_DEF_  "NWM-WakeupAllowed" "";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "GenMsgCycleTime" 100;
+BA_DEF_DEF_  "GenMsgDelayTime" 1;
+BA_DEF_DEF_  "GenMsgNrOfRepetitions" 1;
+BA_DEF_DEF_  "GenMsgSendType" "";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenEnvControlType" "";
+BA_DEF_DEF_  "GenEnvMsgName" "";
+BA_DEF_DEF_  "GenEnvMsgOffset" 0;
+BA_DEF_DEF_  "GenEnvAutoGenCtrl" "No";
+BA_DEF_DEF_  "GenEnvVarEndingDsp" "Dsp_";
+BA_DEF_DEF_  "GenEnvVarEndingSnd" "_";
+BA_DEF_DEF_  "GenEnvVarPrefix" "Env";
+BA_DEF_DEF_  "GenMsgAltSetting" "";
+BA_DEF_DEF_  "GenMsgAutoGenDsp" "";
+BA_DEF_DEF_  "GenMsgAutoGenSnd" "";
+BA_DEF_DEF_  "GenMsgConditionalSend" "";
+BA_DEF_DEF_  "GenMsgEVName" "";
+BA_DEF_DEF_  "GenMsgPostIfSetting" "";
+BA_DEF_DEF_  "GenMsgPostSetting" "";
+BA_DEF_DEF_  "GenMsgPreIfSetting" "";
+BA_DEF_DEF_  "GenMsgPreSetting" "";
+BA_DEF_DEF_  "GenNodAutoGenSnd" "";
+BA_DEF_DEF_  "GenSigAltSetting" "";
+BA_DEF_DEF_  "GenSigAssignSetting" "";
+BA_DEF_DEF_  "GenSigAutoGenDsp" "";
+BA_DEF_DEF_  "GenSigAutoGenSnd" "";
+BA_DEF_DEF_  "GenSigConditionalSend" "";
+BA_DEF_DEF_  "GenSigEnvVarType" "undef";
+BA_DEF_DEF_  "GenSigEVName" "";
+BA_DEF_DEF_  "GenSigPostIfSetting" "";
+BA_DEF_DEF_  "GenSigPostSetting" "";
+BA_DEF_DEF_  "GenSigPreIfSetting" "";
+BA_DEF_DEF_  "GenSigPreSetting" "";
+BA_DEF_DEF_  "GenSigReceiveSetting" "";
+BA_ "NmStationAddress" BU_ MCU 248;
+BA_ "NmStationAddress" BU_ HCU 247;
+BA_ "GenMsgSendType" BO_ 262 0;
+BA_ "GenMsgAutoGenSnd" BO_ 262 0;
+BA_ "GenMsgCycleTime" BO_ 262 50;
+BA_ "GenMsgSendType" BO_ 151 0;
+BA_ "GenMsgCycleTime" BO_ 151 50;
+BA_ "GenMsgSendType" BO_ 85 0;
+BA_ "GenMsgCycleTime" BO_ 85 10;
+BA_ "AliveTimeout" BO_ 609 300;
+BA_ "GenMsgSendType" BO_ 609 0;
+BA_ "GenMsgCycleTime" BO_ 609 10;
+BA_ "GenMsgSendType" BO_ 129 0;
+BA_ "GenMsgCycleTime" BO_ 129 10;
+BA_ "AliveTimeout" BO_ 129 300;
+BA_ "GenSigStartValue" SG_ 151 MCU02_IGBTTmp 40;
+BA_ "GenSigStartValue" SG_ 151 MCU02_MotorTmp 40;
+BA_ "GenSigStartValue" SG_ 151 MCU02_Idc 511;
+BA_ "GenSigStartValue" SG_ 85 MCU01_CurCntTor 4094;
+BA_ "GenSigStartValue" SG_ 85 MCU01_Motorspd 32767;
+BA_ "GenSigStartValue" SG_ 129 HCU01_SpeedCmd 16384;
+BA_ "GenSigStartValue" SG_ 129 HCU01_TqCmd 8192;
+VAL_ 262 MCU03_LI_OverSpeed 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_LI_OverTempEM 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_LI_OverTempINV 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_LI_UdcUnder 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_LI_UdcOver 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_PhaseImp 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_12VSupply 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_PhCOver 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_PhBOver 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_PhAOver 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_OverSpeed 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_MsgTO 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_OverTempEM 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_OverTempINV 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_IntError 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_HWOverCur 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_UDCUnder 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_UdcOver 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_IdcOver 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_ToqError 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_RF_BusOff 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_SysFailure 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_Resolver 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_PhCSamp 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_PhBSamp 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_InvTempSamp 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_PhASamp 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_DESAT 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_UdcSamp 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_COMError 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_5VSupply 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_EMTempSamp 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 262 MCU03_NRF_IdcSamp 1 "Trouble" 0 "NoTrouble" ;
+VAL_ 85 MCU01_ShutDownAllowed 1 "allowing" 0 "forbidding" ;
+VAL_ 85 MCU01_Ready 1 "allow mcu to get torque command" 0 "forbidding getting torque cmd" ;
+VAL_ 85 MCU01_HighVolAllowed 1 "allowing to turn on HV" 0 "forbidding to turn on HV" ;
+VAL_ 85 MCU01_Status 3 "no recoverable fault" 2 "recoverable fault" 1 "warning (derating" 0 "normal" ;
+VAL_ 85 MCU01_ActDischStatus 3 "Reserved" 2 "Discharge Finished" 1 "Discharging" 0 "default" ;
+VAL_ 85 MCU01_SelfCheck 3 "failed" 2 "OK" 1 "selfchecking" 0 "default" ;
+VAL_ 85 MCU01_EmergShutDown 1 "EmergShutDown" 0 "Normal" ;
+VAL_ 609 HCU02_Poweroff 1 "Sleep" 0 "normal" ;
+VAL_ 129 HCU01_EmergShutDown 1 "allowing" 0 "forbidding" ;
+VAL_ 129 HCU01_ActiveDischarge 1 "allowing" 0 "forbidding" ;
+VAL_ 129 HCU01_McuModeCmd 3 "reserved" 2 "speed mode" 1 "torque mode" 0 "default" ;
+VAL_ 129 HCU01_EnaMCU 1 "allowing" 0 "forbidding" ;
+VAL_ 129 HCU01_Shift 3 "P" 2 "D" 1 "R" 0 "N" ;
+VAL_ 1536 NMVCU_RepeatFromSleep 1 "occur" 0 "not occur" ;
+VAL_ 1536 NMVCU_RepeatFromPrepare 1 "occur" 0 "not occur" ;
+VAL_ 1536 NMVCU_RepeatFromNormal 1 "occur" 0 "not occur" ;
+VAL_ 1536 NMVCU_RepeatFromReady 1 "occur" 0 "not occur" ;
+VAL_ 1536 NMVCU_NormalFromRepeat 1 "occur" 0 "not occur" ;
+VAL_ 1536 NMVCU_NormalFromReady 1 "occur" 0 "not occur" ;
+VAL_ 1536 NMVCU_WakeFromGW 1 "occur" 0 "not occur" ;
+VAL_ 1536 NMVCU_GWRequest 1 "request" 0 "not request" ;
+VAL_ 1536 NMVCU_WakeSource 1 "KL.15" 0 "CAN wakeup" ;
+VAL_ 1536 NMVCU_ActiveSource1 1 "KL15" 0 "not active" ;
+VAL_ 1536 NMVCU_ActiveSource2 1 "Diagnose" 0 "not active" ;
+VAL_ 1536 NMVCU_ActiveSource3 1 "Repeat message timer has not expired" 0 "not active" ;
+VAL_ 1536 NMVCU_ActiveSource4 1 "AC Charging" 0 "not active" ;
+VAL_ 1536 NMVCU_ActiveSource5 1 "DC Charging" 0 "not active" ;
+VAL_ 1536 NMVCU_RepeatReq 1 "request" 0 "not request" ;
+VAL_ 1655 NMVCU_RepeatFromSleep 1 "occur" 0 "not occur" ;
+VAL_ 1655 NMVCU_RepeatFromPrepare 1 "occur" 0 "not occur" ;
+VAL_ 1655 NMVCU_RepeatFromNormal 1 "occur" 0 "not occur" ;
+VAL_ 1655 NMVCU_RepeatFromReady 1 "occur" 0 "not occur" ;
+VAL_ 1655 NMVCU_NormalFromRepeat 1 "occur" 0 "not occur" ;
+VAL_ 1655 NMVCU_NormalFromReady 1 "occur" 0 "not occur" ;
+VAL_ 1655 NMVCU_WakeFromGW 1 "occur" 0 "not occur" ;
+VAL_ 1655 NMVCU_GWRequest 1 "request" 0 "not request" ;
+VAL_ 1655 NMVCU_WakeSource 1 "KL.15" 0 "CAN wakeup" ;
+VAL_ 1655 NMVCU_ActiveSource1 1 "KL15" 0 "not active" ;
+VAL_ 1655 NMVCU_ActiveSource2 1 "Diagnose" 0 "not active" ;
+VAL_ 1655 NMVCU_ActiveSource3 1 "Repeat message timer has not expired" 0 "not active" ;
+VAL_ 1655 NMVCU_ActiveSource4 1 "AC Charging" 0 "not active" ;
+VAL_ 1655 NMVCU_ActiveSource5 1 "DC Charging" 0 "not active" ;
+VAL_ 1655 NMVCU_RepeatReq 1 "request" 0 "not request" ;
+

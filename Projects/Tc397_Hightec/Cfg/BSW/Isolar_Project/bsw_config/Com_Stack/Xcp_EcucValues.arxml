@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ETAS_Project</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>EcucModuleConfigurationValuess</SHORT-NAME>
+          <ELEMENTS>
+            <ECUC-MODULE-CONFIGURATION-VALUES>
+              <SHORT-NAME>Xcp</SHORT-NAME>
+              <DEFINITION-REF DEST="ECUC-MODULE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp</DEFINITION-REF>
+              <CONTAINERS>
+                <ECUC-CONTAINER-VALUE>
+                  <SHORT-NAME>XcpConfig</SHORT-NAME>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig</DEFINITION-REF>
+                  <SUB-CONTAINERS>
+                    <ECUC-CONTAINER-VALUE>
+                      <SHORT-NAME>XcpTransportLayer_CAN</SHORT-NAME>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpDaqOverloadIndication</DEFINITION-REF>
+                          <VALUE>OVERLOAD_INDICATION_EVENT</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpIdentificationFieldType</DEFINITION-REF>
+                          <VALUE>ABSOLUTE</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTimestampType</DEFINITION-REF>
+                          <VALUE>TWO_BYTE</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTransportLayerName</DEFINITION-REF>
+                          <VALUE>CAN_0_PL0</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTransportLayerType</DEFINITION-REF>
+                          <VALUE>CAN</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpMaxCto</DEFINITION-REF>
+                          <VALUE>8</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpMaxDto</DEFINITION-REF>
+                          <VALUE>8</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
+                      <SUB-CONTAINERS>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpRxPdu_RX_CMD</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu/XcpRxPacketType</DEFINITION-REF>
+                              <VALUE>CMD</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu/XcpRxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/XCP_RX_CMD_Can_Network_CANNODE_1_CanIf2Xcp</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpTxPdu_RES</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPacketType</DEFINITION-REF>
+                              <VALUE>RES_ERR_EV_SERV</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/XCP_TX_RES_Can_Network_CANNODE_1_Xcp2CanIf</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpRxPdu_RX_Broadcast</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu/XcpRxPacketType</DEFINITION-REF>
+                              <VALUE>STIM</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu/XcpRxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/XCP_RX_Broadcast_Can_Network_CANNODE_1_CanIf2Xcp</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpTxPdu_DAQ0</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPacketType</DEFINITION-REF>
+                              <VALUE>DAQ</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/XCP_TX_DAQ0_Can_Network_CANNODE_1_Xcp2CanIf</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpEventChannelRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/Xcp/XcpConfig/Event_10ms_Raster</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpTxPdu_DAQ1</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPacketType</DEFINITION-REF>
+                              <VALUE>DAQ</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/XCP_TX_DAQ1_Can_Network_CANNODE_1_Xcp2CanIf</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpEventChannelRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/Xcp/XcpConfig/Event_50ms_Raster</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpTxPdu_DAQ2</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPacketType</DEFINITION-REF>
+                              <VALUE>DAQ</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/XCP_TX_DAQ2_Can_Network_CANNODE_1_Xcp2CanIf</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpEventChannelRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/Xcp/XcpConfig/Event_100ms_Raster</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                      </SUB-CONTAINERS>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE>
+                      <SHORT-NAME>Event_10ms_Raster</SHORT-NAME>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelName</DEFINITION-REF>
+                          <VALUE>10msRStr</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelShortName</DEFINITION-REF>
+                          <VALUE>10ms</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelPriority</DEFINITION-REF>
+                          <VALUE>8</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelTimeCycle</DEFINITION-REF>
+                          <VALUE>1</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelTimeUnit</DEFINITION-REF>
+                          <VALUE>TIMESTAMP_UNIT_10MS</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelType</DEFINITION-REF>
+                          <VALUE>DAQ</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE>
+                      <SHORT-NAME>Event_100ms_Raster</SHORT-NAME>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelName</DEFINITION-REF>
+                          <VALUE>100msRStr</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelShortName</DEFINITION-REF>
+                          <VALUE>100ms</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelPriority</DEFINITION-REF>
+                          <VALUE>10</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelTimeCycle</DEFINITION-REF>
+                          <VALUE>1</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelTimeUnit</DEFINITION-REF>
+                          <VALUE>TIMESTAMP_UNIT_100MS</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelType</DEFINITION-REF>
+                          <VALUE>DAQ</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE>
+                      <SHORT-NAME>Event_50ms_Raster</SHORT-NAME>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelName</DEFINITION-REF>
+                          <VALUE>50msRStr</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelShortName</DEFINITION-REF>
+                          <VALUE>50ms</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelPriority</DEFINITION-REF>
+                          <VALUE>9</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelTimeCycle</DEFINITION-REF>
+                          <VALUE>5</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelTimeUnit</DEFINITION-REF>
+                          <VALUE>TIMESTAMP_UNIT_10MS</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpEventChannel/XcpEventChannelType</DEFINITION-REF>
+                          <VALUE>DAQ</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE>
+                      <SHORT-NAME>XcpTransportLayer_ETH_UDP</SHORT-NAME>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpDaqOverloadIndication</DEFINITION-REF>
+                          <VALUE>OVERLOAD_INDICATION_EVENT</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpIdentificationFieldType</DEFINITION-REF>
+                          <VALUE>ABSOLUTE</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTimestampType</DEFINITION-REF>
+                          <VALUE>TWO_BYTE</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTransportLayerType</DEFINITION-REF>
+                          <VALUE>ETHERNET_UDP</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpMaxCto</DEFINITION-REF>
+                          <VALUE>255</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpMaxDto</DEFINITION-REF>
+                          <VALUE>255</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpFrameConcatenation</DEFINITION-REF>
+                          <VALUE>true</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTransportLayerName</DEFINITION-REF>
+                          <VALUE>UDP_0_PL0</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
+                      <SUB-CONTAINERS>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpRxPdu_UDP_RX</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu/XcpRxPacketType</DEFINITION-REF>
+                              <VALUE>CMD_STIM</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu/XcpRxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/RXFrame_EthernetUDP_SoAd2Xcp</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpTxPdu_UDP_TX</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPacketType</DEFINITION-REF>
+                              <VALUE>RES_ERR_EV_SERV_DAQ</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/TXFrame_EthernetUDP_Xcp2SoAd</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                      </SUB-CONTAINERS>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE>
+                      <SHORT-NAME>XcpTransportLayer_ETH_TCP</SHORT-NAME>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpDaqOverloadIndication</DEFINITION-REF>
+                          <VALUE>OVERLOAD_INDICATION_EVENT</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpIdentificationFieldType</DEFINITION-REF>
+                          <VALUE>ABSOLUTE</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTimestampType</DEFINITION-REF>
+                          <VALUE>TWO_BYTE</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTransportLayerType</DEFINITION-REF>
+                          <VALUE>ETHERNET_TCP</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpMaxCto</DEFINITION-REF>
+                          <VALUE>255</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpMaxDto</DEFINITION-REF>
+                          <VALUE>255</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpFrameConcatenation</DEFINITION-REF>
+                          <VALUE>true</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTransportLayerName</DEFINITION-REF>
+                          <VALUE>TCP_0_PL0</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
+                      <SUB-CONTAINERS>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpRxPdu_TCP_RX</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu/XcpRxPacketType</DEFINITION-REF>
+                              <VALUE>CMD_STIM</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpRxPdu/XcpRxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/RXFrame_EthernetTCP_SoAd2Xcp</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>XcpTxPdu_TCP_TX</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-TEXTUAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPacketType</DEFINITION-REF>
+                              <VALUE>RES_ERR_EV_SERV_DAQ</VALUE>
+                            </ECUC-TEXTUAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpConfig/XcpTransportLayer/XcpTxPdu/XcpTxPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/ETAS_Project/EcucModuleConfigurationValuess/EcuC/EcucConfigSet/PduCollection/TXFrame_EthernetTCP_Xcp2SoAd</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                      </SUB-CONTAINERS>
+                    </ECUC-CONTAINER-VALUE>
+                  </SUB-CONTAINERS>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE>
+                  <SHORT-NAME>XcpGeneral</SHORT-NAME>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpCalibrationCal</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpSynchronousDataAcquisitionDaq</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpBlockTransferUpload</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpBlockTransferDownload</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpSeedAndKey</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpCommandChecksum</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpUploadDownloadMemoryAccessByAppl</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpCommandReadDaq</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpCommandsGetDaqInfo</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpEventChannelScheduling</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpVersion</DEFINITION-REF>
+                      <VALUE>VERSION_1_2</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpProductLine</DEFINITION-REF>
+                      <VALUE>CSMOSAR</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpDaqMemoryLimit</DEFINITION-REF>
+                      <VALUE>1024</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpDevErrorDetect</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpMainFunctionPeriod</DEFINITION-REF>
+                      <VALUE>0.01</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpSeedAndKeyExternalFunction</DEFINITION-REF>
+                      <VALUE>XcpSeedNKey.dll</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpVersionInfoApi</DEFINITION-REF>
+                      <VALUE>false</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpPageSwitchingPag</DEFINITION-REF>
+                      <VALUE>true</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpTimestampUnit</DEFINITION-REF>
+                      <VALUE>TIMESTAMP_UNIT_1MS</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpTimestampTicks</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpGeneral/XcpEthMainFunctionPeriod</DEFINITION-REF>
+                      <VALUE>0.001</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE>
+                  <SHORT-NAME>XcpA2LFile</SHORT-NAME>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpA2LFile</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpA2LFile/XcpTimeoutT1</DEFINITION-REF>
+                      <VALUE>2000</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpA2LFile/XcpTimeoutT2</DEFINITION-REF>
+                      <VALUE>2000</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR_Xcp/EcucModuleDefs/Xcp/XcpA2LFile/XcpTimeoutT7</DEFINITION-REF>
+                      <VALUE>2000</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+              </CONTAINERS>
+            </ECUC-MODULE-CONFIGURATION-VALUES>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

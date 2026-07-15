@@ -1,0 +1,187 @@
+/*
+ * This is a template file. It defines integration functions necessary to complete RTA-BSW.
+ * The integrator must complete the templates before deploying software containing functions defined in this file.
+ * Once templates have been completed, the integrator should delete the #error line.
+ * Note: The integrator is responsible for updates made to this file.
+ *
+ * To remove the following error define the macro NOT_READY_FOR_TESTING_OR_DEPLOYMENT with a compiler option (e.g. -D NOT_READY_FOR_TESTING_OR_DEPLOYMENT)
+ * The removal of the error only allows the user to proceed with the building phase
+ */
+
+
+
+/* MemMap.h for AUTOSAR Memory Mapping  */
+
+/* MR12 RULE 1.2 VIOLATION: MemMap header concept - no protection against multiple inclusion intended*/
+#ifndef RBA_ETHUDP_MEMMAP_H
+#define RBA_ETHUDP_MEMMAP_H
+
+#define MEMMAP_ERROR
+
+// ---- Section mapping for rba_EthUdp  ---------------------------------
+// The following line (#if 0) allows that all code sections starts with #elif
+#if 0
+
+/*----------------------------------------------------------------------------*/
+/* To be used for global or static constants */
+/* All generated constant variables */
+/*----------------------------------------------------------------------------*/
+/* MR12 RULE 20.5 VIOLATION: AUTOSAR MemMap concept requires #undef, AUTOSAR MemMap requirements are incompatible to MISRA */
+/* 8 bit constants.*/
+#elif defined RBA_ETHUDP_START_SEC_CONST_8
+    #define BSW_START_SEC_DEFAULT_CONST_8
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_CONST_8
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_CONST_8
+    #define BSW_STOP_SEC_DEFAULT_CONST_8
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_CONST_8
+    #undef MEMMAP_ERROR
+/* 16 bit constants.*/
+#elif defined RBA_ETHUDP_START_SEC_CONST_16
+    #define BSW_START_SEC_DEFAULT_CONST_16
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_CONST_16
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_CONST_16
+    #define BSW_STOP_SEC_DEFAULT_CONST_16
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_CONST_16
+    #undef MEMMAP_ERROR
+/* 32 bit constants.*/
+#elif defined RBA_ETHUDP_START_SEC_CONST_32
+    #define BSW_START_SEC_DEFAULT_CONST_32
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_CONST_32
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_CONST_32
+    #define BSW_STOP_SEC_DEFAULT_CONST_32
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_CONST_32
+    #undef MEMMAP_ERROR
+/* Constants of unspecified size.*/
+#elif defined RBA_ETHUDP_START_SEC_CONST_UNSPECIFIED
+    #define BSW_START_SEC_DEFAULT_CONST_UNSPECIFIED
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_CONST_UNSPECIFIED
+    #define BSW_STOP_SEC_DEFAULT_CONST_UNSPECIFIED
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+/*----------------------------------------------------------------------------*/
+/* Used for global or static variables that are
+    cleared to zero after every reset */
+/*----------------------------------------------------------------------------*/
+/* 8 bit variables.*/
+#elif defined RBA_ETHUDP_START_SEC_VAR_CLEARED_8
+    #define BSW_START_SEC_VAR_CLEARED_8
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_VAR_CLEARED_8
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_VAR_CLEARED_8
+    #define BSW_STOP_SEC_VAR_CLEARED_8
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_VAR_CLEARED_8
+    #undef MEMMAP_ERROR
+/* 16 bit variables.*/
+#elif defined RBA_ETHUDP_START_SEC_VAR_CLEARED_16
+    #define BSW_START_SEC_VAR_CLEARED_16
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_VAR_CLEARED_16
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_VAR_CLEARED_16
+    #define BSW_STOP_SEC_VAR_CLEARED_16
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_VAR_CLEARED_16
+    #undef MEMMAP_ERROR
+/* 32 bit variables.*/
+#elif defined RBA_ETHUDP_START_SEC_VAR_CLEARED_32
+    #define BSW_START_SEC_VAR_CLEARED_32
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_VAR_CLEARED_32
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_VAR_CLEARED_32
+    #define BSW_STOP_SEC_VAR_CLEARED_32
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_VAR_CLEARED_32
+    #undef MEMMAP_ERROR
+/* Variables of unspecified size.*/
+#elif defined RBA_ETHUDP_START_SEC_VAR_CLEARED_UNSPECIFIED
+    #define BSW_START_SEC_VAR_CLEARED_UNSPECIFIED
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_VAR_CLEARED_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_VAR_CLEARED_UNSPECIFIED
+    #define BSW_STOP_SEC_VAR_CLEARED_UNSPECIFIED
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_VAR_CLEARED_UNSPECIFIED
+    #undef MEMMAP_ERROR
+/*----------------------------------------------------------------------------*/
+/* Used for global or static variables that are
+    initialized to values after every reset */
+/*----------------------------------------------------------------------------*/
+/* 8 bit variables.*/
+#elif defined RBA_ETHUDP_START_SEC_VAR_INIT_8
+    #define BSW_START_SEC_VAR_INIT_8
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_VAR_INIT_8
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_VAR_INIT_8
+    #define BSW_STOP_SEC_VAR_INIT_8
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_VAR_INIT_8
+    #undef MEMMAP_ERROR
+/* 16 bit variables.*/
+#elif defined RBA_ETHUDP_START_SEC_VAR_INIT_16
+    #define BSW_START_SEC_VAR_INIT_16
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_VAR_INIT_16
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_VAR_INIT_16
+    #define BSW_STOP_SEC_VAR_INIT_16
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_VAR_INIT_16
+    #undef MEMMAP_ERROR
+/* Variables of unspecified size.*/
+#elif defined RBA_ETHUDP_START_SEC_VAR_INIT_UNSPECIFIED
+    #define BSW_START_SEC_VAR_INIT_UNSPECIFIED
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_VAR_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_VAR_INIT_UNSPECIFIED
+    #define BSW_STOP_SEC_VAR_INIT_UNSPECIFIED
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_VAR_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+/* Normal code section.*/
+#elif defined RBA_ETHUDP_START_SEC_CODE
+    #define  BSW_START_SEC_DEFAULT_CODE
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_CODE
+    #define  BSW_STOP_SEC_DEFAULT_CODE
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+/* Code that shall go into fast code memory segments - Scratchpad Memory (SPRAM) */
+#elif defined RBA_ETHUDP_START_SEC_CODE_FAST
+    #define  BSW_START_SEC_SPRAM_CODE
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_START_SEC_CODE_FAST
+    #undef MEMMAP_ERROR
+#elif defined RBA_ETHUDP_STOP_SEC_CODE_FAST
+    #define  BSW_STOP_SEC_SPRAM_CODE
+    #include "Bsw_MemMap.h"
+    #undef RBA_ETHUDP_STOP_SEC_CODE_FAST
+    #undef MEMMAP_ERROR
+#elif defined MEMMAP_ERROR
+    #error "rba_EthUdp_MemMap.h, wrong #pragma command"
+#endif
+#undef RBA_ETHUDP_MEMMAP_H
+#endif
+/* -------- END OF FILE ------------------------------------------------------- */
+

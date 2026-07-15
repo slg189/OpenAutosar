@@ -1,0 +1,1996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>MCU_FlatView</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>SwComponentTypes</SHORT-NAME>
+          <ELEMENTS>
+            <COMPOSITION-SW-COMPONENT-TYPE>
+              <SHORT-NAME>MCU_FlatView</SHORT-NAME>
+              <PORTS>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_ActDischStatus</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_ActDischStatus</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_CheckSum</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_CheckSum</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_Counter</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_Counter</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_CurCntTor</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_CurCntTor</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_EmergShutDown</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_EmergShutDown</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_HighVolAllowed</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_HighVolAllowed</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_Motorspd</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_Motorspd</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_Ready</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_Ready</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_SelfCheck</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_SelfCheck</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_ShutDownAllowed</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_ShutDownAllowed</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU01_Status</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU01_Status</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU02_IGBTTmp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU02_IGBTTmp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU02_Idc</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU02_Idc</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU02_MaxTor</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU02_MaxTor</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU02_MinTor</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU02_MinTor</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU02_MotorTmp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU02_MotorTmp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU02_Vdc</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU02_Vdc</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_12VSupply</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_12VSupply</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_LI_OverSpeed</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_LI_OverSpeed</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_LI_OverTempEM</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_LI_OverTempEM</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_LI_OverTempINV</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_LI_OverTempINV</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_LI_UdcOver</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_LI_UdcOver</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_LI_UdcUnder</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_LI_UdcUnder</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_5VSupply</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_5VSupply</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_COMError</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_COMError</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_DESAT</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_DESAT</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_EMTempSamp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_EMTempSamp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_IdcSamp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_IdcSamp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_InvTempSamp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_InvTempSamp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_PhASamp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_PhASamp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_PhBSamp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_PhBSamp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_PhCSamp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_PhCSamp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_Resolver</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_Resolver</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_SysFailure</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_SysFailure</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_NRF_UdcSamp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_NRF_UdcSamp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_BusOff</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_BusOff</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_HWOverCur</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_HWOverCur</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_IdcOver</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_IdcOver</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_IntError</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_IntError</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_MsgTO</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_MsgTO</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_OverSpeed</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_OverSpeed</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_OverTempEM</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_OverTempEM</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_OverTempINV</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_OverTempINV</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_PhAOver</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_PhAOver</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_PhBOver</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_PhBOver</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_PhCOver</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_PhCOver</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_PhaseImp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_PhaseImp</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_ToqError</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_ToqError</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_UDCUnder</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_UDCUnder</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_MCU03_RF_UdcOver</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_MCU03_RF_UdcOver</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_SystemSignal_TCP_TX</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Eth_Interface/SR_Interface_SystemSignal_TCP_Tx</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PPort_SystemSignal_UDP_TX</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Eth_Interface/SR_Interface_SystemSignal_UDP_Tx</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU01_ActiveDischarge</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU01_ActiveDischarge/HCU01_ActiveDischarge</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU01_ActiveDischarge</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU01_CheckSum</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU01_CheckSum/HCU01_CheckSum</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU01_CheckSum</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU01_Counter</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU01_Counter/HCU01_Counter</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU01_Counter</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU01_EmergShutDown</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU01_EmergShutDown/HCU01_EmergShutDown</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU01_EmergShutDown</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU01_EnaMCU</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU01_EnaMCU/HCU01_EnaMCU</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU01_EnaMCU</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU01_McuModeCmd</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU01_McuModeCmd/HCU01_McuModeCmd</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU01_McuModeCmd</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU01_Shift</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU01_Shift/HCU01_Shift</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU01_Shift</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU01_SpeedCmd</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU01_SpeedCmd/HCU01_SpeedCmd</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU01_SpeedCmd</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU01_TqCmd</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU01_TqCmd/HCU01_TqCmd</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU01_TqCmd</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_HCU02_Poweroff</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/COM_SWC/SRInterface_HCU02_Poweroff/HCU02_Poweroff</DATA-ELEMENT-REF>
+                      <ALIVE-TIMEOUT>0.5</ALIVE-TIMEOUT>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/COM_SWC/SRInterface_HCU02_Poweroff</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_SystemSignal_TCP_RX</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Eth_Interface/SR_Interface_SystemSignal_TCP_Rx</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_SystemSignal_UDP_RX</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Eth_Interface/SR_Interface_SystemSignal_UDP_Rx</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+              <COMPONENTS>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_COM</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/COM_SWC/ASW_COM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_CORE0</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_CORE0/ASW_CORE0</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_CORE1</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_CORE1/ASW_CORE1</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_CORE2</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ARPackage/ASW_CORE2</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_CORE3</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_CORE3/ASW_CORE3</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_CORE4</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_CORE4/ASW_CORE4</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_CORE5</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_CORE5/ASW_CORE5</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_DCM</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_DCM/ASW_DCM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_DEM</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_DEM/ASW_DEM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_ETH</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/EthernetModule/ASW_ETH</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_NM</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_NM/ASW_NM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_NVM</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_NVM/ASW_NVM/ASW_NVM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_StbM</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_StbM/ASW_StbM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ASW_WDG</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/ASW_WDG/ASW_WDG</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_BswM</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_BswM/SwComponentTypes/BswM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_CDD_CORE0</SHORT-NAME>
+                  <TYPE-TREF DEST="COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE">/CDD_CORE0/CDD_CORE0</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_CDD_CORE1</SHORT-NAME>
+                  <TYPE-TREF DEST="COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE">/CDD_CORE1/CDD_CORE1</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_CDD_CORE2</SHORT-NAME>
+                  <TYPE-TREF DEST="COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE">/CDD_CORE2/CDD_CORE2</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_CDD_CORE3</SHORT-NAME>
+                  <TYPE-TREF DEST="COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE">/CDD_CORE3/CDD_CORE3</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_CDD_CORE4</SHORT-NAME>
+                  <TYPE-TREF DEST="COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE">/CDD_CORE4/CDD_CORE4</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_CDD_CORE5</SHORT-NAME>
+                  <TYPE-TREF DEST="COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE">/CDD_CORE5/CDD_CORE5</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_ComM</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_ComM/SwComponentTypes/ComM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_Dcm</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_Dem</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_Dem/SwComponentTypes/Dem</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_Det</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_Det/SwComponentTypes/Det</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_DoIP</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_DoIP/SwComponentTypes/DoIP</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_EcuM</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_EcuM/SwComponentTypes/EcuM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_IoHwAb_ADC</SHORT-NAME>
+                  <TYPE-TREF DEST="ECU-ABSTRACTION-SW-COMPONENT-TYPE">/IoHwAb_ADC/IoHwAb_ADC</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_IoHwAb_DIO</SHORT-NAME>
+                  <TYPE-TREF DEST="ECU-ABSTRACTION-SW-COMPONENT-TYPE">/IoHwAb_DIO/IoHwAb_DIO</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_IoHwAb_DIO_Test</SHORT-NAME>
+                  <TYPE-TREF DEST="ECU-ABSTRACTION-SW-COMPONENT-TYPE">/IoHwAb_DIO_Test/IoHwAb_DIO_Test</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_IoHwAb_ICU</SHORT-NAME>
+                  <TYPE-TREF DEST="ECU-ABSTRACTION-SW-COMPONENT-TYPE">/IoHwAb_ICU/IoHwAb_ICU</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_IoHwAb_PWM</SHORT-NAME>
+                  <TYPE-TREF DEST="ECU-ABSTRACTION-SW-COMPONENT-TYPE">/IoHwAb_PWM/IoHwAb_PWM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_NvM</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_NvM/SwComponentTypes/NvM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_SensorActuator_ADC</SHORT-NAME>
+                  <TYPE-TREF DEST="SENSOR-ACTUATOR-SW-COMPONENT-TYPE">/SensorActuator_ADC/SensorActuator_ADC</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_SensorActuator_DIO</SHORT-NAME>
+                  <TYPE-TREF DEST="SENSOR-ACTUATOR-SW-COMPONENT-TYPE">/SensorActuator_DIO/SensorActuator_DIO</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_SensorActuator_DIO_Test</SHORT-NAME>
+                  <TYPE-TREF DEST="SENSOR-ACTUATOR-SW-COMPONENT-TYPE">/SensorActuator_DIO_Test/SensorActuator_DIO_Test</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_SensorActuator_ICU</SHORT-NAME>
+                  <TYPE-TREF DEST="SENSOR-ACTUATOR-SW-COMPONENT-TYPE">/SensorActuator_ICU/SensorActuator_ICU</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_SensorActuator_PWM</SHORT-NAME>
+                  <TYPE-TREF DEST="SENSOR-ACTUATOR-SW-COMPONENT-TYPE">/SensorActuator_PWM/SensorActuator_PWM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_StbM</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_StbM/SwComponentTypes/StbM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_WdgM</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/AUTOSAR_WdgM/WdgM</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_XCP</SHORT-NAME>
+                  <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/XCP_SWC/ASW_XCP</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+                <SW-COMPONENT-PROTOTYPE>
+                  <SHORT-NAME>CPT_rba_DiagLib</SHORT-NAME>
+                  <TYPE-TREF DEST="SERVICE-SW-COMPONENT-TYPE">/rba_DiagLib/SwComponentTypes/rba_DiagLib</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+              </COMPONENTS>
+              <CONNECTORS>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_CORE0_PPort_SwcModeRequest_CPT_BswM_RP_BswMArbitration_BswMSwcModeRequest</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE0</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_CORE0/ASW_CORE0/PPort_SwcModeRequest</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_BswM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_BswM/SwComponentTypes/BswM/RP_BswMArbitration_BswMSwcModeRequest</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_PPortPrototype_NRC22_CPT_Dcm_Rp_ModeDeclarationGroup_NRC22</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/PPortPrototype_NRC22</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/Rp_ModeDeclarationGroup_NRC22</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_PPortPrototype_NRC72_CPT_Dcm_Rp_ModeDeclarationGroup_NRC72</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/PPortPrototype_NRC72</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/Rp_ModeDeclarationGroup_NRC72</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_PPort_IOControl_EngineTemperature_CPT_Dcm_DataServices_EngineTemperature</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/PPort_IOControl_EngineTemperature</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_EngineTemperature</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_PPort_IOControl_PowerMode_CPT_Dcm_DataServices_PowerMode</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/PPort_IOControl_PowerMode</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_PowerMode</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_PPort_IOControl_VacuumPumpPressure_CPT_Dcm_DataServices_VacuumPumpPres</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/PPort_IOControl_VacuumPumpPressure</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_VacuumPumpPres</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_PPort_Routine_CheckMemoryCRC_CPT_Dcm_RoutineServices_DcmDspRoutine_CheckMemoryCRC</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/PPort_Routine_CheckMemoryCRC</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_CheckMemoryCRC</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_PPort_Routine_DriveVacuumPump_CPT_Dcm_RoutineServices_DcmDspRoutine_DriveVacuumPump</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/PPort_Routine_DriveVacuumPump</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_DriveVacuumPump</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_P_DataServices_DcmDspData_ECU_NCF_Reference_Number_CPT_Dcm_R_DataServices_ECU_NCF_Ref_Num</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/P_DataServices_DcmDspData_ECU_NCF_Reference_Number</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/R_DataServices_ECU_NCF_Ref_Num</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_P_DataServices_DcmDspData_ECU_Serial_Number_CPT_Dcm_R_DataServices_ECU_Serial_Number</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/P_DataServices_DcmDspData_ECU_Serial_Number</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/R_DataServices_ECU_Serial_Number</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_P_DataServices_DcmDspData_HaRef_CPT_Dcm_R_DataServices_ECU_HW_Ref_Num</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/P_DataServices_DcmDspData_HaRef</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/R_DataServices_ECU_HW_Ref_Num</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_P_DataServices_DcmDspData_SwRef_CPT_Dcm_R_DataServices_ECU_SW_Ref_Num</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/P_DataServices_DcmDspData_SwRef</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/R_DataServices_ECU_SW_Ref_Num</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_P_DataServices_DcmDspData_SystemFaultRank_Read_CPT_Dcm_R_DataServices_SystemFaultRank</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/P_DataServices_DcmDspData_SystemFaultRank_Read</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/R_DataServices_SystemFaultRank</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_P_DataServices_DcmDspData_VIN_CPT_Dcm_R_DataServices_DcmDspData_VIN</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/P_DataServices_DcmDspData_VIN</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/R_DataServices_DcmDspData_VIN</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DCM_P_DataServices_DcmDspData_VehicleSpeed_Read_CPT_Dcm_R_DataServices_VehicleSpeed</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/P_DataServices_DcmDspData_VehicleSpeed_Read</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/R_DataServices_VehicleSpeed</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_CS_ExtendedDataRecord_Aged_counter_CPT_Dem_DataServices_CS_ExtendedDataRecord_Aged_counter</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_CS_ExtendedDataRecord_Aged_counter</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_CS_ExtendedDataRecord_Aged_counter</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_CS_ExtendedDataRecord_Fault_pending_counter_CPT_Dem_DataServices_CS_ExtendedDataRecord_Fault_pen</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_CS_ExtendedDataRecord_Fault_pending_counter</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_CS_ExtendedDataRecord_Fault_pending_counter</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_DemDataElementClass_Day_CPT_Dem_DataServices_DemDataElementClass_Day</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Day</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_DemDataElementClass_Day</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_DemDataElementClass_Hour_CPT_Dem_DataServices_DemDataElementClass_Hour</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Hour</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_DemDataElementClass_Hour</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_DemDataElementClass_Minute_CPT_Dem_DataServices_DemDataElementClass_Minute</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Minute</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_DemDataElementClass_Minute</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_DemDataElementClass_Month_CPT_Dem_DataServices_DemDataElementClass_Month</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Month</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_DemDataElementClass_Month</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_DemDataElementClass_OdometerReading_CPT_Dem_DataServices_DemDataElementClass_OdometerReading</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_OdometerReading</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_DemDataElementClass_OdometerReading</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_DemDataElementClass_PowerMode_CPT_Dem_DataServices_DemDataElementClass_PowerMode</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_PowerMode</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_DemDataElementClass_PowerMode</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_DemDataElementClass_SupplyVoltage_CPT_Dem_DataServices_DemDataElementClass_SupplyVoltage</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_SupplyVoltage</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_DemDataElementClass_SupplyVoltage</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_DataServices_DemDataElementClass_Year_CPT_Dem_DataServices_DemDataElementClass_Year</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Year</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/DataServices_DemDataElementClass_Year</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_PPort_CBStatusComp_DemComponent_0D01_CPT_Dem_CBStatusComp_DemComponent_0D01</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D01</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/CBStatusComp_DemComponent_0D01</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_PPort_CBStatusComp_DemComponent_0D02_CPT_Dem_CBStatusComp_DemComponent_0D02</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D02</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/CBStatusComp_DemComponent_0D02</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_PPort_CBStatusComp_DemComponent_0D03_CPT_Dem_CBStatusComp_DemComponent_0D03</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D03</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/CBStatusComp_DemComponent_0D03</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_PPort_CBStatusComp_DemComponent_0D04_CPT_Dem_CBStatusComp_DemComponent_0D04</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D04</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/CBStatusComp_DemComponent_0D04</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_PPort_CBStatusComp_DemComponent_0D05_CPT_Dem_CBStatusComp_DemComponent_0D05</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D05</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/CBStatusComp_DemComponent_0D05</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_PPort_CBStatusComp_DemComponent_0D06_Comb0_CPT_Dem_CBStatusComp_DemComponent_0D06_Comb0</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D06_Comb0</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/CBStatusComp_DemComponent_0D06_Comb0</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_DEM_PPort_CBStatusComp_DemComponent_0D06_Comb1_CPT_Dem_CBStatusComp_DemComponent_0D06_Comb1</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D06_Comb1</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/CBStatusComp_DemComponent_0D06_Comb1</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_ETH_PPort_CallbackGetPowerMode_CPT_DoIP_CBGetPowerMode</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_ETH</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/PPort_CallbackGetPowerMode</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_DoIP</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_DoIP/SwComponentTypes/DoIP/CBGetPowerMode</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_ETH_PPort_DoIPActivationLineSwitchNotification_CPT_DoIP_DoIPActivationLineSwitchNotification</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_ETH</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/PPort_DoIPActivationLineSwitchNotification</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_DoIP</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_DoIP/SwComponentTypes/DoIP/DoIPActivationLineSwitchNotification</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_NM_PP_BswMArbitration_BswM_MRP_Network_CPT_BswM_RP_BswMArbitration_BswM_MRP_SWC_Network</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_NM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_NM/ASW_NM/PP_BswMArbitration_BswM_MRP_Network</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_BswM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_BswM/SwComponentTypes/BswM/RP_BswMArbitration_BswM_MRP_SWC_Network</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ASW_NM_PP_BswMArbitration_BswM_MRP_NmState_CPT_BswM_RP_BswMArbitration_BswM_MRP_SWC_Network</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_NM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_NM/ASW_NM/PP_BswMArbitration_BswM_MRP_NmState</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_BswM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_BswM/SwComponentTypes/BswM/RP_BswMArbitration_BswM_MRP_SWC_Network</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE0_PPort_CPUUtilizationCore0_CPT_ASW_CORE0_RPort_CPUUtilizationCore0</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE0</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE0/CDD_CORE0/PPort_CPUUtilizationCore0</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE0</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE0/ASW_CORE0/RPort_CPUUtilizationCore0</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE0_PPort_GetMaxUserStackUtilization_CPT_ASW_CORE0_RPort_GetMaxUserStackUtilization</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE0</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE0/CDD_CORE0/PPort_GetMaxUserStackUtilization</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE0</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE0/ASW_CORE0/RPort_GetMaxUserStackUtilization</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE1_PPort_CPUUtilizationCore1_CPT_ASW_CORE1_RPort_CPUUtilizationCore1</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE1</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE1/CDD_CORE1/PPort_CPUUtilizationCore1</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE1</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE1/ASW_CORE1/RPort_CPUUtilizationCore1</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE1_PPort_GetMaxUserStackUtilization_CPT_ASW_CORE1_RPort_GetMaxUserStackUtilization</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE1</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE1/CDD_CORE1/PPort_GetMaxUserStackUtilization</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE1</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE1/ASW_CORE1/RPort_GetMaxUserStackUtilization</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE2_PPort_CPUUtilizationCore2_CPT_ASW_CORE2_RPort_CPUUtilizationCore2</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE2</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE2/CDD_CORE2/PPort_CPUUtilizationCore2</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE2</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ARPackage/ASW_CORE2/RPort_CPUUtilizationCore2</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE2_PPort_GetMaxUserStackUtilization_CPT_ASW_CORE2_RPort_GetMaxUserStackUtilization</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE2</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE2/CDD_CORE2/PPort_GetMaxUserStackUtilization</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE2</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ARPackage/ASW_CORE2/RPort_GetMaxUserStackUtilization</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE3_PPort_CPUUtilizationCore3_CPT_ASW_CORE3_RPort_CPUUtilizationCore3</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE3</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE3/CDD_CORE3/PPort_CPUUtilizationCore3</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE3</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE3/ASW_CORE3/RPort_CPUUtilizationCore3</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE3_PPort_GetMaxUserStackUtilization_CPT_ASW_CORE3_RPort_GetMaxUserStackUtilization</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE3</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE3/CDD_CORE3/PPort_GetMaxUserStackUtilization</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE3</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE3/ASW_CORE3/RPort_GetMaxUserStackUtilization</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE4_PPort_CPUUtilizationCore4_CPT_ASW_CORE4_RPort_CPUUtilizationCore4</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE4</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE4/CDD_CORE4/PPort_CPUUtilizationCore4</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE4</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE4/ASW_CORE4/RPort_CPUUtilizationCore4</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE4_PPort_GetMaxUserStackUtilization_CPT_ASW_CORE4_RPort_GetMaxUserStackUtilization</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE4</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE4/CDD_CORE4/PPort_GetMaxUserStackUtilization</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE4</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE4/ASW_CORE4/RPort_GetMaxUserStackUtilization</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE5_PPort_CPUUtilizationCore5_CPT_ASW_CORE5_RPort_CPUUtilizationCore5</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE5</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE5/CDD_CORE5/PPort_CPUUtilizationCore5</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE5</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE5/ASW_CORE5/RPort_CPUUtilizationCore5</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_CDD_CORE5_PPort_GetMaxUserStackUtilization_CPT_ASW_CORE5_RPort_GetMaxUserStackUtilization</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_CDD_CORE5</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CDD_CORE5/CDD_CORE5/PPort_GetMaxUserStackUtilization</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_CORE5</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE5/ASW_CORE5/RPort_GetMaxUserStackUtilization</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ComM_UR_ComMUser_Can_Network_Channel_CPT_ASW_NM_RP_ComM_UserRequest_CAN0</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ComM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_ComM/SwComponentTypes/ComM/UR_ComMUser_Can_Network_Channel</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_NM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NM/ASW_NM/RP_ComM_UserRequest_CAN0</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_ComM_modeLimitation_CPT_ASW_NM_RPort_EcuModeLimitation</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ComM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_ComM/SwComponentTypes/ComM/modeLimitation</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_NM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NM/ASW_NM/RPort_EcuModeLimitation</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dcm_DCMServices_CPT_ASW_DCM_RPort_DCMServices</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DCMServices</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/RPort_DCMServices</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dcm_P_DataServices_DcmDspData_VIN_CPT_ASW_DCM_R_DataServices_DcmDspData_VIN</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/P_DataServices_DcmDspData_VIN</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/R_DataServices_DcmDspData_VIN</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dcm_P_DataServices_ECU_Serial_Number_CPT_ASW_DCM_R_DataServices_DcmDspData_ECU_Serial_Number</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/P_DataServices_ECU_Serial_Number</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/R_DataServices_DcmDspData_ECU_Serial_Number</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dcm_P_DataServices_SystemFaultRank_CPT_ASW_DCM_RPort_DataServices_DcmDspData_SystemFaultRank_Write</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/P_DataServices_SystemFaultRank</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/RPort_DataServices_DcmDspData_SystemFaultRank_Write</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dcm_P_DataServices_VehicleSpeed_CPT_ASW_DCM_RPort_DataServices_DcmDspData_VehicleSpeed_Write</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dcm</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/P_DataServices_VehicleSpeed</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DCM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DCM/ASW_DCM/RPort_DataServices_DcmDspData_VehicleSpeed_Write</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dem_Event_DemEventParameter_0D01_SWC_CPT_ASW_DEM_Event_DemEventParameter_0D01</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/Event_DemEventParameter_0D01_SWC</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D01</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dem_Event_DemEventParameter_0D02_SWC_CPT_ASW_DEM_Event_DemEventParameter_0D02</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/Event_DemEventParameter_0D02_SWC</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D02</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dem_Event_DemEventParameter_0D06_Comb0_CPT_ASW_DEM_Event_DemEventParameter_0D06_Comb0</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/Event_DemEventParameter_0D06_Comb0</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb0</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dem_Event_DemEventParameter_0D06_Comb1_CPT_ASW_DEM_Event_DemEventParameter_0D06_Comb1</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/Event_DemEventParameter_0D06_Comb1</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb1</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_Dem_OpCycle_DemOperationCycle_Power_CPT_ASW_DEM_RPort_OpCycle_DemOperationCycle_Power</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_Dem</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dem/SwComponentTypes/Dem/OpCycle_DemOperationCycle_Power</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_DEM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/RPort_OpCycle_DemOperationCycle_Power</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_ADC_PPortADC_SAR0_10_CPT_SensorActuator_ADC_RPort_ADC_Get_SAR0_10</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_ADC</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_ADC/IoHwAb_ADC/PPortADC_SAR0_10</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_ADC</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_ADC/SensorActuator_ADC/RPort_ADC_Get_SAR0_10</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_ADC_PPortADC_SAR0_31_CPT_SensorActuator_ADC_RPort_ADC_Get_SAR0_31</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_ADC</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_ADC/IoHwAb_ADC/PPortADC_SAR0_31</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_ADC</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_ADC/SensorActuator_ADC/RPort_ADC_Get_SAR0_31</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_ADC_PPortADC_SAR1_12_CPT_SensorActuator_ADC_RPort_ADC_Get_SAR1_12</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_ADC</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_ADC/IoHwAb_ADC/PPortADC_SAR1_12</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_ADC</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_ADC/SensorActuator_ADC/RPort_ADC_Get_SAR1_12</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_DIO_PPort_DIO_Get_0_CPT_SensorActuator_DIO_RPort_DIO_Get_0</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_DIO</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO/IoHwAb_DIO/PPort_DIO_Get_0</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_DIO</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_DIO/SensorActuator_DIO/RPort_DIO_Get_0</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_DIO_PPort_DIO_Get_1_CPT_SensorActuator_DIO_RPort_DIO_Get_1</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_DIO</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO/IoHwAb_DIO/PPort_DIO_Get_1</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_DIO</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_DIO/SensorActuator_DIO/RPort_DIO_Get_1</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_DIO_PPort_DIO_Set_0_CPT_SensorActuator_DIO_RPort_DIO_Set_0</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_DIO</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO/IoHwAb_DIO/PPort_DIO_Set_0</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_DIO</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_DIO/SensorActuator_DIO/RPort_DIO_Set_0</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_DIO_PPort_DIO_Set_1_CPT_SensorActuator_DIO_RPort_DIO_Set_1</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_DIO</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO/IoHwAb_DIO/PPort_DIO_Set_1</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_DIO</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_DIO/SensorActuator_DIO/RPort_DIO_Set_1</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_DIO_Test_PPort_Dio_SetChannel_CPT_SensorActuator_DIO_Test_RPort_Dio_Set</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_DIO_Test</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO_Test/IoHwAb_DIO_Test/PPort_Dio_SetChannel</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_DIO_Test</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_DIO_Test/SensorActuator_DIO_Test/RPort_Dio_Set</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_ICU_PPort_ICU_PZ_1_CPT_SensorActuator_ICU_RPort_ICU_PZ_1</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_ICU</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_ICU/IoHwAb_ICU/PPort_ICU_PZ_1</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_ICU</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_ICU/SensorActuator_ICU/RPort_ICU_PZ_1</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_IoHwAb_PWM_PPort_PWM_PG_9_CPT_SensorActuator_PWM_RPort_PWM_PG_9</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_IoHwAb_PWM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_PWM/IoHwAb_PWM/PPort_PWM_PG_9</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_SensorActuator_PWM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_PWM/SensorActuator_PWM/RPort_PWM_PG_9</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_NvM_NvM_NativeBlock_2_CPT_ASW_NVM_RPort_ASW_NVM_BlockNative_1024_1</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_NvM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_NvM/SwComponentTypes/NvM/NvM_NativeBlock_2</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_NVM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_NvM_NvM_NativeBlock_3_CPT_ASW_NVM_RPort_ASW_NVM_BlockNative_1024_2</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_NvM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_NvM/SwComponentTypes/NvM/NvM_NativeBlock_3</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_NVM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_StbM_GlobalTime_Master_StbMSynchronizedTimeBase_Eth_CPT_ASW_StbM_RP_GlobalTime_Master_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_StbM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Master_StbMSynchronizedTimeBase_Eth</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_StbM</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_StbM/ASW_StbM/RP_GlobalTime_Master_StbMSynchronizedTimeBase_Eth</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_WdgM_globalMode_CPT_ASW_WDG_RPort_WdgM_GlobalMode</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_WdgM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/WdgM/globalMode</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_WDG</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_WDG/ASW_WDG/RPort_WdgM_GlobalMode</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_WdgM_localSupervision_WdgMSupervisedEntity_Alive_Supervision_Entity1_WdgMCheckpoint_Alive_Supervision_Entity1_CPT_ASW</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_WdgM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/WdgM/localSupervision_WdgMSupervisedEntity_Alive_Supervision_Entity1_WdgMCheckpoint_Alive_Supervision_Entity1</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_WDG</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_WDG/ASW_WDG/RPort_Alive_Supervision_Entity1</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_WdgM_localSupervision_WdgMSupervisedEntity_Deadline_Supervision_Entity1_WdgMCheckpoint_Deadline_Supervision_Entity1_C</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_WdgM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/WdgM/localSupervision_WdgMSupervisedEntity_Deadline_Supervision_Entity1_WdgMCheckpoint_Deadline_Supervision_Entity1</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_WDG</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_WDG/ASW_WDG/RPort_Deadline_Supervision_Entity1</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <ASSEMBLY-SW-CONNECTOR>
+                  <SHORT-NAME>ASC_CPT_WdgM_localSupervision_WdgMSupervisedEntity_Deadline_Supervision_Entity1_WdgMCheckpoint_Deadline_Supervision_Entity2_C</SHORT-NAME>
+                  <PROVIDER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_WdgM</CONTEXT-COMPONENT-REF>
+                    <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/WdgM/localSupervision_WdgMSupervisedEntity_Deadline_Supervision_Entity1_WdgMCheckpoint_Deadline_Supervision_Entity2</TARGET-P-PORT-REF>
+                  </PROVIDER-IREF>
+                  <REQUESTER-IREF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_WDG</CONTEXT-COMPONENT-REF>
+                    <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_WDG/ASW_WDG/RPort_Deadline_Supervision_Entity2</TARGET-R-PORT-REF>
+                  </REQUESTER-IREF>
+                </ASSEMBLY-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_ActDischStatus_PPort_MCU01_ActDischStatus</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_ActDischStatus</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_ActDischStatus</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_CheckSum_PPort_MCU01_CheckSum</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_CheckSum</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_CheckSum</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_Counter_PPort_MCU01_Counter</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_Counter</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_Counter</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_CurCntTor_PPort_MCU01_CurCntTor</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_CurCntTor</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_CurCntTor</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_EmergShutDown_PPort_MCU01_EmergShutDown</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_EmergShutDown</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_EmergShutDown</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_HighVolAllowed_PPort_MCU01_HighVolAllowed</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_HighVolAllowed</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_HighVolAllowed</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_Motorspd_PPort_MCU01_Motorspd</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_Motorspd</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_Motorspd</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_Ready_PPort_MCU01_Ready</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_Ready</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_Ready</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_SelfCheck_PPort_MCU01_SelfCheck</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_SelfCheck</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_SelfCheck</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_ShutDownAllowed_PPort_MCU01_ShutDownAllowed</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_ShutDownAllowed</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_ShutDownAllowed</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU01_Status_PPort_MCU01_Status</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU01_Status</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU01_Status</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU02_IGBTTmp_PPort_MCU02_IGBTTmp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU02_IGBTTmp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU02_IGBTTmp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU02_Idc_PPort_MCU02_Idc</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU02_Idc</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU02_Idc</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU02_MaxTor_PPort_MCU02_MaxTor</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU02_MaxTor</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU02_MaxTor</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU02_MinTor_PPort_MCU02_MinTor</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU02_MinTor</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU02_MinTor</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU02_MotorTmp_PPort_MCU02_MotorTmp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU02_MotorTmp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU02_MotorTmp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU02_Vdc_PPort_MCU02_Vdc</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU02_Vdc</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU02_Vdc</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_12VSupply_PPort_MCU03_12VSupply</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_12VSupply</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_12VSupply</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_LI_OverSpeed_PPort_MCU03_LI_OverSpeed</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_LI_OverSpeed</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_LI_OverSpeed</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_LI_OverTempEM_PPort_MCU03_LI_OverTempEM</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_LI_OverTempEM</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_LI_OverTempEM</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_LI_OverTempINV_PPort_MCU03_LI_OverTempINV</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_LI_OverTempINV</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_LI_OverTempINV</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_LI_UdcOver_PPort_MCU03_LI_UdcOver</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_LI_UdcOver</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_LI_UdcOver</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_LI_UdcUnder_PPort_MCU03_LI_UdcUnder</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_LI_UdcUnder</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_LI_UdcUnder</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_5VSupply_PPort_MCU03_NRF_5VSupply</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_5VSupply</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_5VSupply</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_COMError_PPort_MCU03_NRF_COMError</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_COMError</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_COMError</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_DESAT_PPort_MCU03_NRF_DESAT</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_DESAT</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_DESAT</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_EMTempSamp_PPort_MCU03_NRF_EMTempSamp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_EMTempSamp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_EMTempSamp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_IdcSamp_PPort_MCU03_NRF_IdcSamp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_IdcSamp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_IdcSamp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_InvTempSamp_PPort_MCU03_NRF_InvTempSamp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_InvTempSamp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_InvTempSamp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_PhASamp_PPort_MCU03_NRF_PhASamp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_PhASamp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_PhASamp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_PhBSamp_PPort_MCU03_NRF_PhBSamp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_PhBSamp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_PhBSamp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_PhCSamp_PPort_MCU03_NRF_PhCSamp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_PhCSamp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_PhCSamp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_Resolver_PPort_MCU03_NRF_Resolver</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_Resolver</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_Resolver</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_SysFailure_PPort_MCU03_NRF_SysFailure</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_SysFailure</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_SysFailure</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_NRF_UdcSamp_PPort_MCU03_NRF_UdcSamp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_NRF_UdcSamp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_NRF_UdcSamp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_BusOff_PPort_MCU03_RF_BusOff</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_BusOff</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_BusOff</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_HWOverCur_PPort_MCU03_RF_HWOverCur</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_HWOverCur</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_HWOverCur</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_IdcOver_PPort_MCU03_RF_IdcOver</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_IdcOver</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_IdcOver</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_IntError_PPort_MCU03_RF_IntError</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_IntError</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_IntError</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_MsgTO_PPort_MCU03_RF_MsgTO</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_MsgTO</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_MsgTO</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_OverSpeed_PPort_MCU03_RF_OverSpeed</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_OverSpeed</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_OverSpeed</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_OverTempEM_PPort_MCU03_RF_OverTempEM</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_OverTempEM</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_OverTempEM</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_OverTempINV_PPort_MCU03_RF_OverTempINV</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_OverTempINV</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_OverTempINV</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_PhAOver_PPort_MCU03_RF_PhAOver</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_PhAOver</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_PhAOver</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_PhBOver_PPort_MCU03_RF_PhBOver</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_PhBOver</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_PhBOver</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_PhCOver_PPort_MCU03_RF_PhCOver</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_PhCOver</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_PhCOver</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_PhaseImp_PPort_MCU03_RF_PhaseImp</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_PhaseImp</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_PhaseImp</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_ToqError_PPort_MCU03_RF_ToqError</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_ToqError</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_ToqError</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_UDCUnder_PPort_MCU03_RF_UDCUnder</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_UDCUnder</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_UDCUnder</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_PPort_MCU03_RF_UdcOver_PPort_MCU03_RF_UdcOver</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/COM_SWC/ASW_COM/PPort_MCU03_RF_UdcOver</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_MCU03_RF_UdcOver</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_ETH_PPort_SystemSignal_TCP_TX_PPort_SystemSignal_TCP_TX</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_ETH</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/PPort_SystemSignal_TCP_TX</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_SystemSignal_TCP_TX</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_ETH_PPort_SystemSignal_UDP_TX_PPort_SystemSignal_UDP_TX</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_ETH</CONTEXT-COMPONENT-REF>
+                      <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/PPort_SystemSignal_UDP_TX</TARGET-P-PORT-REF>
+                    </P-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="P-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/PPort_SystemSignal_UDP_TX</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU01_ActiveDischarge_RPort_HCU01_ActiveDischarge</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU01_ActiveDischarge</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU01_ActiveDischarge</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU01_CheckSum_RPort_HCU01_CheckSum</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU01_CheckSum</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU01_CheckSum</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU01_Counter_RPort_HCU01_Counter</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU01_Counter</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU01_Counter</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU01_EmergShutDown_RPort_HCU01_EmergShutDown</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU01_EmergShutDown</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU01_EmergShutDown</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU01_EnaMCU_RPort_HCU01_EnaMCU</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU01_EnaMCU</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU01_EnaMCU</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU01_McuModeCmd_RPort_HCU01_McuModeCmd</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU01_McuModeCmd</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU01_McuModeCmd</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU01_Shift_RPort_HCU01_Shift</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU01_Shift</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU01_Shift</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU01_SpeedCmd_RPort_HCU01_SpeedCmd</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU01_SpeedCmd</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU01_SpeedCmd</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU01_TqCmd_RPort_HCU01_TqCmd</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU01_TqCmd</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU01_TqCmd</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_COM_RPort_HCU02_Poweroff_RPort_HCU02_Poweroff</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_COM</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/COM_SWC/ASW_COM/RPort_HCU02_Poweroff</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_HCU02_Poweroff</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_ETH_RPort_SystemSignal_TCP_RX_RPort_SystemSignal_TCP_RX</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_ETH</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/RPort_SystemSignal_TCP_RX</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_SystemSignal_TCP_RX</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+                <DELEGATION-SW-CONNECTOR>
+                  <SHORT-NAME>DSC_CPT_ASW_ETH_RPort_SystemSignal_UDP_RX_RPort_SystemSignal_UDP_RX</SHORT-NAME>
+                  <INNER-PORT-IREF>
+                    <R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                      <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/CPT_ASW_ETH</CONTEXT-COMPONENT-REF>
+                      <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/RPort_SystemSignal_UDP_RX</TARGET-R-PORT-REF>
+                    </R-PORT-IN-COMPOSITION-INSTANCE-REF>
+                  </INNER-PORT-IREF>
+                  <OUTER-PORT-REF DEST="R-PORT-PROTOTYPE">/MCU_FlatView/SwComponentTypes/MCU_FlatView/RPort_SystemSignal_UDP_RX</OUTER-PORT-REF>
+                </DELEGATION-SW-CONNECTOR>
+              </CONNECTORS>
+            </COMPOSITION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RTAOS_Project version="1.0">
+  <Working name="TC_397.arxml" />
+  <File name="..\Isolar_Project\bsw_config\Rte_Os\OsCfg.arxml" />
+  <File name="..\Isolar_Project\bsw_config\Other_Modules\EcuC_Hardware_Partition_EcucValues.arxml" />
+  <File name="TC_397.arxml" />
+  <File name="..\Sourcecode\rte\gen\osNeeds.arxml" />
+  <Options>
+    <Option name="BuildGui.OutputFolder">..\Sourcecode\os</Option>
+    <Option name="BuildGui.LastBuildCommand">rtaosgen.exe --include:..\Sourcecode\Integration\TargetIntegration\TC39xB\Include --include:..\Sourcecode\Integration\OS\Memmap --include:..\Sourcecode\Integration\OS\include --include:..\Sourcecode\bsw\Platform --include:..\Sourcecode\rte\gen --include:..\Sourcecode\Integration\RTE\Include --include:..\Sourcecode\Integration\RTE\Memmap --output:..\Gen --include:..\Sourcecode\Integration\MCAL\Memmap --build:clean --output:..\Sourcecode\os --output:[*.c]..\Sourcecode\os\Gen --output:[*.h]..\Sourcecode\os\Gen --output:[*,asm]..\Sourcecode\os\Gen --output:[.*]..\Sourcecode\os\Gen --include:..\Sourcecode\Integration\BSW\integration --debug:source Os_Config.rtaos</Option>
+    <Option name="BuildGui.IncludePaths">..\Sourcecode\Integration\TargetIntegration\TC39xB\Include;..\Sourcecode\Integration\OS\Memmap;..\Sourcecode\Integration\OS\include;..\Sourcecode\bsw\Platform;..\Sourcecode\rte\gen;..\Sourcecode\Integration\RTE\Include;..\Sourcecode\Integration\RTE\Memmap;..\Sourcecode\Integration\MCAL\Memmap;..\Sourcecode\Integration\TargetIntegration\TC39xB\Include;..\Sourcecode\Integration\BSW\integration</Option>
+    <Option name="BuildGui.CleanRebuild">TRUE</Option>
+    <Option name="BuildGui.OutputLocations">[*.c]..\Sourcecode\os\Gen;[*.h]..\Sourcecode\os\Gen;[*,asm]..\Sourcecode\os\Gen;[.*]..\Sourcecode\os\Gen</Option>
+    <Option name="BuildGui.KeepSourceFiles">TRUE</Option>
+  </Options>
+</RTAOS_Project>

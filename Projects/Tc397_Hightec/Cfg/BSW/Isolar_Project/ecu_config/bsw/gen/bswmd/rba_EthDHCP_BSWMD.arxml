@@ -1,0 +1,2465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 L="EN" xml:space="default">English</L-10>
+    </USED-LANGUAGES>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>RB</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>RBA</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>rba_EthDHCP</SHORT-NAME>
+              <AR-PACKAGES>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswImplementations</SHORT-NAME>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswModuleDescriptions</SHORT-NAME>
+                  <ELEMENTS>
+                    <BSW-MODULE-DESCRIPTION>
+                      <SHORT-NAME>rba_EthDHCP</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">Dynamic Host Configuration</L-4>
+                      </LONG-NAME>
+                      <CATEGORY>BSW_MODULE</CATEGORY>
+                      <MODULE-ID>255</MODULE-ID>
+                      <PROVIDED-ENTRYS>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthDHCP/BswModuleEntrys/rba_EthDHCP_GetIpAddress</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthDHCP/BswModuleEntrys/rba_EthDHCP_Init</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthDHCP/BswModuleEntrys/rba_EthDHCP_IpConflictDetected</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthDHCP/BswModuleEntrys/rba_EthDHCP_MainFunction</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthDHCP/BswModuleEntrys/rba_EthDHCP_ReadOption</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthDHCP/BswModuleEntrys/rba_EthDHCP_RxIndication</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthDHCP/BswModuleEntrys/rba_EthDHCP_Start</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthDHCP/BswModuleEntrys/rba_EthDHCP_Stop</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthDHCP/BswModuleEntrys/rba_EthDHCP_WriteOption</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                      </PROVIDED-ENTRYS>
+                      <BSW-MODULE-DEPENDENCYS>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>Det</SHORT-NAME>
+                          <TARGET-MODULE-ID>15</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>rba_EthArp</SHORT-NAME>
+                          <TARGET-MODULE-ID>255</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>rba_EthUdp</SHORT-NAME>
+                          <TARGET-MODULE-ID>255</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>TcpIp</SHORT-NAME>
+                          <TARGET-MODULE-ID>170</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                      </BSW-MODULE-DEPENDENCYS>
+                    </BSW-MODULE-DESCRIPTION>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswModuleEntrys</SHORT-NAME>
+                  <ELEMENTS>
+                    <BSW-MODULE-ENTRY>
+                      <SHORT-NAME>rba_EthDHCP_GetIpAddress</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">This function is called to provide the current IP Address in process to ARP to realize the IP
+                        Conflict detection internally.</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN" />
+                      </DESC>
+                      <IS-REENTRANT>false</IS-REENTRANT>
+                      <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                      <CALL-TYPE>REGULAR</CALL-TYPE>
+                      <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                      <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                      <ARGUMENTS>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lCtrlIdx_u8</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lLocalIpAddress_pu32</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>OUT</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lCurrentIpState_pen</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>OUT</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                      </ARGUMENTS>
+                    </BSW-MODULE-ENTRY>
+                    <BSW-MODULE-ENTRY>
+                      <SHORT-NAME>rba_EthDHCP_Init</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">Initialize the DHCP table (Client and Server) and the DHCP global variables.</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN" />
+                      </DESC>
+                      <IS-REENTRANT>false</IS-REENTRANT>
+                      <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                      <CALL-TYPE>REGULAR</CALL-TYPE>
+                      <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                      <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                      <ARGUMENTS>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>rba_EthDHCP_Config_cst</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/RB/RBA/rba_EthDHCP/ImplementationDataTypes/rba_EthDHCP_Config_to</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                      </ARGUMENTS>
+                    </BSW-MODULE-ENTRY>
+                    <BSW-MODULE-ENTRY>
+                      <SHORT-NAME>rba_EthDHCP_IpConflictDetected</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">This function is called to check the Ip received in the ARP frame and to detect if there is
+                        no conflict between Ip address.</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN" />
+                      </DESC>
+                      <IS-REENTRANT>false</IS-REENTRANT>
+                      <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                      <CALL-TYPE>REGULAR</CALL-TYPE>
+                      <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                      <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                      <ARGUMENTS>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lCtrlIdx_u8</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                      </ARGUMENTS>
+                    </BSW-MODULE-ENTRY>
+                    <BSW-MODULE-ENTRY>
+                      <SHORT-NAME>rba_EthDHCP_MainFunction</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">This DHCP MainFunction is called from TcpIp_MainFunction.</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN" />
+                      </DESC>
+                      <IS-REENTRANT>false</IS-REENTRANT>
+                      <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                      <CALL-TYPE>REGULAR</CALL-TYPE>
+                      <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                      <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                    </BSW-MODULE-ENTRY>
+                    <BSW-MODULE-ENTRY>
+                      <SHORT-NAME>rba_EthDHCP_ReadOption</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">Function called from TcpIp_DhcpReadOption().</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN" />
+                      </DESC>
+                      <IS-REENTRANT>false</IS-REENTRANT>
+                      <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                      <CALL-TYPE>REGULAR</CALL-TYPE>
+                      <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                      <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                      <ARGUMENTS>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>LocalIpAddrId</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>Option</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>DataLength</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>DataPtr</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>OUT</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                      </ARGUMENTS>
+                    </BSW-MODULE-ENTRY>
+                    <BSW-MODULE-ENTRY>
+                      <SHORT-NAME>rba_EthDHCP_RxIndication</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">This API service is called by the rba_EthUdp module on reception of a DHCP frame.</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN" />
+                      </DESC>
+                      <IS-REENTRANT>false</IS-REENTRANT>
+                      <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                      <CALL-TYPE>REGULAR</CALL-TYPE>
+                      <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                      <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                      <ARGUMENTS>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lSocketIdOut_u16</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lIPAddrPort_ps</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lBufPtr_pu8</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lLength_u16</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                      </ARGUMENTS>
+                    </BSW-MODULE-ENTRY>
+                    <BSW-MODULE-ENTRY>
+                      <SHORT-NAME>rba_EthDHCP_Start</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">Start the DHCP sequence to get an IP address from DHCP server.</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN" />
+                      </DESC>
+                      <IS-REENTRANT>false</IS-REENTRANT>
+                      <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                      <CALL-TYPE>REGULAR</CALL-TYPE>
+                      <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                      <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                      <ARGUMENTS>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lLocalAddrId_tu8</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                      </ARGUMENTS>
+                    </BSW-MODULE-ENTRY>
+                    <BSW-MODULE-ENTRY>
+                      <SHORT-NAME>rba_EthDHCP_Stop</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">Stop the DHCP sequence to get or to maintain an IP address from DHCP server .</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN" />
+                      </DESC>
+                      <IS-REENTRANT>false</IS-REENTRANT>
+                      <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                      <CALL-TYPE>REGULAR</CALL-TYPE>
+                      <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                      <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                      <ARGUMENTS>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>lLocalAddrId_tu8</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                      </ARGUMENTS>
+                    </BSW-MODULE-ENTRY>
+                    <BSW-MODULE-ENTRY>
+                      <SHORT-NAME>rba_EthDHCP_WriteOption</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">Function called from TcpIp_DhcpWriteOption().</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN" />
+                      </DESC>
+                      <IS-REENTRANT>false</IS-REENTRANT>
+                      <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                      <CALL-TYPE>REGULAR</CALL-TYPE>
+                      <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                      <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                      <ARGUMENTS>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>LocalIpAddrId</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>Option</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>DataLength</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                        <SW-SERVICE-ARG>
+                          <SHORT-NAME>DataPtr</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN" />
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-SERVICE-ARG>
+                      </ARGUMENTS>
+                    </BSW-MODULE-ENTRY>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
+                  <SHORT-NAME>CompuMethods</SHORT-NAME>
+                  <ELEMENTS>
+                    <COMPU-METHOD>
+                      <SHORT-NAME>rba_EthDHCP_SockState_ten</SHORT-NAME>
+                      <CATEGORY>TEXTTABLE</CATEGORY>
+                      <DISPLAY-FORMAT>%5.0f</DISPLAY-FORMAT>
+                      <COMPU-INTERNAL-TO-PHYS>
+                        <COMPU-SCALES>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold Socket States.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_SOCK_BOUND</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold Socket States.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_SOCK_NOTBOUND</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                        </COMPU-SCALES>
+                      </COMPU-INTERNAL-TO-PHYS>
+                    </COMPU-METHOD>
+                    <COMPU-METHOD>
+                      <SHORT-NAME>rba_EthDHCPClient_State_ten</SHORT-NAME>
+                      <CATEGORY>TEXTTABLE</CATEGORY>
+                      <DISPLAY-FORMAT>%5.0f</DISPLAY-FORMAT>
+                      <COMPU-INTERNAL-TO-PHYS>
+                        <COMPU-SCALES>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold DHCP client state.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTOFF</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold client initiate state</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTINIT</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to select the client.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTSELECTING</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold client request .</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTREQUESTING</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold client probing.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTPROBING</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold client bound.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTBOUND</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to renew client</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">6</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">6</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTRENEWING</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold client rebinding.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">7</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">7</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTREBINDING</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to client reboot</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">8</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">8</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTREBOOTING</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to client informing.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">9</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">9</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTINFORMING</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold client decline state .</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">10</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">10</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTDECLINE</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold cliet permanent state.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">11</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">11</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTPERMANENT</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold client stop state</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">12</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">12</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTSTOP</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold client release state.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">13</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">13</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_CLNTRELEASE</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                        </COMPU-SCALES>
+                      </COMPU-INTERNAL-TO-PHYS>
+                    </COMPU-METHOD>
+                    <COMPU-METHOD>
+                      <SHORT-NAME>rba_EthDHCPServer_State_ten</SHORT-NAME>
+                      <CATEGORY>TEXTTABLE</CATEGORY>
+                      <DISPLAY-FORMAT>%5.0f</DISPLAY-FORMAT>
+                      <COMPU-INTERNAL-TO-PHYS>
+                        <COMPU-SCALES>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold DHCP Server states.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_SRVROFF</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold Server offer.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_SRVROFFER</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold Server acknowledgement.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_SRVRACK</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold Server negative acknowledgement.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_SRVRNACK</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                          <COMPU-SCALE>
+                            <DESC>
+                              <L-2 L="EN">Type definition for variables to hold Server wait state.</L-2>
+                            </DESC>
+                            <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                            <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                            <COMPU-CONST>
+                              <VT>RBA_ETHDHCP_SRVRWAITRESP</VT>
+                            </COMPU-CONST>
+                          </COMPU-SCALE>
+                        </COMPU-SCALES>
+                      </COMPU-INTERNAL-TO-PHYS>
+                    </COMPU-METHOD>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
+                  <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+                  <ELEMENTS>
+                    <IMPLEMENTATION-DATA-TYPE>
+                      <SHORT-NAME>rba_EthDHCP_Hdr_tst</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">rba_EthDHCP_Hdr_tst</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN">DHCP message format</L-2>
+                      </DESC>
+                      <CATEGORY>STRUCTURE</CATEGORY>
+                      <SUB-ELEMENTS>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>xId_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">xId_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">ID</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ciAddr_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ciAddr_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Client IP addr. only filled in if client is in BOUND, RENEW or REBINDING state and can respond to ARP requests</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>yiAddr_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">yiAddr_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">your (client) IP address</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>siAddr_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">siAddr_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Server IP address</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>giAddr_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">giAddr_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Gateway IP address</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>magicCookie_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">magicCookie_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">DHCP Magic Cookie</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>secs_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">secs_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">secs_u16</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>flags_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">flags_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Used to hold flag status.</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>packetOpcode_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">packetOpcode_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Used to hold packet opcode.</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>hwType_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">hwType_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Used to hold Hardware type</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>hwAddrLen_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">hwAddrLen_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Ued to hold hardware address length</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>hops_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">hops_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Used to hold number of hops</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientHwAddr_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientHwAddr_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Array to hold client hardware address</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <ARRAY-SIZE>16</ARRAY-SIZE>
+                          <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>serverName_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">serverName_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Server host name</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <ARRAY-SIZE>64</ARRAY-SIZE>
+                          <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>bootFile_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">bootFile_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Bootfile name</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <ARRAY-SIZE>128</ARRAY-SIZE>
+                          <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>options_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">options_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Vendor specific options</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <ARRAY-SIZE>312</ARRAY-SIZE>
+                          <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    </IMPLEMENTATION-DATA-TYPE>
+                    <IMPLEMENTATION-DATA-TYPE>
+                      <SHORT-NAME>rba_EthDHCP_Config_to</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">rba_EthDHCP_Config_to</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN">This container is a sub-container of TcpIpConfig and specifies the configuration parameters of the DHCP sub-module</L-2>
+                      </DESC>
+                      <CATEGORY>STRUCTURE</CATEGORY>
+                      <SUB-ELEMENTS>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rba_EthDHCP_ClientConfig_cst</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rba_EthDHCP_ClientConfig_cst</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">rba_EthDHCP_ClientConfig_cst</L-2>
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>TYPE_REFERENCE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    </IMPLEMENTATION-DATA-TYPE>
+                    <IMPLEMENTATION-DATA-TYPE>
+                      <SHORT-NAME>rba_EthDHCPClient_AssignmentParameters_tst</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">rba_EthDHCPClient_AssignmentParameters_tst</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN">Parameters got from the DHCP Server and used by TcpIP to use the dynamic IP Address assigned</L-2>
+                      </DESC>
+                      <CATEGORY>STRUCTURE</CATEGORY>
+                      <SUB-ELEMENTS>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientIpAddress_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientIpAddress_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Client IP Address</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientSubnetMask_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientSubnetMask_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Client Subnet Mask</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientIpRouter_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientIpRouter_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Client Ip Router</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    </IMPLEMENTATION-DATA-TYPE>
+                    <IMPLEMENTATION-DATA-TYPE>
+                      <SHORT-NAME>rba_EthDHCPClient_Table_tst</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">rba_EthDHCPClient_Table_tst</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN">DHCPClient table used to store the current status of the client and information received from the Server</L-2>
+                      </DESC>
+                      <CATEGORY>STRUCTURE</CATEGORY>
+                      <SUB-ELEMENTS>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procSocketState_ten</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procSocketState_ten</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">State of the Client Socket</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procState_ten</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procState_ten</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">State of the DHCP Client entry</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>serverRespType_ten</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">serverRespType_ten</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Type of the latest response received from the server</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientIpAddressState_en</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientIpAddressState_en</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">IP address state (assigned / unassigned)</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procCnt_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procCnt_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Time Counter to temporize or to integrate delay in the process</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procReTransmissionTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procReTransmissionTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Retransmission time updated after each retransmission</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procCntLastConflict_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procCntLastConflict_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Counter updated to calculate the min interval accepted after a conflict</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procCntTxFr_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procCntTxFr_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Counter to count the number of frames send in the case of retransmission</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientXId_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientXId_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">XiD generated by the client</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientXIdInform_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientXIdInform_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">XiD generated by the client</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientIpAddress_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientIpAddress_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Offered address received from the server</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientLeaseTickTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientLeaseTickTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Lease  Time converted as Tick Time to use in the process</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientRenewTickTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientRenewTickTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Renew  Time converted as Tick Time to use in the process</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientRebindTickTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientRebindTickTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Rebind Time converted as Tick Time to use in the process</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>serverIpAddress_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">serverIpAddress_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">IP address of the server</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>serverId_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">serverId_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Server ID</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionServerId_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionServerId_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Optional Server ID</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionLeaseTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionLeaseTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Optional Lease Time</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionSubnetMaskId_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionSubnetMaskId_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Subnet Mask</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionRouter_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionRouter_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Option Router</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionRenewalTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionRenewalTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Renewal Time</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionRebindingTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionRebindingTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Rebinding Time</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionClientId_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionClientId_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Optional Client ID</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procSocketId_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procSocketId_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Client Socket Id</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>clientHwAddr_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">clientHwAddr_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">DHCP Client MAC address</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <ARRAY-SIZE>6</ARRAY-SIZE>
+                          <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procCntConflict_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procCntConflict_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Count the number of conflicts</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procCntTxProbeFr_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procCntTxProbeFr_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">ARP Probe Frame sent counter</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procCntTxGratuFr_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procCntTxGratuFr_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">ARP Gratuitous Frame sent counter</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>procCntTxRlsFrmAttempts_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procCntTxRlsFrmAttempts_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Number of release messages TX tried</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionClientIdFlag_b</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionClientIdFlag_b</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Flag to disable enable Client Identification Option</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionParamRqstListFlag_b</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionParamRqstListFlag_b</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Flag to disable enable Requested Parameter Option</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionMessType_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionMessType_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Message Type</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>KwnHostNameLen_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">KwnHostNameLen_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Holds the length of the Known Host name</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ReqHostNameLen_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ReqHostNameLen_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Holds the length of the Requested Host name</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>optionParamRqstList_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">optionParamRqstList_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Parameter Request List</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <ARRAY-SIZE>6</ARRAY-SIZE>
+                          <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>KwnHostNameBuf_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">KwnHostNameBuf_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Known Host Name Buffer</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <ARRAY-SIZE>6</ARRAY-SIZE>
+                          <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ReqHostNameBuf_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ReqHostNameBuf_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Request HostName Buffer</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <ARRAY-SIZE>6</ARRAY-SIZE>
+                          <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    </IMPLEMENTATION-DATA-TYPE>
+                    <IMPLEMENTATION-DATA-TYPE>
+                      <SHORT-NAME>rba_EthDHCPClient_OptionsTable_tst</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">rba_EthDHCPClient_OptionsTable_tst</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN">DHCP Option table</L-2>
+                      </DESC>
+                      <CATEGORY>STRUCTURE</CATEGORY>
+                      <SUB-ELEMENTS>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionServerId_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionServerId_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Server ID</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionLeaseTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionLeaseTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Lease Time</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionSubnetMaskId_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionSubnetMaskId_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Optional subnet mask ID</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionRouter_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionRouter_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Option Router</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionRenewalTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionRenewalTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Renewal Time</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionRebindingTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionRebindingTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Rebinding Time</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionMessType_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionMessType_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Message Type</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionHostNameLen_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionHostNameLen_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Host Name Length</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionMessTypeRxFlag_b</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionMessTypeRxFlag_b</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Mess Type Flag</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionServerIdRxFlag_b</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionServerIdRxFlag_b</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Server ID Flag</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionLeaseTimeRxFlag_b</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionLeaseTimeRxFlag_b</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Lease Time Flag</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionRenewalTimeRxFlag_b</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionRenewalTimeRxFlag_b</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Renewal Time Flag</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionRebindingTimeRxFlag_b</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionRebindingTimeRxFlag_b</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Rebinding Time Flag</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionSubnetMaskIdRxFlag_b</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionSubnetMaskIdRxFlag_b</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Subnet mask ID Flag</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxOptionRouterRxFlag_b</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxOptionRouterRxFlag_b</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Router Flag</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rxHostNameTempBufr_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rxHostNameTempBufr_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Subnet mask ID Flag</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <ARRAY-SIZE>6</ARRAY-SIZE>
+                          <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    </IMPLEMENTATION-DATA-TYPE>
+                    <IMPLEMENTATION-DATA-TYPE>
+                      <SHORT-NAME>rba_EthDHCP_ClntSubConfig_tst</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">rba_EthDHCP_ClntSubConfig_tst</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN">DHCP Client Config - Sub-Container of DHCP Config</L-2>
+                      </DESC>
+                      <CATEGORY>STRUCTURE</CATEGORY>
+                      <SUB-ELEMENTS>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ClntTable_s</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ClntTable_s</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">DHCP Client Table</L-2>
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>TYPE_REFERENCE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/RB/RBA/rba_EthDHCP/ImplementationDataTypes/rba_EthDHCPClient_Table_tst</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ClntIndex_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ClntIndex_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Index of the current DHCP Client</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ClntCtrlIdx_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ClntCtrlIdx_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">CtrlIdx matched to the LocalAddrId</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ClntLocalAddrId_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ClntLocalAddrId_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">LocalAddrId matched to the DHCP Client</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    </IMPLEMENTATION-DATA-TYPE>
+                    <IMPLEMENTATION-DATA-TYPE>
+                      <SHORT-NAME>rba_EthDHCP_ClntConfig_tst</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">rba_EthDHCP_ClntConfig_tst</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN">DHCP Client General Config - Sub-Container of DHCP Config</L-2>
+                      </DESC>
+                      <CATEGORY>STRUCTURE</CATEGORY>
+                      <SUB-ELEMENTS>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>rba_EthDHCP_ClientSubConfig_cst</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">rba_EthDHCP_ClientSubConfig_cst</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">DHCP Client Configuration</L-2>
+                          </DESC>
+                          <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>TYPE_REFERENCE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/RB/RBA/rba_EthDHCP/ImplementationDataTypes/rba_EthDHCP_ClntSubConfig_tst</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ClntWaitingServerRespTime_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ClntWaitingServerRespTime_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Time to wait before a retransmission if no response received</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ClntConfigured_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ClntConfigured_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Number of Clients configured</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>ClntRetransmittedFrm_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ClntRetransmittedFrm_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Number of retransmitted frames if no Server replies</L-2>
+                          </DESC>
+                          <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    </IMPLEMENTATION-DATA-TYPE>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+              </AR-PACKAGES>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AUTOSAR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd" xmlns="http://autosar.org/schema/r4.0">
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 L="EN" xml:space="default">English</L-10>
+    </USED-LANGUAGES>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>RB</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>RBA</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>rba_EthIcmp</SHORT-NAME>
+              <AR-PACKAGES>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswImplementations</SHORT-NAME>
+                  <ELEMENTS>
+                    
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswModuleDescriptions</SHORT-NAME>
+                  <ELEMENTS>
+                    <BSW-MODULE-DESCRIPTION>
+                      <SHORT-NAME>rba_EthIcmp</SHORT-NAME>
+                      <CATEGORY>BSW_MODULE</CATEGORY>
+                      <MODULE-ID>255</MODULE-ID>
+                      <PROVIDED-ENTRYS>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthIcmp/BswModuleEntrys/rba_EthIcmp_Init</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthIcmp/BswModuleEntrys/rba_EthIcmp_RxIndication</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthIcmp/BswModuleEntrys/rba_EthIcmp_Transmit</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                      </PROVIDED-ENTRYS>
+                      <OUTGOING-CALLBACKS>
+                        <!--Not yet implemented.-->
+                      </OUTGOING-CALLBACKS>
+                      <BSW-MODULE-DEPENDENCYS>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>ComStack</SHORT-NAME>
+                          <TARGET-MODULE-ID>50</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>Dem</SHORT-NAME>
+                          <TARGET-MODULE-ID>54</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>Det</SHORT-NAME>
+                          <TARGET-MODULE-ID>15</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>rba_EthIPv4</SHORT-NAME>
+                          <TARGET-MODULE-ID>255</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>rba_EthTcp</SHORT-NAME>
+                          <TARGET-MODULE-ID>255</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>TcpIp</SHORT-NAME>
+                          <TARGET-MODULE-ID>170</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                      </BSW-MODULE-DEPENDENCYS>
+                    </BSW-MODULE-DESCRIPTION>
+                  </ELEMENTS>
+                  </AR-PACKAGE>
+                  <AR-PACKAGE>
+                    <SHORT-NAME>BswModuleEntrys</SHORT-NAME>
+                    <ELEMENTS>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthIcmp_Init</SHORT-NAME>
+                        <DESC>
+                          <L-2 L="EN">By this API service the TCP/IP initializes the configuration pointer of EthIcmp.</L-2>
+                        </DESC>
+                        
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="IcmpConfig_pco", Kind="in", Type="rba_EthIcmp_Config_to", IsConst="False"-->
+                            <SHORT-NAME>IcmpConfig_pco</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/RB/RBA/rba_EthIcmp/ImplementationDataTypes/rba_EthIcmp_Config_to</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthIcmp_RxIndication</SHORT-NAME>
+                        <DESC>
+                          <L-2 L="EN">Function called by TCP/IP module when an ICMP frame is received. 
+                                     A received message is handled according to the ICMP frame type.</L-2>
+                        </DESC>
+                        
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="RmtIPAddr_u32", Kind="in", Type="uint32", IsConst="False"-->
+                            <SHORT-NAME>RmtIPAddr_u32</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>                                 
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="LocalAddrId_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>LocalAddrId_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>                                  
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="RxData_pu8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>RxData_pu8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>                                
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="RxDataLen_u16", Kind="in", Type="uint16", IsConst="False"-->
+                            <SHORT-NAME>RxDataLen_u16</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>                                  
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="IsBroadcast_b", Kind="in", Type="boolean", IsConst="False"-->
+                            <SHORT-NAME>IsBroadcast_b</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>                                  
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthIcmp_Transmit</SHORT-NAME>
+                        <DESC>
+                          <L-2 L="EN">By this API service the TCP/IP stack sends an ICMP message according to the specified parameters.</L-2>
+                        </DESC>
+                        
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="LocalAddrId_u8", Kind="in", Type="TcpIp_LocalAddrIdType", IsConst="False"-->
+                            <SHORT-NAME>LocalAddrId_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>                                 
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="RemoteAddr_pst", Kind="in", Type="TcpIp_SockAddrInetType", IsConst="False"-->
+                            <SHORT-NAME>RemoteAddr_pst</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>                               
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_TcpIp/ImplementationDataTypes/TcpIp_SockAddrType</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="Ttl_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>Ttl_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>                                 
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="Type_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>Type_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>                                  
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="Code_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>Code_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>                                 
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="DataLength_u16", Kind="in", Type="uint16", IsConst="False"-->
+                            <SHORT-NAME>DataLength_u16</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>                                  
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="TxData_pu8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>TxData_pu8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                          <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>                                
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                    </ELEMENTS>
+                  </AR-PACKAGE>
+                  <AR-PACKAGE>
+                    <SHORT-NAME>CompuMethods</SHORT-NAME>
+                    <ELEMENTS>
+                    <COMPU-METHOD>
+                  <SHORT-NAME>rba_EthIcmp_DestUnreach_ten</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Destination network unreachable</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_DEST_UNREACH_NET_E</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Destination host unreachable</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_DEST_UNREACH_HOST_E</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Destination protocol unreachable</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_DEST_UNREACH_PROTO_E</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Destination port unreachable</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT> RBA_ETHICMP_DEST_UNREACH_PORT_E</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Fragmentation required, and DF flag set </L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_DEST_UNREACH_FRAG_E </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Source route failed</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT> RBA_ETHICMP_DEST_UNREACH_SRC_FAIL_E </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>                      
+                      </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+                <COMPU-METHOD>
+                  <SHORT-NAME>rba_EthIcmp_TimeExceed_ten</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">TTL expired in transit</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_TIME_EXCEED_TTL_E</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Fragment reassembly time exceeded </L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_TIME_EXCEED_FRAG_E </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+                <COMPU-METHOD>
+                  <SHORT-NAME>rba_EthIcmp_CtrlMsgTyp_ten</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Echo Reply</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_ECHO_REPLY_E</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Reserved</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_RESERVED_1_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Reserved</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_RESERVED_2_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Destination Unreachable</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_DEST_UNREACH_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Source Quench</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT> RBA_ETHICMP_SRC_QUENCH_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Redirect Message</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_REDIRECT_MSG_E </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Alternate Host Address</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">6</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">6</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_ALT_HOST_ADDR_E </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Reserved</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">7</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">7</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_RESERVED_7_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Echo Request</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">8</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">8</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_ECHO_REQ_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Router Advertisement</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">9</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">9</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_ROUTER_ADVRTMNT_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Router Solicitation </L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">10</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">10</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_ROUTER_SOLICIT_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Time Exceeded</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">11</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">11</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_TIME_EXCEED_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Parameter Problem: Bad IP header </L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">12</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">12</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_PRM_PRBLM_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Timestamp </L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">13</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">13</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_TIMESTAMP_E   </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Timestamp Reply </L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">14</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">14</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_TIMESTAMP_RPLY_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Information Request </L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">15</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">15</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_INFO_REQ_E   </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Information Reply</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">16</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">16</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_INFO_RPLY_E    </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Address Mask Request</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">17</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">17</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_ADDR_MSK_REQ_E    </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Address Mask Reply</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">18</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">18</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_ADDR_MSK_RPLY_E    </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Traceroute</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">30</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">30</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_TRACE_ROUTE_E   </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Datagram Conversion Error</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">31</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">31</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_DATA_CONV_ERR_E </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Where-Are-You </L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">33</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">33</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_WHERE_ARE_YOU_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Here-I-Am</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">34</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">34</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHICMP_HERE_I_AM_E   </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Domain Name Request</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">37</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">37</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT> RBA_ETHICMP_DOMAIN_NAME_REQ_E   </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Domain Name Reply</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">38</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">38</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT> RBA_ETHICMP_DOMAIN_NAME_RPLY_E  </VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      
+                      </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+                
+                
+                    </ELEMENTS>
+                    
+                  </AR-PACKAGE>
+                  <AR-PACKAGE>
+                    <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+                    <ELEMENTS>
+                    <IMPLEMENTATION-DATA-TYPE>
+                    <SHORT-NAME>rba_EthIcmp_SubConfig_to</SHORT-NAME>
+                  <LONG-NAME>
+                    <L-4 L="EN">rba_EthIcmp_SubConfig_to</L-4>
+                  </LONG-NAME>
+                  <DESC>
+                        <L-2 L="EN">This container is a sub-container of rba_EthIcmp_Config_to and defines the specific configuration parameters of the ICMP (Internet Control Message Protocol) sub-module</L-2></DESC>
+                  <CATEGORY>STRUCTURE</CATEGORY>
+                  <SUB-ELEMENTS>
+                  <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>DemEventId_ConRefused_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">DemEventId_ConRefused_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Holds Id for TCPIP_E_CONNREFUSED if TCPIP_E_CONNREFUSED is configured. Holds 0 if TCPIP_E_CONNREFUSED is not configured</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>EchoBroadcastEn_cu8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">EchoBroadcastEn_cu8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Reply to Broadcast echo requests is enabled or not for each LocalAddrId</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>TcpIpCtrlFramePrio_cu8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">TcpIpCtrlFramePrio_cu8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Frame priority configured per TcpIpCtrl (TcpIpIpFramePrioDefault)</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  
+                  </SUB-ELEMENTS>
+                  <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    
+                    </IMPLEMENTATION-DATA-TYPE>
+                    <IMPLEMENTATION-DATA-TYPE>
+                     <SHORT-NAME>rba_EthIcmp_Config_to</SHORT-NAME>
+                      <LONG-NAME>
+                      <L-4 L="EN">rba_EthIcmp_Config_to</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                      <L-2 L="EN">This container is a sub-container of TcpIpConfig and specifies the configuration parameters of the ICMP sub-module</L-2></DESC>
+                      <CATEGORY>STRUCTURE</CATEGORY>
+                      <SUB-ELEMENTS>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>IcmpSubConfig_pco</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">IcmpSubConfig_pco</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Pointer to ICMP SubConfig Structure</L-2>
+                          </DESC>
+                        <CATEGORY>DATA_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>TYPE_REFERENCE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/RB/RBA/rba_EthIcmp/ImplementationDataTypes/rba_EthIcmp_SubConfig_to</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <SHORT-NAME>IcmpRxIndication_pfct</SHORT-NAME>
+                  <LONG-NAME>
+                     <L-4 L="EN">Rx Indication function pointer.</L-4>
+                  </LONG-NAME>
+                  <DESC>
+                    <L-2 L="EN">Rx Indication function pointer.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>TYPE_REFERENCE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>                  
+                          </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                          <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>Ttl_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">Ttl_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Ttl_u8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    
+                    </IMPLEMENTATION-DATA-TYPE>
+                    </ELEMENTS>                  
+                  </AR-PACKAGE>
+               </AR-PACKAGES>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

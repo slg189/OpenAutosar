@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>IoHwAb_DIO_Test</SHORT-NAME>
+      <ELEMENTS>
+        <ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>IoHwAb_DIO_Test</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <P-PORT-PROTOTYPE UUID="689c0138-bd7e-4e9b-b30f-e1d333be525c">
+              <SHORT-NAME>PPort_Dio_SetChannel</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Pkg_Interfaces/IoHwAb_DIO_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>IB_IoHwAb_DIO_Test</SHORT-NAME>
+              <EVENTS>
+                <OPERATION-INVOKED-EVENT UUID="79e4a52f-af2a-4f29-b34e-aa71e71d481e">
+                  <SHORT-NAME>OperationInvokedEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_DIO_Test/IoHwAb_DIO_Test/IB_IoHwAb_DIO_Test/IoHwAb_DIO_Test_Set</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_DIO_Test/IoHwAb_DIO_Test/PPort_Dio_SetChannel</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Pkg_Interfaces/IoHwAb_DIO_Interface/Dio_Write</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="9a30572a-3447-4386-91a3-8ab5e483081c">
+                  <SHORT-NAME>IoHwAb_DIO_Test_Set</SHORT-NAME>
+                  <SYMBOL>IoHwAb_DIO_Test_Set_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>IoHwAb_ICU</SHORT-NAME>
+      <ELEMENTS>
+        <ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>IoHwAb_ICU</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <P-PORT-PROTOTYPE UUID="1ee70d7a-3c9c-479f-ad72-bd153bd3a98c">
+              <SHORT-NAME>PPort_ICU_PZ_1</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_ICU_Interface/IoHwAb_ICU_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="546685df-dbbd-4854-883b-7791658fb50e">
+              <SHORT-NAME>IB_IoHwAb_ICU</SHORT-NAME>
+              <EVENTS>
+                <OPERATION-INVOKED-EVENT UUID="168cb503-ae84-4afd-8861-56d6f24358d4">
+                  <SHORT-NAME>OperationInvokedEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_ICU/IoHwAb_ICU/IB_IoHwAb_ICU/IoHwAb_ICU_Get_PZ_1</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_ICU/IoHwAb_ICU/PPort_ICU_PZ_1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_ICU_Interface/IoHwAb_ICU_Interface/IoHwAb_ICU_Get</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="cbc2fb27-fd66-434b-a5b8-5c7f1e3de497">
+                  <SHORT-NAME>IoHwAb_ICU_Get_PZ_1</SHORT-NAME>
+                  <SYMBOL>IoHwAb_ICU_Get_PZ_1_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

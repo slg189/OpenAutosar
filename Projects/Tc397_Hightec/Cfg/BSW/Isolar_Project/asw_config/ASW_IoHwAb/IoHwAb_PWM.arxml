@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>IoHwAb_PWM</SHORT-NAME>
+      <ELEMENTS>
+        <ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>IoHwAb_PWM</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <P-PORT-PROTOTYPE UUID="d45c5c97-f0ff-4cf1-874f-1465abb30c3a">
+              <SHORT-NAME>PPort_PWM_PG_9</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_PWM_Interface/IoHwAb_PWM_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="7dc059e9-e060-4929-b139-bca66b0a7f8f">
+              <SHORT-NAME>IB_IoHwAb_PWM</SHORT-NAME>
+              <EVENTS>
+                <OPERATION-INVOKED-EVENT UUID="4a407066-32c2-4e61-b1ac-32a45c601693">
+                  <SHORT-NAME>OperationInvokedEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_PWM/IoHwAb_PWM/IB_IoHwAb_PWM/IoHwAb_PWM_PG_9</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_PWM/IoHwAb_PWM/PPort_PWM_PG_9</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_PWM_Interface/IoHwAb_PWM_Interface/IoHwAb_PWM_Set</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="c2fffa78-59ff-47fe-97c4-b4452447ba55">
+                  <SHORT-NAME>IoHwAb_PWM_PG_9</SHORT-NAME>
+                  <SYMBOL>IoHwAb_PWM_PG_9_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

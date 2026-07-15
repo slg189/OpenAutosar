@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>XCP_SWC</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>ASW_XCP</SHORT-NAME>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="3c55ea74-5940-425e-827d-eb46fa19e8b5">
+              <SHORT-NAME>SwcInternalBehavior_XCP</SHORT-NAME>
+              <CONSTANT-MEMORYS>
+                <PARAMETER-DATA-PROTOTYPE>
+                  <SHORT-NAME>Entry_Const_Var</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</TYPE-TREF>
+                </PARAMETER-DATA-PROTOTYPE>
+              </CONSTANT-MEMORYS>
+              <STATIC-MEMORYS>
+                <VARIABLE-DATA-PROTOTYPE>
+                  <SHORT-NAME>Entry_Static_Var</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</TYPE-TREF>
+                </VARIABLE-DATA-PROTOTYPE>
+              </STATIC-MEMORYS>
+              <EVENTS>
+                <TIMING-EVENT UUID="8b549df8-1a06-45f7-beca-8745fd630059">
+                  <SHORT-NAME>TimingEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/XCP_SWC/ASW_XCP/SwcInternalBehavior_XCP/RE_XCP_SWC</START-ON-EVENT-REF>
+                  <PERIOD>0.1</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="c00b6e2f-565f-494b-9906-d8e73988e55e">
+                  <SHORT-NAME>RE_XCP_SWC</SHORT-NAME>
+                  <SYMBOL>RE_XCP_SWC_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

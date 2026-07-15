@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-2-2.xsd">
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 L="EN" xml:space="default">English</L-10>
+    </USED-LANGUAGES>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>rba_CryptoHSM</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>SwAddrMethods</SHORT-NAME>
+          <CATEGORY>STANDARD</CATEGORY>
+          <ELEMENTS>
+            <SW-ADDR-METHOD>
+              <SHORT-NAME>VAR_HSM_SHARED_READONLY_INIT</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Addressing method for exchange of Data with the Hardware Security Module. Restricted to Security</L-4>
+              </LONG-NAME>
+              <MEMORY-ALLOCATION-KEYWORD-POLICY>ADDR-METHOD-SHORT-NAME-AND-ALIGNMENT</MEMORY-ALLOCATION-KEYWORD-POLICY>
+              <SECTION-INITIALIZATION-POLICY>INIT</SECTION-INITIALIZATION-POLICY>
+              <SECTION-TYPE>VAR</SECTION-TYPE>
+            </SW-ADDR-METHOD>
+            <SW-ADDR-METHOD>
+              <SHORT-NAME>VAR_HSM_SHARED_READONLY_CLEARED</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Addressing method for exchange of Data with the Hardware Security Module. Restricted to Security</L-4>
+              </LONG-NAME>
+              <MEMORY-ALLOCATION-KEYWORD-POLICY>ADDR-METHOD-SHORT-NAME-AND-ALIGNMENT</MEMORY-ALLOCATION-KEYWORD-POLICY>
+              <SECTION-INITIALIZATION-POLICY>CLEARED</SECTION-INITIALIZATION-POLICY>
+              <SECTION-TYPE>VAR</SECTION-TYPE>
+            </SW-ADDR-METHOD>
+            <SW-ADDR-METHOD>
+              <SHORT-NAME>VAR_HSM_SHARED_INIT</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Addressing method for exchange of Data with the Hardware Security Module. Restricted to Security</L-4>
+              </LONG-NAME>
+              <MEMORY-ALLOCATION-KEYWORD-POLICY>ADDR-METHOD-SHORT-NAME-AND-ALIGNMENT</MEMORY-ALLOCATION-KEYWORD-POLICY>
+              <SECTION-INITIALIZATION-POLICY>INIT</SECTION-INITIALIZATION-POLICY>
+              <SECTION-TYPE>VAR</SECTION-TYPE>
+            </SW-ADDR-METHOD>
+            <SW-ADDR-METHOD>
+              <SHORT-NAME>VAR_HSM_SHARED_CLEARED</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Addressing method for exchange of Data with the Hardware Security Module. Restricted to Security</L-4>
+              </LONG-NAME>
+              <MEMORY-ALLOCATION-KEYWORD-POLICY>ADDR-METHOD-SHORT-NAME-AND-ALIGNMENT</MEMORY-ALLOCATION-KEYWORD-POLICY>
+              <SECTION-INITIALIZATION-POLICY>CLEARED</SECTION-INITIALIZATION-POLICY>
+              <SECTION-TYPE>VAR</SECTION-TYPE>
+            </SW-ADDR-METHOD>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <!-- BswImplementations -->
+        <AR-PACKAGE>
+          <SHORT-NAME>BswImplementations</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-IMPLEMENTATION>
+              <SHORT-NAME>rba_CryptoHSM</SHORT-NAME>
+              <CODE-DESCRIPTORS>
+                <CODE>
+                  <SHORT-NAME>CodeDescriptor</SHORT-NAME>
+                  <ARTIFACT-DESCRIPTORS>
+                    <AUTOSAR-ENGINEERING-OBJECT>
+                      <SHORT-LABEL>ArEngObj</SHORT-LABEL>
+                      <CATEGORY>SWSRC</CATEGORY>
+                    </AUTOSAR-ENGINEERING-OBJECT>
+                  </ARTIFACT-DESCRIPTORS>
+                </CODE>
+              </CODE-DESCRIPTORS>
+              <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+              <RESOURCE-CONSUMPTION>
+                <SHORT-NAME>rba_CryptoHSM_ResourceConsumption</SHORT-NAME>
+                <MEMORY-SECTIONS>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>rba_CryptoHSM_CODE</SHORT-NAME>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/rba_CryptoHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CODE</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_CODE</SHORT-NAME>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CODE</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_CONST_8</SHORT-NAME>
+                    <ALIGNMENT>8</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CONST_8</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_CONST_16</SHORT-NAME>
+                    <ALIGNMENT>16</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CONST_16</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_CONST_32</SHORT-NAME>
+                    <ALIGNMENT>32</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CONST_32</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_CONST_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CONST_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_INIT_8</SHORT-NAME>
+                    <ALIGNMENT>8</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_INIT</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_INIT_8</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_INIT_16</SHORT-NAME>
+                    <ALIGNMENT>16</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_INIT</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_INIT_16</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_INIT_32</SHORT-NAME>
+                    <ALIGNMENT>32</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_INIT</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_INIT_32</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_INIT_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_INIT</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_INIT_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_CLEARED_8</SHORT-NAME>
+                    <ALIGNMENT>8</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_CLEARED_8</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_CLEARED_16</SHORT-NAME>
+                    <ALIGNMENT>16</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_CLEARED_16</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_CLEARED_32</SHORT-NAME>
+                    <ALIGNMENT>32</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_CLEARED_32</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_CLEARED_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_CLEARED_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_SAVED_ZONE_8</SHORT-NAME>
+                    <ALIGNMENT>8</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_SAVED_ZONE</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_SAVED_ZONE_8</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_SAVED_ZONE_16</SHORT-NAME>
+                    <ALIGNMENT>16</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_SAVED_ZONE</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_SAVED_ZONE_16</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_SAVED_ZONE_32</SHORT-NAME>
+                    <ALIGNMENT>32</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_SAVED_ZONE</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_SAVED_ZONE_32</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_SAVED_ZONE_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_SAVED_ZONE</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_SAVED_ZONE_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_HSM_SHARED_INIT_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/rba_CryptoHSM/SwAddrMethods/VAR_HSM_SHARED_INIT</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_HSM_SHARED_INIT_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_HSM_SHARED_CLEARED_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/rba_CryptoHSM/SwAddrMethods/VAR_HSM_SHARED_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_HSM_SHARED_CLEARED_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_HSM_SHARED_READONLY_INIT_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/rba_CryptoHSM/SwAddrMethods/VAR_HSM_SHARED_READONLY_INIT</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_HSM_SHARED_READONLY_INIT_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>RBA_CRYPTOHSM_VAR_HSM_SHARED_READONLY_CLEARED_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/rba_CryptoHSM/BswImplementations/rba_CryptoHSM/rba_CryptoHSM_ResourceConsumption/RBA_CRYPTOHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/rba_CryptoHSM/SwAddrMethods/VAR_HSM_SHARED_READONLY_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_HSM_SHARED_READONLY_CLEARED_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                </MEMORY-SECTIONS>
+                <SECTION-NAME-PREFIXS>
+                  <SECTION-NAME-PREFIX>
+                    <SHORT-NAME>rba_CryptoHSM</SHORT-NAME>
+                    <SYMBOL>rba_CryptoHSM</SYMBOL>
+                  </SECTION-NAME-PREFIX>
+                  <SECTION-NAME-PREFIX>
+                    <SHORT-NAME>RBA_CRYPTOHSM</SHORT-NAME>
+                    <SYMBOL>RBA_CRYPTOHSM</SYMBOL>
+                  </SECTION-NAME-PREFIX>
+                </SECTION-NAME-PREFIXS>
+              </RESOURCE-CONSUMPTION>
+              <SW-VERSION>1.0.0</SW-VERSION>
+              <USED-CODE-GENERATOR>rba_CryptoHSM.bamf</USED-CODE-GENERATOR>
+              <VENDOR-ID>6</VENDOR-ID>
+              <AR-RELEASE-VERSION>4.3.0</AR-RELEASE-VERSION>
+              <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/rba_CryptoHSM/BswModuleDescriptions/rba_CryptoHSM/BswInternalBehavior</BEHAVIOR-REF>
+            </BSW-IMPLEMENTATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>BswModuleDescriptions</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-MODULE-DESCRIPTION>
+              <SHORT-NAME>rba_CryptoHSM</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Crypto Driver for HSM</L-4>
+              </LONG-NAME>
+              <CATEGORY>BSW_MODULE</CATEGORY>
+              <MODULE-ID>114</MODULE-ID>
+              <!-- ModuleEntryRefs -->
+              <PROVIDED-ENTRYS>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/rba_CryptoHSM/BswModuleEntrys/rba_CryptoHSM_Init</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/rba_CryptoHSM/BswModuleEntrys/rba_CryptoHSM_Deinit</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/rba_CryptoHSM/BswModuleEntrys/rba_CryptoHSM_IsInitialized</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/rba_CryptoHSM/BswModuleEntrys/rba_CryptoHSM_Rb_StorePermanentData</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/rba_CryptoHSM/BswModuleEntrys/rba_CryptoHSM_MainFunction</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+              </PROVIDED-ENTRYS>
+              <BSW-MODULE-DEPENDENCYS>
+                <BSW-MODULE-DEPENDENCY>
+                  <SHORT-NAME>Det</SHORT-NAME>
+                  <TARGET-MODULE-ID>15</TARGET-MODULE-ID>
+                </BSW-MODULE-DEPENDENCY>
+                <BSW-MODULE-DEPENDENCY>
+                  <SHORT-NAME>SchM</SHORT-NAME>
+                  <TARGET-MODULE-ID>130</TARGET-MODULE-ID>
+                </BSW-MODULE-DEPENDENCY>
+              </BSW-MODULE-DEPENDENCYS>
+              <INTERNAL-BEHAVIORS>
+                <BSW-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>BswInternalBehavior</SHORT-NAME>
+                  <ENTITYS>
+                    <BSW-CALLED-ENTITY>
+                      <SHORT-NAME>CE_Init</SHORT-NAME>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/rba_CryptoHSM/BswModuleEntrys/rba_CryptoHSM_Init</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                    <BSW-CALLED-ENTITY>
+                      <SHORT-NAME>CE_Deinit</SHORT-NAME>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/rba_CryptoHSM/BswModuleEntrys/rba_CryptoHSM_Deinit</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                    <BSW-SCHEDULABLE-ENTITY>
+                      <SHORT-NAME>BSWSE_MainFunction</SHORT-NAME>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/rba_CryptoHSM/BswModuleEntrys/rba_CryptoHSM_MainFunction</IMPLEMENTED-ENTRY-REF>
+                    </BSW-SCHEDULABLE-ENTITY>
+                  </ENTITYS>
+                  <EVENTS>
+                    <BSW-TIMING-EVENT>
+                      <SHORT-NAME>EV_MainFunction</SHORT-NAME>
+                      <STARTS-ON-EVENT-REF DEST="BSW-SCHEDULABLE-ENTITY">/rba_CryptoHSM/BswModuleDescriptions/rba_CryptoHSM/BswInternalBehavior/BSWSE_MainFunction</STARTS-ON-EVENT-REF>
+                      <PERIOD>0.01</PERIOD>
+                    </BSW-TIMING-EVENT>
+                  </EVENTS>
+                </BSW-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </BSW-MODULE-DESCRIPTION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <!-- BswModuleEntrys -->
+        <AR-PACKAGE>
+          <SHORT-NAME>BswModuleEntrys</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>rba_CryptoHSM_Init</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Initializes the rba_CryptoHSM Driver.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Initializes the rba_CryptoHSM Driver.</L-2>
+              </DESC>
+              <SERVICE-ID>0</SERVICE-ID>
+              <IS-REENTRANT>true</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>rba_CryptoHSM_Deinit</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Deinitializes the rba_CryptoHSM Driver.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Deinitializes the rba_CryptoHSM Driver.</L-2>
+              </DESC>
+              <SERVICE-ID>32</SERVICE-ID>
+              <IS-REENTRANT>true</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>rba_CryptoHSM_IsInitialized</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Check if the initialization is already done.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Check if the initialization is already done.</L-2>
+              </DESC>
+              <SERVICE-ID>255</SERVICE-ID>
+              <IS-REENTRANT>true</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>boolean</SHORT-NAME>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <INTRODUCTION>
+                  <P>
+                    <L-1 L="EN">TRUE: driver is already initialized</L-1>
+                  </P>
+                  <P>
+                    <L-1 L="EN">FALSE: driver is not initialized</L-1>
+                  </P>
+                </INTRODUCTION>
+                  <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</IMPLEMENTATION-DATA-TYPE-REF>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>rba_CryptoHSM_Rb_StorePermanentData</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Triggers persistent data store if needed and returns the save operation status.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Triggers persistent data store if needed and returns the save operation status. The maintask must be called cyclically in order to work properly.</L-2>
+              </DESC>
+              <SERVICE-ID>255</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>Std_ReturnType</SHORT-NAME>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <INTRODUCTION>
+                  <P>
+                    <L-1 L="EN">E_OK: persistent data successfully saved into the NvM</L-1>
+                  </P>
+                  <P>
+                    <L-1 L="EN">E_NOT_OK: error occured</L-1>
+                  </P>
+                  <P>
+                    <L-1 L="EN">CRYPTO_E_PENDING: operation in progress</L-1>
+                  </P>
+                </INTRODUCTION>
+                  <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>rba_CryptoHSM_MainFunction</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Process the requested services asynchronously.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This function shall be called cyclically to process the requested services asynchronously.</L-2>
+              </DESC>
+              <SERVICE-ID>12</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+              <CALL-TYPE>SCHEDULED</CALL-TYPE>
+              <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <!-- CompuMethods -->
+        <AR-PACKAGE>
+          <SHORT-NAME>CompuMethods</SHORT-NAME>
+          <ELEMENTS>
+
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <!-- ImplementationDataTypes -->
+        <AR-PACKAGE>
+          <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+          <ELEMENTS>
+
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

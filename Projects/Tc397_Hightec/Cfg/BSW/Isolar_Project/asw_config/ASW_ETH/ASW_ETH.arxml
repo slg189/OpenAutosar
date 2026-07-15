@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="df6fbbf8-f6a4-4127-86b4-43ecc1bc9057">
+      <SHORT-NAME>EthernetModule</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE UUID="6f7ab3b4-6ed8-45b6-8367-f2802bcd6bab">
+          <SHORT-NAME>ASW_ETH</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <P-PORT-PROTOTYPE UUID="707b063d-d9e0-41fa-9870-3710ee5bc09a">
+              <SHORT-NAME>PPort_SystemSignal_TCP_TX</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Eth_Interface/SR_Interface_SystemSignal_TCP_Tx</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="073c381d-74de-412a-92fd-5d9b4894c3f4">
+              <SHORT-NAME>RPort_SystemSignal_TCP_RX</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Eth_Interface/SR_Interface_SystemSignal_TCP_Rx</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="d23e9e96-c875-470a-976c-46895360ffd8">
+              <SHORT-NAME>PPort_SystemSignal_UDP_TX</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Eth_Interface/SR_Interface_SystemSignal_UDP_Tx</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="32ef9aa4-3bf3-4912-899c-08580421b0fb">
+              <SHORT-NAME>RPort_SystemSignal_UDP_RX</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Eth_Interface/SR_Interface_SystemSignal_UDP_Rx</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="27b723f1-81f8-4269-88e5-9c703b1a06db">
+              <SHORT-NAME>PPort_DoIPActivationLineSwitchNotification</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/AUTOSAR_DoIP/ModeSwitchInterfaces/DoIPActivationLineStatus</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="cf987af2-1c76-4c54-94a3-2d8a1cabfc2d">
+              <SHORT-NAME>PPort_CallbackGetPowerMode</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_DoIP/PortInterfaces/CallbackGetPowerMode</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="f6470a50-f598-4644-95f8-5d221d360cee">
+              <SHORT-NAME>IB_ETH_SWC</SHORT-NAME>
+              <DATA-TYPE-MAPPING-REFS>
+                <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/Eth_DataTypeMappingSet/DataTypeMappingSet</DATA-TYPE-MAPPING-REF>
+                <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/AUTOSAR_DoIP/ImplementationDataTypes/DTS_DoIP_ActivationLineType</DATA-TYPE-MAPPING-REF>
+              </DATA-TYPE-MAPPING-REFS>
+              <EVENTS>
+                <TIMING-EVENT UUID="06773d26-15e9-4a37-9be5-6d5cf04eb965">
+                  <SHORT-NAME>TE_ETH_SWC_10ms</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EthernetModule/ASW_ETH/IB_ETH_SWC/RE_ETH_SWC</START-ON-EVENT-REF>
+                  <PERIOD>0.01</PERIOD>
+                </TIMING-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="2fe628a4-5fec-4d9c-a7f8-e2bd6d94cfad">
+                  <SHORT-NAME>OIE_CallbackGetPowerMode</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EthernetModule/ASW_ETH/IB_ETH_SWC/RE_ETH_CallbackGetPowerMode</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/PPort_CallbackGetPowerMode</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_DoIP/PortInterfaces/CallbackGetPowerMode/GetPowerMode</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="8b2fcb26-84bd-41f3-bcae-d2fcbbf72553">
+                  <SHORT-NAME>RE_ETH_SWC</SHORT-NAME>
+                  <DATA-READ-ACCESSS>
+                    <VARIABLE-ACCESS UUID="0435037d-537d-46fc-908c-d5664401657d">
+                      <SHORT-NAME>DRA_RPort_SystemSignal_TCP_RX_0</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/RPort_SystemSignal_TCP_RX</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Eth_Interface/SR_Interface_SystemSignal_TCP_Rx/RPort_SystemSignal_TCP_RX</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="9a51490c-4d46-41fc-956e-3bcf33471c01">
+                      <SHORT-NAME>DRA_RPort_SystemSignal_UDP_RX_0</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/RPort_SystemSignal_UDP_RX</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Eth_Interface/SR_Interface_SystemSignal_UDP_Rx/RPort_SystemSignal_UDP_RX</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-READ-ACCESSS>
+                  <DATA-SEND-POINTS>
+                    <VARIABLE-ACCESS UUID="0ccf4faf-080e-438f-9549-90ea11507034">
+                      <SHORT-NAME>DSP_PPort_SystemSignal_TCP_TX_0</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/PPort_SystemSignal_TCP_TX</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Eth_Interface/SR_Interface_SystemSignal_TCP_Tx/PPort_SystemSignal_TCP_TX</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="b1daa1e6-0c02-4335-84d9-fd2b2982037c">
+                      <SHORT-NAME>DSP_RPort_SystemSignal_UDP_TX_0</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/PPort_SystemSignal_UDP_TX</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Eth_Interface/SR_Interface_SystemSignal_UDP_Tx/PPort_SystemSignal_UDP_TX</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-SEND-POINTS>
+                  <MODE-SWITCH-POINTS>
+                    <MODE-SWITCH-POINT UUID="bb90afc5-1da4-412b-83e4-101bc8179339">
+                      <SHORT-NAME>ModeSwitchPoint_0</SHORT-NAME>
+                      <MODE-GROUP-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EthernetModule/ASW_ETH/PPort_DoIPActivationLineSwitchNotification</CONTEXT-P-PORT-REF>
+                        <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_DoIP/ModeSwitchInterfaces/DoIPActivationLineStatus/currentDoIPActivationLineStatus</TARGET-MODE-GROUP-REF>
+                      </MODE-GROUP-IREF>
+                    </MODE-SWITCH-POINT>
+                  </MODE-SWITCH-POINTS>
+                  <SYMBOL>RE_ETH_SWC</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="d48dbe2f-b092-47dd-8b78-d50763e633a0">
+                  <SHORT-NAME>RE_ETH_CallbackGetPowerMode</SHORT-NAME>
+                  <SYMBOL>RE_ETH_CallbackGetPowerMode_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

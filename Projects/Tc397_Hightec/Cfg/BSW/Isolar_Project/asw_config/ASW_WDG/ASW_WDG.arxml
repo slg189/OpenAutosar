@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ASW_WDG</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>ASW_WDG</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <R-PORT-PROTOTYPE UUID="b2cde5dc-8e32-4122-af54-e594e4c1cc66">
+              <SHORT-NAME>RPort_Alive_Supervision_Entity1</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_WdgM/WdgM_LocalSupervision</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="f6b6d19b-33d1-46b7-9733-c3e146e6b8fa">
+              <SHORT-NAME>RPort_WdgM_GlobalMode</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/AUTOSAR_WdgM/WdgM_GlobalMode</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="8b12ff80-7876-4536-b2e8-bb7e804740fd">
+              <SHORT-NAME>RPort_Deadline_Supervision_Entity1</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_WdgM/WdgM_LocalSupervision</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="37b553d1-1433-4236-9c3b-d8743c397178">
+              <SHORT-NAME>RPort_Deadline_Supervision_Entity2</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_WdgM/WdgM_LocalSupervision</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>IB_ASW_WDG</SHORT-NAME>
+              <DATA-TYPE-MAPPING-REFS>
+                <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/AUTOSAR_WdgM/WdgM_Type_Map</DATA-TYPE-MAPPING-REF>
+              </DATA-TYPE-MAPPING-REFS>
+              <EVENTS>
+                <TIMING-EVENT UUID="0cc994dc-d4af-4c84-aef9-57c37d96cd5a">
+                  <SHORT-NAME>TimingEvent_Alive_Supervision_Entity1</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_WDG/ASW_WDG/IB_ASW_WDG/RE_ASW_WDG_Alive_Supervision_Entity1</START-ON-EVENT-REF>
+                  <PERIOD>0.01</PERIOD>
+                </TIMING-EVENT>
+                <TIMING-EVENT UUID="c0191595-27ed-4d07-80b1-c36b062e0ae5">
+                  <SHORT-NAME>TimingEvent_Deadline_Supervision_Entity1</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_WDG/ASW_WDG/IB_ASW_WDG/RE_ASW_WDG_Deadline_Supervision_Entity1</START-ON-EVENT-REF>
+                  <PERIOD>0.01</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="d6581fbe-f28c-40fd-9b0e-0fc1d8ea4d1b">
+                  <SHORT-NAME>RE_ASW_WDG_Alive_Supervision_Entity1</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="1d1a51ea-3b8f-417c-b82c-5b6e09fff0dc">
+                      <SHORT-NAME>SynchronousServerCallPoint_0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_WDG/ASW_WDG/RPort_Alive_Supervision_Entity1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/WdgM_LocalSupervision/CheckpointReached</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>RE_ASW_WDG_Alive_Supervision_Entity1_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="4d65431c-8bee-4972-bdde-f48491d60bd9">
+                  <SHORT-NAME>RE_ASW_WDG_Deadline_Supervision_Entity1</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="6e3e9c13-5c6a-4df6-b097-84f2fb5d5ab4">
+                      <SHORT-NAME>SynchronousServerCallPoint_0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_WDG/ASW_WDG/RPort_Deadline_Supervision_Entity2</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/WdgM_LocalSupervision/CheckpointReached</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="4f964dbf-7d7d-47d4-a286-1d870b0c826e">
+                      <SHORT-NAME>SynchronousServerCallPoint_1</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_WDG/ASW_WDG/RPort_Deadline_Supervision_Entity1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/WdgM_LocalSupervision/CheckpointReached</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>RE_ASW_WDG_Deadline_Supervision_Entity1_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

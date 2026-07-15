@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://autosar.org/schema/r4.0"
+    xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-2-2.xsd">
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 L="EN" xml:space="default">English</L-10>
+    </USED-LANGUAGES>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>AUTOSAR_EthSM</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>ApplicationDataTypes</SHORT-NAME>
+          <ELEMENTS>
+            <APPLICATION-ARRAY-DATA-TYPE>
+              <SHORT-NAME>EthSM_NetworkModeStateType_au8_app</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Array of NetworkMode StateType</L-4>
+              </LONG-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ELEMENT>
+                <SHORT-NAME>EthSM_Array_Element_of_NetworkModeStateType</SHORT-NAME>
+                <CATEGORY>VALUE</CATEGORY>
+                <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/AUTOSAR_EthSM/ApplicationDataTypes/EthSM_NetworkModeStateType_Enum</TYPE-TREF>
+                <MAX-NUMBER-OF-ELEMENTS>1</MAX-NUMBER-OF-ELEMENTS>
+              </ELEMENT>
+            </APPLICATION-ARRAY-DATA-TYPE>
+            <APPLICATION-PRIMITIVE-DATA-TYPE>
+              <SHORT-NAME>EthSM_NetworkModeStateType_Enum</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Enum for NetworkMode StateType</L-4>
+              </LONG-NAME>
+              <CATEGORY>VALUE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/AUTOSAR_EthSM/CompuMethods/EthSM_Enum_NetworkModeStateType</COMPU-METHOD-REF>
+                    <DATA-CONSTR-REF DEST="DATA-CONSTR">/AUTOSAR_EthSM/DataConstraints/EthSM_DataConstraint_u8</DATA-CONSTR-REF>
+                    <DISPLAY-FORMAT>%5.0f</DISPLAY-FORMAT>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </APPLICATION-PRIMITIVE-DATA-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>BswImplementations</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-IMPLEMENTATION>
+              <SHORT-NAME>EthSM</SHORT-NAME>
+              <CODE-DESCRIPTORS>
+                <CODE>
+                  <SHORT-NAME>CodeDescriptor</SHORT-NAME>
+                  <ARTIFACT-DESCRIPTORS>
+                    <AUTOSAR-ENGINEERING-OBJECT>
+                      <SHORT-LABEL>ArEngObj</SHORT-LABEL>
+                      <CATEGORY>SWSRC</CATEGORY>
+                    </AUTOSAR-ENGINEERING-OBJECT>
+                  </ARTIFACT-DESCRIPTORS>
+                </CODE>
+              </CODE-DESCRIPTORS>
+              <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+              <RESOURCE-CONSUMPTION>
+                <SHORT-NAME>EthSM_ResourceConsumption</SHORT-NAME>
+                <MEMORY-SECTIONS>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_CONST_8</SHORT-NAME>
+                    <ALIGNMENT>8</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CONST_8</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_CONST_16</SHORT-NAME>
+                    <ALIGNMENT>16</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CONST_16</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_CONST_32</SHORT-NAME>
+                    <ALIGNMENT>32</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CONST_32</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_CONST_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CONST_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_VAR_CLEARED_8</SHORT-NAME>
+                    <ALIGNMENT>8</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_CLEARED_8</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_VAR_CLEARED_16</SHORT-NAME>
+                    <ALIGNMENT>16</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_CLEARED_16</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_VAR_CLEARED_32</SHORT-NAME>
+                    <ALIGNMENT>32</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_CLEARED_32</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_VAR_CLEARED_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_CLEARED</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_CLEARED_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_VAR_INIT_8</SHORT-NAME>
+                    <ALIGNMENT>8</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_INIT</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_INIT_8</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_VAR_INIT_16</SHORT-NAME>
+                    <ALIGNMENT>16</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_INIT</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_INIT_16</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_VAR_INIT_UNSPECIFIED</SHORT-NAME>
+                    <ALIGNMENT>UNSPECIFIED</ALIGNMENT>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/VAR_INIT</SW-ADDRMETHOD-REF>
+                    <SYMBOL>VAR_INIT_UNSPECIFIED</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>EthSM_CODE</SHORT-NAME>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/EthSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CODE</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_CODE</SHORT-NAME>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CODE</SYMBOL>
+                  </MEMORY-SECTION>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>ETHSM_CODE_FAST</SHORT-NAME>
+                    <PREFIX-REF DEST="SECTION-NAME-PREFIX">/AUTOSAR_EthSM/BswImplementations/EthSM/EthSM_ResourceConsumption/ETHSM</PREFIX-REF>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/CODE_FAST</SW-ADDRMETHOD-REF>
+                    <SYMBOL>CODE_FAST</SYMBOL>
+                  </MEMORY-SECTION>
+                </MEMORY-SECTIONS>
+                <SECTION-NAME-PREFIXS>
+                  <SECTION-NAME-PREFIX>
+                    <SHORT-NAME>EthSM</SHORT-NAME>
+                    <SYMBOL>EthSM</SYMBOL>
+                  </SECTION-NAME-PREFIX>
+                  <SECTION-NAME-PREFIX>
+                    <SHORT-NAME>ETHSM</SHORT-NAME>
+                    <SYMBOL>ETHSM</SYMBOL>
+                  </SECTION-NAME-PREFIX>
+                </SECTION-NAME-PREFIXS>
+              </RESOURCE-CONSUMPTION>
+              <SW-VERSION>10.0.0</SW-VERSION>
+              <AR-RELEASE-VERSION>4.2.2</AR-RELEASE-VERSION>
+              <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/AUTOSAR_EthSM/BswModuleDescriptions/EthSM/BswInternalBehavior</BEHAVIOR-REF>
+            </BSW-IMPLEMENTATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>BswModuleDescriptions</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-MODULE-DESCRIPTION>
+              <SHORT-NAME>EthSM</SHORT-NAME>
+              <INTERNAL-BEHAVIORS>
+                <BSW-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>BswInternalBehavior</SHORT-NAME>
+                  <DATA-TYPE-MAPPING-REFS>
+                    <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/AUTOSAR_EthSM/DataTypeMappingSets/DataTypeMappingSet</DATA-TYPE-MAPPING-REF>
+                  </DATA-TYPE-MAPPING-REFS>
+                  <STATIC-MEMORYS>
+                    <VARIABLE-DATA-PROTOTYPE>
+                      <SHORT-NAME>EthSM_NetState_aen</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">Gives information about states defined internally for EthSM Networks (ETHSM_STATE_OFFLINE - EthSM is initialized in this state, ETHSM_STATE_WAIT_TRCVLINK - ComM requests COMM_FULL_COMMUNICATION in this state, Ctrl and Trcv will be initialized and set to ACTIVE. EthSM waits for transceiver link state (ACTIVE),ETHSM_STATE_WAIT_ONLINE - Transceiver link state is ACTIVE. EthSM waits for IP communication (TcpIP state = ONLINE), ETHSM_STATE_ONLINE - IP communication is availabe ComM state COMM_FULL_COMMUNICATION is reached, ETHSM_STATE_ONHOLD - EthSM lost active transceiver link state, TcpIP state is still online, ETHSM_STATE_WAIT_OFFLINE - ComM requests COMM_NO_COMMUNICATION in this state)</L-4>
+                      </LONG-NAME>
+                      <CATEGORY>ARRAY</CATEGORY>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <SW-ADDR-METHOD-REF DEST="SW-ADDR-METHOD">/RB/RBA/Common/CentralElements/SwAddrMethods/INTERNAL_VAR_CLEARED</SW-ADDR-METHOD-REF>
+                            <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                            <DISPLAY-FORMAT>%5.1f</DISPLAY-FORMAT>
+                            <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                      <TYPE-TREF DEST="APPLICATION-ARRAY-DATA-TYPE">/AUTOSAR_EthSM/ApplicationDataTypes/EthSM_NetworkModeStateType_au8_app</TYPE-TREF>
+                    </VARIABLE-DATA-PROTOTYPE>
+                  </STATIC-MEMORYS>
+                  <ENTITYS>
+                    <BSW-SCHEDULABLE-ENTITY>
+                      <SHORT-NAME>SE_MainFunction</SHORT-NAME>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_EthSM/BswModuleEntrys/EthSM_MainFunction</IMPLEMENTED-ENTRY-REF>
+                    </BSW-SCHEDULABLE-ENTITY>
+                  </ENTITYS>
+                  <EVENTS>
+                    <BSW-TIMING-EVENT>
+                      <SHORT-NAME>EV_SE_MainFunction</SHORT-NAME>
+                      <STARTS-ON-EVENT-REF DEST="BSW-SCHEDULABLE-ENTITY">/AUTOSAR_EthSM/BswModuleDescriptions/EthSM/BswInternalBehavior/SE_MainFunction</STARTS-ON-EVENT-REF>
+                      <PERIOD>0.01</PERIOD>
+                    </BSW-TIMING-EVENT>
+                  </EVENTS>
+                </BSW-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </BSW-MODULE-DESCRIPTION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>DataConstraints</SHORT-NAME>
+          <ELEMENTS>
+            <DATA-CONSTR>
+              <SHORT-NAME>EthSM_DataConstraint_u8</SHORT-NAME>
+              <DATA-CONSTR-RULES>
+                <DATA-CONSTR-RULE>
+                  <PHYS-CONSTRS>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0.0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">255.0</UPPER-LIMIT>
+                    <UNIT-REF DEST="UNIT">/AUTOSAR_EthSM/Units/NoUnit</UNIT-REF>
+                  </PHYS-CONSTRS>
+                </DATA-CONSTR-RULE>
+              </DATA-CONSTR-RULES>
+            </DATA-CONSTR>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>DataTypeMappingSets</SHORT-NAME>
+          <ELEMENTS>
+            <DATA-TYPE-MAPPING-SET>
+              <SHORT-NAME>DataTypeMappingSet</SHORT-NAME>
+              <DATA-TYPE-MAPS>
+                <DATA-TYPE-MAP>
+                  <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-ARRAY-DATA-TYPE">/AUTOSAR_EthSM/ApplicationDataTypes/EthSM_NetworkModeStateType_au8_app</APPLICATION-DATA-TYPE-REF>
+                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_EthSM/ImplementationDataTypes/EthSM_NetworkModeStateType_au8_impl</IMPLEMENTATION-DATA-TYPE-REF>
+                </DATA-TYPE-MAP>
+                <DATA-TYPE-MAP>
+                  <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/AUTOSAR_EthSM/ApplicationDataTypes/EthSM_NetworkModeStateType_Enum</APPLICATION-DATA-TYPE-REF>
+                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_EthSM/ImplementationDataTypes/EthSM_NetworkModeStateType_Enum_impl</IMPLEMENTATION-DATA-TYPE-REF>
+                </DATA-TYPE-MAP>
+              </DATA-TYPE-MAPS>
+            </DATA-TYPE-MAPPING-SET>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>CompuMethods</SHORT-NAME>
+          <ELEMENTS>
+            <COMPU-METHOD>
+              <SHORT-NAME>EthSM_Enum_NetworkModeStateType</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Enumeration for EthSM Network Mode State Type</L-4>
+              </LONG-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <UNIT-REF DEST="UNIT">/AUTOSAR_EthSM/Units/NoUnit</UNIT-REF>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ETHSM_STATE_OFFLINE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ETHSM_STATE_WAIT_TRCVLINK</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ETHSM_STATE_WAIT_ONLINE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ETHSM_STATE_ONLINE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ETHSM_STATE_ONHOLD</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ETHSM_STATE_WAIT_OFFLINE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+          <ELEMENTS>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>EthSM_NetworkModeStateType_au8_impl</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Array of NetworkModeStateType</L-4>
+              </LONG-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>EthSM_Array_Element_of_NetworkModeStateType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>1</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_EthSM/ImplementationDataTypes/EthSM_NetworkModeStateType_Enum_impl</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>EthSM_NetworkModeStateType_Enum_impl</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Enumeration for EthSM Network Mode State Type</L-4>
+              </LONG-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>Units</SHORT-NAME>
+          <ELEMENTS>
+            <UNIT>
+              <SHORT-NAME>NoUnit</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">No Unit</L-4>
+              </LONG-NAME>
+              <DISPLAY-NAME>noUnit</DISPLAY-NAME>
+              <FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+              <OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+              <PHYSICAL-DIMENSION-REF DEST="PHYSICAL-DIMENSION">/AUTOSAR_EthSM/PhysicalDimensions/NoUnit</PHYSICAL-DIMENSION-REF>
+            </UNIT>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>PhysicalDimensions</SHORT-NAME>
+          <ELEMENTS>
+            <PHYSICAL-DIMENSION>
+              <SHORT-NAME>NoUnit</SHORT-NAME>
+              <LENGTH-EXP>0</LENGTH-EXP>
+            </PHYSICAL-DIMENSION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>DataTypeMappingSet_NRC22</SHORT-NAME>
+      <ELEMENTS>
+        <DATA-TYPE-MAPPING-SET>
+          <SHORT-NAME>DataTypeMappingSet_NRC22</SHORT-NAME>
+          <MODE-REQUEST-TYPE-MAPS>
+            <MODE-REQUEST-TYPE-MAP>
+              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+              <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP">/ModeDeclarationGroup_NRC22/ModeDeclarationGroup_NRC22</MODE-GROUP-REF>
+            </MODE-REQUEST-TYPE-MAP>
+          </MODE-REQUEST-TYPE-MAPS>
+        </DATA-TYPE-MAPPING-SET>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

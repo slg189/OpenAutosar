@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ASW_DEM</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>ASW_DEM</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PPort_CBStatusComp_DemComponent_0D01</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PPort_CBStatusComp_DemComponent_0D02</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PPort_CBStatusComp_DemComponent_0D03</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PPort_CBStatusComp_DemComponent_0D04</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>Event_DemEventParameter_0D01</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>Event_DemEventParameter_0D02</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>RPort_OpCycle_DemOperationCycle_Power</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/OperationCycle</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="32e5ae5b-dfe5-4031-b3ce-7faf4bfac420">
+              <SHORT-NAME>PPort_CBStatusComp_DemComponent_0D05</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="b8caac83-4fb5-458c-9ad9-4b4ff734f25d">
+              <SHORT-NAME>DataServices_DemDataElementClass_Year</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Year</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="18ce310f-efd2-42a3-b753-0c4874d733ca">
+              <SHORT-NAME>DataServices_DemDataElementClass_Month</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Month</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="4af20cd6-34ac-4dda-b292-0f319431d590">
+              <SHORT-NAME>DataServices_DemDataElementClass_Day</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Day</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="554244fb-7694-4428-90da-dbff2426bf7c">
+              <SHORT-NAME>DataServices_DemDataElementClass_Hour</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Hour</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="ac0d1559-559e-4c0a-9c8f-68a18fae805e">
+              <SHORT-NAME>DataServices_DemDataElementClass_Minute</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Minute</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="47999e4e-3353-4ea9-a63c-a4ece4e54e4d">
+              <SHORT-NAME>DataServices_CS_ExtendedDataRecord_Fault_pending_counter</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_CS_ExtendedDataRecord_Fault_pending_counter</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="5dcd3193-b168-4ac0-b51e-08c6e8f299e4">
+              <SHORT-NAME>DataServices_CS_ExtendedDataRecord_Aged_counter</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_CS_ExtendedDataRecord_Aged_counter</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="712eded9-73ed-4206-b68e-5542cab4e6f0">
+              <SHORT-NAME>DataServices_DemDataElementClass_SupplyVoltage</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_SupplyVoltage</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="3c8280e4-c93d-4acd-b937-619fb5f6d68a">
+              <SHORT-NAME>DataServices_DemDataElementClass_OdometerReading</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_OdometerReading</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="2fd0245a-c130-458f-b6c5-fd7eba89474b">
+              <SHORT-NAME>DataServices_DemDataElementClass_PowerMode</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_PowerMode</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="5ae54c4b-542d-45c4-90b3-e4295918f5b2">
+              <SHORT-NAME>PPort_CBStatusComp_DemComponent_0D06_Comb0</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="3e9d2b5d-f5a5-4c40-9336-069a6d16878c">
+              <SHORT-NAME>PPort_CBStatusComp_DemComponent_0D06_Comb1</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="4ce1ad8e-c08a-463c-a61a-81ef4a08e4de">
+              <SHORT-NAME>Event_DemEventParameter_0D06_Comb0</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="19393a8f-b82b-4ce3-89de-23b88ff581f6">
+              <SHORT-NAME>Event_DemEventParameter_0D06_Comb1</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="92987871-a91b-4163-9ee6-e1ac885b1d92">
+              <SHORT-NAME>IB_Dem_SWC</SHORT-NAME>
+              <EVENTS>
+                <TIMING-EVENT UUID="c079f554-fc3c-441b-8610-3afccb3bccae">
+                  <SHORT-NAME>TimingEvent_Dem_SWC</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_PeriodicRunnable_10ms</START-ON-EVENT-REF>
+                  <PERIOD>0.01</PERIOD>
+                </TIMING-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="24a704a9-bf53-4dad-b9e9-f386020efe0f">
+                  <SHORT-NAME>OperationInvokedEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_DemDataElementClass_OdometerReading</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_OdometerReading</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_OdometerReading/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="d0446408-4e6b-4f1b-adb6-2b03289ac363">
+                  <SHORT-NAME>OperationInvokedEvent_1</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_DemDataElementClass_Day</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Day</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Day/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="5164fa47-0673-41fc-bd38-436337eabce1">
+                  <SHORT-NAME>OperationInvokedEvent_2</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_CS_ExtendedDataRecord_Fault_pending_counter</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_CS_ExtendedDataRecord_Fault_pending_counter</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_CS_ExtendedDataRecord_Fault_pending_counter/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="db550a57-d479-423b-9a38-efbb49dca340">
+                  <SHORT-NAME>OperationInvokedEvent_3</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_CS_ExtendedDataRecord_Aged_counter</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_CS_ExtendedDataRecord_Aged_counter</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_CS_ExtendedDataRecord_Aged_counter/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="4084c8ae-1f0c-4694-a8e4-e7fe34fff914">
+                  <SHORT-NAME>OperationInvokedEvent_4</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_DemDataElementClass_SupplyVoltage</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_SupplyVoltage</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_SupplyVoltage/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="2f09175b-8808-470d-bb82-69c7a1464f7c">
+                  <SHORT-NAME>OperationInvokedEvent_6</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_DemDataElementClass_Hour</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Hour</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Hour/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="6d3a1c88-15ec-4a58-b873-b5f0f696d249">
+                  <SHORT-NAME>OperationInvokedEvent_7</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_DemDataElementClass_Minute</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Minute</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Minute/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="87455101-c0db-4ba3-956f-3d4e1d04695b">
+                  <SHORT-NAME>OperationInvokedEvent_8</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_DemDataElementClass_Month</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Month</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Month/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="2679984b-ddb5-4f35-90ab-3f114c414f8f">
+                  <SHORT-NAME>OperationInvokedEvent_9</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_DemDataElementClass_PowerMode</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_PowerMode</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_PowerMode/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="49673c44-537a-4a0a-8804-1854eb8eb019">
+                  <SHORT-NAME>OperationInvokedEvent_10</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_DataServices_DemDataElementClass_Year</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/DataServices_DemDataElementClass_Year</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DataServices_DemDataElementClass_Year/ReadData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="504507ce-2d90-4439-bac1-5c37e6008c8e">
+                  <SHORT-NAME>OperationInvokedEvent_11</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_CBStatusComp_DemComponent</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D01</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged/ComponentStatusChanged</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="10bda808-e314-4171-b32a-93597580e1e8">
+                  <SHORT-NAME>OperationInvokedEvent_12</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_CBStatusComp_DemComponent</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D02</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged/ComponentStatusChanged</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="58a65de9-fab2-43a4-9f77-c7712db9570a">
+                  <SHORT-NAME>OperationInvokedEvent_13</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_CBStatusComp_DemComponent</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D05</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged/ComponentStatusChanged</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="c838ae23-3b70-472d-b700-0a81fa7d24dc">
+                  <SHORT-NAME>OperationInvokedEvent_14</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_CBStatusComp_DemComponent</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D06_Comb0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged/ComponentStatusChanged</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="43d9a706-aab0-4557-baa4-3c7e865f64f9">
+                  <SHORT-NAME>OperationInvokedEvent_15</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_CBStatusComp_DemComponent</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D04</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged/ComponentStatusChanged</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="cde49111-3868-43d8-8a58-e56251137c9f">
+                  <SHORT-NAME>OperationInvokedEvent_16</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_CBStatusComp_DemComponent</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D03</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged/ComponentStatusChanged</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="935fe722-2363-4dbf-b538-5d0f5fcb1662">
+                  <SHORT-NAME>OperationInvokedEvent_17</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_DEM/ASW_DEM/IB_Dem_SWC/ASW_DEM_CBStatusComp_DemComponent</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/PPort_CBStatusComp_DemComponent_0D06_Comb1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/CallbackComponentStatusChanged/ComponentStatusChanged</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="6b2d2d32-59c1-4deb-b16f-186fe0c7b715">
+                  <SHORT-NAME>ASW_DEM_PeriodicRunnable_10ms</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="336f3c0c-45fc-4a1a-b37c-ffec1fdc6bdb">
+                      <SHORT-NAME>SynchronousServerCallPoint_0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D01</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/SetEventStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="f62f60f5-99f9-443d-9868-212a0c79bb0f">
+                      <SHORT-NAME>SynchronousServerCallPoint_1</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D01</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/SetEventStatusWithEnvdata</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="c064cf6a-b8c8-42b7-9da3-f5aeaa15ffe0">
+                      <SHORT-NAME>SynchronousServerCallPoint_2</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D01</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ResetEventStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="de246483-483c-4fd8-82d3-a7695da409aa">
+                      <SHORT-NAME>SynchronousServerCallPoint_3</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D01</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/PrestoreFreezeFrame</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="1241b78f-d729-4116-a747-643b3c1b5a36">
+                      <SHORT-NAME>SynchronousServerCallPoint_4</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D01</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ClearPrestoredFreezeFrame</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="f0347133-ffc7-4773-b567-b9934e469ebb">
+                      <SHORT-NAME>SynchronousServerCallPoint_5</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D01</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ResetEventDebounceStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="86a99eaa-33e1-4446-8024-586fb82ad536">
+                      <SHORT-NAME>SynchronousServerCallPoint_10</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/RPort_OpCycle_DemOperationCycle_Power</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/OperationCycle/SetOperationCycleState</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="379a3cf6-7aef-439d-8e6a-d41bcbdf04bd">
+                      <SHORT-NAME>SynchronousServerCallPoint_11</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/RPort_OpCycle_DemOperationCycle_Power</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/OperationCycle/GetOperationCycleState</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="c8d3f982-e56c-4d55-b010-cfaa5d91877f">
+                      <SHORT-NAME>SynchronousServerCallPoint_12</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/RPort_OpCycle_DemOperationCycle_Power</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/OperationCycle/GetCycleQualified</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="c98b7491-8e0c-4b39-bbb4-5dddcd16de4d">
+                      <SHORT-NAME>SynchronousServerCallPoint_13</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/RPort_OpCycle_DemOperationCycle_Power</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/OperationCycle/SetCycleQualified</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="9c0764ff-20bb-4cf6-9075-e2adffb02025">
+                      <SHORT-NAME>SynchronousServerCallPoint_14</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/SetEventStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="0de564d0-756a-41a7-9234-c40be6ed22e4">
+                      <SHORT-NAME>SynchronousServerCallPoint_15</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/SetEventStatusWithEnvdata</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="eccbd996-b4d5-4a47-9664-27941249fa61">
+                      <SHORT-NAME>SynchronousServerCallPoint_16</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ResetEventStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="e46a9ae5-9c16-4b39-b3ee-c7feecb2fdd6">
+                      <SHORT-NAME>SynchronousServerCallPoint_17</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/PrestoreFreezeFrame</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="5e11316d-5897-455c-ba7f-204c057eaaf3">
+                      <SHORT-NAME>SynchronousServerCallPoint_18</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ClearPrestoredFreezeFrame</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="5b9e3cbd-7988-4053-bf13-dd0758345b75">
+                      <SHORT-NAME>SynchronousServerCallPoint_19</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ResetEventDebounceStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="59acb23d-820a-4fe2-b0d7-ac90fedf8486">
+                      <SHORT-NAME>SynchronousServerCallPoint_20</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D02</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/SetEventStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="4232a132-a88e-48a9-b102-4639b6a6d929">
+                      <SHORT-NAME>SynchronousServerCallPoint_21</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D02</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/SetEventStatusWithEnvdata</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="cf6c647a-462b-4607-a26f-59e6ede9c2aa">
+                      <SHORT-NAME>SynchronousServerCallPoint_22</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D02</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ResetEventStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="30afc8d2-5ae1-4898-8db1-1b70b6f4820d">
+                      <SHORT-NAME>SynchronousServerCallPoint_23</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D02</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/PrestoreFreezeFrame</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="c1693fd8-9e96-4c4b-8908-ec3fe3a8e23a">
+                      <SHORT-NAME>SynchronousServerCallPoint_24</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D02</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ClearPrestoredFreezeFrame</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="99bffae5-00cf-4969-a5e4-72443e4dd1d0">
+                      <SHORT-NAME>SynchronousServerCallPoint_25</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D02</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ResetEventDebounceStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="34ca6d76-64c6-4c7f-a888-b57d24891d0a">
+                      <SHORT-NAME>SynchronousServerCallPoint_26</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/SetEventStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="aec0ef20-8466-4120-bc38-1333de64a721">
+                      <SHORT-NAME>SynchronousServerCallPoint_27</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/SetEventStatusWithEnvdata</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="7112e2de-fbca-43c5-984d-3a8f4505c72d">
+                      <SHORT-NAME>SynchronousServerCallPoint_28</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ResetEventStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="2317d436-7a7a-4ba9-9049-3b296c30f7c7">
+                      <SHORT-NAME>SynchronousServerCallPoint_29</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/PrestoreFreezeFrame</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="80d00ced-a3da-49ef-ac4e-be1e64700bcf">
+                      <SHORT-NAME>SynchronousServerCallPoint_30</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ClearPrestoredFreezeFrame</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="2f3f2309-ef51-4fd3-b2e2-98d83a826f04">
+                      <SHORT-NAME>SynchronousServerCallPoint_31</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_DEM/ASW_DEM/Event_DemEventParameter_0D06_Comb1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dem/PortInterfaces/DiagnosticMonitor/ResetEventDebounceStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>ASW_DEM_PeriodicRunnable_10ms_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="8ea345d6-49a7-4791-85cf-e70cc5fc414c">
+                  <SHORT-NAME>ASW_DEM_DataServices_DemDataElementClass_Day</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_DemDataElementClass_Day_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="d76fbea9-f845-45f2-b96c-68afe43a4830">
+                  <SHORT-NAME>ASW_DEM_DataServices_DemDataElementClass_Hour</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_DemDataElementClass_Hour_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="b0bb56be-baa6-49e2-a1f7-4957e0186bbe">
+                  <SHORT-NAME>ASW_DEM_DataServices_DemDataElementClass_Minute</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_DemDataElementClass_Minute_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="3e186fa4-0154-4b28-a635-9cb90a681ab3">
+                  <SHORT-NAME>ASW_DEM_DataServices_DemDataElementClass_Month</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_DemDataElementClass_Month_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="45a7417b-b3c2-4f9a-88ab-f61f1538155b">
+                  <SHORT-NAME>ASW_DEM_DataServices_DemDataElementClass_Year</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_DemDataElementClass_Year_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="67b55ea7-6ae7-42de-ad0d-62a9a3a31d3c">
+                  <SHORT-NAME>ASW_DEM_DataServices_DemDataElementClass_OdometerReading</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_DemDataElementClass_OdometerReading_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="4c032fde-5406-442f-ad40-4607001ee856">
+                  <SHORT-NAME>ASW_DEM_DataServices_DemDataElementClass_SupplyVoltage</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_DemDataElementClass_SupplyVoltage_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="0337c599-b9bc-45d2-89d7-9122ff10fd52">
+                  <SHORT-NAME>ASW_DEM_DataServices_DemDataElementClass_PowerMode</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_DemDataElementClass_PowerMode_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="427bbe99-e596-4363-9262-8695f5dfc151">
+                  <SHORT-NAME>ASW_DEM_DataServices_CS_ExtendedDataRecord_Fault_pending_counter</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_CS_ExtendedDataRecord_Fault_pending_counter_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="20071e58-1629-4a1c-9884-f534affafb8a">
+                  <SHORT-NAME>ASW_DEM_DataServices_CS_ExtendedDataRecord_Aged_counter</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_DataServices_CS_ExtendedDataRecord_Aged_counter_ReadData_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="e6939895-c1b8-4af8-99b3-b82395750c2b">
+                  <SHORT-NAME>ASW_DEM_CBStatusComp_DemComponent</SHORT-NAME>
+                  <SYMBOL>ASW_DEM_CBStatusComp_DemComponent_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

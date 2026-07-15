@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ASW_CORE0</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>ASW_CORE0</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <R-PORT-PROTOTYPE UUID="c5d6673f-7790-473d-9cf0-c0ccb2edbc64">
+              <SHORT-NAME>RPort_CPUUtilizationCore0</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ServiceSwComponentInterface/CPU_Utilization</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="d7b8663d-d25f-4280-b1c1-c3bd954bfee7">
+              <SHORT-NAME>PPort_SwcModeRequest</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/ModeRequestInterface/ModeRequestInterface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="c01b808b-c399-4420-90ec-61d205a4530e">
+              <SHORT-NAME>RPort_GetMaxUserStackUtilization</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ServiceSwComponentInterface/GetMaxUserStackUtilization</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>SwcInternalBehavior</SHORT-NAME>
+              <DATA-TYPE-MAPPING-REFS>
+                <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/AppMode_Mapping/AppMode_Mapping</DATA-TYPE-MAPPING-REF>
+              </DATA-TYPE-MAPPING-REFS>
+              <EVENTS>
+                <TIMING-EVENT UUID="44517fc7-d916-43e2-bbc4-68cfadb371a5">
+                  <SHORT-NAME>TimingEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_CORE0/ASW_CORE0/SwcInternalBehavior/RE_CORE0_SWC_100ms</START-ON-EVENT-REF>
+                  <PERIOD>0.1</PERIOD>
+                </TIMING-EVENT>
+                <ASYNCHRONOUS-SERVER-CALL-RETURNS-EVENT UUID="ae8df3af-57bc-4052-be30-a51a805f6956">
+                  <SHORT-NAME>AsynchronousServerCallReturnsEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_CORE0/ASW_CORE0/SwcInternalBehavior/RE_CORE0_CPU_Utilization_GetResult</START-ON-EVENT-REF>
+                  <EVENT-SOURCE-REF DEST="ASYNCHRONOUS-SERVER-CALL-RESULT-POINT">/ASW_CORE0/ASW_CORE0/SwcInternalBehavior/RE_CORE0_SWC_100ms/AsynchronousServerCallResultPoint_0</EVENT-SOURCE-REF>
+                </ASYNCHRONOUS-SERVER-CALL-RETURNS-EVENT>
+                <TIMING-EVENT UUID="02f89e88-3e83-4407-9801-abb2cf86402b">
+                  <SHORT-NAME>TimingEvent_1</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_CORE0/ASW_CORE0/SwcInternalBehavior/RE_CORE0_SWC_10ms</START-ON-EVENT-REF>
+                  <PERIOD>0.01</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="0d290df0-3cf0-466b-94b2-fd88f23ba390">
+                  <SHORT-NAME>RE_CORE0_SWC_100ms</SHORT-NAME>
+                  <ASYNCHRONOUS-SERVER-CALL-RESULT-POINTS>
+                    <ASYNCHRONOUS-SERVER-CALL-RESULT-POINT UUID="18b2837a-1399-436e-8cfa-af1384fac3d3">
+                      <SHORT-NAME>AsynchronousServerCallResultPoint_0</SHORT-NAME>
+                      <ASYNCHRONOUS-SERVER-CALL-POINT-REF DEST="ASYNCHRONOUS-SERVER-CALL-POINT">/ASW_CORE0/ASW_CORE0/SwcInternalBehavior/RE_CORE0_SWC_100ms/AsynchronousServerCallPoint_1</ASYNCHRONOUS-SERVER-CALL-POINT-REF>
+                    </ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
+                  </ASYNCHRONOUS-SERVER-CALL-RESULT-POINTS>
+                  <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                  <READ-LOCAL-VARIABLES>
+                    <VARIABLE-ACCESS>
+                      <SHORT-NAME>ReadLocalVariables_VariableAccess_0</SHORT-NAME>
+                      <ACCESSED-VARIABLE />
+                    </VARIABLE-ACCESS>
+                  </READ-LOCAL-VARIABLES>
+                  <SERVER-CALL-POINTS>
+                    <ASYNCHRONOUS-SERVER-CALL-POINT UUID="ae092758-fd06-4396-8f69-1dd86d602387">
+                      <SHORT-NAME>AsynchronousServerCallPoint_1</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE0/ASW_CORE0/RPort_CPUUtilizationCore0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/ServiceSwComponentInterface/CPU_Utilization/CPU_Utilization</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </ASYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="8bccce43-58b3-4417-aa2c-49486da7669d">
+                      <SHORT-NAME>SynchronousServerCallPoint_0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_CORE0/ASW_CORE0/RPort_GetMaxUserStackUtilization</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/ServiceSwComponentInterface/GetMaxUserStackUtilization/GetMaxUserStackUtilization</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>RE_CORE0_SWC_100ms_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="bc28e941-aee1-496b-835a-449ef7e96cc8">
+                  <SHORT-NAME>RE_Core0FaultReaction</SHORT-NAME>
+                  <DATA-SEND-POINTS>
+                    <VARIABLE-ACCESS UUID="ddc3574e-1e0a-40ce-8184-524d133b4096">
+                      <SHORT-NAME>DSP_AppMode_0</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/ASW_CORE0/ASW_CORE0/PPort_SwcModeRequest</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/ModeRequestInterface/ModeRequestInterface/AppMode</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-SEND-POINTS>
+                  <SYMBOL>RE_Core0FaultReaction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="c82fb70e-cf9a-444c-8816-9485b4e14a44">
+                  <SHORT-NAME>RE_CORE0_CPU_Utilization_GetResult</SHORT-NAME>
+                  <ASYNCHRONOUS-SERVER-CALL-RESULT-POINTS>
+                    <ASYNCHRONOUS-SERVER-CALL-RESULT-POINT UUID="e3e721cd-c358-49ae-ad21-13b177568d76">
+                      <SHORT-NAME>AsynchronousServerCallResultPoint_0</SHORT-NAME>
+                    </ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
+                  </ASYNCHRONOUS-SERVER-CALL-RESULT-POINTS>
+                  <SYMBOL>RE_CORE0_CPU_Utilization_GetResult_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="a70edbdd-447c-4aae-a066-0adce2fe8359">
+                  <SHORT-NAME>RE_CORE0_SWC_10ms</SHORT-NAME>
+                  <SYMBOL>RE_CORE0_SWC_10ms_func</SYMBOL>
+                  <WRITTEN-LOCAL-VARIABLES>
+                    <VARIABLE-ACCESS>
+                      <SHORT-NAME>WrittenLocalVariables_VariableAccess_0</SHORT-NAME>
+                      <ACCESSED-VARIABLE />
+                    </VARIABLE-ACCESS>
+                  </WRITTEN-LOCAL-VARIABLES>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

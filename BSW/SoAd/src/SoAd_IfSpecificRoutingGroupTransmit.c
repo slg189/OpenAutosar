@@ -1,0 +1,360 @@
+
+
+/*
+ ***************************************************************************************************
+ * Includes
+ ***************************************************************************************************
+ */
+
+#include "SoAd.h"
+#ifdef SOAD_CONFIGURED
+
+#include "SoAd_Prv.h"
+
+/*
+ ***************************************************************************************************
+ * Defines
+ ***************************************************************************************************
+ */
+
+
+/*
+ ***************************************************************************************************
+ * Prototype for Static functions: Start
+ ***************************************************************************************************
+ */
+#define SOAD_START_SEC_CODE
+#include "SoAd_MemMap.h"
+
+#if ( SOAD_IF_TRIGGER_TX_ENABLED != STD_OFF )
+static Std_ReturnType SoAd_SetIfSpecificRgTransmitReq( SoAd_RoutingGroupIdType RgId_uo,
+                                                       SoAd_SoConIdType        SoConId_uo );
+
+static Std_ReturnType SoAd_TriggerIfSpecificRgTransmit( const PduRouteDestType_tst * PduRRouteDest_cpst,
+                                                        SoAd_SoConIdType             SoConId_uo) ;
+
+#endif /* ( SOAD_IF_TRIGGER_TX_ENABLED != STD_OFF ) */
+
+/**
+ **********************************************************************************************************************
+ * \Function Name : SoAd_IfSpecificRoutingGroupTransmit()
+ *
+ * \function description
+ * This API Triggers the transmission of all If-TxPDUs identified by the parameter id on the socket connection
+ * specified by SoConId after requesting the data from the related upper layer.
+ *
+ * Parameters (in) :
+ * \param   SoAd_RoutingGroupIdType
+ * \arg     id - This parameter contains the routing group identifier indirectly specifying PDUs to be transmitted
+ *                          (after requesting the newest data from the related upper layer).
+ *
+ * \arg     SoConId - socket connection index specifying the socket connection on which the PDUs shall be transmitted.
+ *
+ * Parameters (inout): None
+ *
+ * Parameters (out):   None
+ *
+ * Return Parameter :
+ * \return   Std_ReturnType
+ * \retval   E_OK             - The request was successful
+ *           E_NOT_OK         - The request was not successful
+ *
+ **********************************************************************************************************************
+ */
+/* Upper layer shall ask for below function, Then SoAd shall store the request across each PduRouteDest which are linked with this routing
+ * group Id on the specified SoConId, then in next SoAd_MainFunction(), UL_TriggerTransmit is called for all the PduRouteDests which are already stored */
+Std_ReturnType SoAd_IfSpecificRoutingGroupTransmit( SoAd_RoutingGroupIdType id,
+                                                    SoAd_SoConIdType        SoConId )
+{
+#if ( SOAD_IF_TRIGGER_TX_ENABLED != STD_OFF )
+    /* Variable to hold the return value */
+    Std_ReturnType lFunctionRetVal_u8;
+
+    /* Initialize the funtion return variable to E_NOT_OK */
+    lFunctionRetVal_u8           = E_NOT_OK;
+
+    /********************************* Start: DET Checking *************************************/
+
+    /* Check whether SoAd Init function was already called or not */
+    SOAD_DET_CHECK_ERROR_RETVAL( ( FALSE == SoAd_InitFlag_b ), SOAD_IF_SPECIFIC_ROUTING_GROUP_TRANSMIT_API_ID, SOAD_E_NOTINIT, E_NOT_OK )
+
+    /* Check whether id is valid or not */
+    SOAD_DET_CHECK_ERROR_RETVAL( ( SoAd_CurrConfig_cpst->SoAd_noRoutingGrps_cuo <= id), SOAD_IF_SPECIFIC_ROUTING_GROUP_TRANSMIT_API_ID, SOAD_E_INV_ARG, E_NOT_OK )
+
+    /* Check whether SoConId is valid or not */
+    SOAD_DET_CHECK_ERROR_RETVAL( ( SoAd_CurrConfig_cpst->SoAd_noStaticSockets_uo <= SoConId ), SOAD_IF_SPECIFIC_ROUTING_GROUP_TRANSMIT_API_ID, SOAD_E_INV_ARG, E_NOT_OK )
+
+    /* Check Configuration parameter SoAdRoutingGroupTxTriggerable set to TRUE for this Routing Group Id */
+    SOAD_DET_CHECK_ERROR_RETVAL( ( SoAd_CurrConfig_cpst ->SoAd_RoutingGrTriggerable_ROM_cpb[id] == FALSE ) , SOAD_IF_SPECIFIC_ROUTING_GROUP_TRANSMIT_API_ID, SOAD_E_INV_ARG , E_NOT_OK)
+
+    /********************************* End: DET Checking *************************************/
+
+    lFunctionRetVal_u8 = SoAd_SetIfSpecificRgTransmitReq(id, SoConId);
+
+    return(lFunctionRetVal_u8);
+
+#else
+    (void)id;
+    (void)SoConId;
+    return(E_NOT_OK);
+#endif /* SOAD_IF_TRIGGER_TX_ENABLED != STD_OFF */
+
+}
+
+#if ( SOAD_IF_TRIGGER_TX_ENABLED != STD_OFF )
+/**
+ **************************************************************************************************************************************
+ * \Function Name : SoAd_SetIfSpecificRgTransmitReq()
+ *
+ * \Function description
+ * This function shall set the flag and it will be used in SoAdMainFunction to trgger the transmission req.
+ *
+ * Parameters (in):
+ * \param   PduRouteDestType_tst *
+ * \arg     PduRRouteDest_cpst  - Pointer to a PduRouteDest structure
+ *
+ * \arg     RgId_uo - This parameter contains the routing group identifier indirectly specifying PDUs to be transmitted
+ *                          (after requesting the newest data from the related upper layer).
+ *
+ * \arg     SoConId_uo - socket connection index specifying the socket connection on which the PDUs shall be transmitted.
+ *
+ * Parameters (out):    None
+ *
+ * \return  Std_ReturnType
+ * \retval   E_OK               - The request was successful
+ *           E_NOT_OK           - The request was not successful
+ *
+ ***************************************************************************************************************************************
+ */
+static Std_ReturnType SoAd_SetIfSpecificRgTransmitReq( SoAd_RoutingGroupIdType RgId_uo,
+                                                       SoAd_SoConIdType        SoConId_uo )
+{
+    /* Pointer to hold the Pdu route destination structure*/
+    const PduRouteDestType_tst *     lPduRouteDest_cpst;
+
+    /* Local pointer to store the Tx pdu array one by one */
+    const SoAd_TxPduConfigType_tst * lSoAdTxPduConfig_cpst;
+
+    /* Variable to hold the return value */
+    Std_ReturnType                   lFunctionRetVal_u8;
+
+    /* variable to store the return value of internal function call */
+    Std_ReturnType                   lRetVal_u8;
+
+    /* Variable to hold the number of PduRouteDests configured for this PduRoute*/
+    PduIdType                        lNumberofPduRouteDests_uo;
+
+    /* Variable to hold the index of PduRouteDests configured for this PduRoute*/
+    PduIdType                        lIdxOfPduRouteDest_uo;
+
+    /* Loop through for NumofTxRoutingGroups Mapping to PduRouteDests */
+    SoAd_RoutingGroupIdType          lIdxOfRoutingGroup_uo;
+
+    /* Variable to hold the index of PduRoute configured */
+    PduIdType                        lTxPduId_uo;
+
+    /* Initialize the funtion return variable to E_NOT_OK */
+    lFunctionRetVal_u8           = E_NOT_OK;
+
+    /* Initialize the local variables which are declared above */
+    /* Loop through all the Tx PDU route Group */
+    for(lTxPduId_uo = 0; lTxPduId_uo < SoAd_CurrConfig_cpst->SoAd_noTxPdus_cuo; lTxPduId_uo++)
+    {
+        /* Get the Local pointer for SoAd_TxPduConfig_cpst for locall access */
+        lSoAdTxPduConfig_cpst = &(SoAd_CurrConfig_cpst->SoAd_TxPduConfig_cpst[lTxPduId_uo]);
+
+        /* Condition check: the UL type is PDU-IF and the SoAdIfTriggerTransmit of the UL is set to TRUE
+         * If both are TRUE, Get the number of PduRouteDests configured with this PduRoute, else 0 */
+        lNumberofPduRouteDests_uo = ( ( SOAD_IF == lSoAdTxPduConfig_cpst->txUpperLayerType_en ) &&
+                                      ( 0 < lSoAdTxPduConfig_cpst->idxTriggerTransmitCallback_u8 ) ) ? lSoAdTxPduConfig_cpst->PduRouteDestNum_uo : 0U;
+
+        /* Loop through all the PDU route dests */
+        for(lIdxOfPduRouteDest_uo = 0; lIdxOfPduRouteDest_uo <  lNumberofPduRouteDests_uo; lIdxOfPduRouteDest_uo++)
+        {
+            /* Extract pointer to element of Pdu route destination structure one by one */
+            lPduRouteDest_cpst = &( lSoAdTxPduConfig_cpst->PduRouteDestConf_cpst [lIdxOfPduRouteDest_uo] );
+
+            /* Loop through for all routing groups configured for this PduRouteDest */
+            for( lIdxOfRoutingGroup_uo = 0; lIdxOfRoutingGroup_uo < lPduRouteDest_cpst->numOfTxRoutingGroups_uo; lIdxOfRoutingGroup_uo++ )
+            {
+                /* Condition Check:
+                 * 1. the Routing group id given by the upper layer is matches with configured Id's.
+                 * 2. Trigger Transmit callback is registered.
+                 */
+                if( ( RgId_uo == lPduRouteDest_cpst->txRoutingGroupConf_cpuo[lIdxOfRoutingGroup_uo] )  && \
+                    ( NULL_PTR != SoAd_CurrConfig_cpst->SoAd_IfTriggerTransmitCallbacks_cpst[SoAd_CurrConfig_cpst->SoAd_TxPduConfig_cpst[lTxPduId_uo].idxTriggerTransmitCallback_u8].TriggerTransmit_pfn ))
+                {
+                    /* Call the below function to set the triggerTransmissionInfo_puo member if SoConId match is found */
+                    lRetVal_u8 = SoAd_TriggerIfSpecificRgTransmit(lPduRouteDest_cpst, SoConId_uo);
+
+                    /* If lRetVal_u8 is E_OK, then only update the lFunctionRetVal_u8, since if any one of pdu routes
+                     * dests or any one of the socket connections triggerTransmissionInfo_puo->triggerTransmitRequest_u8 is set to STD_ON,
+                     * SoAd_IfSpecificRoutingGroupTransmit shall return E_OK. Default valud of lFunctionRetVal_u8 is E_NOT_OK.
+                     */
+                    lFunctionRetVal_u8 = ( E_OK == lRetVal_u8 ) ? E_OK : lFunctionRetVal_u8;
+
+                    /* same routing group reference cannot be configured in single PduRouteDest */
+                    break;
+                }
+            }/* End of Routing Group for loop */
+
+        }/* End of PduRoute Dest for loop */
+    } /* End of TxPdu for loop */
+
+    return lFunctionRetVal_u8;
+}
+/**
+ **************************************************************************************************************************************
+ * \Function Name : SoAd_TriggerIfSpecificRgTransmit()
+ *
+ * \Function description
+ * This function shall call the update the triggerTransmissionInfo_puo structure for given pduRouteDest if SoConId match found.
+ *
+ * Parameters (in):
+ * \param   PduRouteDestType_tst *
+ * \arg     PduRRouteDest_cpst  - Pointer to a PduRouteDest structure
+ * \param   SoAd_SoConIdType
+ * \arg     SoConId_uo      - Index of SoAd Static Socket identifier table
+ *
+ * Parameters (inout): None
+ *
+ * Parameters (out):    None
+ *
+ * \return  Std_ReturnType
+ * \retval   E_OK               - The request was successful
+ *           E_NOT_OK           - The request was not successful
+ *
+ ***************************************************************************************************************************************
+ */
+static Std_ReturnType SoAd_TriggerIfSpecificRgTransmit( const PduRouteDestType_tst * PduRRouteDest_cpst,
+                                                        SoAd_SoConIdType             SoConId_uo )
+{
+    /* Variable to store the submode */
+    SoAd_SoConSubMode_ten     lSoConSubMode_en;
+
+    /* Variable to store the submode */
+    SoAd_TriggerEventType_ten lsocConRequestedMode_en;
+
+    /* Variable to store the close req count */
+    uint16                    lsocConCloseReqCnt_u16;
+
+    /* Variable to store the open req count */
+    uint16                    lsocConOpenReqCnt_u16;
+
+    /* Variable to hold the return value */
+    Std_ReturnType            lFunctionRetVal_u8;
+
+#if ( SOAD_SOCON_TX_BUNDLE_REF_ENABLE != STD_OFF )
+    /* Index for looping across static sockets*/
+    SoAd_SoConIdType          lIdxSocketForLoop_uo ;
+
+    /* variable to store index of the static socket connection one by one for the group */
+    SoAd_SoConIdType          lStaticSocketId_uo ;
+#endif /* SOAD_SOCON_TX_BUNDLE_REF_ENABLE != STD_OFF */
+
+    /* Variable to hold the index of the dynamic socket connection table*/
+    SoAd_SoConIdType          lIdxDynSocket_uo;
+
+    /* Initialize the funtion return variable to E_NOT_OK */
+    lFunctionRetVal_u8  = E_NOT_OK;
+
+    /* Initialization of Variables*/
+    lIdxDynSocket_uo = SOAD_CFG_SOCON_ID_DEFAULT_VALUE ;
+
+#if ( SOAD_SOCON_TX_BUNDLE_REF_ENABLE != STD_OFF )
+    /* if Socket reference is linked to socket connection group */
+    if( SOAD_SOCKET_BUNDLE_REFERENCE == PduRRouteDest_cpst->identifyTxSocketConnOrGroupRef_b )
+    {
+        /* fetch the start socket id from Group table and loop through for max socket count */
+        lStaticSocketId_uo = SoAd_CurrConfig_cpst->SoAd_StaticSocGroupConfig_cpst[PduRRouteDest_cpst->txStaticSocketOrGroupIdx_uo].startSoConIdx_uo;
+
+        /* loop through all the sockets connection through the socket connection group for the processing */
+        for( lIdxSocketForLoop_uo = 0 ; \
+                        lIdxSocketForLoop_uo < SoAd_CurrConfig_cpst->SoAd_StaticSocGroupConfig_cpst[PduRRouteDest_cpst->txStaticSocketOrGroupIdx_uo].maxSoConChannel_uo; \
+                                lIdxSocketForLoop_uo++ )
+        {
+            /* If given socket id is matches with socket connection in the same group */
+            if( lStaticSocketId_uo == SoConId_uo )
+            {
+                /* Get "index of the dynamic socket table" from static socket table */
+                lIdxDynSocket_uo = ( *SoAd_CurrConfig_cpst->SoAd_StaticSocConfig_cpst[SoConId_uo].SoAd_Prv_idxDynSocTable_puo );
+
+                break;
+            }
+
+            /* increment the lStaticSocketId_uo by 1 to loop the next socket id */
+            lStaticSocketId_uo++;
+        }
+
+    }
+    /* if Socket reference is linked to socket connection */
+    else
+#endif /* SOAD_SOCON_TX_BUNDLE_REF_ENABLE != STD_OFF */
+    {
+        /* If given socket id is matches with socket connection referenced directly via socket connection reference */
+        if( SoConId_uo == PduRRouteDest_cpst->txStaticSocketOrGroupIdx_uo )
+        {
+            /* Get "index of the dynamic socket table" from static socket table */
+            lIdxDynSocket_uo = ( *SoAd_CurrConfig_cpst->SoAd_StaticSocConfig_cpst[SoConId_uo].SoAd_Prv_idxDynSocTable_puo );
+        }
+    }
+
+    /* Condition checks:
+     * 1. Check Dynamic socket index is valid.
+     * 2. Check for socket connection is ONLINE or
+     * 3. Check SoAd_OpenSoCon is triggered by UL and SoAd_MainFunction was triggered or
+     * 4. Check atleast SoAd_OpenSoCon is triggered by UL
+     */
+
+    /* Check for the elements, whether a routing group is referenced to this PduRouteDest */
+    if( SoAd_CurrConfig_cpst->SoAd_noActiveSockets_uo > lIdxDynSocket_uo )
+    {
+        lSoConSubMode_en = SoAd_DyncSocConfig_ast[lIdxDynSocket_uo].socConSubMode_en;
+
+        /* The exclusive area SoAd_OpenCloseReq is used to avoid race condition when socket open or close is requestedby UL or SoAd */
+        SchM_Enter_SoAd_OpenCloseReq();
+
+        lsocConRequestedMode_en = SoAd_DyncSocConfig_ast[lIdxDynSocket_uo].socConRequestedMode_en;
+
+        lsocConCloseReqCnt_u16 = SoAd_DyncSocConfig_ast[lIdxDynSocket_uo].socConCloseReqCnt_u16;
+
+        lsocConOpenReqCnt_u16 = SoAd_DyncSocConfig_ast[lIdxDynSocket_uo].socConOpenReqCnt_u16;
+
+        SchM_Exit_SoAd_OpenCloseReq();
+
+        if( ( SOAD_SOCON_ACTIVE == lSoConSubMode_en ) || ( SOAD_EVENT_ONLINEREQ == lsocConRequestedMode_en ) || ( lsocConCloseReqCnt_u16 < lsocConOpenReqCnt_u16 ) )
+        {
+
+            /****************************************************************************************************************/
+            /****************************************** [SWS_SoAd_00662] ****************************************************/
+            /****************************************************************************************************************/
+            /****************************************************************************************************************/
+            /*** At SoAd_IfRoutingGroupTransmit() SoAd shall store a trigger transmit request for each SoAdPduRouteDest   ***/
+            /*** that contains a reference to the routing group identified by the parameter id for transmission in        ***/
+            /*** the SoAd_MainFunction()                                                                                  ***/
+            /****************************************************************************************************************/
+
+            /* Store the triggerTransmitRequest_u8 of the related PduRouteDestination with STD_ON */
+            PduRRouteDest_cpst->triggerTransmissionInfo_puo->triggerTransmitRequest_u8 = STD_ON;
+
+            SoAd_DyncSocConfig_ast[lIdxDynSocket_uo].ifRgTxPending_b = TRUE;
+
+    #if ( SOAD_SOCON_TX_BUNDLE_REF_ENABLE != STD_OFF )
+            /* Store the triggerTransmitSocketIdx_uo of the related PduRouteDestination with SoConId which was found */
+            PduRRouteDest_cpst->triggerTransmissionInfo_puo->triggerTransmitSocketIdx_uo =  SoConId_uo;
+    #endif /* SOAD_SOCON_TX_BUNDLE_REF_ENABLE != STD_OFF */
+            /* Set the lFunctionRetVal_u8 to E_OK*/
+            lFunctionRetVal_u8 = E_OK ;
+        }
+
+    }
+
+    return lFunctionRetVal_u8;
+}
+
+#endif /* ( SOAD_IF_TRIGGER_TX_ENABLED != STD_OFF ) */
+
+#define SOAD_STOP_SEC_CODE
+#include "SoAd_MemMap.h"
+
+#endif /* SOAD_CONFIGURED */

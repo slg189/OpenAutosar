@@ -1,0 +1,351 @@
+/* *****************************************************************************
+ * BEGIN: Banner
+ * Name: DBC Importer feature
+ * Description: DBC Importer scripts
+ * Version:9.1
+ *-----------------------------------------------------------------------------
+ * END: Banner
+ *****************************************************************************/
+import autosar40;
+import autosar40::genericstructure::generaltemplateclasses::arpackage;
+import autosar40::system::transportprotocols;
+import autosar40::system::fibex::fibex4can::cantopology;
+import com::bosch::autosartool::importer::dbc::core::mediator;
+import com::bosch::autosartool::importer::model::dbc4x::collections;
+import autosar40::system::fibex::fibexcore::coretopology;
+import autosar40::system::fibex::fibexcore::corecommunication;
+import autosar40::swcomponent::datatype::computationmethod;
+import autosar40::genericstructure::varianthandling;
+import autosar40::swcomponent::datatype::localconstraints;
+import autosar40::swcomponent::datatype::units;
+import dbc;
+
+import ecore;
+import java::lang;
+
+extension library;
+extension ShortNameUtil;
+extension org::eclipse::xtend::util::stdlib::io;
+extension org::eclipse::xtend::util::stdlib::properties;
+extension org::eclipse::xtend::util::stdlib::collections;
+extension org::eclipse::xtend::util::stdlib::elementprops;
+/*This script creates the CanTP related information. The elements which gets created are 
+* Step 1: create compuMethod
+* Step 2: create intToPhysical and add it to the created compuMethod
+* Step 3: create compuScales and add it to the created intToPhyical compuElements
+* Step 4: create CompuScale and add it to compuScales
+* Step 5:  create numerator and denominator under the scales
+* Step 6: create units and add refer this units if exists in the created compumethod
+*/
+
+ boolean  MainCompuMethod(SG_Signal Dbcsignal, ISignal isignal): 
+  let package = isignal.aRPackage.eContainer:
+   let compuPackage = getchachedArpackage("Pkg_CompuMethod", (ARPackage)package):
+   let unitsPackage = getchachedArpackage("Pkg_Units", (ARPackage)package ):
+  createCompumethod(Dbcsignal,isignal,compuPackage,unitsPackage)->
+ true;
+
+//********************************** creates CantTP information ***********************************************************// 
+ CompuMethod  createCompumethod(SG_Signal dbcsignal,ISignal isignal, ARPackage compuPackage, ARPackage unitPackage): 
+ 
+  let compumethod = createCompuMethodElement(isignal.shortName,compuPackage):
+  let phyToInt = createPhyToIntElement(dbcsignal,compumethod):
+  let scales =  createCompuScalesElement(dbcsignal,compumethod):
+  let scale = createCompuScaleElement(dbcsignal,compumethod):
+  let cnsldList=assignValDescriptions(dbcsignal):
+  updateSignalDataDefProReference(isignal,compumethod)->
+  updateCompu(compumethod,phyToInt)->
+  scales.setCompu(phyToInt)->
+  scales.compuScales.add(scale)->
+  cnsldList.forAll(e|
+  (
+  let value=getValueDescr(cnsldList,e):
+if(value!=null)
+then
+(
+  let compuScale=createCompuScale(value,e,dbcsignal,compumethod):
+  scales.compuScales.add(compuScale)->
+  compumethod.setCategory("SCALE_LINEAR_AND_TEXTTABLE")
+)
+  )->
+  true
+  )->
+  updateNumeratorAndDenominator(scale,dbcsignal)-> 
+ if(dbcsignal.unit.compareTo("")!=0) 
+ then (
+   let convUnitName = getConvertedUnitName(dbcsignal.unit,compumethod):
+   let unit = getexistingUnit(convUnitName, unitPackage):
+   if(unit == null)
+   then(
+
+  let newUnit = Unit.newInstance():
+  ((Unit)newUnit).setARPackage(unitPackage)->
+  ((Unit)newUnit).setShortName(convUnitName)->
+  compumethod.setUnit((Unit)newUnit)->
+  true
+  )else (
+   compumethod.setUnit((Unit)unit)->
+   true)
+  
+ 
+  )->
+//  if(isPhysPropSupported())
+//  then
+//  (
+//  createPhysicalPropsForSysSignal(isignal)->
+//  updateSysSignalPhysProps(isignal)
+//  )->
+   compumethod;
+  
+  String getConvertedUnitName(String unitname):
+  if(unitname.compareTo("%") == 0)
+  then (
+  "perc"
+  )else if(unitname.compareTo("�C") == 0)
+  then(
+  "degreeCentigrade"
+  )else if(unitname.compareTo("km/h") == 0)
+  then(
+  "kilometerPerHour"
+  )else (
+  unitname
+  )
+  ;
+boolean updateNumeratorAndDenominator(CompuScale scale,SG_Signal dbcsignal):
+ if(!isCompuIntToPhySelected())
+  then
+  (
+   createnumeratorAndDenominatorForPhysToInt(scale,dbcsignal)
+   )
+  else if(isCompuIntToPhySelected())
+  then
+  (
+   createnumeratorAndDenominatorForIntToPhys(scale,dbcsignal)
+  )->
+true
+;
+
+boolean updateCompu(CompuMethod compumethod,Compu phyToInt):
+if(!isCompuIntToPhySelected())
+  then
+  (
+  compumethod.setCompuPhysToInternal(phyToInt)
+  )
+  else if(isCompuIntToPhySelected())
+  then
+  (
+  compumethod.setCompuInternalToPhys(phyToInt)
+  )->
+  true
+;
+/// update the reference of the swDataDefProperties of the signal to point to compumethod.
+
+boolean updateSignalDataDefProReference (ISignal isignal,CompuMethod compumethod ):
+  if(isignal != null && isignal.networkRepresentationProps != null && isignal.networkRepresentationProps.SwDataDefPropsVariants!= null )
+  then (
+  isignal.networkRepresentationProps.SwDataDefPropsVariants.size >0 ? (
+  isignal.networkRepresentationProps.SwDataDefPropsVariants.get(0).setCompuMethod(compumethod)->
+  true
+  ):(true)->
+    true
+  )
+;
+
+
+//**********************************************Createnumerator denominator****************************************************************//
+boolean createnumeratorAndDenominatorForPhysToInt(CompuScale scale,SG_Signal dbcsignal):
+ let ratFormual= createCompuScaleRationalFormulaElement(scale):
+ let lowerlimit =((LimitValueVariationPoint)LimitValueVariationPoint.newInstance()):
+ let upperlimit =((LimitValueVariationPoint)LimitValueVariationPoint.newInstance()):
+ let numeratorOffset =  ((NumericalValueVariationPoint)NumericalValueVariationPoint.newInstance()):
+ // let numeratorFactor =  ((NumericalValueVariationPoint)NumericalValueVariationPoint.newInstance()):
+  let denominatorFactor =  ((NumericalValueVariationPoint)NumericalValueVariationPoint.newInstance()):
+  // let denominator =  ((NumericalValueVariationPoint)NumericalValueVariationPoint.newInstance()):
+  let numerator =  ((NumericalValueVariationPoint)NumericalValueVariationPoint.newInstance()):
+  
+  
+  numeratorOffset.setMixedText(updateSign((-1*dbcsignal.offset).toString()))->
+  denominatorFactor.setMixedText(dbcsignal.factor.toString())->
+  numerator.setMixedText("1")->
+    
+  lowerlimit.setMixedText(dbcsignal.minValue.toString())->   
+  upperlimit.setMixedText(dbcsignal.maxValue.toString())->
+
+
+ratFormual.setCompuRationalCoeffs(((CompuRationalCoeffs)CompuRationalCoeffs.newInstance()))->
+ratFormual.compuRationalCoeffs.setCompuNumerator((CompuNominatorDenominator)CompuNominatorDenominator.newInstance())->
+
+ratFormual.compuRationalCoeffs.compuNumerator.vs.add(numeratorOffset)->
+ratFormual.compuRationalCoeffs.compuNumerator.vs.add(numerator)->
+
+ratFormual.compuRationalCoeffs.setCompuDenominator((CompuNominatorDenominator)CompuNominatorDenominator.newInstance())->
+ratFormual.compuRationalCoeffs.compuDenominator.vs.add(denominatorFactor)->
+
+scale.setLowerLimit(lowerlimit)->
+scale.setUpperLimit(upperlimit)->
+
+true;
+//**********************************************Createnumerator denominator****************************************************************//
+boolean createnumeratorAndDenominatorForIntToPhys(CompuScale scale,SG_Signal dbcsignal):
+ let ratFormual= createCompuScaleRationalFormulaElement(scale):
+ let lowerlimit =((LimitValueVariationPoint)LimitValueVariationPoint.newInstance()):
+ let upperlimit =((LimitValueVariationPoint)LimitValueVariationPoint.newInstance()):
+ let numeratorOffset =  ((NumericalValueVariationPoint)NumericalValueVariationPoint.newInstance()):
+ let numeratorFactor =  ((NumericalValueVariationPoint)NumericalValueVariationPoint.newInstance()):
+  let denominator =  ((NumericalValueVariationPoint)NumericalValueVariationPoint.newInstance()):
+  numeratorOffset.setMixedText(dbcsignal.offset.toString())->
+  numeratorFactor.setMixedText(dbcsignal.factor.toString())->
+  denominator.setMixedText("1")->
+  lowerlimit.setMixedText(computeMinimumMaximum(dbcsignal,"Min"))->   
+  upperlimit.setMixedText(computeMinimumMaximum(dbcsignal,"Max"))->
+ratFormual.setCompuRationalCoeffs(((CompuRationalCoeffs)CompuRationalCoeffs.newInstance()))->
+ratFormual.compuRationalCoeffs.setCompuNumerator((CompuNominatorDenominator)CompuNominatorDenominator.newInstance())->
+ratFormual.compuRationalCoeffs.compuNumerator.vs.add(numeratorOffset)->
+ratFormual.compuRationalCoeffs.compuNumerator.vs.add(numeratorFactor)->
+ratFormual.compuRationalCoeffs.setCompuDenominator((CompuNominatorDenominator)CompuNominatorDenominator.newInstance())->
+ratFormual.compuRationalCoeffs.compuDenominator.vs.add(denominator)->
+scale.setLowerLimit(lowerlimit)->
+scale.setUpperLimit(upperlimit)->
+true;
+/*********************************************************************************************************
+***********************get unit if already created*************************************** 
+*********************************************************************************************************/
+//Check for neutral number
+String computeMinimumMaximum(SG_Signal signal,String type):
+if(type=="Max")
+then
+(
+//info("Sig Name "+(signal))->
+//info("Chk11 "+((signal.maxValue-signal.offset)/signal.factor).toString())->
+computeMinMax(signal.maxValue.toString(),signal.offset.toString(),signal.factor.toString())
+)
+else if(type=="Min")
+then
+(
+//info("Chk2 "+(signal.minValue/signal.factor))->
+//info("Chk22 "+((signal.minValue-signal.offset)/signal.factor).toString())->
+computeMinMax(signal.minValue.toString(),signal.offset.toString(),signal.factor.toString())
+);
+
+/*********************************************************************************************************
+***********************get unit if already created*************************************** 
+*********************************************************************************************************/
+//Check for neutral number
+String updateSign(String offsetString):
+if(offsetString.startsWith("-")) then(
+	let var1 = offsetString.replaceAll("0",""):
+	let var2 = var1.replaceAll("\\.",""):
+	if(var2.length >0) then (
+		 offsetString
+	) else 
+		(
+			offsetString.subString(1,offsetString.length)
+		)
+	)
+	else(
+	offsetString
+	)
+;
+
+
+PackageableElement getexistingUnit(String unitname , ARPackage package):
+getUnit(unitname,package,((Unit)Unit.newInstance()));
+
+//*********************************************************************************************************//
+
+/*********************************************************************************************************
+****************************creates Autosar40 CompuMethod element *******************************************
+*********************************************************************************************************/
+create CompuMethod this createCompuMethodElement(String shortname , ARPackage package):
+  this.setShortName("CompuMethod_"+ shortname ) ->
+  this.setARPackage(package )->
+  this.setCategory("LINEAR")->
+  this;
+
+
+/*********************************************************************************************************
+**************************** creates Autosar40 IntToPhyElement element *******************************************
+*********************************************************************************************************/
+create Compu this createPhyToIntElement(SG_Signal dbcsignal,CompuMethod compuMethod):
+  this;
+
+/*********************************************************************************************************
+**************************** creates Autosar40 IntToPhyElement element *******************************************
+*********************************************************************************************************/
+create CompuScales this createCompuScalesElement(SG_Signal dbcsignal,CompuMethod compuMethod):
+  this;
+
+/*********************************************************************************************************
+**************************** creates Autosar40 CompuScale element *******************************************
+*********************************************************************************************************/
+create CompuScale this createCompuScaleElement(SG_Signal dbcsignal,CompuMethod compuMethod):
+  setShortLabel("CompuScale_"+compuMethod.shortName)->
+  this;
+
+/*********************************************************************************************************
+**************************** creates Autosar40 CompuScale element *******************************************
+*********************************************************************************************************/
+create CompuScale this createCompuScale(String key,String value,SG_Signal dbcsignal,CompuMethod compuMethod):
+ let lowerlimit =((LimitValueVariationPoint)LimitValueVariationPoint.newInstance()):
+ let upperlimit =((LimitValueVariationPoint)LimitValueVariationPoint.newInstance()):
+  lowerlimit.setMixedText(value)->
+  upperlimit.setMixedText(value)->
+  setLowerLimit(lowerlimit)->
+  setUpperLimit(upperlimit)->
+  (
+  let shortName=getValidShortName(key):
+  let computedShortName=computeShortName(shortName,compuMethod):
+  if(computedShortName!=null && computedShortName.length>0)
+  then(
+  setShortLabel(computedShortName)->
+  setCompuInverseValue(createCompuConst(computedShortName,value,dbcsignal))
+  )->
+  if(computedShortName==null || computedShortName.length==0)
+  then(
+  setShortLabel(shortName)->
+  setCompuInverseValue(createCompuConst(shortName,value,dbcsignal))
+  )
+  )->
+  this;
+
+create CompuConst this createCompuConst(String key,String value,SG_Signal dbcsignal):
+setCompuConstContentType(createCompuConstContentType(key,value,dbcsignal))->
+this;
+
+create CompuConstTextContent this createCompuConstContentType(String key,String value,SG_Signal dbcsignal):
+setVt(key)->
+this;
+
+/*********************************************************************************************************
+**************************** creates Autosar40 CompuScaleRationalFormula element *******************************************
+*********************************************************************************************************/
+ create CompuScaleRationalFormula this createCompuScaleRationalFormulaElement(CompuScale compuScale):
+ this.setCompuScale(compuScale)->
+  this;
+  
+  /*********************************************************************************************************
+**************************** creates Autosar40 CompuRationalCoeffs element *******************************************
+*********************************************************************************************************/
+create CompuRationalCoeffs this createCompuRationalCoeffsElement():
+  
+  this;
+  
+  /*********************************************************************************************************
+**************************** get arpackage with shortname as "nameOfthe Package" ******************************
+*********************************************************************************************************/
+  
+ARPackage  getchachedArpackage( String nameOfthePackage, ARPackage selectedPackage):  
+let arPackage = getArpackage(nameOfthePackage,selectedPackage):
+ let package =(ARPackage)ARPackage.newInstance():
+
+if(arPackage==null)
+then (
+package.setShortName(nameOfthePackage)->
+selectedPackage.arPackages.add(package)->
+package
+)->
+arPackage
+;
+
+
+  

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>SensorActuator_DIO</SHORT-NAME>
+      <ELEMENTS>
+        <SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+          <SHORT-NAME>SensorActuator_DIO</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <R-PORT-PROTOTYPE UUID="e185fc1a-2fb1-47a6-9050-d293cc90ff32">
+              <SHORT-NAME>RPort_DIO_Get_0</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_IO_Interface/IoHwAb_IO_Interface</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="a9ed4fc4-5b06-49b9-9e8a-ad7f10c51b98">
+              <SHORT-NAME>RPort_DIO_Set_1</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_IO_Interface/IoHwAb_IO_Interface</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="83635086-8448-4d0d-8739-22d0806eee19">
+              <SHORT-NAME>RPort_DIO_Set_0</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_IO_Interface/IoHwAb_IO_Interface</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="0885e131-4fcd-404f-a028-f33d2e85464c">
+              <SHORT-NAME>RPort_DIO_Get_1</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_IO_Interface/IoHwAb_IO_Interface</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="001eebe1-9a97-43ce-9ab3-b3d5919d59ed">
+              <SHORT-NAME>IB_SensorActuator_DIO</SHORT-NAME>
+              <EVENTS>
+                <TIMING-EVENT UUID="825ccd69-9011-47cf-8b85-f8507b7a3bcc">
+                  <SHORT-NAME>TimingEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SensorActuator_DIO/SensorActuator_DIO/IB_SensorActuator_DIO/DIO_Set</START-ON-EVENT-REF>
+                  <PERIOD>0.1</PERIOD>
+                </TIMING-EVENT>
+                <TIMING-EVENT UUID="be1bbf6d-6a22-4869-be11-608359928911">
+                  <SHORT-NAME>TimingEvent_1</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SensorActuator_DIO/SensorActuator_DIO/IB_SensorActuator_DIO/DIO_Get</START-ON-EVENT-REF>
+                  <PERIOD>0.1</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="fb67a292-9441-43d3-af1a-0fe7db88ea8f">
+                  <SHORT-NAME>DIO_Set</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="3c679332-b6ba-4416-9256-f47c986ee5e8">
+                      <SHORT-NAME>SynchronousServerCallPoint_0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_DIO/SensorActuator_DIO/RPort_DIO_Set_1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_IO_Interface/IoHwAb_IO_Interface/IoHwAb_IO_Set</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="caa39763-ed1f-46e9-96b2-7d257f7d6a1b">
+                      <SHORT-NAME>SynchronousServerCallPoint_2</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_DIO/SensorActuator_DIO/RPort_DIO_Set_0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_IO_Interface/IoHwAb_IO_Interface/IoHwAb_IO_Set</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>DIO_Set_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="6d8e8d00-5b74-4556-8ace-b41c8875124d">
+                  <SHORT-NAME>DIO_Get</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="825d5221-f15b-42b7-bcf6-71580c85fca7">
+                      <SHORT-NAME>SynchronousServerCallPoint_0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_DIO/SensorActuator_DIO/RPort_DIO_Get_0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_IO_Interface/IoHwAb_IO_Interface/IoHwAb_IO_Get</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="ec27dcfb-a03c-446c-8f32-c5ab54ffdf2e">
+                      <SHORT-NAME>SynchronousServerCallPoint_2</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_DIO/SensorActuator_DIO/RPort_DIO_Get_1</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_IO_Interface/IoHwAb_IO_Interface/IoHwAb_IO_Get</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>DIO_Get_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

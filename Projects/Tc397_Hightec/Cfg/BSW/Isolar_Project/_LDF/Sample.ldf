@@ -1,0 +1,218 @@
+/* ************************************************************************** */
+/* Description: LIN Description file                                          */
+/* Created:     16.03.2018                                                    */
+/* Author:      ChenDaShen                                                    */
+/* Version:     1.3                                                           */
+/* Project:     A26_EXV_GAEI                                                  */
+/* History:     1.0: Initial version                                          */
+/*              1.1:Add signal : CLMEXV_N_EXVInitReadyReq                     */
+/*              1.2: NAD change                                               */
+/*              1.3: full position change                                     */
+/*              1.4: change signals name                                      */
+/* ************************************************************************** */
+
+LIN_description_file;
+LIN_protocol_version = "2.1";
+LIN_language_version = "2.1";
+LIN_speed = 19.2 kbps;
+
+Nodes {
+  Master: MCU, 5 ms, 0.1 ms ;
+  Slaves: Tester ;
+}
+
+Signals {
+  MCU_TxSignal_1: 16, 0, MCU, Tester ;
+  MCU_TxSignal_2: 1, 0, MCU, Tester ;
+  MCU_TxSignal_3: 1, 0, MCU, Tester ;
+  MCU_TxSignal_4: 3, 0, MCU, Tester ;
+  MCU_RxSignal_1: 1, 0, Tester, MCU ;
+  MCU_RxSignal_2: 2, 0, Tester, MCU ;
+  MCU_RxSignal_3: 1, 0, Tester, MCU ;
+  MCU_RxSignal_4: 4, 0, Tester, MCU ;
+  MCU_RxSignal_5: 2, 0, Tester, MCU ;
+  MCU_RxSignal_6: 2, 0, Tester, MCU ;
+  MCU_RxSignal_7: 16, 0, Tester, MCU ;
+}
+
+Diagnostic_signals {
+  MasterReqB0: 8, 0 ;
+  MasterReqB1: 8, 0 ;
+  MasterReqB2: 8, 0 ;
+  MasterReqB3: 8, 0 ;
+  MasterReqB4: 8, 0 ;
+  MasterReqB5: 8, 0 ;
+  MasterReqB6: 8, 0 ;
+  MasterReqB7: 8, 0 ;
+  SlaveRespB0: 8, 0 ;
+  SlaveRespB1: 8, 0 ;
+  SlaveRespB2: 8, 0 ;
+  SlaveRespB3: 8, 0 ;
+  SlaveRespB4: 8, 0 ;
+  SlaveRespB5: 8, 0 ;
+  SlaveRespB6: 8, 0 ;
+  SlaveRespB7: 8, 0 ;
+}
+
+
+
+Frames {
+  MCU_LIN_1: 52, MCU, 8 {
+    MCU_TxSignal_1, 0 ;
+    MCU_TxSignal_2, 16 ;
+    MCU_TxSignal_3, 20 ;
+    MCU_TxSignal_4, 24 ;
+  }
+  Tester_LIN_1: 53, Tester, 8 {
+    MCU_RxSignal_1, 0 ;
+    MCU_RxSignal_2, 2 ;
+    MCU_RxSignal_3, 4 ;
+    MCU_RxSignal_4, 8 ;
+    MCU_RxSignal_5, 12 ;
+    MCU_RxSignal_6, 14 ;
+    MCU_RxSignal_7, 16 ;
+  }
+}
+
+
+
+Diagnostic_frames {
+  MasterReq: 0x3c {
+    MasterReqB0, 0 ;
+    MasterReqB1, 8 ;
+    MasterReqB2, 16 ;
+    MasterReqB3, 24 ;
+    MasterReqB4, 32 ;
+    MasterReqB5, 40 ;
+    MasterReqB6, 48 ;
+    MasterReqB7, 56 ;
+  }
+  SlaveResp: 0x3d {
+    SlaveRespB0, 0 ;
+    SlaveRespB1, 8 ;
+    SlaveRespB2, 16 ;
+    SlaveRespB3, 24 ;
+    SlaveRespB4, 32 ;
+    SlaveRespB5, 40 ;
+    SlaveRespB6, 48 ;
+    SlaveRespB7, 56 ;
+  }
+}
+
+Node_attributes {
+  Tester{
+    LIN_protocol = "2.1" ;
+    configured_NAD = 0x5D ;
+    initial_NAD = 0x5D ;
+    product_id = 0x124, 0x12A, 0 ;
+    response_error = MCU_RxSignal_1 ;
+    P2_min = 50 ms ;
+    ST_min = 0 ms ;
+    N_As_timeout = 1000 ms ;
+    N_Cr_timeout = 1000 ms ;
+    configurable_frames {
+      Tester_LIN_1 ;
+      MCU_LIN_1 ;
+    }
+  }
+}
+
+Schedule_tables {
+ Table_0 {
+    MCU_LIN_1 delay 10 ms ;
+    Tester_LIN_1 delay 10 ms ;
+  }
+ LIN_Mst_ScheduleTable_MR {
+    MasterReq delay 10 ms ;
+  }
+ LIN_Mst_ScheduleTable_SR {
+    SlaveResp delay 10 ms ;
+  }
+ Table_1 {
+    Tester_LIN_1 delay 15 ms ;
+    MCU_LIN_1 delay 15 ms ;
+  }
+ Table_2 {
+    MCU_LIN_1 delay 20 ms ;
+    Tester_LIN_1 delay 20 ms ;
+  }
+}
+
+
+Signal_encoding_types {
+  Encoding_TxSignal_3 {
+    logical_value, 0, "No Request" ;
+    logical_value, 1, "Init_Ready_Command" ;
+  }
+  Encoding_TxSignal_1 {
+    physical_value, 0, 720, 1, 0 ;
+  }
+  Encoding_TxSignal_2 {
+    logical_value, 0, "Ignore Commanded Position" ;
+    logical_value, 1, "Move to Commanded Position" ;
+  }
+  Encoding_TxSignal_4 {
+    physical_value, 0, 2, 1, 0 ;
+    logical_value, 0, "No Request" ;
+    logical_value, 1, "start Init-Sequence" ;
+  }
+  Encoding_RxSignal_1 {
+    logical_value, 0, "No error" ;
+    logical_value, 1, "LIN comm error detected" ;
+  }
+  Encoding_RxSignal_7 {
+    physical_value, 0, 720, 1, 0 ;
+  }
+  Encoding_RxSignal_4 {
+    physical_value, 0, 5, 1, 0 ;
+    logical_value, 0, "Actuator Not Faulted" ;
+    logical_value, 1, "Motor-Coil shorted" ;
+    logical_value, 2, "Motor-Coil open load" ;
+    logical_value, 3, "Over temperature shutdown" ;
+    logical_value, 5, "Actuator Fault Status Indeterminate" ;
+    logical_value, 6, "undefined" ;
+    logical_value, 7, "undefined" ;
+    logical_value, 8, "undefined" ;
+    logical_value, 9, "undefined" ;
+    logical_value, 10, "undefined" ;
+    logical_value, 11, "undefined" ;
+    logical_value, 12, "undefined" ;
+    logical_value, 13, "undefined" ;
+    logical_value, 14, "undefined" ;
+    logical_value, 15, "undefined" ;
+  }
+  Encoding_RxSignal_2 {
+    physical_value, 0, 2, 1, 0 ;
+    logical_value, 0, "Not Initialized" ;
+    logical_value, 1, "Initialization in Process" ;
+    logical_value, 2, "Initialized" ;
+  }
+  Encoding_RxSignal_3 {
+    logical_value, 0, "Actuator is not moving" ;
+    logical_value, 1, "Actuator is moving" ;
+  }
+  Encoding_RxSignal_5 {
+    physical_value, 0, 2, 1, 0 ;
+    logical_value, 0, "Voltage OK" ;
+    logical_value, 1, "Over Voltage" ;
+    logical_value, 2, "Under Voltage" ;
+  }
+  Encoding_RxSignal_6 {
+    logical_value, 0, "Temperaure OK" ;
+    logical_value, 1, "Over temperature warning" ;
+  }
+}
+
+Signal_representation {
+  Encoding_RxSignal_1: MCU_RxSignal_1 ;
+  Encoding_RxSignal_2: MCU_RxSignal_2 ;
+  Encoding_RxSignal_3: MCU_RxSignal_3 ;
+  Encoding_RxSignal_4: MCU_RxSignal_4 ;
+  Encoding_RxSignal_5: MCU_RxSignal_5 ;
+  Encoding_RxSignal_6: MCU_RxSignal_6 ;
+  Encoding_RxSignal_7: MCU_RxSignal_7 ;
+  Encoding_TxSignal_1: MCU_TxSignal_1 ;
+  Encoding_TxSignal_2: MCU_TxSignal_2 ;
+  Encoding_TxSignal_3: MCU_TxSignal_3 ;
+  Encoding_TxSignal_4: MCU_TxSignal_4 ;
+}

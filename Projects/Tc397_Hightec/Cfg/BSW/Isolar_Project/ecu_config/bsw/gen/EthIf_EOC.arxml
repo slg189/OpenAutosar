@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-3-0.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>AUTOSAR_EthIf</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+         <SHORT-NAME>TimingExtensions</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-MODULE-TIMING>
+              <SHORT-NAME>EthIf</SHORT-NAME>
+              <TIMING-DESCRIPTIONS>
+                <TD-EVENT-BSW-MODULE>
+                  <SHORT-NAME>EOC_EthIf_Init</SHORT-NAME>
+                  <BSW-MODULE-DESCRIPTION-REF DEST="BSW-MODULE-DESCRIPTION">/AUTOSAR_EthIf/BswModuleDescriptions/EthIf</BSW-MODULE-DESCRIPTION-REF>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_EthIf/BswModuleEntrys/EthIf_Init</BSW-MODULE-ENTRY-REF>
+                  <TD-EVENT-BSW-MODULE-TYPE>BSW-M-ENTRY-CALLED</TD-EVENT-BSW-MODULE-TYPE>
+                </TD-EVENT-BSW-MODULE>
+                <TD-EVENT-BSW-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>EOC_T_xxmsRx0</SHORT-NAME>
+                  <BSW-MODULE-ENTITY-REF DEST="BSW-SCHEDULABLE-ENTITY">/AUTOSAR_EthIf/BswModuleDescriptions/EthIf/BswInternalBehavior/SE_MainFunctionRx_EthIfPhysCtrlRxMainFunctionPriorityProcessing</BSW-MODULE-ENTITY-REF>
+                </TD-EVENT-BSW-INTERNAL-BEHAVIOR>
+                <TD-EVENT-BSW-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>EOC_T_xxmsTx</SHORT-NAME>
+                  <BSW-MODULE-ENTITY-REF DEST="BSW-SCHEDULABLE-ENTITY">/AUTOSAR_EthIf/BswModuleDescriptions/EthIf/BswInternalBehavior/SE_MainFunctionTx</BSW-MODULE-ENTITY-REF>
+                </TD-EVENT-BSW-INTERNAL-BEHAVIOR>
+                <TD-EVENT-BSW-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>EOC_T_yyms</SHORT-NAME>
+                  <BSW-MODULE-ENTITY-REF DEST="BSW-SCHEDULABLE-ENTITY">/AUTOSAR_EthIf/BswModuleDescriptions/EthIf/BswInternalBehavior/SE_MainFunctionState</BSW-MODULE-ENTITY-REF>
+                </TD-EVENT-BSW-INTERNAL-BEHAVIOR>
+              </TIMING-DESCRIPTIONS>
+              <TIMING-REQUIREMENTS>
+                <EXECUTION-ORDER-CONSTRAINT>
+                  <SHORT-NAME>EOC_T_xxmsTx</SHORT-NAME>
+                  <EXECUTION-ORDER-CONSTRAINT-TYPE>ORDINARY-EOC</EXECUTION-ORDER-CONSTRAINT-TYPE>
+                  <IS-EVENT>true</IS-EVENT>
+                  <ORDERED-ELEMENTS>
+                    <EOC-EVENT-REF>
+                      <SHORT-NAME>EOCEventRef_EthIf_Tx_1</SHORT-NAME>
+                      <BSW-MODULE-INSTANCE-REF DEST="BSW-IMPLEMENTATION">/AUTOSAR_EthIf/BswImplementations/EthIf</BSW-MODULE-INSTANCE-REF>
+                      <EVENT-REF DEST="BSW-TIMING-EVENT">/AUTOSAR_EthIf/BswModuleDescriptions/EthIf/BswInternalBehavior/EV_SE_MainFunctionTx</EVENT-REF>
+                    </EOC-EVENT-REF>
+                  </ORDERED-ELEMENTS>
+                  <PERMIT-MULTIPLE-REFERENCES-TO-EE>false</PERMIT-MULTIPLE-REFERENCES-TO-EE>
+                </EXECUTION-ORDER-CONSTRAINT>
+                <EXECUTION-ORDER-CONSTRAINT>
+                  <SHORT-NAME>EOC_T_xxmsRx0</SHORT-NAME>
+                  <EXECUTION-ORDER-CONSTRAINT-TYPE>ORDINARY-EOC</EXECUTION-ORDER-CONSTRAINT-TYPE>
+                  <IS-EVENT>true</IS-EVENT>
+                  <ORDERED-ELEMENTS>
+                    <EOC-EVENT-REF>
+                      <SHORT-NAME>EOCEventRef_EthIf_Rx_0</SHORT-NAME>
+                      <BSW-MODULE-INSTANCE-REF DEST="BSW-IMPLEMENTATION">/AUTOSAR_EthIf/BswImplementations/EthIf</BSW-MODULE-INSTANCE-REF>
+                      <EVENT-REF DEST="BSW-TIMING-EVENT">/AUTOSAR_EthIf/BswModuleDescriptions/EthIf/BswInternalBehavior/EV_SE_MainFunctionRx_EthIfPhysCtrlRxMainFunctionPriorityProcessing</EVENT-REF>
+                      <SUCCESSOR-REFS>
+                      </SUCCESSOR-REFS>
+                    </EOC-EVENT-REF>
+                  </ORDERED-ELEMENTS>
+                  <PERMIT-MULTIPLE-REFERENCES-TO-EE>false</PERMIT-MULTIPLE-REFERENCES-TO-EE>
+                </EXECUTION-ORDER-CONSTRAINT>
+                <EXECUTION-ORDER-CONSTRAINT>
+                  <SHORT-NAME>EOC_T_yyms</SHORT-NAME>
+                  <EXECUTION-ORDER-CONSTRAINT-TYPE>ORDINARY-EOC</EXECUTION-ORDER-CONSTRAINT-TYPE>
+                  <IS-EVENT>true</IS-EVENT>
+                  <ORDERED-ELEMENTS>
+                    <EOC-EVENT-REF>
+                      <SHORT-NAME>EOCEventRef_EthIf_State_1</SHORT-NAME>
+                      <BSW-MODULE-INSTANCE-REF DEST="BSW-IMPLEMENTATION">/AUTOSAR_EthIf/BswImplementations/EthIf</BSW-MODULE-INSTANCE-REF>
+                      <EVENT-REF DEST="BSW-TIMING-EVENT">/AUTOSAR_EthIf/BswModuleDescriptions/EthIf/BswInternalBehavior/EV_SE_MainFunctionState</EVENT-REF>
+                      <SUCCESSOR-REFS>
+                        <SUCCESSOR-REF DEST="EOC-EVENT-REF">/AUTOSAR_EthIf/TimingExtensions/EthIf/EOC_T_xxmsRx0/EOCEventRef_EthIf_Rx_0</SUCCESSOR-REF>
+                      </SUCCESSOR-REFS>
+                    </EOC-EVENT-REF>
+                  </ORDERED-ELEMENTS>
+                  <PERMIT-MULTIPLE-REFERENCES-TO-EE>false</PERMIT-MULTIPLE-REFERENCES-TO-EE>
+                </EXECUTION-ORDER-CONSTRAINT>
+              </TIMING-REQUIREMENTS>
+              <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/AUTOSAR_EthIf/BswModuleDescriptions/EthIf/BswInternalBehavior</BEHAVIOR-REF>
+            </BSW-MODULE-TIMING>
+          </ELEMENTS>
+        </AR-PACKAGE>  
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+ 

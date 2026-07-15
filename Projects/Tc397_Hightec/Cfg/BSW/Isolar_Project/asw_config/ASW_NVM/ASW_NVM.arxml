@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ASW_NVM</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>NVM</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+              <ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE>
+                  <SHORT-NAME>Impl_NVM_DstPtrType_1024</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SUB-ELEMENTS>
+                    <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <SHORT-NAME>ArrayElement</SHORT-NAME>
+                      <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                      <ARRAY-SIZE>1024</ARRAY-SIZE>
+                      <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                    </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  </SUB-ELEMENTS>
+                </IMPLEMENTATION-DATA-TYPE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ASW_NVM</SHORT-NAME>
+          <ELEMENTS>
+            <APPLICATION-SW-COMPONENT-TYPE>
+              <SHORT-NAME>ASW_NVM</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="Master">
+                    <SD>true</SD>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <PORTS>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_ASW_NVM_BlockNative_1024_1</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_NvM/PortInterfaces/NvMService</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RPort_ASW_NVM_BlockNative_1024_2</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_NvM/PortInterfaces/NvMService</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>IB_ASW_NVM</SHORT-NAME>
+                  <DATA-TYPE-MAPPING-REFS>
+                    <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/AppMode_Mapping/AppMode_Mapping</DATA-TYPE-MAPPING-REF>
+                  </DATA-TYPE-MAPPING-REFS>
+                  <EVENTS>
+                    <TIMING-EVENT UUID="e373fa87-a3b4-4f4e-9ea2-b623e90464ef">
+                      <SHORT-NAME>TE_ASW_NVM_10ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/ASW_NVM/ASW_NVM/ASW_NVM/IB_ASW_NVM/RE_ASW_NVM</START-ON-EVENT-REF>
+                      <PERIOD>0.01</PERIOD>
+                    </TIMING-EVENT>
+                  </EVENTS>
+                  <PER-INSTANCE-MEMORYS>
+                    <PER-INSTANCE-MEMORY>
+                      <SHORT-NAME>ASW_NVM_BlockNative_1024_1</SHORT-NAME>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/ASW_NVM/NVM/ImplementationDataTypes/Impl_NVM_DstPtrType_1024</IMPLEMENTATION-DATA-TYPE-REF>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                      <TYPE>ASW_NVM_BlockNative_1024_Type</TYPE>
+                      <TYPE-DEFINITION>Impl_NVM_DstPtrType_1024</TYPE-DEFINITION>
+                    </PER-INSTANCE-MEMORY>
+                    <PER-INSTANCE-MEMORY>
+                      <SHORT-NAME>ASW_NVM_BlockNative_1024_2</SHORT-NAME>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/ASW_NVM/NVM/ImplementationDataTypes/Impl_NVM_DstPtrType_1024</IMPLEMENTATION-DATA-TYPE-REF>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                      <TYPE>ASW_NVM_BlockRedundant_1024_Type</TYPE>
+                      <TYPE-DEFINITION>Impl_NVM_DstPtrType_1024</TYPE-DEFINITION>
+                    </PER-INSTANCE-MEMORY>
+                  </PER-INSTANCE-MEMORYS>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY UUID="888c78d3-0869-4574-9a46-2604974ac4c2">
+                      <SHORT-NAME>RE_ASW_NVM</SHORT-NAME>
+                      <SERVER-CALL-POINTS>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="9971ab25-084d-455f-8342-907d91ac22a1">
+                          <SHORT-NAME>SynchronousServerCallPoint_0</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/EraseBlock</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="1dc5252b-fab1-47b7-ae9b-e9d8af6d1e14">
+                          <SHORT-NAME>SynchronousServerCallPoint_1</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/GetDataIndex</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="7ddb52a6-b4fb-41db-9a17-ac1c4d55405a">
+                          <SHORT-NAME>SynchronousServerCallPoint_2</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/GetErrorStatus</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="72fa93a5-7205-45f5-b672-8e71f1a532ea">
+                          <SHORT-NAME>SynchronousServerCallPoint_3</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/InvalidateNvBlock</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="3392d88e-7f9c-49e4-bc45-fd785d256d67">
+                          <SHORT-NAME>SynchronousServerCallPoint_4</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/ReadBlock</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="0c504d5a-4d4c-40d5-9848-7923614e313f">
+                          <SHORT-NAME>SynchronousServerCallPoint_5</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/RestoreBlockDefaults</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="07e8f076-8dbd-4f6a-80a7-c55e36d323d8">
+                          <SHORT-NAME>SynchronousServerCallPoint_6</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/SetDataIndex</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="2f364fd8-d7ab-47a1-aede-6cbb88cc32fc">
+                          <SHORT-NAME>SynchronousServerCallPoint_7</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/SetRamBlockStatus</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="e951a6c3-5e3d-455c-a0aa-a6cd72903f28">
+                          <SHORT-NAME>SynchronousServerCallPoint_8</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/WriteBlock</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="efb97dd3-efd5-4116-9c17-f3e09fe8a588">
+                          <SHORT-NAME>SynchronousServerCallPoint_9</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/EraseBlock</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="4bd3c493-4826-421f-8f15-57ba1d51b136">
+                          <SHORT-NAME>SynchronousServerCallPoint_10</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/GetDataIndex</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="07eeab0e-5c02-46e1-ad13-90a0facd7edd">
+                          <SHORT-NAME>SynchronousServerCallPoint_11</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/GetErrorStatus</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="fcd1136e-fdc9-435b-9c59-922bc6ccc445">
+                          <SHORT-NAME>SynchronousServerCallPoint_12</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/InvalidateNvBlock</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="c18650d0-f25d-4bdf-9a8f-c8a9c6f603f9">
+                          <SHORT-NAME>SynchronousServerCallPoint_13</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/ReadBlock</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="65babfac-6c31-466b-a031-2ebaf28f6aeb">
+                          <SHORT-NAME>SynchronousServerCallPoint_14</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/RestoreBlockDefaults</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="3a202594-9af8-4cb6-9f08-75a145ead529">
+                          <SHORT-NAME>SynchronousServerCallPoint_15</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/SetDataIndex</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="dde9bbee-6ef6-4eb1-92d7-cde0fcd0aa13">
+                          <SHORT-NAME>SynchronousServerCallPoint_16</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/SetRamBlockStatus</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="49f045a5-eede-434c-ad9f-7a4dbcf96091">
+                          <SHORT-NAME>SynchronousServerCallPoint_17</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/WriteBlock</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                      </SERVER-CALL-POINTS>
+                      <SYMBOL>RE_ASW_NVM_func</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <SERVICE-DEPENDENCYS>
+                    <SWC-SERVICE-DEPENDENCY>
+                      <SHORT-NAME>SwcServiceDependency</SHORT-NAME>
+                      <ASSIGNED-DATAS>
+                        <ROLE-BASED-DATA-ASSIGNMENT>
+                          <ROLE>ramBlock</ROLE>
+                          <USED-PIM-REF DEST="PER-INSTANCE-MEMORY">/ASW_NVM/ASW_NVM/ASW_NVM/IB_ASW_NVM/ASW_NVM_BlockNative_1024_1</USED-PIM-REF>
+                        </ROLE-BASED-DATA-ASSIGNMENT>
+                        <ROLE-BASED-DATA-ASSIGNMENT>
+                          <ROLE>ramBlock</ROLE>
+                          <USED-PIM-REF DEST="PER-INSTANCE-MEMORY">/ASW_NVM/ASW_NVM/ASW_NVM/IB_ASW_NVM/ASW_NVM_BlockNative_1024_2</USED-PIM-REF>
+                        </ROLE-BASED-DATA-ASSIGNMENT>
+                      </ASSIGNED-DATAS>
+                      <ASSIGNED-PORTS>
+                        <ROLE-BASED-PORT-ASSIGNMENT>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_1</PORT-PROTOTYPE-REF>
+                          <ROLE>NvMService</ROLE>
+                        </ROLE-BASED-PORT-ASSIGNMENT>
+                        <ROLE-BASED-PORT-ASSIGNMENT>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/ASW_NVM/ASW_NVM/ASW_NVM/RPort_ASW_NVM_BlockNative_1024_2</PORT-PROTOTYPE-REF>
+                          <ROLE>NvMService</ROLE>
+                        </ROLE-BASED-PORT-ASSIGNMENT>
+                      </ASSIGNED-PORTS>
+                      <SERVICE-NEEDS>
+                        <NV-BLOCK-NEEDS>
+                          <SHORT-NAME>NvBlockNeeds_NvM</SHORT-NAME>
+                          <CATEGORY>READ</CATEGORY>
+                          <CALC-RAM-BLOCK-CRC>false</CALC-RAM-BLOCK-CRC>
+                          <CHECK-STATIC-BLOCK-ID>false</CHECK-STATIC-BLOCK-ID>
+                          <N-ROM-BLOCKS>0</N-ROM-BLOCKS>
+                          <READONLY>false</READONLY>
+                          <RESTORE-AT-START>true</RESTORE-AT-START>
+                          <STORE-AT-SHUTDOWN>false</STORE-AT-SHUTDOWN>
+                          <STORE-CYCLIC>false</STORE-CYCLIC>
+                          <STORE-IMMEDIATE>true</STORE-IMMEDIATE>
+                          <WRITE-ONLY-ONCE>false</WRITE-ONLY-ONCE>
+                        </NV-BLOCK-NEEDS>
+                      </SERVICE-NEEDS>
+                    </SWC-SERVICE-DEPENDENCY>
+                  </SERVICE-DEPENDENCYS>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </APPLICATION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

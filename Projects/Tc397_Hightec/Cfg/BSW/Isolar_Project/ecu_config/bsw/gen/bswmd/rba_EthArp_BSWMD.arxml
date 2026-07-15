@@ -1,0 +1,1627 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AUTOSAR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd" xmlns="http://autosar.org/schema/r4.0">
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 L="EN" xml:space="default">English</L-10>
+    </USED-LANGUAGES>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>RB</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>RBA</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>rba_EthArp</SHORT-NAME>
+              <AR-PACKAGES>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswImplementations</SHORT-NAME>
+                  <ELEMENTS>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswModuleDescriptions</SHORT-NAME>
+                  <ELEMENTS>
+                    <BSW-MODULE-DESCRIPTION>
+                      <SHORT-NAME>rba_EthArp</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">Address Resolution Protocol</L-4>
+                      </LONG-NAME>
+                      <CATEGORY>BSW_MODULE</CATEGORY>
+                      <MODULE-ID>255</MODULE-ID>
+                      <PROVIDED-ENTRYS>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_CleanArpTable</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_GetArpTablesize</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_GetDestEthAddr</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_Init</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_IpConflictDetection</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_MainFunction</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_ReadArpTable</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_RxIndication</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_SendArpFrame</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_SendArpGratuitousFrame</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                        <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                          <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/RB/RBA/rba_EthArp/BswModuleEntrys/rba_EthArp_UpdateArpTable</BSW-MODULE-ENTRY-REF>
+                        </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                      </PROVIDED-ENTRYS>
+                      <OUTGOING-CALLBACKS>
+                        <!--Not yet implemented.-->
+                      </OUTGOING-CALLBACKS>
+                      <BSW-MODULE-DEPENDENCYS>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>Det</SHORT-NAME>
+                          <TARGET-MODULE-ID>15</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>EthIf</SHORT-NAME>
+                          <TARGET-MODULE-ID>65</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>rba_EthAutoIp</SHORT-NAME>
+                          <TARGET-MODULE-ID>255</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>rba_EthDHCP</SHORT-NAME>
+                          <TARGET-MODULE-ID>255</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                        <BSW-MODULE-DEPENDENCY>
+                          <SHORT-NAME>TcpIp</SHORT-NAME>
+                          <TARGET-MODULE-ID>170</TARGET-MODULE-ID>
+                        </BSW-MODULE-DEPENDENCY>
+                      </BSW-MODULE-DEPENDENCYS>
+                    </BSW-MODULE-DESCRIPTION>
+                  </ELEMENTS>
+                  </AR-PACKAGE>
+                  <AR-PACKAGE>
+                    <SHORT-NAME>BswModuleEntrys</SHORT-NAME>
+                    <ELEMENTS>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_CleanArpTable</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This API is called to clean the ARP table.</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This API is called to clean the ARP table corresponding to the EthIf controller defined by the input parameter.</L-2>
+                        </DESC>
+                        <SERVICE-ID>4</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>                       
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="uint8EthIfCtrlIdxCurr_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>EthIfCtrlIdxCurr_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_GetArpTablesize</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This API Provides the max ARP Table size.</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This API Provides the max ARP Table size.</L-2>
+                        </DESC>
+                        <SERVICE-ID>15</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lArpTableSize_pu16", Kind="in", Type="uint16*", IsConst="False"-->
+                            <SHORT-NAME>lArpTableSize_pu16</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+			      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_GetDestEthAddr</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This API is used to return the destination Ethernet MAC address associates to the IP address both contained into the ARP Table.</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This API is used to return the destination Ethernet MAC address associates to the IP address both contained into the ARP Table An ARP request should be sent out, if no destination Ethernet address entry is found in the ARP table for the destination IPv4 address.</L-2>
+                        </DESC>
+                        <SERVICE-ID>5</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lCtrlIdx_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>lCtrlIdx_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lDestIpAddr_u32", Kind="in", Type="uint32", IsConst="False"-->
+                            <SHORT-NAME>lDestIpAddr_u32</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lDestEthAddr_au8", Kind="out", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>lDestEthAddr_au8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>OUT</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+			      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_Init</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">By this API service the TCP/IP initializes the the ARP Tables of each EthIf Controller.</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">By this API service the TCP/IP initializes the the ARP Tables of each EthIf Controller.</L-2>
+                        </DESC>
+                        <SERVICE-ID>1</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="rba_EthArp_Config_cst", Kind="in", Type="rba_EthArp_Config_to*", IsConst="True"-->
+                            <SHORT-NAME>rba_EthArp_Config_cst</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+			      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/RB/RBA/rba_EthArp/ImplementationDataTypes/rba_EthArp_Config_to</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_IpConflictDetection</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This API is called to detect IP conflict.</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This API is called by rba_EthArp_RxIndication()   and rba_EthIPv4_RxIndication(). This function is called to check the Ip received in the frame and to detect if there is no conflict between Ip address.</L-2>
+                        </DESC>
+                       <SERVICE-ID>6</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lCtrlIdx_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>lCtrlIdx_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lRxSrcIpAddress_u32", Kind="in", Type="uint32", IsConst="False"-->
+                            <SHORT-NAME>lRxSrcIpAddress_u32</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lRxDstIpAddress_u32", Kind="in", Type="uint32", IsConst="False"-->
+                            <SHORT-NAME>lRxDstIpAddress_u32</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lRxSrcEthAddress_au8", Kind="in", Type="uint8*", IsConst="True"-->
+                            <SHORT-NAME>lRxSrcEthAddress_au8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+			      <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lTypeOfFrame_u16", Kind="in", Type="uint16", IsConst="False"-->
+                            <SHORT-NAME>lTypeOfFrame_u16</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_MainFunction</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This API is the scheduled function of the ARP Component.</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This API is the scheduled function of the ARP Component integrates the State Machine. The function is called from the scheduled task TcpIp_MainFunction().</L-2>
+                        </DESC>
+                        <SERVICE-ID>0x0a</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_ReadArpTable</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This function is used to read out a given number of ARP table entries per EthIfCtrl.</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This function is used to read out a given number of ARP table entries per EthIfCtrl. If given number is bigger then available ARP table entries in use, the function only returns the number of used ARP table entries.</L-2>
+                        </DESC>
+                        <SERVICE-ID>0x03</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="EthIfCtrlIdx_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>EthIfCtrlIdx_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="ArpTable_cpu8", Kind="inout", Type="uint8", IsConst="True"-->
+                            <SHORT-NAME>ArpTable_cpu8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN">number of Arp table entries. As input parameter specifies the number of Arp table entries to be read (size of the provided buffer ArpTable_cpu8 in entries). rba_EthArp shall update  NumberEntries_cpu16 with the number of the returned Arp table entries.</L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+			      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+				      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="NumberEntries_cpu16", Kind="out", Type="uint16", IsConst="True"-->
+                            <SHORT-NAME>NumberEntries_cpu16</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN">Pointer to first element of array, which contains the ARP table per EthIfCtrl</L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>INOUT</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+			      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+				      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_RxIndication</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This API is called to process the ARP frames received.</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This API is called to transmit the ARP frames to the ARP Component. In this API, the parsing and the verification of the information contained into the frame is done.</L-2>
+                        </DESC>
+                        <SERVICE-ID>7</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lCtrlIdx_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>lCtrlIdx_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lRxDataPtr", Kind="in", Type="uint8*", IsConst="True"-->
+                            <SHORT-NAME>lRxDataPtr</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+			      <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lRxDataLen_u16", Kind="in", Type="uint16", IsConst="False"-->
+                            <SHORT-NAME>lRxDataLen_u16</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_SendArpFrame</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This API is used to send ARP Frames on the network (Reply/Request/Probe).</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This API is used to send ARP Frames on the network (Reply/Request/Probe).</L-2>
+                        </DESC>
+                        <SERVICE-ID>8</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lCtrlIdx_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>lCtrlIdx_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lIndexTable_u16", Kind="in", Type="uint16", IsConst="False"-->
+                            <SHORT-NAME>lIndexTable_u16</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                           <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                           <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lDestIPv4Addr_u32", Kind="in", Type="uint32", IsConst="False"-->
+                            <SHORT-NAME>lDestIPv4Addr_u32</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lDestEthAddr_au8", Kind="in", Type="uint8*", IsConst="True"-->
+                            <SHORT-NAME>lDestEthAddr_au8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+			      <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lTypeFrame_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>lTypeFrame_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_SendArpGratuitousFrame</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This API is called to send ARP Gratuitous Frame ( GRATUITOUS )</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This API is called to send ARP Gratuitous Frame ( GRATUITOUS )</L-2>
+                        </DESC>
+                       <SERVICE-ID>9</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lCtrlIdx_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>lCtrlIdx_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lSrcIPv4Addr_u32", Kind="in", Type="uint32", IsConst="False"-->
+                            <SHORT-NAME>lSrcIPv4Addr_u32</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                      <BSW-MODULE-ENTRY>
+                        <SHORT-NAME>rba_EthArp_UpdateArpTable</SHORT-NAME>
+                        <LONG-NAME>
+                          <L-4 L="EN">This API is used to update the ARP Table with the IP and MAC Address received from IPv4.</L-4>
+                        </LONG-NAME>
+                        <DESC>
+                          <L-2 L="EN">This API is used to update the ARP Table with the IP and MAC Address received from IPv4. All the IP/MAC Addresses received are stored, even if we have to overwrite an entry. The update step is used too to check if an IP Conflict occurs. If it's the case,  a GRATUITOUS frame is sent and the ARP Table is not updated.</L-2>
+                        </DESC>
+                        <SERVICE-ID>2</SERVICE-ID>
+                        <IS-REENTRANT>false</IS-REENTRANT>
+                        <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+                        <CALL-TYPE>REGULAR</CALL-TYPE>
+                        <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+                        <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+                        <ARGUMENTS>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lCtrlIdx_u8", Kind="in", Type="uint8", IsConst="False"-->
+                            <SHORT-NAME>lCtrlIdx_u8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lSrcEthAddr_au8", Kind="in", Type="uint8*", IsConst="True"-->
+                            <SHORT-NAME>lSrcEthAddr_au8</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>DATA_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+			      <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                          <SW-SERVICE-ARG>
+                            <!--Name="lSrcIpAddr_u32", Kind="in", Type="uint32", IsConst="False"-->
+                            <SHORT-NAME>lSrcIpAddr_u32</SHORT-NAME>
+                            <DESC>
+                              <L-2 L="EN"></L-2>
+                            </DESC>
+                            <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                            <DIRECTION>IN</DIRECTION>
+                            <SW-DATA-DEF-PROPS>
+                              <SW-DATA-DEF-PROPS-VARIANTS>
+                                <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                  <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                                  <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+				</SW-DATA-DEF-PROPS-CONDITIONAL>
+                              </SW-DATA-DEF-PROPS-VARIANTS>
+                            </SW-DATA-DEF-PROPS>
+                          </SW-SERVICE-ARG>
+                        </ARGUMENTS>
+                      </BSW-MODULE-ENTRY>
+                    </ELEMENTS>
+                  </AR-PACKAGE>
+                  <AR-PACKAGE>
+                    <SHORT-NAME>CompuMethods</SHORT-NAME>
+                    <ELEMENTS>
+                <COMPU-METHOD>
+                  <SHORT-NAME>rba_EthArp_ArpTableEntryState_ten</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">State of the entry when she is free/not used in the process</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_FREE_ENTRY</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">State of the entry when a ARP request must be sent. This state appears when we cannot send the frame to the first time</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_REQ_TO_BE_SENT</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">State of the entry when a ARP reply must be sent for the ARP request received</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_RPLY_TO_BE_SENT</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">State of the entry when a request have been sent and that we are waiting a Reply</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_RPLY_PENDING</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">State of the entry when she is complete (IP and MAC address)</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_ENTRY_USED</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">State of the entry when she is Timed Out</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">6</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">6</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_TIME_OUT</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">State of the entry when a conflict is detected for the Assigned Ip Addr. Gratuitous Frame shall be triggered in the next mainfunction to defend the Ip Address</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">7</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">7</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_CONFLICT_DETECTED</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+                <COMPU-METHOD>
+                  <SHORT-NAME>rba_EthArp_EthAddrMatch_ten</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Initialize Ethernet Address</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_ETHADDR_INIT</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to find ethernet address match.</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_ETHADDR_MATCH</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to find ethernet address not match.</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_ETHADDR_NO_MATCH</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>                         
+                    </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+                <COMPU-METHOD>
+                  <SHORT-NAME>rba_EthArp_HdrByte_ten</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type Definition for variable to hold hardware address</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_HWTYPE</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to hold prototype.</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_PROTOTYPE</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to hold hardware address length</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_HWADDRLENGTH</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                       <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to hold prototype length</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_PROTOLENGTH</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                       <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to hold Arp OPCODE</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">6</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">6</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_ARPOPCODE</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                       <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to hold Source hardware address</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">8</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">8</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_SRCHWADDR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                       <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to hold Source IP address</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">14</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">14</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_SRCIPADDR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                       <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to hold Destination hardware address</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">18</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">18</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_DSTHWADDR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                       <COMPU-SCALE>
+                        <DESC>
+                          <L-2 L="EN">Type definition for variables to hold Destination IP address</L-2>
+                        </DESC>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">24</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">24</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>RBA_ETHARP_DSTIPADDR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                                               
+                    </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+      </ELEMENTS>
+                   
+                  </AR-PACKAGE>
+                  <AR-PACKAGE>
+                    <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+                    <ELEMENTS>
+                    <IMPLEMENTATION-DATA-TYPE>
+                    <SHORT-NAME>rba_EthArp_Hdr_tst</SHORT-NAME>
+                  <LONG-NAME>
+                    <L-4 L="EN">Arp Message Format</L-4>
+                  </LONG-NAME>
+                  <DESC>
+                        <L-2 L="EN">Arp Message Format</L-2></DESC>
+                  <CATEGORY>STRUCTURE</CATEGORY>
+                  <SUB-ELEMENTS>
+                  <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>srcIpAddr_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">srcIpAddr_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">srcIpAddr_u32</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                       <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>destIpAddr_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">destIpAddr_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">destIpAddr_u32</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                       <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>hwType_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">hwType_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">hwType_u16</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                       <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>protoType_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">protoType_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">protoType_u16</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                       <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>arpOpCode_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">arpOpCode_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">arpOpCode_u16</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                       <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>hwAddrLen_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">hwAddrLen_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">hwAddrLen_u8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                       <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>protoLen_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">protoLen_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">protoLen_u8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                       <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>srcHwAddr_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">srcHwAddr_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">srcHwAddr_au8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <ARRAY-SIZE>6</ARRAY-SIZE>
+                        <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                       <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>destHwAddr_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">destHwAddr_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">destHwAddr_au8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <ARRAY-SIZE>6</ARRAY-SIZE>
+                        <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                       <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                    </IMPLEMENTATION-DATA-TYPE>
+                    <IMPLEMENTATION-DATA-TYPE>
+                  <SHORT-NAME>rba_EthArp_ArpTable_tst</SHORT-NAME>
+                  <LONG-NAME>
+                    <L-4 L="EN">ARP Table Entry</L-4>
+                  </LONG-NAME>
+                  <DESC>
+                        <L-2 L="EN">Struct that contains the specific parameters to strore for one entry</L-2></DESC>
+                  <CATEGORY>STRUCTURE</CATEGORY>
+                  <SUB-ELEMENTS>
+                  <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>procEntryState_en</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procEntryState_en</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">procEntryState_en</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>procIpAddrType_en</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procIpAddrType_en</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">procIpAddrType_en</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>procIpAssignMeth_en</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procIpAssignMeth_en</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">procIpAssignMeth_en</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>destIpAddr_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">destIpAddr_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">destIpAddr_u32</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>procTimeOutEntryCnt_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procTimeOutEntryCnt_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">procTimeOutEntryCnt_u32</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>procTxFrameCnt_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">procTxFrameCnt_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">procTxFrameCnt_u16</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>destHwAddr_au8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">destHwAddr_au8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">destHwAddr_au8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <ARRAY-SIZE>6</ARRAY-SIZE>
+                        <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                       <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                </IMPLEMENTATION-DATA-TYPE>                 
+                <IMPLEMENTATION-DATA-TYPE>
+                  <SHORT-NAME>rba_EthArp_SubConfig_to</SHORT-NAME>
+                  <LONG-NAME>
+                    <L-4 L="EN">rba_EthArp_SubConfig_to</L-4>
+                  </LONG-NAME>
+                  <DESC>
+                        <L-2 L="EN">This container is a sub-container of rba_EthArp_Config_to and defines the specific configuration parameters of the ARP (Address Resolution Protocol) sub-module</L-2></DESC>
+                  <CATEGORY>STRUCTURE</CATEGORY>
+                  <SUB-ELEMENTS>
+                  <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>ArpTable_past</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ArpTable_past</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">ArpTable_past</L-2>
+                          </DESC>
+                        <CATEGORY>DATA_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>TYPE_REFERENCE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/RB/RBA/rba_EthArp/ImplementationDataTypes/rba_EthArp_ArpTable_tst</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>AgeingDisabled_cu8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">AgeingDisabled_cu8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">AgeingDisabled_cu8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>EthIfCtrIdx_cu8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">EthIfCtrIdx_cu8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">EthIfCtrIdx_cu8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>TcpIpCtrlFramePrio_cu8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">TcpIpCtrlFramePrio_cu8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">TcpIpCtrlFramePrio_cu8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                      </IMPLEMENTATION-DATA-TYPE>
+                      <IMPLEMENTATION-DATA-TYPE>
+                      <SHORT-NAME>rba_EthArp_Config_to</SHORT-NAME>
+                      <LONG-NAME>
+                      <L-4 L="EN">rba_EthArp_Config_to</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                      <L-2 L="EN">This container is a sub-container of TcpIpConfig and specifies the configuration parameters of the ARP (Address Resolution Protocol) sub-module</L-2></DESC>
+                      <CATEGORY>STRUCTURE</CATEGORY>
+                      <SUB-ELEMENTS>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>ArpSubConfig_past</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">ArpSubConfig_past</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">ArpSubConfig_past</L-2>
+                          </DESC>
+                        <CATEGORY>DATA_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <SW-POINTER-TARGET-PROPS>
+                                  <TARGET-CATEGORY>TYPE_REFERENCE</TARGET-CATEGORY>
+                                  <SW-DATA-DEF-PROPS>
+                                    <SW-DATA-DEF-PROPS-VARIANTS>
+                                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/RB/RBA/rba_EthArp/ImplementationDataTypes/rba_EthArp_ArpTable_tst</IMPLEMENTATION-DATA-TYPE-REF>
+                                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                                    </SW-DATA-DEF-PROPS-VARIANTS>
+                                  </SW-DATA-DEF-PROPS>
+                                </SW-POINTER-TARGET-PROPS>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                          </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>TableEntryTimeout_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">TableEntryTimeout_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">TableEntryTimeout_u32</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>TablePendingEntryTimeout_u32</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">TablePendingEntryTimeout_u32</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">TablePendingEntryTimeout_u32</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>TableSizeMax_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">TableSizeMax_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">TableSizeMax_u16</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>MaxRequests_u16</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">MaxRequests_u16</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">MaxRequests_u16</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>NumArpTbl_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">NumArpTbl_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">NumArpTbl_u8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                        <SHORT-NAME>NumGratARPonStartup_u8</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">NumGratARPonStartup_u8</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">NumGratARPonStartup_u8</L-2>
+                          </DESC>
+                        <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                        <SW-DATA-DEF-PROPS>
+                          <SW-DATA-DEF-PROPS-VARIANTS>
+                            <SW-DATA-DEF-PROPS-CONDITIONAL>
+                              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                              <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            </SW-DATA-DEF-PROPS-CONDITIONAL>
+                          </SW-DATA-DEF-PROPS-VARIANTS>
+                        </SW-DATA-DEF-PROPS>
+                      </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      </SUB-ELEMENTS>
+                      <TYPE-EMITTER>HEADER_FILE</TYPE-EMITTER>
+                      </IMPLEMENTATION-DATA-TYPE>
+                      </ELEMENTS>
+                     </AR-PACKAGE>
+                   </AR-PACKAGES>
+                  </AR-PACKAGE>
+                 </AR-PACKAGES>
+                </AR-PACKAGE>
+               </AR-PACKAGES>
+              </AR-PACKAGE>
+             </AR-PACKAGES>
+            </AUTOSAR>

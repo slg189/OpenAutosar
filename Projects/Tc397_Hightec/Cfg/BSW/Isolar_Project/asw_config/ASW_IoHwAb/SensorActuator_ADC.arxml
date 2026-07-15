@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>SensorActuator_ADC</SHORT-NAME>
+      <ELEMENTS>
+        <SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+          <SHORT-NAME>SensorActuator_ADC</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <R-PORT-PROTOTYPE UUID="15ceaedb-4744-4c1d-969f-699ca6091bc8">
+              <SHORT-NAME>RPort_ADC_Get_SAR0_10</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="0bc04f14-bcd1-4644-bb0e-b225c14f359d">
+              <SHORT-NAME>RPort_ADC_Get_SAR0_31</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="71974764-9091-4618-9d1b-4020120c1ad3">
+              <SHORT-NAME>RPort_ADC_Get_SAR1_12</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="7bcead35-ee3c-4540-a776-6d58de256bfe">
+              <SHORT-NAME>IB_SensorActuator_ADC</SHORT-NAME>
+              <EVENTS>
+                <TIMING-EVENT UUID="1ea39db4-47bd-482a-98c4-efb8c491febf">
+                  <SHORT-NAME>TimingEvent_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SensorActuator_ADC/SensorActuator_ADC/IB_SensorActuator_ADC/ADC_Get</START-ON-EVENT-REF>
+                  <PERIOD>0.1</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="e26c1685-028a-4ba9-88cc-e0963c89cd82">
+                  <SHORT-NAME>ADC_Get</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="d027697b-e208-4672-a2e8-815e6fcb290d">
+                      <SHORT-NAME>SynchronousServerCallPoint_0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_ADC/SensorActuator_ADC/RPort_ADC_Get_SAR0_10</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface/IoHwAb_ADC_Get</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="473d6f9b-abb7-4750-aab6-59b71d7136d4">
+                      <SHORT-NAME>SynchronousServerCallPoint_1</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_ADC/SensorActuator_ADC/RPort_ADC_Get_SAR1_12</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface/IoHwAb_ADC_Get</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="5bf24b16-29bd-4195-8722-099fa5db7374">
+                      <SHORT-NAME>SynchronousServerCallPoint_2</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SensorActuator_ADC/SensorActuator_ADC/RPort_ADC_Get_SAR0_31</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface/IoHwAb_ADC_Get</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>ADC_Get_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

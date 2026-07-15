@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>MDG_App_Mode</SHORT-NAME>
+      <ELEMENTS>
+        <MODE-DECLARATION-GROUP>
+          <SHORT-NAME>MDG_App_Mode</SHORT-NAME>
+          <CATEGORY>EXPLICIT_ORDER</CATEGORY>
+          <INITIAL-MODE-REF DEST="MODE-DECLARATION">/MDG_App_Mode/MDG_App_Mode/NONE</INITIAL-MODE-REF>
+          <MODE-DECLARATIONS>
+            <MODE-DECLARATION>
+              <SHORT-NAME>NONE</SHORT-NAME>
+              <VALUE>0</VALUE>
+            </MODE-DECLARATION>
+            <MODE-DECLARATION>
+              <SHORT-NAME>SWC_REQUEST_SHUTDOWN</SHORT-NAME>
+              <VALUE>16</VALUE>
+            </MODE-DECLARATION>
+            <MODE-DECLARATION>
+              <SHORT-NAME>ECUM_WAKEUP</SHORT-NAME>
+              <VALUE>17</VALUE>
+            </MODE-DECLARATION>
+            <MODE-DECLARATION>
+              <SHORT-NAME>ECUM_NOWAKEUP</SHORT-NAME>
+              <VALUE>18</VALUE>
+            </MODE-DECLARATION>
+            <MODE-DECLARATION>
+              <SHORT-NAME>LIN_SCHEDULE_TABLE_0_RUN</SHORT-NAME>
+              <VALUE>20</VALUE>
+            </MODE-DECLARATION>
+            <MODE-DECLARATION>
+              <SHORT-NAME>LIN_SCHEDULE_TABLE_1_RUN</SHORT-NAME>
+              <VALUE>21</VALUE>
+            </MODE-DECLARATION>
+            <MODE-DECLARATION>
+              <SHORT-NAME>LIN_SCHEDULE_TABLE_2_RUN</SHORT-NAME>
+              <VALUE>22</VALUE>
+            </MODE-DECLARATION>
+          </MODE-DECLARATIONS>
+        </MODE-DECLARATION-GROUP>
+      </ELEMENTS>
+    </AR-PACKAGE>
+    <AR-PACKAGE>
+      <SHORT-NAME>ModeRequestInterface</SHORT-NAME>
+      <ELEMENTS>
+        <SENDER-RECEIVER-INTERFACE>
+          <SHORT-NAME>ModeRequestInterface</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <DATA-ELEMENTS>
+            <VARIABLE-DATA-PROTOTYPE>
+              <SHORT-NAME>AppMode</SHORT-NAME>
+              <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/Enum_AppMode/Enum_AppMode</TYPE-TREF>
+            </VARIABLE-DATA-PROTOTYPE>
+          </DATA-ELEMENTS>
+        </SENDER-RECEIVER-INTERFACE>
+      </ELEMENTS>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>ARPackage_0</SHORT-NAME>
+          <ELEMENTS>
+            <SENDER-RECEIVER-INTERFACE>
+              <SHORT-NAME>SR_ComM_Mode_If</SHORT-NAME>
+              <IS-SERVICE>false</IS-SERVICE>
+              <DATA-ELEMENTS>
+                <VARIABLE-DATA-PROTOTYPE>
+                  <SHORT-NAME>ComM_Mode</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_ComM/ImplementationDataTypes/ComM_ModeType</TYPE-TREF>
+                </VARIABLE-DATA-PROTOTYPE>
+              </DATA-ELEMENTS>
+            </SENDER-RECEIVER-INTERFACE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE>
+      <SHORT-NAME>CompuMethod_Enum_AppModes</SHORT-NAME>
+      <ELEMENTS>
+        <COMPU-METHOD>
+          <SHORT-NAME>CompuMethod_Enum_AppModes</SHORT-NAME>
+          <CATEGORY>TEXTTABLE</CATEGORY>
+          <COMPU-INTERNAL-TO-PHYS>
+            <COMPU-SCALES>
+              <COMPU-SCALE>
+                <SHORT-LABEL>CompuScale</SHORT-LABEL>
+                <LOWER-LIMIT INTERVAL-TYPE="CLOSED">16</LOWER-LIMIT>
+                <UPPER-LIMIT INTERVAL-TYPE="CLOSED">16</UPPER-LIMIT>
+                <COMPU-CONST>
+                  <VT>SWC_REQUEST_SHUTDOWN</VT>
+                </COMPU-CONST>
+              </COMPU-SCALE>
+              <COMPU-SCALE>
+                <SHORT-LABEL>CompuScale_0</SHORT-LABEL>
+                <LOWER-LIMIT INTERVAL-TYPE="CLOSED">17</LOWER-LIMIT>
+                <UPPER-LIMIT INTERVAL-TYPE="CLOSED">17</UPPER-LIMIT>
+                <COMPU-CONST>
+                  <VT>ECUM_WAKEUP</VT>
+                </COMPU-CONST>
+              </COMPU-SCALE>
+              <COMPU-SCALE>
+                <SHORT-LABEL>CompuScale_1</SHORT-LABEL>
+                <LOWER-LIMIT INTERVAL-TYPE="CLOSED">18</LOWER-LIMIT>
+                <UPPER-LIMIT INTERVAL-TYPE="CLOSED">18</UPPER-LIMIT>
+                <COMPU-CONST>
+                  <VT>ECUM_NOWAKEUP</VT>
+                </COMPU-CONST>
+              </COMPU-SCALE>
+              <COMPU-SCALE>
+                <SHORT-LABEL>CompuScale_2</SHORT-LABEL>
+                <LOWER-LIMIT INTERVAL-TYPE="CLOSED">20</LOWER-LIMIT>
+                <UPPER-LIMIT INTERVAL-TYPE="CLOSED">20</UPPER-LIMIT>
+                <COMPU-CONST>
+                  <VT>LIN_SCHEDULE_TABLE_0_RUN</VT>
+                </COMPU-CONST>
+              </COMPU-SCALE>
+              <COMPU-SCALE>
+                <SHORT-LABEL>CompuScale_3</SHORT-LABEL>
+                <LOWER-LIMIT INTERVAL-TYPE="CLOSED">21</LOWER-LIMIT>
+                <UPPER-LIMIT INTERVAL-TYPE="CLOSED">21</UPPER-LIMIT>
+                <COMPU-CONST>
+                  <VT>LIN_SCHEDULE_TABLE_1_RUN</VT>
+                </COMPU-CONST>
+              </COMPU-SCALE>
+              <COMPU-SCALE>
+                <SHORT-LABEL>CompuScale_4</SHORT-LABEL>
+                <LOWER-LIMIT INTERVAL-TYPE="CLOSED">22</LOWER-LIMIT>
+                <UPPER-LIMIT INTERVAL-TYPE="CLOSED">22</UPPER-LIMIT>
+                <COMPU-CONST>
+                  <VT>LIN_SCHEDULE_TABLE_2_RUN</VT>
+                </COMPU-CONST>
+              </COMPU-SCALE>
+            </COMPU-SCALES>
+          </COMPU-INTERNAL-TO-PHYS>
+        </COMPU-METHOD>
+      </ELEMENTS>
+    </AR-PACKAGE>
+    <AR-PACKAGE>
+      <SHORT-NAME>Enum_AppMode</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-PRIMITIVE-DATA-TYPE>
+          <SHORT-NAME>Enum_AppMode</SHORT-NAME>
+          <CATEGORY>VALUE</CATEGORY>
+          <SW-DATA-DEF-PROPS>
+            <SW-DATA-DEF-PROPS-VARIANTS>
+              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                <SW-CALIBRATION-ACCESS>READ-WRITE</SW-CALIBRATION-ACCESS>
+                <COMPU-METHOD-REF DEST="COMPU-METHOD">/CompuMethod_Enum_AppModes/CompuMethod_Enum_AppModes</COMPU-METHOD-REF>
+                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+              </SW-DATA-DEF-PROPS-CONDITIONAL>
+            </SW-DATA-DEF-PROPS-VARIANTS>
+          </SW-DATA-DEF-PROPS>
+        </APPLICATION-PRIMITIVE-DATA-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+    <AR-PACKAGE>
+      <SHORT-NAME>AppMode_Mapping</SHORT-NAME>
+      <ELEMENTS>
+        <DATA-TYPE-MAPPING-SET>
+          <SHORT-NAME>AppMode_Mapping</SHORT-NAME>
+          <DATA-TYPE-MAPS>
+            <DATA-TYPE-MAP>
+              <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/Enum_AppMode/Enum_AppMode</APPLICATION-DATA-TYPE-REF>
+              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+            </DATA-TYPE-MAP>
+          </DATA-TYPE-MAPS>
+          <MODE-REQUEST-TYPE-MAPS>
+            <MODE-REQUEST-TYPE-MAP>
+              <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+              <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP">/MDG_App_Mode/MDG_App_Mode</MODE-GROUP-REF>
+            </MODE-REQUEST-TYPE-MAP>
+          </MODE-REQUEST-TYPE-MAPS>
+        </DATA-TYPE-MAPPING-SET>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

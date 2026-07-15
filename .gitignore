@@ -55,6 +55,11 @@ Projects/*/Docs/api/
 **/compile_commands.json
 **/.*.stamp
 
+# ===== ISOLAR-B runtime state =====
+# Eclipse workspace metadata and ISOLAR logs are recreated locally by the tool.
+Projects/*/Cfg/**/workspace/
+Projects/*/Cfg/**/_log/
+
 # ===== Editor / OS =====
 .vscode/
 .idea/

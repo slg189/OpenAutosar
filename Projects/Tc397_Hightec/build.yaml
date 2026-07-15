@@ -1,0 +1,423 @@
+schema_version: "3.0"
+
+project:
+  name: Tc397_Hightec
+  derivative: Tc397
+
+target:
+  toolchain: hightec
+  platform: AURIX2G
+  build_type: Release
+
+defaults:
+  visibility: source
+  chip: Tc397
+
+global_defines:
+  - AUTOSAR_CP
+  - PROJECT_Tc397_Hightec
+
+global_includes:
+  - ${MCAL_DIR}/inc
+  - ${PROJECT_DIR}/Gen
+
+layers:
+  MCAL:
+    Adc:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Adc/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Adc/inc
+    Can_17_McmCan:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Can_17_McmCan/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Can_17_McmCan/inc
+    Dio:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Dio/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Dio/inc
+    Dma:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Dma/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Dma/inc
+    Eth_17_GEthMac:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Eth_17_GEthMac/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Eth_17_GEthMac/inc
+    Fls_17_Dmu:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Fls_17_Dmu/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Fls_17_Dmu/inc
+    Icu_17_TimerIp:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Icu_17_TimerIp/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Icu_17_TimerIp/inc
+    Irq:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Irq/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Irq/inc
+    McalLib:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/McalLib/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/McalLib/inc
+    Mcu:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Mcu/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Mcu/inc
+    Port:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Port/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Port/inc
+    Pwm_17_GtmCcu6:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Pwm_17_GtmCcu6/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Pwm_17_GtmCcu6/inc
+    Smu:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Smu/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Smu/inc
+    Spi:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Spi/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Spi/inc
+    Wdg_17_Scu:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Wdg_17_Scu/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/MCAL/Wdg_17_Scu/inc
+  CDD:
+    CDD_CORE0:
+      mode: source
+    CDD_CORE1:
+      mode: source
+    CDD_CORE2:
+      mode: source
+    CDD_CORE3:
+      mode: source
+    CDD_CORE4:
+      mode: source
+    CDD_CORE5:
+      mode: source
+  ASW:
+    ASW_COM:
+      mode: source
+    ASW_CORE0:
+      mode: source
+    ASW_CORE1:
+      mode: source
+    ASW_CORE2:
+      mode: source
+    ASW_CORE3:
+      mode: source
+    ASW_CORE4:
+      mode: source
+    ASW_CORE5:
+      mode: source
+    ASW_DCM:
+      mode: source
+    ASW_DEM:
+      mode: source
+    ASW_ETH:
+      mode: source
+    ASW_IoHwAb:
+      mode: source
+    ASW_NM:
+      mode: source
+    ASW_NVM:
+      mode: source
+    ASW_StbM:
+      mode: source
+    ASW_WDG:
+      mode: source
+    ASW_XCP:
+      mode: source
+  BSW:
+    Bfx:
+      mode: source
+    BswM:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/BswM/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/BswM/inc
+    CanIf:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/CanIf/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/CanIf/inc
+    CanNm:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/CanNm/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/CanNm/inc
+    CanSM:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/CanSM/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/CanSM/inc
+    CanTp:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/CanTp/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/CanTp/inc
+    Com:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Com/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Com/inc
+    ComM:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/ComM/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/ComM/inc
+    Crc:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Crc/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Crc/inc
+    Dcm:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Dcm/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Dcm/inc
+    Dem:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Dem/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Dem/inc
+    Det:
+      mode: source
+    DoIP:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/DoIP/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/DoIP/inc
+    EcuM:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/EcuM/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/EcuM/inc
+    EthIf:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/EthIf/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/EthIf/inc
+    EthSM:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/EthSM/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/EthSM/inc
+    EthTSyn:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/EthTSyn/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/EthTSyn/inc
+    Fee:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Fee/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Fee/inc
+    MemIf:
+      mode: source
+    Mfl:
+      mode: source
+    Nm:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Nm/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Nm/inc
+    NvM:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/NvM/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/NvM/inc
+    Os:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Os/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Os/inc
+    PduR:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/PduR/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/PduR/inc
+    Rba_DiagLib:
+      mode: source
+    Rba_EthArp:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthArp/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthArp/inc
+    Rba_EthAutoIp:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthAutoIp/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthAutoIp/inc
+    Rba_EthDHCP:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthDHCP/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthDHCP/inc
+    Rba_EthICMP:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthICMP/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthICMP/inc
+    Rba_EthIPv4:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthIPv4/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthIPv4/inc
+    Rba_EthTcp:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthTcp/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthTcp/inc
+    Rba_EthUdp:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthUdp/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Rba_EthUdp/inc
+    Rba_FeeFs1:
+      mode: source
+    Rba_MemLib:
+      mode: source
+    SoAd:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/SoAd/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/SoAd/inc
+    StbM:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/StbM/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/StbM/inc
+    TcpIp:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/TcpIp/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/TcpIp/inc
+    WdgIf:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/WdgIf/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/WdgIf/inc
+    WdgM:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/WdgM/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/WdgM/inc
+    Xcp:
+      mode: source
+      generated_source_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Xcp/src
+      generated_include_dirs:
+        - ${PROJECT_DIR}/Gen/BSW/Xcp/inc
+  Components: {}
+
+integration:
+  enabled: true
+  dir: Integration
+
+linker:
+  script: ''
+  libraries: []
+  extra_flags: []
+
+output:
+  formats: [elf, hex, map]
+  size_report: true
+  compile_commands_json: true
+
+codegen:
+  enabled: true
+  output_dir: ${PROJECT_DIR}/Gen
+  generators:
+    - name: etas_bsw
+      type: etas
+      enabled: true
+      tool_path: C:/ETAS/RTA-CAR_12.1.0/ISOLAR-AB_12.1.2/ISOLAR-B.cmd
+      workspace: ${PROJECT_DIR}/Cfg/BSW/workspace
+      project: ${PROJECT_DIR}/Cfg/BSW/Isolar_Project
+      target: RTA-BSW
+      output_dir: ${PROJECT_DIR}/Gen/BSW
+      workspace_option: -data
+      generate_option: -generate
+      project_option: -p
+      project_arg_style: joined
+      target_option: -t
+      target_arg_style: joined
+      output_option: -o
+      options: []
+
+docs:
+  enabled: true
+  output_dir: ${PROJECT_DIR}/Docs/api
+  doxygen:
+    enabled: false
+    config_file: ${ROOT_DIR}/Tools/Doxygen/Doxyfile.in
+  interface_extract: { enabled: true, output_format: markdown }
+  dependency_graph: { enabled: true, format: mermaid }
+  module_index: { enabled: true, title: Tc397_Hightec module index }
+
+remote:
+  enabled: false

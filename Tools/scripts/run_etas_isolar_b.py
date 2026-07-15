@@ -90,13 +90,23 @@ def build_command(spec, project_dir: Path, cfg_output_dir: str, args):
     project_arg_style = str(extra.get('project_arg_style', 'joined'))  # joined: -p=Name, split: -p Name
     target_arg_style = str(extra.get('target_arg_style', 'joined'))
 
+    is_batch = str(tool).lower().endswith(('.cmd', '.bat'))
     argv = [str(tool)]
-    if nosplash:
-        argv.append('-nosplash')
-    if workspace_option:
-        argv += [workspace_option, _native_path(workspace)]
-    if generate_option:
-        argv.append(generate_option)
+    # ISOLAR-B.cmd dispatches by its first argument, so -generate must precede
+    # -data and -nosplash must be left to the wrapper itself.  The executable
+    # accepts the conventional Eclipse argument order.
+    if is_batch:
+        if generate_option:
+            argv.append(generate_option)
+        if workspace_option:
+            argv += [workspace_option, _native_path(workspace)]
+    else:
+        if nosplash:
+            argv.append('-nosplash')
+        if workspace_option:
+            argv += [workspace_option, _native_path(workspace)]
+        if generate_option:
+            argv.append(generate_option)
 
     if project_arg_style == 'split':
             argv += [project_option, _native_path(isolar_project)]
@@ -116,7 +126,7 @@ def build_command(spec, project_dir: Path, cfg_output_dir: str, args):
     argv += _as_list(extra.get('extra_options'))
     argv += _as_list(args.option)
 
-    if str(tool).lower().endswith(('.cmd', '.bat')):
+    if is_batch:
         argv = ['cmd', '/c', 'call'] + argv
 
     return argv, workspace, output_dir, target

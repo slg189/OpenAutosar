@@ -1,0 +1,2085 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AUTOSAR xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd" xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 L="EN" xml:space="default">English</L-10>
+    </USED-LANGUAGES>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>AUTOSAR_StbM</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>BswImplementations</SHORT-NAME>
+          <ELEMENTS>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>BswModuleDescriptions</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-MODULE-DESCRIPTION>
+              <SHORT-NAME>StbM</SHORT-NAME>
+              <CATEGORY>BSW_MODULE</CATEGORY>
+              <MODULE-ID>160</MODULE-ID>
+              <PROVIDED-ENTRYS>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_BusSetGlobalTime</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetCurrentTime</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_BusGetCurrentTime</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetCurrentTimeExtended</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetCurrentVirtualLocalTime</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetOffset</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetVersionInfo</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_Init</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_SetGlobalTime</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_SetOffset</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_SetRateCorrection</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_SetUserData</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_TriggerTimeTransmission</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetTimeBaseUpdateCounter</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_UpdateGlobalTime</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetSyncTimeRecordHead</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetRateDeviation</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetOffsetTimeRecordHead</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetTimeBaseStatus</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetTimeLeap</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_GetMasterConfig</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                <BSW-MODULE-ENTRY-REF-CONDITIONAL>
+                  <BSW-MODULE-ENTRY-REF DEST="BSW-MODULE-ENTRY">/AUTOSAR_StbM/BswModuleEntrys/StbM_StartTimer</BSW-MODULE-ENTRY-REF>
+                </BSW-MODULE-ENTRY-REF-CONDITIONAL>
+              </PROVIDED-ENTRYS>
+              <OUTGOING-CALLBACKS>
+                <!--Not yet implemented.-->
+              </OUTGOING-CALLBACKS>
+              <BSW-MODULE-DEPENDENCYS>
+                <BSW-MODULE-DEPENDENCY>
+                  <SHORT-NAME>Det</SHORT-NAME>
+                  <TARGET-MODULE-ID>15</TARGET-MODULE-ID>
+                </BSW-MODULE-DEPENDENCY>
+                <BSW-MODULE-DEPENDENCY>
+                  <SHORT-NAME>Os</SHORT-NAME>
+                  <TARGET-MODULE-ID>1</TARGET-MODULE-ID>
+                </BSW-MODULE-DEPENDENCY>
+                <BSW-MODULE-DEPENDENCY>
+                  <SHORT-NAME>Rte</SHORT-NAME>
+                  <TARGET-MODULE-ID>2</TARGET-MODULE-ID>
+                </BSW-MODULE-DEPENDENCY>
+                <BSW-MODULE-DEPENDENCY>
+                  <SHORT-NAME>SchM</SHORT-NAME>
+                  <TARGET-MODULE-ID>130</TARGET-MODULE-ID>
+                </BSW-MODULE-DEPENDENCY>
+                <BSW-MODULE-DEPENDENCY>
+                  <SHORT-NAME>NvM</SHORT-NAME>
+                  <TARGET-MODULE-ID>20</TARGET-MODULE-ID>
+                </BSW-MODULE-DEPENDENCY>               
+                <BSW-MODULE-DEPENDENCY>
+                  <SHORT-NAME>EthIf</SHORT-NAME>
+                  <LONG-NAME>
+                    <L-4 L="EN"></L-4>
+                  </LONG-NAME>
+                  <DESC>
+                    <L-2 L="EN">Note : This dependency is only applicable if the Rfc 70468 is used i.e if StbMRbSpecificRfcImplementation is STD_ON</L-2>
+                  </DESC>
+                  <TARGET-MODULE-ID>65</TARGET-MODULE-ID>
+                </BSW-MODULE-DEPENDENCY>
+              </BSW-MODULE-DEPENDENCYS>
+            </BSW-MODULE-DESCRIPTION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>BswModuleEntrys</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_BusSetGlobalTime</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to set the new Global Time received from different busses</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service allows the Timebase Provider Modules to forward a new Global Time to the StbM, which has been received from different busses</L-2>
+              </DESC>
+              <SERVICE-ID>0x0f</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers the TimebaseID for which Global time will be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+				<SW-SERVICE-ARG>
+                  <!--Name="globalTimePtr", Kind="in", Type="StbM_UserDataType", IsConst="False"-->
+                  <SHORT-NAME>globalTimePtr</SHORT-NAME>
+                  <LONG-NAME>
+                    <L-4 L="EN"></L-4>
+                  </LONG-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to new Global Time value.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>						
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>						  
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>								
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="userDataPtr", Kind="in", Type="StbM_UserDataType", IsConst="False"-->
+                  <SHORT-NAME>userDataPtr</SHORT-NAME>
+                  <LONG-NAME>
+                    <L-4 L="EN"></L-4>
+                  </LONG-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the updated user data that has to be set.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="measureDataPtr", Kind="in", Type="StbM_MeasurementType", IsConst="False"-->
+                  <SHORT-NAME>measureDataPtr</SHORT-NAME>
+                  <LONG-NAME>
+                    <L-4 L="EN"></L-4>
+                  </LONG-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the updated measurement data that has to be set.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_MeasurementType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeStampPtr", Kind="in", Type="StbM_TimeStampType", IsConst="False"-->
+                  <SHORT-NAME>localTimePtr</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the Value of the virtual Local Time associated to the new Global Time.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_VirtualLocalTimeType</IMPLEMENTATION-DATA-TYPE-REF>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetCurrentTime</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to get the current time value in standard format</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service returns a time value (Local Time Base derived from Global Time Base) in standard format.</L-2>
+              </DESC>
+              <SERVICE-ID>0x07</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers the TimebaseID for which current time will be read.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeStampPtr", Kind="out", Type="StbM_TimeStampType", IsConst="True"-->
+                  <SHORT-NAME>timeStamp</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the Current time stamp that is valid at this time.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="userDataPtr", Kind="out", Type="StbM_UserDataType", IsConst="True"-->
+                  <SHORT-NAME>userData</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the user variable which receives the userdata of the timebase.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_BusGetCurrentTime</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to get the current Time Tuple, status and User Data of the Time Base</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service returns the current Time Tuple, status and User Data of the Time Base</L-2>
+              </DESC>
+              <SERVICE-ID>0x07</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>timeBaseID</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers the TimebaseID for which current TIme will be read.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="globalTimePtr", Kind="out", Type="StbM_TimeStampType", IsConst="False"-->
+                  <SHORT-NAME>globalTimePtr</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter holds the value of the local instance of the Global Time, which is sampled when the function is called</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeStampPtr", Kind="in", Type="StbM_VirtualLocalTimeType", IsConst="False"-->
+                  <SHORT-NAME>localTimePtr</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers the Value of the Virtual Local Time, which is sampled when the function is called</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_VirtualLocalTimeType</IMPLEMENTATION-DATA-TYPE-REF>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="userDataPtr", Kind="out", Type="StbM_UserDataType", IsConst="True"-->
+                  <SHORT-NAME>userData</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the user variable which receives the userdata of the timebase.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetCurrentTimeExtended</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to get the current time value in extended format </L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service returns a time value (Local Time Base derived from Global Time Base) in extended format.The existence of this service is pre-compile time configurable by the configuration parameter StbMGetCurrentTimeExtendedAvailable.</L-2>
+              </DESC>
+              <SERVICE-ID>0x09</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers the TimebaseID for which Global time should be read.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeStampPtr", Kind="out", Type="StbM_TimeStampExtendedType", IsConst="True"-->
+                  <SHORT-NAME>timeStamp</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the Current time stamp that is valid at this time.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampExtendedType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>                
+                <SW-SERVICE-ARG>
+                  <!--Name="userDataPtr", Kind="out", Type="StbM_UserDataType", IsConst="True"-->
+                  <SHORT-NAME>userData</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the user variable which receives the userdata.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetCurrentVirtualLocalTime</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to get the Virtual Local Time of the referenced Time Base.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service returns the Virtual Local Time of the referenced Time Base.</L-2>
+              </DESC>
+              <SERVICE-ID>0x1e</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>timeBaseID</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers the TimebaseID for which Virtual Local  TIme will be read.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="localTimePtr", Kind="out", Type="StbM_VirtualLocalTimeType", IsConst="False"-->
+                  <SHORT-NAME>localTimePtr</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The parameter holds the current Virtual Local Time value</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_VirtualLocalTimeType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetOffset</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to set the Offset time value</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service allows the Timebase Provider Modules to get the current offset time.</L-2>
+              </DESC>
+              <SERVICE-ID>0x0e</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which Offset time value should be referenced.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeStampPtr", Kind="out", Type="StbM_TimeStampType", IsConst="False"-->
+                  <SHORT-NAME>timeStamp</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the Current Offset Time value.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>userData</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the Current User Data.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetVersionInfo</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to get the Version information of the StbM module.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service returns the version information of this module.The existence of this service is pre-compile time configurable by the configuration parameter StbMVersionInfo.</L-2>
+              </DESC>
+              <SERVICE-ID>0x05</SERVICE-ID>
+              <IS-REENTRANT>true</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="versioninfo", Kind="out", Type="Std_VersionInfoType", IsConst="False"-->
+                  <SHORT-NAME>versioninfo</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the user variable which shall receive the version information of this module (vendor ID, module ID and software version). Please refer to the description of the Std_VersionInfoType for details</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+				  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_VersionInfoType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_Init</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to initialize the StbM module</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">StbM_Init( const StbM_ConfigType* ConfigPtr ) ,This service initializes the Synchronized Time-base Manager. StbM_ConfigType is a implementation specific Configuration data structure of the StbM module.</L-2>
+              </DESC>
+              <SERVICE-ID>0x00</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>			  
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_SetGlobalTime</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to set the Global time value</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service allows the Customers to set the new global time that has to be valid for the system, which will be sent to the busses and modify HW registers behind the providers, if supported. This function will be used if a Time Master is present in this ECU.</L-2>
+              </DESC>
+              <SERVICE-ID>0x0b</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which Global time value should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeStampPtr", Kind="in", Type="StbM_TimeStampType", IsConst="True"-->
+                  <SHORT-NAME>timeStamp</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the updated time value that has to be set.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="userDataPtr", Kind="in", Type="StbM_UserDataType", IsConst="True"-->
+                  <SHORT-NAME>userData</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the updated user data that has to be set.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_SetOffset</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to set the Offset time value.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service allows the Customers and the Timebase Provider Modules to set the offset time.</L-2>
+              </DESC>
+              <SERVICE-ID>0x0d</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which Offset time value should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeStampPtr", Kind="in", Type="StbM_TimeStampType", IsConst="True"-->
+                  <SHORT-NAME>timeStamp</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the new offset timestamp value that has to be set.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>userData</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the updated new user data.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_SetRateCorrection</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to set the Rate of a Synchronized Time Base.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service allows to set rate of a synchronized Time Base(being either a Pure Local Time Base or not</L-2>
+              </DESC>
+              <SERVICE-ID>0x12</SERVICE-ID>
+              <IS-REENTRANT>true</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which rate corrected time should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>rateDeviation</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to value applied as rate deviation.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_RateDeviationType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_SetUserData</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to set the user data.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service allows the Customers to set the new user data that has to be valid for the system, which will be sent to the busses.</L-2>
+              </DESC>
+              <SERVICE-ID>0x0c</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which user data should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <!--Name="userDataPtr", Kind="in", Type="StbM_UserDataType", IsConst="True"-->
+                  <SHORT-NAME>userData</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the updated new user data that has to be set.</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_TriggerTimeTransmission</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to increment the global array timeBaseUpdateCounter</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Allows the Customers to force the Timesync Modules to transmit the current Time Base due to an incremented timeBaseUpdateCounter</L-2>
+              </DESC>
+              <SERVICE-ID>0x1c</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <LONG-NAME>
+                  <L-4 L="EN"></L-4>
+                </LONG-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which value should be referenced.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetTimeBaseUpdateCounter</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to get the global array timeBaseUpdateCounter</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Allows the Timesync Modules to detect, whether a Time Base should be transmitted immediately in the subsequent &lt;Bus&gt;TSyn_MainFunction() cycle.</L-2>
+              </DESC>
+              <SERVICE-ID>0x1b</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">Counter value belonging to the Time Base, that indicates a Time Base update to the Timesync Modules is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which the counter value should be updated.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetMasterConfig</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to indicate whether the functionality for a system wide master is available or not</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service indicates if the functionality for a system wide master (e.g. StbM_SetGlobalTime) for a given Time Base is available or not.</L-2>
+              </DESC>
+              <SERVICE-ID>0x1d</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers the TimebaseID for which StbM_MasterConfigType will be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>masterConfig</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter indicates, if system wide master functionality is supported</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_MasterConfigType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetTimeLeap</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to get the value of Time Leap, if StbMTimeLeapFuture/PastThreshold is exceeded</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service returns value of Time Leap, if StbMTimeLeapFuture/PastThreshold is exceeded. </L-2>
+              </DESC>
+              <SERVICE-ID>0x13</SERVICE-ID>
+              <IS-REENTRANT>true</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which TimeDiff should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>timeJump</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the time leap value</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeDiffType</IMPLEMENTATION-DATA-TYPE-REF>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_UpdateGlobalTime</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to set the Global time value without leading to an immediate transmission of the Global Time</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service allows the Customers to set the Global Time that will be sent to the buses.This function will be used if a Time Master is present in this ECU.Using UpdateGlobalTime will not lead to an immediate transmission of the Global Time.</L-2>
+              </DESC>
+              <SERVICE-ID>0x10</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which TimeStampValue should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>timeStamp</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the updated new time stamp value that has to be set</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>userData</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the updated new user data that has to be set</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetSyncTimeRecordHead</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to access the recorded snapshot data Header of the table belonging to the Synchronized Time Base.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service allows to access the recorded snapshot data Header of the table belonging to the Synchronized Time Base.</L-2>
+              </DESC>
+              <SERVICE-ID>0x16</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+				<SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which SyncRecordTableHead should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>syncRecordTableHead</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to Synchronized Time Base Record Table Header</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SyncRecordTableHeadType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetRateDeviation</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to Return value of the current rate deviation of a time base.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Returns value of the current rate deviation of a Time Base</L-2>
+              </DESC>
+              <SERVICE-ID>0x11</SERVICE-ID>
+              <IS-REENTRANT>true</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which RateDeviation should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>rateDeviation</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter gives Value of the current rate deviation of a Time Base</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_RateDeviationType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetOffsetTimeRecordHead</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to access the recorded snapshot data Header of the table belonging to the Offset Time Base.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">This service allows to access the recorded snapshot data Header of the table belonging to the Offset Time Base</L-2>
+              </DESC>
+              <SERVICE-ID>0x17</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which OffsetRecordTableHead should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>offsetRecordTableHead</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to Offset Time Base Record Table Header</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_OffsetRecordTableHeadType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_StartTimer</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Service to notify the customers,when a timebase related event occurs.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">The callback notifies the customers, when a TimeBase related event occurs, which is enabled by the notification mask.</L-2>
+              </DESC>
+              <SERVICE-ID>0x19</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which timer should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>customerId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers the TimebaseID for which the timer will be set</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_CustomerIdType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>expireTime</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the Time value relative to current Time Base value of the Notification Customer, when the Timer shall expire</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</IMPLEMENTATION-DATA-TYPE-REF>
+                                <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY>
+              <SHORT-NAME>StbM_GetTimeBaseStatus</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Returns the detailed status of the Time Base.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Returns the detailed status of the Time Base. For Offset Time Bases the status of the Offset Time Base itself and the status of the underlying Synchronized Time Base is returned.</L-2>
+              </DESC>
+              <SERVICE-ID>0x14</SERVICE-ID>
+              <IS-REENTRANT>true</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+              <RETURN-TYPE>
+                <SHORT-NAME>ReturnValue</SHORT-NAME>
+                <DESC>
+                  <L-2 L="EN">E_OK is returned if the operation is successful. Otherwise, E_NOT_OK is returned.</L-2>
+                </DESC>
+                <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                <DIRECTION>OUT</DIRECTION>
+                <SW-DATA-DEF-PROPS>
+                  <SW-DATA-DEF-PROPS-VARIANTS>
+                    <SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Std/ImplementationDataTypes/Std_ReturnType</IMPLEMENTATION-DATA-TYPE-REF>
+                      <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                    </SW-DATA-DEF-PROPS-CONDITIONAL>
+                  </SW-DATA-DEF-PROPS-VARIANTS>
+                </SW-DATA-DEF-PROPS>
+              </RETURN-TYPE>
+              <ARGUMENTS>
+                <SW-SERVICE-ARG>
+                  <!--Name="timeBaseId", Kind="in", Type="StbM_SynchronizedTimeBaseType", IsConst="False"-->
+                  <SHORT-NAME>timeBaseId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter refers to the TimebaseID for which TimeBaseStatus should be set.</L-2>
+                  </DESC>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</IMPLEMENTATION-DATA-TYPE-REF>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>syncTimeBaseStatus</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the status of the Synchronized or pure local Time Base</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</IMPLEMENTATION-DATA-TYPE-REF>
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+                <SW-SERVICE-ARG>
+                  <SHORT-NAME>offsetTimeBaseStatus</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">This parameter points to the structure with the status of the Offset Time base</L-2>
+                  </DESC>
+                  <CATEGORY>DATA_REFERENCE</CATEGORY>
+                  <DIRECTION>IN</DIRECTION>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-POINTER-TARGET-PROPS>
+                          <TARGET-CATEGORY>STRUCTURE</TARGET-CATEGORY>
+                          <SW-DATA-DEF-PROPS>
+                            <SW-DATA-DEF-PROPS-VARIANTS>
+                              <SW-DATA-DEF-PROPS-CONDITIONAL>
+                                <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</IMPLEMENTATION-DATA-TYPE-REF>    
+                              </SW-DATA-DEF-PROPS-CONDITIONAL>
+                            </SW-DATA-DEF-PROPS-VARIANTS>
+                          </SW-DATA-DEF-PROPS>
+                        </SW-POINTER-TARGET-PROPS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </SW-SERVICE-ARG>
+              </ARGUMENTS>
+            </BSW-MODULE-ENTRY>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>CompuMethods</SHORT-NAME>
+          <ELEMENTS>
+          </ELEMENTS>
+          <!--Not yet implemented.-->
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+          <LONG-NAME>
+            <L-4 L="EN"></L-4>
+          </LONG-NAME>
+          <ELEMENTS>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_VirtualLocalTimeType</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Variables of this type store time stamps of the Virtual Local Time.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Variables of this type store time stamps of the Virtual Local Time. Note : Refer SWS for other implementation data types (StbM_TimeBaseStatusType,StbM_TimeStampType,StbM_TimeStampExtendedType,StbM_UserDataType,StbM_SynchronizedTimeBaseType)</L-2>
+              </DESC>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>nanosecondsHi</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>nanosecondsLo</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+              <TYPE-EMITTER>GLOBAL</TYPE-EMITTER>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_MeasurementType</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Structure which contains additional measurement data.</L-4>
+              </LONG-NAME>
+              <DESC>
+                <L-2 L="EN">Structure which contains additional measurement data Note : Refer SWS for other implementation data types (Ex:StbM_TimeDiffType,StbM_TimeStampType,StbM_TimeStampExtendedType,StbM_UserDataType,StbM_SynchronizedTimeBaseType)</L-2>
+              </DESC>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>pathDelay</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+              <TYPE-EMITTER>GLOBAL</TYPE-EMITTER>
+            </IMPLEMENTATION-DATA-TYPE>
+          </ELEMENTS>
+          <!--Not yet implemented.-->
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

@@ -1,0 +1,1457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://autosar.org/schema/r4.0"
+    xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-2-2.xsd">
+  <!-- AUTOSAR SERVICES PACKAGE -->
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>AUTOSAR_StbM</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>SwComponentTypes</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-SW-COMPONENT-TYPE>
+              <SHORT-NAME>StbM</SHORT-NAME>
+              <PORTS>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>GlobalTime_Master_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/SetGlobalTime</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/UpdateGlobalTime</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/GetMasterConfig</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/SetUserData</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/TriggerTimeTransmission</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>GlobalTime_Slave_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/GetRateDeviation</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/GetCurrentTime</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/GetTimeBaseStatus</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/GetTimeLeap</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>GlobalTime_StatusEvent_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <NONQUEUED-SENDER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/AUTOSAR_StbM/PortInterfaces/StatusNotification/eventNotification</DATA-ELEMENT-REF>
+                    </NONQUEUED-SENDER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/AUTOSAR_StbM/PortInterfaces/StatusNotification</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+              </PORTS>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>IB_StbM</SHORT-NAME>
+                  <EVENTS>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>OIE_GetCurrentTime_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM/GetCurrentTime</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/GetCurrentTime</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>OIE_GetTimeBaseStatus_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM/GetTimeBaseStatus</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/GetTimeBaseStatus</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>OIE_GetTimeLeap_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM/GetTimeLeap</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/GetTimeLeap</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>OIE_SetGlobalTime_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM/SetGlobalTime</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Master_StbMSynchronizedTimeBase_Eth</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/SetGlobalTime</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>OIE_UpdateGlobalTime_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM/UpdateGlobalTime</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Master_StbMSynchronizedTimeBase_Eth</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/UpdateGlobalTime</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>OIE_SetUserData_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM/SetUserData</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Master_StbMSynchronizedTimeBase_Eth</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/SetUserData</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>OIE_GetMasterConfig_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM/GetMasterConfig</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Master_StbMSynchronizedTimeBase_Eth</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/GetMasterConfig</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>OIE_TriggerTimeTransmission_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM/TriggerTimeTransmission</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Master_StbMSynchronizedTimeBase_Eth</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/TriggerTimeTransmission</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                  </EVENTS>
+                  <HANDLE-TERMINATION-AND-RESTART>CAN-BE-TERMINATED-AND-RESTARTED</HANDLE-TERMINATION-AND-RESTART>
+                  <PORT-API-OPTIONS>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <VALUE SHORT-LABEL="StbMSynchronizedTimeBase_Eth">0</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <VALUE SHORT-LABEL="StbMSynchronizedTimeBase_Eth">0</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_SynchronizedTimeBaseType</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_Master_StbMSynchronizedTimeBase_Eth</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_StatusEvent_StbMSynchronizedTimeBase_Eth</PORT-REF>
+                    </PORT-API-OPTION>
+                  </PORT-API-OPTIONS>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>SetGlobalTime</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeBaseId</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeStamp</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>userData</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>StbM_SetGlobalTime</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>UpdateGlobalTime</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeBaseId</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeStamp</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>userData</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>StbM_UpdateGlobalTime</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>GetMasterConfig</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeBaseId</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>masterConfig</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>StbM_GetMasterConfig</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>SetUserData</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeBaseId</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>userData</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>StbM_SetUserData</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>TriggerTimeTransmission</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeBaseId</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>StbM_TriggerTimeTransmission</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>GetCurrentTime</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeBaseId</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeStamp</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>userData</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>StbM_GetCurrentTime</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>GetTimeBaseStatus</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeBaseId</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>syncTimeBaseStatus</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>offsetTimeBaseStatus</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>StbM_GetTimeBaseStatus</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>GetTimeLeap</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeBaseId</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>timeJump</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>StbM_GetTimeLeap</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>StatusNotification_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>eventNotification</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <DATA-SEND-POINTS>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>DataSendPoints_eventNotification</SHORT-NAME>
+                          <ACCESSED-VARIABLE>
+                            <AUTOSAR-VARIABLE-IREF>
+                              <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_StbM/SwComponentTypes/StbM/GlobalTime_StatusEvent_StbMSynchronizedTimeBase_Eth</PORT-PROTOTYPE-REF>
+                              <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/AUTOSAR_StbM/PortInterfaces/StatusNotification/eventNotification</TARGET-DATA-PROTOTYPE-REF>
+                            </AUTOSAR-VARIABLE-IREF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </DATA-SEND-POINTS>
+                      <SYMBOL>StatusNotificationCallback_StbMSynchronizedTimeBase_Eth</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_StbM_MainFunction</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>RE_StbM_MainFunction</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </SERVICE-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>PortInterfaces</SHORT-NAME>
+          <ELEMENTS>
+            <CLIENT-SERVER-INTERFACE>
+              <SHORT-NAME>GlobalTime_Master_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+              <IS-SERVICE>true</IS-SERVICE>
+              <SERVICE-KIND>SYNC-BASE-TIME-MANAGER</SERVICE-KIND>
+              <OPERATIONS>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>SetGlobalTime</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>timeStamp</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>userData</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>UpdateGlobalTime</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>timeStamp</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>userData</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>GetMasterConfig</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>masterConfig</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_MasterConfigType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>SetUserData</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>userData</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>TriggerTimeTransmission</SHORT-NAME>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Master_StbMSynchronizedTimeBase_Eth/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+              </OPERATIONS>
+              <POSSIBLE-ERRORS>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+                  <ERROR-CODE>1</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_OK</SHORT-NAME>
+                  <ERROR-CODE>0</ERROR-CODE>
+                </APPLICATION-ERROR>
+              </POSSIBLE-ERRORS>
+            </CLIENT-SERVER-INTERFACE>
+            <CLIENT-SERVER-INTERFACE>
+              <SHORT-NAME>GlobalTime_Slave_StbMSynchronizedTimeBase_Eth</SHORT-NAME>
+              <IS-SERVICE>true</IS-SERVICE>
+              <SERVICE-KIND>SYNC-BASE-TIME-MANAGER</SERVICE-KIND>
+              <OPERATIONS>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>GetCurrentTime</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>timeStamp</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>userData</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>GetTimeBaseStatus</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>syncTimeBaseStatus</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>offsetTimeBaseStatus</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>GetTimeLeap</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>timeJump</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeDiffType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>GetRateDeviation</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>rateDeviation</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_RateDeviationType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/GlobalTime_Slave_StbMSynchronizedTimeBase_Eth/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+              </OPERATIONS>
+              <POSSIBLE-ERRORS>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+                  <ERROR-CODE>1</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_OK</SHORT-NAME>
+                  <ERROR-CODE>0</ERROR-CODE>
+                </APPLICATION-ERROR>
+              </POSSIBLE-ERRORS>
+            </CLIENT-SERVER-INTERFACE>
+            <SENDER-RECEIVER-INTERFACE>
+              <SHORT-NAME>StatusNotification</SHORT-NAME>
+              <IS-SERVICE>false</IS-SERVICE>
+              <DATA-ELEMENTS>
+                <VARIABLE-DATA-PROTOTYPE>
+                  <SHORT-NAME>eventNotification</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseNotificationType</TYPE-TREF>
+                </VARIABLE-DATA-PROTOTYPE>
+              </DATA-ELEMENTS>
+            </SENDER-RECEIVER-INTERFACE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>CompuMethods</SHORT-NAME>
+          <ELEMENTS>
+            <COMPU-METHOD>
+              <SHORT-NAME>Txt_StbM_MasterConfigType</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>STBM_SYSTEM_WIDE_MASTER_DISABLED</SHORT-LABEL>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x00</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x00</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>STBM_SYSTEM_WIDE_MASTER_DISABLED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>STBM_SYSTEM_WIDE_MASTER_ENABLED</SHORT-LABEL>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x01</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x01</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>STBM_SYSTEM_WIDE_MASTER_ENABLED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD>
+              <SHORT-NAME>StbM_TimeBaseNotificationType</SHORT-NAME>
+              <CATEGORY>BITFIELD_TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_GLOBAL_TIME</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 0 (LSB): 0: synchronization to global time master not changed 1: GLOBAL_TIME_BASE in StbM_TimeBaseStatusType has changed from 0 to 1</L-2>
+                    </DESC>
+                    <MASK>0x01</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_GLOBAL_TIME</SHORT-LABEL>
+                    <SYMBOL>EV_GLOBAL_TIME</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 0 (LSB): 0: synchronization to global time master not changed 1: GLOBAL_TIME_BASE in StbM_TimeBaseStatusType has changed from 0 to 1</L-2>
+                    </DESC>
+                    <MASK>0x01</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMEOUT_OCCURRED</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 1: 1: TIMEOUT bit in timeBaseStatus has changed from 0 to 1 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x01</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMEOUT_OCCURRED</SHORT-LABEL>
+                    <SYMBOL>EV_TIMEOUT_OCCURRED</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 1: 1: TIMEOUT bit in timeBaseStatus has changed from 0 to 1 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x01</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMEOUT_REMOVED</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 2 1: TIMEOUT bit in timeBaseStatus has changed from 1 to 0 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x04</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMEOUT_REMOVED</SHORT-LABEL>
+                    <SYMBOL>EV_TIMEOUT_REMOVED</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 2 1: TIMEOUT bit in timeBaseStatus has changed from 1 to 0 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x04</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMELEAP_FUTURE</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 3 1: TIMELEAP_FUTURE bit in timeBaseStatus has changed from 0 to 1 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x08</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMELEAP_FUTURE</SHORT-LABEL>
+                    <SYMBOL>EV_TIMELEAP_FUTURE</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 3 1: TIMELEAP_FUTURE bit in timeBaseStatus has changed from 0 to 1 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x08</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">8</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">8</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMELEAP_FUTURE_REMOVED</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 4 1: TIMELEAP_FUTURE bit in timeBaseStatus has changed from 1 to 0 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x10</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMELEAP_FUTURE_REMOVED</SHORT-LABEL>
+                    <SYMBOL>EV_TIMELEAP_FUTURE_REMOVED</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 4 1: TIMELEAP_FUTURE bit in timeBaseStatus has changed from 1 to 0 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x10</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">16</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">16</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMELEAP_PAST</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 5 1: TIMELEAP_PAST bit in timeBaseStatus has changed from 0 to 1 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x20</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMELEAP_PAST</SHORT-LABEL>
+                    <SYMBOL>EV_TIMELEAP_PAST</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 5 1: TIMELEAP_PAST bit in timeBaseStatus has changed from 0 to 1 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x20</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">32</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">32</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMELEAP_PAST_REMOVED</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 6 1: TIMELEAP_PAST bit in timeBaseStatus has changed from 1 to 0 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x40</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_TIMELEAP_PAST_REMOVED</SHORT-LABEL>
+                    <SYMBOL>EV_TIMELEAP_PAST_REMOVED</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 6 1: TIMELEAP_PAST bit in timeBaseStatus has changed from 1 to 0 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x40</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">64</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">64</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_SYNC_TO_SUBDOMAIN</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 7 1: SYNC_TO_GATEWAY bit in timeBaseStatus has changed from 0 to 1 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x80</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_SYNC_TO_SUBDOMAIN</SHORT-LABEL>
+                    <SYMBOL>EV_SYNC_TO_SUBDOMAIN</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 7 1: SYNC_TO_GATEWAY bit in timeBaseStatus has changed from 0 to 1 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x80</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">128</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">128</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_SYNC_TO_GLOBAL_MASTER</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 8 1: SYNC_TO_GATEWAY bit of Time Domain changes from 1 to 0 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x100</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_SYNC_TO_GLOBAL_MASTER</SHORT-LABEL>
+                    <SYMBOL>EV_SYNC_TO_GLOBAL_MASTER</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 8 1: SYNC_TO_GATEWAY bit of Time Domain changes from 1 to 0 0: otherwise</L-2>
+                    </DESC>
+                    <MASK>0x100</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">256</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">256</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_RESYNC</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 9: 1: A synchronization of the local time to the valid Global Time value has occured 0: No resynchronization event occured</L-2>
+                    </DESC>
+                    <MASK>0x0200</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_RESYNC</SHORT-LABEL>
+                    <SYMBOL>EV_RESYNC</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 9: 1: A synchronization of the local time to the valid Global Time value has occured 0: No resynchronization event occured</L-2>
+                    </DESC>
+                    <MASK>0x0200</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">512</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">512</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_RATECORRECTION</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 10 1: a valid rate correction has been calculated (not beyond limits) 0: No rate correction calculated</L-2>
+                    </DESC>
+                    <MASK>0x0400</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>EV_RATECORRECTION</SHORT-LABEL>
+                    <SYMBOL>EV_RATECORRECTION</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 10 1: a valid rate correction has been calculated (not beyond limits) 0: No rate correction calculated</L-2>
+                    </DESC>
+                    <MASK>0x0400</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1024</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1024</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD>
+              <SHORT-NAME>StbM_TimeBaseStatusType</SHORT-NAME>
+              <CATEGORY>BITFIELD_TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>TIMEOUT</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 0 (LSB): 0x00: No Timeout on receiving Synchronisation Messages 0x01: Timeout on receiving Synchronisation Messages</L-2>
+                    </DESC>
+                    <MASK>0x01</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>TIMEOUT</SHORT-LABEL>
+                    <SYMBOL>TIMEOUT</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 0 (LSB): 0x00: No Timeout on receiving Synchronisation Messages 0x01: Timeout on receiving Synchronisation Messages</L-2>
+                    </DESC>
+                    <MASK>0x01</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>StbM_Reserved</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 1: Always 0 (reserved for future usage)</L-2>
+                    </DESC>
+                    <MASK>0x02</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>StbM_Reserved</SHORT-LABEL>
+                    <SYMBOL>StbM_Reserved</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 1: Always 0 (reserved for future usage)</L-2>
+                    </DESC>
+                    <MASK>0x02</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>SYNC_TO_GATEWAY</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 2 0x00: Local Time Base is synchronous to Global Time Master 0x04: Local Time Base updates are based on a Time Gateway below the Global Time Master</L-2>
+                    </DESC>
+                    <MASK>0x04</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>SYNC_TO_GATEWAY</SHORT-LABEL>
+                    <SYMBOL>SYNC_TO_GATEWAY</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 2 0x00: Local Time Base is synchronous to Global Time Master 0x04: Local Time Base updates are based on a Time Gateway below the Global Time Master</L-2>
+                    </DESC>
+                    <MASK>0x04</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>GLOBAL_TIME_BASE</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 3 0x00: Local Time Base is based on Local Time Base reference clock only (never synchronized with Global Time Base) 0x08: Local Time Base was at least synchronized with Global Time Base one time</L-2>
+                    </DESC>
+                    <MASK>0x08</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>GLOBAL_TIME_BASE</SHORT-LABEL>
+                    <SYMBOL>GLOBAL_TIME_BASE</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 3 0x00: Local Time Base is based on Local Time Base reference clock only (never synchronized with Global Time Base) 0x08: Local Time Base was at least synchronized with Global Time Base one time</L-2>
+                    </DESC>
+                    <MASK>0x08</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">8</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">8</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>TIMELEAP_FUTURE</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 4 0x00: No leap into the future within the received time for Time Base 0x10: Leap into the future within the received time for Time Base exceeds a configured threshold</L-2>
+                    </DESC>
+                    <MASK>0x10</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>TIMELEAP_FUTURE</SHORT-LABEL>
+                    <SYMBOL>TIMELEAP_FUTURE</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 4 0x00: No leap into the future within the received time for Time Base 0x10: Leap into the future within the received time for Time Base exceeds a configured threshold</L-2>
+                    </DESC>
+                    <MASK>0x10</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">16</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">16</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>TIMELEAP_PAST</SHORT-LABEL>
+                    <DESC>
+                      <L-2 L="EN">Bit 5 0x00: No leap into the past within the received time for Time Base 0x20: Leap into the past within the received time for Time Base exceeds a configured threshold</L-2>
+                    </DESC>
+                    <MASK>0x20</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FALSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <SHORT-LABEL>TIMELEAP_PAST</SHORT-LABEL>
+                    <SYMBOL>TIMELEAP_PAST</SYMBOL>
+                    <DESC>
+                      <L-2 L="EN">Bit 5 0x00: No leap into the past within the received time for Time Base 0x20: Leap into the past within the received time for Time Base exceeds a configured threshold</L-2>
+                    </DESC>
+                    <MASK>0x20</MASK>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">32</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">32</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>TRUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+          <ELEMENTS>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_TimeBaseStatusType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/AUTOSAR_StbM/CompuMethods/StbM_TimeBaseStatusType</COMPU-METHOD-REF>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_TimeStampType</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>timeBaseStatus</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>nanoseconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>seconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>secondsHi</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_TimeStampExtendedType</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>timeBaseStatus</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>nanoseconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>seconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint64</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_UserDataType</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>userDataLength</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>userByte0</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>userByte1</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>userByte2</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_SynchronizedTimeBaseType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_RateDeviationType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/sint16</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_TimeBaseNotificationType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/AUTOSAR_StbM/CompuMethods/StbM_TimeBaseNotificationType</COMPU-METHOD-REF>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_SyncRecordTableHeadType</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>SynchronizedTimeDomain</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>HWfrequency</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>HWprescaler</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_SyncRecordTableBlockType</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS/>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>GlbSeconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>GlbNanoSeconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>VirtualLocalTimeLow</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>LocSeconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>LocNanoSeconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>PathDelay</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>RateDeviation</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_RateDeviationType</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>TimeBaseStatus</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_OffsetRecordTableHeadType</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS/>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>OffsetTimeDomain</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_OffsetRecordTableBlockType</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>GlbSeconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>GlbNanoSeconds</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>TimeBaseStatus</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_MasterConfigType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/AUTOSAR_StbM/CompuMethods/Txt_StbM_MasterConfigType</COMPU-METHOD-REF>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_TimeDiffType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/sint32</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>StbM_CustomerIdType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>SwcImplementations</SHORT-NAME>
+          <ELEMENTS>
+            <SWC-IMPLEMENTATION>
+              <SHORT-NAME>SWCIMPL_StbM</SHORT-NAME>
+              <CODE-DESCRIPTORS>
+                <CODE>
+                  <SHORT-NAME>Code</SHORT-NAME>
+                  <ARTIFACT-DESCRIPTORS>
+                    <AUTOSAR-ENGINEERING-OBJECT>
+                      <SHORT-LABEL>ArEngObj</SHORT-LABEL>
+                      <CATEGORY>SWSRC</CATEGORY>
+                    </AUTOSAR-ENGINEERING-OBJECT>
+                  </ARTIFACT-DESCRIPTORS>
+                </CODE>
+              </CODE-DESCRIPTORS>
+              <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+              <SW-VERSION>1.0.0</SW-VERSION>
+              <SWC-BSW-MAPPING-REF DEST="SWC-BSW-MAPPING">/AUTOSAR_StbM/AUTOSAR_StbM/SwcBswMappings/SwcBswMapping_StbM</SWC-BSW-MAPPING-REF>
+              <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM</BEHAVIOR-REF>
+            </SWC-IMPLEMENTATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>AUTOSAR_StbM</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>SwcBswMappings</SHORT-NAME>
+              <ELEMENTS>
+                <SWC-BSW-MAPPING>
+                  <SHORT-NAME>SwcBswMapping_StbM</SHORT-NAME>
+                  <BSW-BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/AUTOSAR_StbM/BswModuleDescriptions/StbM/IB_StbM</BSW-BEHAVIOR-REF>
+                  <RUNNABLE-MAPPINGS>
+                    <SWC-BSW-RUNNABLE-MAPPING>
+                      <BSW-ENTITY-REF DEST="BSW-SCHEDULABLE-ENTITY">/AUTOSAR_StbM/BswModuleDescriptions/StbM/IB_StbM/SE_MainFunction</BSW-ENTITY-REF>
+                      <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM/RE_StbM_MainFunction</SWC-RUNNABLE-REF>
+                    </SWC-BSW-RUNNABLE-MAPPING>
+                  </RUNNABLE-MAPPINGS>
+                  <SWC-BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/AUTOSAR_StbM/SwComponentTypes/StbM/IB_StbM</SWC-BEHAVIOR-REF>
+                </SWC-BSW-MAPPING>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

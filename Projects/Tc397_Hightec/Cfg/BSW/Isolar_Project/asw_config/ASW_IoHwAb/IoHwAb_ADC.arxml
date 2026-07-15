@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>IoHwAb_ADC</SHORT-NAME>
+      <ELEMENTS>
+        <ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>IoHwAb_ADC</SHORT-NAME>
+          <ADMIN-DATA>
+            <SDGS>
+              <SDG GID="Master">
+                <SD>true</SD>
+              </SDG>
+            </SDGS>
+          </ADMIN-DATA>
+          <PORTS>
+            <P-PORT-PROTOTYPE UUID="7d1ea773-754d-4c08-b278-34d0f2bb319b">
+              <SHORT-NAME>PPortADC_SAR0_10</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="d96c6dac-3104-4a67-b49c-b64653bff12c">
+              <SHORT-NAME>PPortADC_SAR0_31</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="72ac1dee-d2c9-4674-aa3e-b3d0b9509de7">
+              <SHORT-NAME>PPortADC_SAR1_12</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="dd4a2ea1-716e-401e-87ff-2378db548b90">
+              <SHORT-NAME>IB_IoHwAb_ADC</SHORT-NAME>
+              <EVENTS>
+                <OPERATION-INVOKED-EVENT UUID="d6848308-f31d-4026-aa8a-90935278f9b3">
+                  <SHORT-NAME>OIE_IoHwAb_ADC_Get_SAR0_31</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_ADC/IoHwAb_ADC/IB_IoHwAb_ADC/IoHwAb_ADC_Get_SAR0_31</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_ADC/IoHwAb_ADC/PPortADC_SAR0_31</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface/IoHwAb_ADC_Get</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="39fb6d12-2446-4fb7-b913-cad4174fb40d">
+                  <SHORT-NAME>OIE_IoHwAb_ADC_Get_SAR0_10</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_ADC/IoHwAb_ADC/IB_IoHwAb_ADC/IoHwAb_ADC_Get_SAR0_10</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_ADC/IoHwAb_ADC/PPortADC_SAR0_10</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface/IoHwAb_ADC_Get</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="a8965db0-58b4-4bd3-a9a9-73b1dd74f3b1">
+                  <SHORT-NAME>OIE_IoHwAb_ADC_Get_SAR1_12</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/IoHwAb_ADC/IoHwAb_ADC/IB_IoHwAb_ADC/IoHwAb_ADC_Get_SAR1_12</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/IoHwAb_ADC/IoHwAb_ADC/PPortADC_SAR1_12</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/IoHwAb_ADC_Interface/IoHwAb_ADC_Interface/IoHwAb_ADC_Get</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="92797f3e-ee60-4ac6-8870-d9f6cb572b78">
+                  <SHORT-NAME>IoHwAb_ADC_Get_SAR0_10</SHORT-NAME>
+                  <SYMBOL>IoHwAb_ADC_Get_SAR0_10_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="6d37e970-3fc6-4611-9475-c159538b0915">
+                  <SHORT-NAME>IoHwAb_ADC_Get_SAR0_31</SHORT-NAME>
+                  <SYMBOL>IoHwAb_ADC_Get_SAR0_31_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="9c01b61c-cacf-4b9d-b7da-292bf6d8b010">
+                  <SHORT-NAME>IoHwAb_ADC_Get_SAR1_12</SHORT-NAME>
+                  <SYMBOL>IoHwAb_ADC_Get_SAR1_12_func</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+
